@@ -9,10 +9,13 @@ const propTypes = {
 };
 
 export const Header = ({ leftItem, rightItem, title }) => (
-  <View style={styles.container}>
-    <View style={styles.leftItem}>{leftItem}</View>
-    <Text style={styles.title}>{title}</Text>
-    <View style={styles.rightItem}>{rightItem}</View>
+  <View>
+    <View style={styles.orangeView} />
+    <View style={styles.container}>
+      <View style={styles.leftItem}>{leftItem}</View>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.rightItem}>{rightItem}</View>
+    </View>
   </View>
 );
 
@@ -20,7 +23,6 @@ Header.propTypes = propTypes;
 
 const styles = {
   container: {
-    marginTop: 8,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -46,5 +48,9 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     marginRight: 10,
+  },
+  orangeView: {
+    backgroundColor: 'orange',
+    height: 20,
   },
 };
