@@ -35,3 +35,7 @@ Run the app:
 ```
 npm run android
 ```
+
+### Credits for icons
+
+* [Freepik]: https://www.freepik.com/ from [Flaticon]: https://www.flaticon.com/
