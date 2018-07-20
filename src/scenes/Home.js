@@ -3,6 +3,7 @@ import { View, FlatList, Image, Dimensions } from 'react-native';
 import PageControl from 'react-native-page-control';
 
 import { MenuButton, Header } from '../components/navigation';
+import { SideMenu } from '../components/side_menu/SideMenu'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const mockData = [
@@ -47,27 +48,7 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.adsList}>
-          <FlatList
-            data={mockData}
-            renderItem={this.renderItem}
-            horizontal
-            pagingEnabled
-            onMomentumScrollEnd={this.onScrollEnd}
-            showsHorizontalScrollIndicator={false}
-          />
-          <PageControl
-            style={styles.pageControl}
-            numberOfPages={6}
-            currentPage={this.state.currentPage}
-            hidesForSinglePage
-            pageIndicatorTintColor="gray"
-            currentPageIndicatorTintColor="red"
-            indicatorStyle={{ borderRadius: 5 }}
-            currentIndicatorStyle={{ borderRadius: 5 }}
-            indicatorSize={{ width: 8, height: 8 }}
-          />
-        </View>
+        <SideMenu/>
       </View>
     );
   }
