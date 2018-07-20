@@ -21,8 +21,6 @@ const mockData = [
 
 class SideMenu extends Component {
 
-    state = {}
-
     renderItem = ({ item }) => <MenuItem image={item.image} title={item.title}/>
 
     render() {
