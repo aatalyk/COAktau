@@ -3,8 +3,10 @@ import { View, FlatList, Image, Dimensions, StyleSheet } from 'react-native';
 import PageControl from 'react-native-page-control';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
+import { SideMenu } from '../components/side_menu/SideMenu';
+
 const FirstRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
-const SecondRoute = () => <View style={[styles.container, { backgroundColor: '#673ab7' }]} />;
+const SecondRoute = () => <SideMenu/>;
 
 import { MenuButton, Header } from '../components/navigation';
 
