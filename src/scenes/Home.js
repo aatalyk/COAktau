@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { View, FlatList, Image, Dimensions } from 'react-native';
+import { View, FlatList, Image, Dimensions, StyleSheet } from 'react-native';
 import PageControl from 'react-native-page-control';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+
+const FirstRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
+const SecondRoute = () => <View style={[styles.container, { backgroundColor: '#673ab7' }]} />;
 
 import { MenuButton, Header } from '../components/navigation';
 
@@ -22,6 +26,8 @@ class Home extends Component {
 
   state = {
     currentPage: 0,
+    index: 0,
+    routes: [{ key: 'first', title: 'First' }, { key: 'second', title: 'Second' }],
   };
 
   onScrollEnd = (event) => {
@@ -44,6 +50,17 @@ class Home extends Component {
     );
   }
 
+  renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      style={styles.tabbar}
+      labelStyle={styles.tabbarLabel}
+      indicatorStyle={styles.tabbarIndicator}
+    />
+  );
+
+  onTabViewIndexChange = (index) => this.setState({ index });
+
   render() {
     return (
       <View style={styles.container}>
@@ -62,18 +79,30 @@ class Home extends Component {
             currentPage={this.state.currentPage}
             hidesForSinglePage
             pageIndicatorTintColor="gray"
-            currentPageIndicatorTintColor="red"
-            indicatorStyle={{ borderRadius: 5 }}
-            currentIndicatorStyle={{ borderRadius: 5 }}
-            indicatorSize={{ width: 8, height: 8 }}
+            currentPageIndicatorTintColor="white"
+            indicatorStyle={styles.pageControlIndicator}
+            currentIndicatorStyle={styles.pageControlIndicator}
+            indicatorSize={styles.pageControlIndicatorSize}
           />
         </View>
+        <TabView
+          renderTabBar={this.renderTabBar}
+          navigationState={this.state}
+          renderScene={SceneMap({
+            first: FirstRoute,
+            second: SecondRoute,
+          })}
+          onIndexChange={this.onTabViewIndexChange}
+          initialLayout={styles.tabViewInitialLayout}
+          style={styles.tabView}
+          useNativeDriver
+        />
       </View>
     );
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -84,14 +113,37 @@ const styles = {
   },
   adsList: {
     shadowOffset: {
-      width: 2,
-      height: 4,
+      width: 3,
+      height: 3,
     },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 3,
+    shadowOpacity: 0.4,
+    elevation: 1,
     shadowColor: 'black',
+    flex: 0.3,
   },
-};
+  tabbar: {
+    backgroundColor: 'rgba(0, 0, 0, 0.0)',
+  },
+  tabbarLabel: {
+    color: 'black',
+  },
+  tabbarIndicator: {
+    backgroundColor: 'blue',
+  },
+  tabView: {
+    marginTop: 5,
+  },
+  tabViewInitialLayout: {
+    width: SCREEN_WIDTH,
+    height: 44,
+  },
+  pageControlIndicator: {
+    borderRadius: 5,
+  },
+  pageControlIndicatorSize: {
+    width: 8,
+    height: 8,
+  },
+});
 
 export { Home };
