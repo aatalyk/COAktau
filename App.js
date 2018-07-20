@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StackNavigator } from './src/components/navigation';
+import { DrawerNavigator } from './src/components/navigation';
 
 export default class App extends Component {
   render() {
-    return <StackNavigator />;
+    return <DrawerNavigator />;
   }
 }

@@ -19,10 +19,12 @@ const mockData = [
 ];
 
 class Home extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Home',
-    header: () => <Header title="Home" leftItem={<MenuButton />} />,
-  };
+    header: () => (
+      <Header title="Home" leftItem={<MenuButton onPress={() => navigation.openDrawer()} />} />
+    ),
+  });
 
   state = {
     currentPage: 0,
