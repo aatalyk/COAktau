@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import { SearchBar } from 'react-native-elements';
 
-import { HelpdeskItem } from '../components/HelpdeskItem';
+import { SearchBar } from '../components/SearchBar';
+import { HelpdeskItem } from '../components/helpdesk/HelpdeskItem';
 
 const mockData = [
 	{
@@ -32,10 +32,11 @@ class Helpdesk extends Component {
 	}
 }
 
-export { Helpdesk };
-
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'column'
+		flexDirection: 'column',
+		justifyContent: 'space-around'
 	}
 });
+
+export { Helpdesk };

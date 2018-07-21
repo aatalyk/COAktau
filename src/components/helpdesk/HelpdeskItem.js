@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { images } from '../../assets';
 
 const propTypes = {
 	item: PropTypes.object
@@ -20,7 +22,9 @@ class HelpdeskItem extends Component {
 					<View style={styles.titleContainer}>
 						<Text style={[styles.title, { fontWeight: 'bold' }]}>{this.props.item.title}</Text>
 						<View style={styles.button}>
-							<Button title="minus" onPress={this.onPress} style={styles.button} />
+							<TouchableOpacity onPress={this.onPress}>
+								<Image source={images.close} style={styles.image} />
+							</TouchableOpacity>
 						</View>
 					</View>
 					<Text style={styles.detail}>{this.props.item.date}</Text>
@@ -79,6 +83,10 @@ const styles = StyleSheet.create({
 	replyButton: {
 		borderColor: 'orange',
 		borderWidth: 1
+	},
+	image: {
+		width: 20,
+		height: 20
 	}
 });
 

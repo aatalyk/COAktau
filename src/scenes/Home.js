@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
-import { ServicesAndQuestions } from '../components/services';
+//import { ServicesAndQuestions } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
 
+import { Helpdesk } from './Helpdesk';
+
 const FirstRoute = () => <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />;
-const SecondRoute = () => <ServicesAndQuestions />;
+const SecondRoute = () => <Helpdesk />;
 
 import { MenuButton, Header } from '../components/navigation';
 
