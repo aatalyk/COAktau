@@ -79,6 +79,7 @@ AutoPagingFlatList.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     shadowOffset: {
       width: 0,
       height: 4,

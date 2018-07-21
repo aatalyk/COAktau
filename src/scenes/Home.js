@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
-import { SideMenu } from '../components/side_menu/SideMenu';
+import { ServicesAndQuestions } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 
 const FirstRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
-const SecondRoute = () => <SideMenu />;
+const SecondRoute = () => <ServicesAndQuestions />;
 
 import { MenuButton, Header } from '../components/navigation';
 

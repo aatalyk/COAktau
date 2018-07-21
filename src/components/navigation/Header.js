@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
     height: 56,
     alignItems: 'center',
     shadowOffset: {
-      width: 2,
-      height: 4,
+      width: 0,
+      height: 3,
     },
-    shadowOpacity: 0.05,
+    shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 3,
     shadowColor: 'black',
