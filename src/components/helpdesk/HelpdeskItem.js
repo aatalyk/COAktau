@@ -41,7 +41,9 @@ class HelpdeskItem extends Component {
 				<View style={[styles.titleContainer, { margin: 10 }]}>
 					<Text style={styles.title}>{this.props.item.title}</Text>
 					<View style={styles.button}>
-						<Button title="plus" onPress={this.onPress} style={styles.button} />
+						<TouchableOpacity onPress={this.onPress}>
+							<Image source={images.plus} style={styles.image} />
+						</TouchableOpacity>
 					</View>
 				</View>
 			</TouchableOpacity>
