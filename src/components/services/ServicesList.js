@@ -3,6 +3,7 @@ import { View, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native
 import PropTypes from 'prop-types';
 
 import { ServiceItem } from './ServiceItem';
+import { colors } from '../../assets';
 
 const services = [{ title: 'title', key: '1' }, { title: 'title', key: '2' }];
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   separator: {
-    backgroundColor: 'gray',
+    backgroundColor: colors.grayLight,
     height: 1,
     marginLeft: 70,
   },
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   },
   showMoreText: {
     marginRight: 15,
-    color: 'blue',
+    color: colors.blue,
   },
 });
 

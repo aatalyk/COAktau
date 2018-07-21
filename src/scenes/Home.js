@@ -4,8 +4,11 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import { ServicesAndQuestions } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
+import { colors } from '../assets';
 
-const FirstRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
+const FirstRoute = () => (
+  <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
+);
 const SecondRoute = () => <ServicesAndQuestions />;
 
 import { MenuButton, Header } from '../components/navigation';
@@ -71,13 +74,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   tabbar: {
-    backgroundColor: 'rgba(0, 0, 0, 0.0)',
+    backgroundColor: colors.transparent,
   },
   tabbarLabel: {
     color: 'black',
   },
   tabbarIndicator: {
-    backgroundColor: 'blue',
+    backgroundColor: colors.blueDark,
   },
   tabView: {
     marginTop: 5,

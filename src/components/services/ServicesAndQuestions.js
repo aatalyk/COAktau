@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { ServicesList } from './';
+import { colors } from '../../assets';
 
 class ServicesAndQuestions extends Component {
   render() {
@@ -16,7 +17,7 @@ class ServicesAndQuestions extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: colors.blueUltraLight,
   },
   servicesList: {
     marginTop: 20,

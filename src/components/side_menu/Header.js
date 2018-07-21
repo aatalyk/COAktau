@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../../assets';
-import { fonts } from '../../assets';
+import { images, colors, fonts } from '../../assets';
 
 const propTypes = {
   title: PropTypes.string,
@@ -20,7 +19,7 @@ Header.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
+    backgroundColor: colors.blueLight,
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 20,
