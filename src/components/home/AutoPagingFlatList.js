@@ -85,13 +85,15 @@ const styles = StyleSheet.create({
       height: 4,
     },
     shadowOpacity: 0.5,
-    elevation: 0,
+    elevation: 3,
     shadowColor: 'black',
     flex: 0.3,
+    overflow: 'visible',
   },
   pageControl: {
+    position: 'absolute',
+    bottom: 10,
     alignSelf: 'center',
-    marginTop: -15,
   },
   pageControlIndicator: {
     borderRadius: 5,

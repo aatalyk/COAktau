@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet, Platform } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import { ServicesAndQuestions } from '../components/services';
@@ -60,7 +60,7 @@ class Home extends Component {
           })}
           onIndexChange={this.onTabViewIndexChange}
           initialLayout={styles.tabViewInitialLayout}
-          style={styles.tabView}
+          style={{ marginTop: Platform.OS === 'ios' ? 0 : -5 }}
           useNativeDriver
         />
       </View>
@@ -75,15 +75,14 @@ const styles = StyleSheet.create({
   },
   tabbar: {
     backgroundColor: colors.transparent,
+    height: 44,
   },
   tabbarLabel: {
     color: 'black',
   },
   tabbarIndicator: {
-    backgroundColor: colors.blueDark,
-  },
-  tabView: {
-    marginTop: 5,
+    backgroundColor: colors.blue,
+    height: 3,
   },
   tabViewInitialLayout: {
     width: SCREEN_WIDTH,
