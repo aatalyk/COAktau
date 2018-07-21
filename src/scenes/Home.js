@@ -6,89 +6,78 @@ import { ServicesAndQuestions } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
 
-const FirstRoute = () => (
-  <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
-);
+const FirstRoute = () => <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />;
 const SecondRoute = () => <ServicesAndQuestions />;
 
 import { MenuButton, Header } from '../components/navigation';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const mockData = [
-  { key: 'a' },
-  { key: 'b' },
-  { key: 'c' },
-  { key: 'd' },
-  { key: 'e' },
-  { key: 'f' },
-];
+const mockData = [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'd' }, { key: 'e' }, { key: 'f' }];
 
 class Home extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Home',
-    header: () => (
-      <Header title="Home" leftItem={<MenuButton onPress={() => navigation.openDrawer()} />} />
-    ),
-  });
+	static navigationOptions = ({ navigation }) => ({
+		title: 'Home',
+		header: () => <Header title="Home" leftItem={<MenuButton onPress={() => navigation.openDrawer()} />} />
+	});
 
-  state = {
-    index: 0,
-    routes: [{ key: 'first', title: 'First' }, { key: 'second', title: 'Second' }],
-  };
+	state = {
+		index: 0,
+		routes: [{ key: 'first', title: 'First' }, { key: 'second', title: 'Second' }]
+	};
 
-  renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      style={styles.tabbar}
-      labelStyle={styles.tabbarLabel}
-      indicatorStyle={styles.tabbarIndicator}
-    />
-  );
+	renderTabBar = props => (
+		<TabBar
+			{...props}
+			style={styles.tabbar}
+			labelStyle={styles.tabbarLabel}
+			indicatorStyle={styles.tabbarIndicator}
+		/>
+	);
 
-  onTabViewIndexChange = (index) => this.setState({ index });
+	onTabViewIndexChange = index => this.setState({ index });
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <AutoPagingFlatList data={mockData} />
-        <TabView
-          renderTabBar={this.renderTabBar}
-          navigationState={this.state}
-          renderScene={SceneMap({
-            first: FirstRoute,
-            second: SecondRoute,
-          })}
-          onIndexChange={this.onTabViewIndexChange}
-          initialLayout={styles.tabViewInitialLayout}
-          style={styles.tabView}
-          useNativeDriver
-        />
-      </View>
-    );
-  }
+	render() {
+		return (
+			<View style={styles.container}>
+				<AutoPagingFlatList data={mockData} />
+				<TabView
+					renderTabBar={this.renderTabBar}
+					navigationState={this.state}
+					renderScene={SceneMap({
+						first: FirstRoute,
+						second: SecondRoute
+					})}
+					onIndexChange={this.onTabViewIndexChange}
+					initialLayout={styles.tabViewInitialLayout}
+					style={styles.tabView}
+					useNativeDriver
+				/>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  tabbar: {
-    backgroundColor: colors.transparent,
-  },
-  tabbarLabel: {
-    color: 'black',
-  },
-  tabbarIndicator: {
-    backgroundColor: colors.blueDark,
-  },
-  tabView: {
-    marginTop: 5,
-  },
-  tabViewInitialLayout: {
-    width: SCREEN_WIDTH,
-    height: 44,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	tabbar: {
+		backgroundColor: colors.transparent
+	},
+	tabbarLabel: {
+		color: 'black'
+	},
+	tabbarIndicator: {
+		backgroundColor: colors.blueDark
+	},
+	tabView: {
+		marginTop: 5
+	},
+	tabViewInitialLayout: {
+		width: SCREEN_WIDTH,
+		height: 44
+	}
 });
 
 export { Home };
