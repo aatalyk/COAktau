@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { colors } from '../../assets';
+
 const propTypes = {
   leftItem: PropTypes.node,
   rightItem: PropTypes.node,
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   orangeView: {
-    backgroundColor: 'orange',
+    backgroundColor: colors.orange,
     height: 20,
   },
 });

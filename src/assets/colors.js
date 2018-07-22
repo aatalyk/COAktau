@@ -6,5 +6,5 @@ export const colors = {
   gray: 'rgb(81,81,81)',
   grayLight: 'rgb(174,174,174)',
   orange: 'rgb(248,157,45)',
-  transparent: 'rgba(0,0,0,0.0)',
+  transparent: 'transparent',
 };

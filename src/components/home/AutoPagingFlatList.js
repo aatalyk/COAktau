@@ -33,6 +33,8 @@ class AutoPagingFlatList extends Component {
     this.setState({ currentIndex });
   };
 
+  getItemLayout = (data, index) => ({ length: SCREEN_WIDTH, offset: SCREEN_WIDTH * index, index });
+
   renderItem() {
     return (
       <Image
@@ -57,6 +59,7 @@ class AutoPagingFlatList extends Component {
           horizontal
           pagingEnabled
           onMomentumScrollEnd={this.onScrollEnd}
+          getItemLayout={this.getItemLayout}
           showsHorizontalScrollIndicator={false}
         />
         <PageControl
@@ -85,13 +88,15 @@ const styles = StyleSheet.create({
       height: 4,
     },
     shadowOpacity: 0.5,
-    elevation: 0,
+    elevation: 3,
     shadowColor: 'black',
     flex: 0.3,
+    overflow: 'visible',
   },
   pageControl: {
+    position: 'absolute',
+    bottom: 10,
     alignSelf: 'center',
-    marginTop: -15,
   },
   pageControlIndicator: {
     borderRadius: 5,
