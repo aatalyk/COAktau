@@ -10,5 +10,8 @@ export const images = {
 	question: require('../../resources/img/question.png'),
 	settings: require('../../resources/img/settings.png'),
 	speaker: require('../../resources/img/speaker.png'),
-	star: require('../../resources/img/star.png')
+	star: require('../../resources/img/star.png'),
+	search: require('../../resources/img/search.png'),
+	close: require('../../resources/img/close.png'),
+	plus: require('../../resources/img/plus.png')
 };
