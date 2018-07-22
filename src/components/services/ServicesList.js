@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import { ServiceItem } from './ServiceItem';
 import { colors } from '../../assets';
+import { HomeRoutes } from '../navigation';
 
 const services = [{ title: 'title', key: '1' }, { title: 'title', key: '2' }];
 
 const propTypes = {
   style: PropTypes.object,
+  navigation: PropTypes.object,
+  isPartiallyShown: PropTypes.bool,
 };
 
 class ServicesList extends Component {
@@ -20,9 +24,17 @@ class ServicesList extends Component {
     return <View style={styles.separator} />;
   }
 
+  onShowMorePress = () => {
+    const action = StackActions.push({
+      routeName: HomeRoutes.Services,
+    });
+    this.props.navigation.dispatch(action);
+  };
+
   render() {
+    const { isPartiallyShown } = this.props;
     return (
-      <View style={[styles.container, this.props.style]}>
+      <View style={[styles.container, this.props.style, { flex: !isPartiallyShown && 1 }]}>
         <View>
           <FlatList
             ItemSeparatorComponent={this.renderSeparator}
@@ -30,9 +42,11 @@ class ServicesList extends Component {
             renderItem={this.renderItem}
           />
         </View>
-        <TouchableOpacity style={styles.showMoreButton}>
-          <Text style={styles.showMoreText}>SHOW MORE</Text>
-        </TouchableOpacity>
+        {this.props.isPartiallyShown && (
+          <TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
+            <Text style={styles.showMoreText}>SHOW MORE</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

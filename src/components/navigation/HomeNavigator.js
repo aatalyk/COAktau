@@ -1,10 +1,17 @@
 import { createStackNavigator } from 'react-navigation';
 
 import { Home } from '../../scenes/Home';
+import { ServicesList } from '../services';
 
-export const StackNavigator = createStackNavigator(
+export const HomeRoutes = {
+  Home: 'Home',
+  Services: 'Services',
+};
+
+export const HomeNavigator = createStackNavigator(
   {
-    ['Home']: Home,
+    [HomeRoutes.Home]: Home,
+    [HomeRoutes.Services]: ServicesList,
   },
   {
     headerStyle: {

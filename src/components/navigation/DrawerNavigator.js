@@ -1,11 +1,11 @@
 import { createDrawerNavigator } from 'react-navigation';
 
-import { StackNavigator } from './StackNavigator';
+import { HomeNavigator } from './HomeNavigator';
 import { SideMenu } from '../side_menu/SideMenu';
 
 export const DrawerNavigator = createDrawerNavigator(
   {
-    ['Home']: StackNavigator,
+    ['Home']: HomeNavigator,
   },
   {
     contentComponent: SideMenu,

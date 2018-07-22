@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, Platform } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import PropTypes from 'prop-types';
 
-//import { ServicesAndQuestions } from '../components/services';
+import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
-
-import { Helpdesk } from './Helpdesk';
 
 const FirstRoute = () => (
   <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
 );
-const SecondRoute = () => <Helpdesk />;
 
 import { MenuButton, Header } from '../components/navigation';
 
@@ -24,6 +22,10 @@ const mockData = [
   { key: 'e' },
   { key: 'f' },
 ];
+
+const propTypes = {
+  navigation: PropTypes.object,
+};
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -58,7 +60,7 @@ class Home extends Component {
           navigationState={this.state}
           renderScene={SceneMap({
             first: FirstRoute,
-            second: SecondRoute,
+            second: () => <ServicesAndFAQ navigation={this.props.navigation} />,
           })}
           onIndexChange={this.onTabViewIndexChange}
           initialLayout={styles.tabViewInitialLayout}
@@ -70,6 +72,8 @@ class Home extends Component {
   }
 }
 
+Home.propTypes = propTypes;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -78,6 +82,8 @@ const styles = StyleSheet.create({
   tabbar: {
     backgroundColor: colors.transparent,
     height: 44,
+    borderBottomColor: colors.grayLight,
+    borderBottomWidth: 1,
   },
   tabbarLabel: {
     color: 'black',

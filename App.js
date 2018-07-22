@@ -7,7 +7,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    if (Platform.Android) {
+    if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental &&
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }

@@ -16,7 +16,7 @@ const propTypes = {
   item: PropTypes.object,
 };
 
-class HelpdeskItem extends Component {
+class FAQitem extends Component {
   state = {
     isSelected: false,
   };
@@ -67,13 +67,13 @@ class HelpdeskItem extends Component {
   }
 }
 
-HelpdeskItem.propTypes = propTypes;
+FAQitem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    margin: 10,
+    margin: 15,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { HelpdeskItem };
+export { FAQitem };

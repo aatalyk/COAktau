@@ -33,6 +33,8 @@ class AutoPagingFlatList extends Component {
     this.setState({ currentIndex });
   };
 
+  getItemLayout = (data, index) => ({ length: SCREEN_WIDTH, offset: SCREEN_WIDTH * index, index });
+
   renderItem() {
     return (
       <Image
@@ -57,6 +59,7 @@ class AutoPagingFlatList extends Component {
           horizontal
           pagingEnabled
           onMomentumScrollEnd={this.onScrollEnd}
+          getItemLayout={this.getItemLayout}
           showsHorizontalScrollIndicator={false}
         />
         <PageControl
