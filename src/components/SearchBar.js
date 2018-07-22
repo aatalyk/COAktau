@@ -13,13 +13,9 @@ class SearchBar extends Component {
 		text: ''
 	};
 
-	search = text => {
-		this.setState({ text });
-	};
+	search = text => this.setState({ text });
 
-	clear = () => {
-		this.setState({ text: '' });
-	};
+	clear = () => this.setState({ text: '' });
 
 	onPress = () => {};
 
@@ -28,7 +24,7 @@ class SearchBar extends Component {
 			<View style={styles.container}>
 				<View style={styles.searchContainer}>
 					<TouchableOpacity onPress={this.onPress}>
-						<Image source={images.search} style={[styles.image, { marginLeft: 10, marginRight: 10 }]} />
+						<Image source={images.search} style={styles.image} />
 					</TouchableOpacity>
 					<TextInput
 						value={this.state.text}
@@ -38,7 +34,7 @@ class SearchBar extends Component {
 					/>
 				</View>
 				<TouchableOpacity onPress={this.clear}>
-					<Image source={images.close} style={[styles.image, { marginLeft: 10, marginRight: 10 }]} />
+					<Image source={images.close} style={styles.image} />
 				</TouchableOpacity>
 			</View>
 		);
@@ -71,7 +67,9 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		width: 15,
-		height: 15
+		height: 15,
+		marginLeft: 10,
+		marginRight: 10
 	}
 });
 

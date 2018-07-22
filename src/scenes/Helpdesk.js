@@ -26,7 +26,7 @@ class Helpdesk extends Component {
 		return (
 			<View style={styles.container}>
 				<SearchBar />
-				<FlatList data={mockData} renderItem={this.renderItem} />
+				<FlatList data={mockData} renderItem={this.renderItem} keyExtractor={(item, index) => index} />
 			</View>
 		);
 	}

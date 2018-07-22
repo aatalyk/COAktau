@@ -13,41 +13,45 @@ class HelpdeskItem extends Component {
 		isSelected: false
 	};
 
-	onPress = () => this.setState({ isSelected: !this.state.isSelected });
-
-	render() {
-		return this.state.isSelected ? (
-			<TouchableOpacity onPress={this.onPress}>
-				<View style={styles.container}>
-					<View style={styles.titleContainer}>
-						<Text style={[styles.title, { fontWeight: 'bold' }]}>{this.props.item.title}</Text>
-						<View style={styles.button}>
-							<TouchableOpacity onPress={this.onPress}>
-								<Image source={images.close} style={styles.image} />
-							</TouchableOpacity>
-						</View>
-					</View>
-					<Text style={styles.detail}>{this.props.item.date}</Text>
-					<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.detail}</Text>
-					<View style={styles.separator} />
-					<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>Не нашли ответ?</Text>
-					<View style={styles.replyButton}>
-						<Button title="Написать" />
-					</View>
-				</View>
-			</TouchableOpacity>
-		) : (
-			<TouchableOpacity onPress={this.onPress}>
-				<View style={[styles.titleContainer, { margin: 10 }]}>
-					<Text style={styles.title}>{this.props.item.title}</Text>
+	renderSelectedView = () => (
+		<TouchableOpacity onPress={this.onPress}>
+			<View style={styles.container}>
+				<View style={styles.titleContainer}>
+					<Text style={[styles.title, { fontWeight: 'bold' }]}>{this.props.item.title}</Text>
 					<View style={styles.button}>
 						<TouchableOpacity onPress={this.onPress}>
-							<Image source={images.plus} style={styles.image} />
+							<Image source={images.close} style={styles.image} />
 						</TouchableOpacity>
 					</View>
 				</View>
-			</TouchableOpacity>
-		);
+				<Text style={styles.detail}>{this.props.item.date}</Text>
+				<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.detail}</Text>
+				<View style={styles.separator} />
+				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>Не нашли ответ?</Text>
+				<View style={styles.replyButton}>
+					<Button title="Написать" />
+				</View>
+			</View>
+		</TouchableOpacity>
+	);
+
+	renderUnselectedView = () => (
+		<TouchableOpacity onPress={this.onPress}>
+			<View style={[styles.titleContainer, { margin: 10 }]}>
+				<Text style={styles.title}>{this.props.item.title}</Text>
+				<View style={styles.button}>
+					<TouchableOpacity onPress={this.onPress}>
+						<Image source={images.plus} style={styles.image} />
+					</TouchableOpacity>
+				</View>
+			</View>
+		</TouchableOpacity>
+	);
+
+	onPress = () => this.setState({ isSelected: !this.state.isSelected });
+
+	render() {
+		return this.state.isSelected ? this.renderSelectedView() : this.renderUnselectedView();
 	}
 }
 
