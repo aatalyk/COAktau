@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -7,10 +7,22 @@ const propTypes = {
 	imgSource: PropTypes.number
 };
 
-export const MenuButton = ({ onPress, imgSource }) => (
-	<TouchableOpacity onPress={onPress}>
-		<Image source={imgSource} style={{ width: 20, height: 20 }} />
+export const IconButton = ({ onPress, imgSource }) => (
+	<TouchableOpacity onPress={onPress} style={styles.container}>
+		<Image source={imgSource} style={styles.image} />
 	</TouchableOpacity>
 );
 
-MenuButton.propTypes = propTypes;
+IconButton.propTypes = propTypes;
+
+const styles = StyleSheet.create({
+	container: {
+		width: 44,
+		height: 44,
+		justifyContent: 'center'
+	},
+	image: {
+		width: 20,
+		height: 20
+	}
+});

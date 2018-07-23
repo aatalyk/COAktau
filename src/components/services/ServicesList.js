@@ -4,8 +4,9 @@ import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import { Header } from '../navigation/Header';
+import { IconButton } from '../common';
 import { ServiceItem } from './ServiceItem';
-import { colors } from '../../assets';
+import { colors, images } from '../../assets';
 import { HomeRoutes } from '../navigation';
 
 const services = [{ title: 'title', key: '1' }, { title: 'title', key: '2' }];
@@ -17,9 +18,14 @@ const propTypes = {
 };
 
 class ServicesList extends Component {
-	static navigationOptions = () => ({
+	static navigationOptions = ({ navigation }) => ({
 		title: 'Home',
-		header: () => <Header title="Услуги" />
+		header: () => (
+			<Header
+				title="Услуги"
+				leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
+			/>
+		)
 	});
 
 	renderItem() {

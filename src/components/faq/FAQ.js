@@ -33,10 +33,7 @@ const propTypes = {
 class FAQ extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		header: () => (
-			<Header
-				title="FAQasdas"
-				leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
-			/>
+			<Header title="FAQ" leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />} />
 		)
 	});
 
