@@ -3,6 +3,7 @@ import { View, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native
 import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
+import { Header } from '../navigation/Header';
 import { ServiceItem } from './ServiceItem';
 import { colors } from '../../assets';
 import { HomeRoutes } from '../navigation';
@@ -16,6 +17,11 @@ const propTypes = {
 };
 
 class ServicesList extends Component {
+	static navigationOptions = () => ({
+		title: 'Home',
+		header: () => <Header title="Услуги" />
+	});
+
 	renderItem() {
 		return <ServiceItem />;
 	}

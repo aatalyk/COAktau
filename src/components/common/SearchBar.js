@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../assets';
+import { images } from '../../assets';
 
 const propTypes = {
 	title: PropTypes.string
