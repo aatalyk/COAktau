@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../assets';
+import { images } from '../../assets';
 
 const propTypes = {
 	title: PropTypes.string
@@ -23,7 +23,7 @@ class SearchBar extends Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.searchContainer}>
-					<TouchableOpacity onPress={this.onPress}>
+					<TouchableOpacity onPress={this.onPress} style={styles.buttonContainer}>
 						<Image source={images.search} style={styles.image} />
 					</TouchableOpacity>
 					<TextInput
@@ -33,7 +33,7 @@ class SearchBar extends Component {
 						style={styles.textInput}
 					/>
 				</View>
-				<TouchableOpacity onPress={this.clear}>
+				<TouchableOpacity onPress={this.clear} style={styles.buttonContainer}>
 					<Image source={images.close} style={styles.image} />
 				</TouchableOpacity>
 			</View>
@@ -60,6 +60,12 @@ const styles = StyleSheet.create({
 		height: 30,
 		marginLeft: 5,
 		marginRight: 5
+	},
+	buttonContainer: {
+		width: 44,
+		height: 44,
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	textInput: {
 		flex: 1,

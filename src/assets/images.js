@@ -13,5 +13,6 @@ export const images = {
 	star: require('../../resources/img/star.png'),
 	search: require('../../resources/img/search.png'),
 	close: require('../../resources/img/close.png'),
-	plus: require('../../resources/img/plus.png')
+	plus: require('../../resources/img/plus.png'),
+	back: require('../../resources/img/back.png')
 };
