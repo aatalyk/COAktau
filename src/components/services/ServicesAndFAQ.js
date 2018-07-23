@@ -4,40 +4,36 @@ import PropTypes from 'prop-types';
 
 import { ServicesList } from './';
 import { colors } from '../../assets';
-import { FAQ } from '../../scenes/FAQ';
+import { FAQ } from '../../components/faq/FAQ';
 
 const propTypes = {
-  navigation: PropTypes.object,
+	navigation: PropTypes.object
 };
 
 class ServicesAndFAQ extends Component {
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <ServicesList
-          style={styles.servicesList}
-          navigation={this.props.navigation}
-          isPartiallyShown
-        />
-        <FAQ style={styles.faq} />
-      </ScrollView>
-    );
-  }
+	render() {
+		return (
+			<ScrollView style={styles.container}>
+				<ServicesList style={styles.servicesList} navigation={this.props.navigation} isPartiallyShown />
+				<FAQ style={styles.faq} navigation={this.props.navigation} isPartiallyShown />
+			</ScrollView>
+		);
+	}
 }
 
 ServicesAndFAQ.propTypes = propTypes;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.blueUltraLight,
-  },
-  servicesList: {
-    marginTop: 20,
-  },
-  faq: {
-    marginVertical: 20,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: colors.blueUltraLight
+	},
+	servicesList: {
+		marginTop: 20
+	},
+	faq: {
+		marginVertical: 20
+	}
 });
 
 export { ServicesAndFAQ };
