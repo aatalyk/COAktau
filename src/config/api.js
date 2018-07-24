@@ -1,6 +1,6 @@
 import { database } from './firebase';
 
-export const fetchFAQ = async callback => {
+export const fetch = async () => {
 	try {
 		const ref = await database.ref().child('coaktau');
 		ref.on('value', snapshot => {
@@ -12,9 +12,9 @@ export const fetchFAQ = async callback => {
 					description: item.description
 				});
 			});
-			callback(items, null);
+			return Promise.resolve(items);
 		});
 	} catch (error) {
-		callback([], error);
+		Promise.reject(error);
 	}
 };

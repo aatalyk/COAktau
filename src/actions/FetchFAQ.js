@@ -1,29 +1,29 @@
-import { FETCH_FAQ_BEGIN, FETCH_FAQ_SUCCESS, FETCH_FAQ_FAIL } from './types';
+import { FETCH_FAQ_REQUESTED, FETCH_FAQ_SUCCEEDED, FETCH_FAQ_FAILED } from './types';
 import * as api from '../config';
 
 export const fetchFAQ = () => {
 	return dispatch => {
-		dispatch(fetchFAQBegin);
+		dispatch(fetchFAQRequested);
 		api.fetchFAQ((items, error) => {
 			if (error) {
-				dispatch(fetchFAQFail(error));
+				dispatch(fetchFAQFailed(error));
 				return;
 			}
-			dispatch(fetchFAQSuccess(items));
+			dispatch(fetchFAQSucceeded(items));
 		});
 	};
 };
 
-export const fetchFAQBegin = () => ({
-	type: FETCH_FAQ_BEGIN
+export const fetchFAQRequested = () => ({
+	type: FETCH_FAQ_REQUESTED
 });
 
-export const fetchFAQSuccess = items => ({
-	type: FETCH_FAQ_SUCCESS,
+export const fetchFAQSucceeded = items => ({
+	type: FETCH_FAQ_SUCCEEDED,
 	payload: items
 });
 
-export const fetchFAQFail = error => ({
-	type: FETCH_FAQ_FAIL,
+export const fetchFAQFailed = error => ({
+	type: FETCH_FAQ_FAILED,
 	payload: error
 });

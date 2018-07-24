@@ -9,7 +9,7 @@ import { Header } from '../navigation/Header';
 import { SearchBar, IconButton } from '../common';
 import { FAQitem } from './FAQitem';
 import { HomeRoutes } from '../navigation';
-import { fetchFAQSuccess } from '../../actions';
+import { fetchFAQRequested } from '../../actions';
 
 const mockData = [
 	{
@@ -31,7 +31,7 @@ const propTypes = {
 	navigation: PropTypes.object,
 	isPartiallyShown: PropTypes.bool,
 	data: PropTypes.array,
-	fetchFAQSuccess: PropTypes.func
+	fetchFAQRequested: PropTypes.func
 };
 
 class FAQScreen extends Component {
@@ -42,7 +42,7 @@ class FAQScreen extends Component {
 	});
 
 	componentDidMount() {
-		this.props.fetchFAQSuccess(['hello', 'world']);
+		this.props.fetchFAQRequested();
 	}
 
 	renderItem = ({ item }) => <FAQitem item={item} />;
@@ -108,5 +108,5 @@ const mapStateToProps = ({ faq }) => ({
 
 export const FAQ = connect(
 	mapStateToProps,
-	{ fetchFAQSuccess }
+	{ fetchFAQRequested }
 )(FAQScreen);
