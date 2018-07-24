@@ -14,16 +14,16 @@ export const fetchFAQ = () => {
 	};
 };
 
-const fetchFAQBegin = () => ({
+export const fetchFAQBegin = () => ({
 	type: FETCH_FAQ_BEGIN
 });
 
-const fetchFAQSuccess = items => ({
+export const fetchFAQSuccess = items => ({
 	type: FETCH_FAQ_SUCCESS,
 	payload: items
 });
 
-const fetchFAQFail = error => ({
+export const fetchFAQFail = error => ({
 	type: FETCH_FAQ_FAIL,
 	payload: error
 });

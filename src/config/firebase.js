@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import * as keys from './keys';
+import { keys } from './keys';
 
 const config = {
 	apiKey: keys.FIREBASE_API_KEY,

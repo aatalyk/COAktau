@@ -1,7 +1,2 @@
-export const fooBar = () => {
-    return dispatch => {
-    dispatch({
-        type: 'FOOBAR'
-    })
-    }
-}
+export * from './fetchFAQ';
+export * from './types';

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { colors, images } from '../../assets';
 import { Header } from '../navigation/Header';
 import { SearchBar, IconButton } from '../common';
 import { FAQitem } from './FAQitem';
 import { HomeRoutes } from '../navigation';
+import { fetchFAQSuccess } from '../../actions';
 
 const mockData = [
 	{
@@ -27,15 +29,21 @@ const mockData = [
 const propTypes = {
 	style: PropTypes.object,
 	navigation: PropTypes.object,
-	isPartiallyShown: PropTypes.bool
+	isPartiallyShown: PropTypes.bool,
+	data: PropTypes.array,
+	fetchFAQSuccess: PropTypes.func
 };
 
-class FAQ extends Component {
+class FAQScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		header: () => (
 			<Header title="FAQ" leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />} />
 		)
 	});
+
+	componentDidMount() {
+		this.props.fetchFAQSuccess(['hello', 'world']);
+	}
 
 	renderItem = ({ item }) => <FAQitem item={item} />;
 
@@ -62,7 +70,7 @@ class FAQ extends Component {
 				/>
 				{this.props.isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
-						<Text style={styles.showMoreText}>SHOW MORE</Text>
+						<Text style={styles.showMoreText}>{this.props.data}</Text>
 					</TouchableOpacity>
 				)}
 			</View>
@@ -70,7 +78,7 @@ class FAQ extends Component {
 	}
 }
 
-FAQ.propTypes = propTypes;
+FAQScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -94,4 +102,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { FAQ };
+const mapStateToProps = ({ faq }) => ({
+	data: faq.data
+});
+
+export const FAQ = connect(
+	mapStateToProps,
+	{ fetchFAQSuccess }
+)(FAQScreen);
