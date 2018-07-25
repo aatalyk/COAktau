@@ -1,8 +1,8 @@
 import { database } from './firebase';
 
-export const fetch = () => {
+export const fetch = (path) => {
   return new Promise((resolve, reject) => {
-    const refer = database.ref('coaktau');
+    const refer = database.ref(path);
     refer.on(
       'value',
       (snapshot) => {

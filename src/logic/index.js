@@ -5,13 +5,11 @@ import { fetch } from '../config';
 
 const authLogic = createLogic({
   type: FETCH_FAQ_REQUESTED,
-  process: async ({ action }, dispatch, done) => {
+  process: async (_, dispatch, done) => {
     try {
-      const items = await fetch(action.ref);
-      console.warn(items);
+      const items = await fetch('coaktau');
       dispatch(fetchFAQSucceeded(items));
     } catch (error) {
-      console.warn(error);
       dispatch(fetchFAQFailed(error));
     }
     done();

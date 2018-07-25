@@ -20,10 +20,10 @@ export const fetchFAQRequested = () => ({
 
 export const fetchFAQSucceeded = (items) => ({
   type: FETCH_FAQ_SUCCEEDED,
-  payload: items,
+  items,
 });
 
 export const fetchFAQFailed = (error) => ({
   type: FETCH_FAQ_FAILED,
-  payload: error,
+  error,
 });
