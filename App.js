@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, UIManager } from 'react-native';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from './src/store';
+import { store, persistor } from './src/store';
 import { DrawerNavigator } from './src/components/navigation';
 
 export default class App extends Component {
@@ -18,7 +19,9 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <DrawerNavigator />
+        <PersistGate persistor={persistor}>
+          <DrawerNavigator />
+        </PersistGate>
       </Provider>
     );
   }

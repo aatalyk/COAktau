@@ -1,2 +1,3 @@
-export * from './fetchFAQ';
+export * from './faqActions';
+export * from './settingsActions';
 export * from './types';
