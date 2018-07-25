@@ -17,6 +17,7 @@ const propTypes = {
   isPartiallyShown: PropTypes.bool,
   data: PropTypes.array,
   fetchFAQRequested: PropTypes.func,
+  lang: PropTypes.string,
 };
 
 class FAQScreen extends Component {
@@ -33,7 +34,10 @@ class FAQScreen extends Component {
     this.props.fetchFAQRequested();
   }
 
-  renderItem = ({ item }) => <FAQitem item={item} />;
+  renderItem = ({ item }) => {
+    const localizedItem = item[this.props.lang];
+    return <FAQitem item={localizedItem} />;
+  };
 
   keyExtractor = (_, index) => index + '';
 
@@ -94,8 +98,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ faq }) => ({
+const mapStateToProps = ({ faq, settings }) => ({
   data: faq.data,
+  lang: settings.lang,
 });
 
 export const FAQ = connect(

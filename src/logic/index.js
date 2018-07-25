@@ -7,7 +7,7 @@ const authLogic = createLogic({
   type: FETCH_FAQ_REQUESTED,
   process: async (_, dispatch, done) => {
     try {
-      const items = await fetch('coaktau');
+      const items = await fetch('faq');
       dispatch(fetchFAQSucceeded(items));
     } catch (error) {
       dispatch(fetchFAQFailed(error));

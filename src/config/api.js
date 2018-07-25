@@ -9,10 +9,7 @@ export const fetch = (path) => {
         const items = [];
         snapshot.forEach((child) => {
           const item = child.val();
-          items.push({
-            title: item.title,
-            description: item.description,
-          });
+          items.push(item);
         });
         resolve(items);
       },
