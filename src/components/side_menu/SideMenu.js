@@ -35,12 +35,16 @@ class SideMenu extends Component {
 	renderItem = ({ item }) => <MenuItem image={item.image} title={item.title} />;
 
 	onPress = currentIndex => () => {
+		this.setState({ currentIndex });
+		this.navigateRoute(currentIndex);
+	};
+
+	navigateRoute = index => {
 		const routes = Object.keys(HomeRoutes);
 		const navigateAction = NavigationActions.navigate({
-			routeName: routes[currentIndex]
+			routeName: routes[index]
 		});
 		this.props.navigation.dispatch(navigateAction);
-		this.setState({ currentIndex });
 	};
 
 	onLayout = ({ nativeEvent }) => {
