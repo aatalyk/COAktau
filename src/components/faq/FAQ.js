@@ -38,9 +38,9 @@ class FAQScreen extends Component {
     return <View style={styles.separator} />;
   }
 
-  renderItem = ({ item }) => {
+  renderItem = ({ item, index }) => {
     const localizedItem = item[this.props.lang];
-    return <FAQitem item={localizedItem} />;
+    return <FAQitem item={localizedItem} index={index} />;
   };
 
   keyExtractor = (_, index) => index + '';

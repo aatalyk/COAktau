@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import { images } from '../../assets';
 
 const propTypes = {
+  index: PropTypes.number,
   item: PropTypes.object,
 };
 
@@ -54,7 +55,7 @@ class FAQitem extends Component {
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View style={styles.titleContainer}>
             <Text style={[styles.title, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
-              {this.props.item.question}
+              {`${this.props.index + 1}. ${this.props.item.question}`}
             </Text>
             <View style={styles.button}>
               <Image source={isSelected ? images.close : images.plus} style={styles.image} />
