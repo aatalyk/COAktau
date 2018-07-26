@@ -6,7 +6,7 @@ import { MenuItem } from './MenuItem';
 
 import { images } from '../../assets';
 
-const mockData = [
+const menuItems = [
   { image: images.home, title: 'Главная' },
   { image: images.case, title: 'Все услуги' },
   { image: images.star, title: 'Мои услуги' },
@@ -22,18 +22,25 @@ const mockData = [
 class SideMenu extends Component {
   state = {
     currentIndex: 0,
+    itemHeight: 44,
   };
 
   renderItem = ({ item }) => <MenuItem image={item.image} title={item.title} />;
 
   onPress = (currentIndex) => () => this.setState({ currentIndex });
 
+  onLayout = ({ nativeEvent }) => {
+    const { height } = nativeEvent.layout;
+    const itemHeight = menuItems.length > 0 ? height / menuItems.length : 0;
+    this.setState({ itemHeight });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Header title="социальное обеспечение актау" />
-        <View style={styles.menuContainer}>
-          {mockData.map((item, index) => (
+        <View style={styles.menuContainer} onLayout={this.onLayout}>
+          {menuItems.map((item, index) => (
             <MenuItem
               onPress={this.onPress(index)}
               key={index}
@@ -41,6 +48,7 @@ class SideMenu extends Component {
               selectedImage={item.image}
               title={item.title}
               isSelected={index === this.state.currentIndex}
+              height={this.state.itemHeight}
             />
           ))}
         </View>
@@ -56,8 +64,7 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+    marginVertical: 10,
   },
 });
 

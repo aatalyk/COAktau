@@ -10,11 +10,17 @@ const propTypes = {
   selectedImage: PropTypes.number,
   title: PropTypes.string,
   isSelected: PropTypes.bool,
+  height: PropTypes.number,
 };
 
-export const MenuItem = ({ onPress, regularImage, selectedImage, title, isSelected }) => (
+export const MenuItem = ({ onPress, regularImage, selectedImage, title, isSelected, height }) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: isSelected ? colors.grayUltraLight : 'white', height },
+      ]}
+    >
       <Image source={isSelected ? selectedImage : regularImage} style={styles.image} />
       <Text style={[styles.title, { color: isSelected ? colors.orange : 'black' }]}>{title}</Text>
     </View>
@@ -29,8 +35,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    margin: 5,
-    marginLeft: 15,
+    padding: 5,
+    paddingLeft: 15,
   },
   image: {
     width: 25,

@@ -34,6 +34,10 @@ class FAQScreen extends Component {
     this.props.fetchFAQRequested();
   }
 
+  renderSeparator() {
+    return <View style={styles.separator} />;
+  }
+
   renderItem = ({ item }) => {
     const localizedItem = item[this.props.lang];
     return <FAQitem item={localizedItem} />;
@@ -63,6 +67,7 @@ class FAQScreen extends Component {
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
           ListHeaderComponent={this.renderSearchBar}
+          ItemSeparatorComponent={this.renderSeparator}
         />
         {this.props.isPartiallyShown && (
           <TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
@@ -95,6 +100,10 @@ const styles = StyleSheet.create({
   showMoreText: {
     marginRight: 15,
     color: colors.blue,
+  },
+  separator: {
+    backgroundColor: colors.grayUltraLight,
+    height: 1,
   },
 });
 

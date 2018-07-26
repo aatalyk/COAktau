@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   tabbar: {
     backgroundColor: colors.transparent,
     height: 44,
-    borderBottomColor: colors.grayLight,
+    borderBottomColor: colors.grayUltraLight,
     borderBottomWidth: 1,
   },
   tabbarLabel: {

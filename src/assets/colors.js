@@ -5,6 +5,7 @@ export const colors = {
   blueUltraLight: 'rgb(236,244,244)',
   gray: 'rgb(81,81,81)',
   grayLight: 'rgb(174,174,174)',
+  grayUltraLight: 'rgb(234,235,238)',
   orange: 'rgb(248,157,45)',
   transparent: 'transparent',
 };
