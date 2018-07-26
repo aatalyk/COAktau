@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		width: SCREEN_WIDTH,
-		height: SCREEN_HEIGHT / 3,
-		justifyContent: 'center'
+		height: SCREEN_HEIGHT / 3
 	},
 	title: {
 		fontSize: 22,
