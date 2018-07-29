@@ -3,9 +3,10 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { fonts, textStyles } from '../../assets';
+import { newsPropType } from '../../propTypes';
 
 const propTypes = {
-  item: PropTypes.object,
+  item: newsPropType,
   onPress: PropTypes.func,
   lang: PropTypes.string,
 };

@@ -9,12 +9,13 @@ import { Header } from '../navigation/Header';
 import { SearchBar, IconButton } from '../common';
 import { FAQitem } from './FAQitem';
 import { fetchFAQRequested } from '../../actions';
+import { faqPropType } from '../../propTypes';
 
 const propTypes = {
   style: PropTypes.object,
   navigation: PropTypes.object,
   isPartiallyShown: PropTypes.bool,
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(faqPropType),
   fetchFAQRequested: PropTypes.func,
   lang: PropTypes.string,
 };

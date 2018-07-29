@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 
 import { NewsItem } from './NewsItem';
 import { colors } from '../../assets';
+import { newsPropType } from '../../propTypes';
 
 const propTypes = {
   navigation: PropTypes.object,
-  newsItems: PropTypes.array,
+  newsItems: PropTypes.arrayOf(newsPropType),
   lang: PropTypes.string,
 };
 

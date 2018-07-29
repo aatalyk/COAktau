@@ -8,10 +8,7 @@ import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
 import { fetchNewsRequested } from '../actions';
-
-const FirstRoute = () => (
-  <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
-);
+import { Notifications } from './Notifications';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -57,7 +54,7 @@ class HomeScreen extends Component {
           renderTabBar={this.renderTabBar}
           navigationState={this.state}
           renderScene={SceneMap({
-            first: FirstRoute,
+            first: () => <Notifications />,
             second: () => <ServicesAndFAQ navigation={this.props.navigation} />,
           })}
           onIndexChange={this.onTabViewIndexChange}

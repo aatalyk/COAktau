@@ -11,10 +11,11 @@ import {
 import PropTypes from 'prop-types';
 
 import { images, textStyles } from '../../assets';
+import { faqLocalizedPropType } from '../../propTypes';
 
 const propTypes = {
   index: PropTypes.number,
-  item: PropTypes.object,
+  item: faqLocalizedPropType,
 };
 
 class FAQitem extends Component {
