@@ -14,6 +14,8 @@ import { images } from '../../assets';
 export const DrawerRoutes = {
   HomeNavigator: 'HomeNavigator',
   ServicesNavigator: 'ServicesNavigator',
+  MyServicesNavigator: 'MyServicesNavigator',
+  NotifsNavigator: 'NotifsNavigator',
   NewsNavigator: 'NewsNavigator',
 };
 
@@ -81,6 +83,30 @@ export const DrawerNavigator = createDrawerNavigator(
       },
       {
         initialRouteName: 'ServicesList',
+      },
+    ),
+    [DrawerRoutes.MyServicesNavigator]: createStackNavigator(
+      {
+        ...stack,
+        ServicesList: {
+          screen: ServicesList,
+          navigationOptions: navigationOptions('My Services', true),
+        },
+      },
+      {
+        initialRouteName: 'ServicesList',
+      },
+    ),
+    [DrawerRoutes.NotifsNavigator]: createStackNavigator(
+      {
+        ...stack,
+        News: {
+          screen: News,
+          navigationOptions: navigationOptions('Notifications', true),
+        },
+      },
+      {
+        initialRouteName: 'News',
       },
     ),
     [DrawerRoutes.NewsNavigator]: createStackNavigator(

@@ -8,7 +8,6 @@ import { colors, images } from '../../assets';
 import { Header } from '../navigation/Header';
 import { SearchBar, IconButton } from '../common';
 import { FAQitem } from './FAQitem';
-import { HomeRoutes } from '../navigation';
 import { fetchFAQRequested } from '../../actions';
 
 const propTypes = {
@@ -54,7 +53,7 @@ class FAQScreen extends Component {
 
   onShowMorePress = () => {
     const action = StackActions.push({
-      routeName: HomeRoutes.FAQ,
+      routeName: 'FAQ',
     });
     this.props.navigation.dispatch(action);
   };

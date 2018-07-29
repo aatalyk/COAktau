@@ -52,7 +52,7 @@ class FAQitem extends Component {
     const { isSelected } = this.state;
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.onPress}>
+        <TouchableWithoutFeedback style={styles.touchable} onPress={this.onPress}>
           <View style={styles.titleContainer}>
             <Text style={[styles.title, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
               {`${this.props.index + 1}. ${this.props.item.question}`}
@@ -71,10 +71,13 @@ class FAQitem extends Component {
 FAQitem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
+  touchable: {
+    height: 44,
+  },
   container: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    margin: 15,
+    padding: 15,
   },
   titleContainer: {
     flexDirection: 'row',
