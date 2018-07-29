@@ -2,34 +2,37 @@ import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, Platform } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
+import { fetchNewsRequested } from '../actions';
 
 const FirstRoute = () => (
   <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
 );
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const mockData = [
-  { key: 'a' },
-  { key: 'b' },
-  { key: 'c' },
-  { key: 'd' },
-  { key: 'e' },
-  { key: 'f' },
-];
 
 const propTypes = {
   navigation: PropTypes.object,
+  newsItems: PropTypes.array,
+  fetchNewsRequested: PropTypes.func,
+  lang: PropTypes.string,
 };
 
-class Home extends Component {
+class HomeScreen extends Component {
   state = {
     index: 0,
     routes: [{ key: 'first', title: 'First' }, { key: 'second', title: 'Second' }],
   };
+
+  constructor(props) {
+    super(props);
+
+    this.props.fetchNewsRequested();
+  }
 
   renderTabBar = (props) => (
     <TabBar
@@ -45,7 +48,11 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AutoPagingFlatList data={mockData} />
+        <AutoPagingFlatList
+          data={this.props.newsItems}
+          lang={this.props.lang}
+          navigation={this.props.navigation}
+        />
         <TabView
           renderTabBar={this.renderTabBar}
           navigationState={this.state}
@@ -63,7 +70,7 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = propTypes;
+HomeScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -89,4 +96,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Home };
+const mapStateToProps = ({ news, settings }) => ({
+  newsItems: news.newsItems,
+  lang: settings.lang,
+});
+
+export const Home = connect(
+  mapStateToProps,
+  { fetchNewsRequested },
+)(HomeScreen);

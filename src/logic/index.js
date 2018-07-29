@@ -2,8 +2,9 @@ import { createLogic } from 'redux-logic';
 
 import { FETCH_FAQ_REQUESTED, fetchFAQSucceeded, fetchFAQFailed } from '../actions';
 import { fetch } from '../config';
+import { newsLogic } from './newsLogic';
 
-const authLogic = createLogic({
+const fetchFaqLogic = createLogic({
   type: FETCH_FAQ_REQUESTED,
   process: async (_, dispatch, done) => {
     try {
@@ -16,4 +17,4 @@ const authLogic = createLogic({
   },
 });
 
-export const logicArr = [authLogic];
+export const logicArr = [fetchFaqLogic, ...newsLogic];

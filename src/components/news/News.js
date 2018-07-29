@@ -1,46 +1,34 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { NewsItem } from './NewsItem';
-import { images, colors } from '../../assets';
-
-const mockNews = [
-  {
-    title: 'Build a diverse portfolio of early-stage startup investments ',
-    imgSource: images.example,
-    description: 'Build a diverse portfolio of early-stage startup investments ',
-  },
-  {
-    title: 'Build a diverse portfolio of early-stage startup investments ',
-    imgSource: images.example,
-    description: 'Build a diverse portfolio of early-stage startup investments ',
-  },
-  {
-    title: 'Build a diverse portfolio of early-stage startup investments ',
-    imgSource: images.example,
-    description: 'Build a diverse portfolio of early-stage startup investments ',
-  },
-];
+import { colors } from '../../assets';
 
 const propTypes = {
   navigation: PropTypes.object,
+  newsItems: PropTypes.array,
+  lang: PropTypes.string,
 };
 
-class News extends Component {
-  renderItem = ({ item }) => <NewsItem item={item} onPress={this.onPress(item)} />;
+class NewsScreen extends Component {
+  renderItem = ({ item }) => (
+    <NewsItem item={item} onPress={this.onPress(item)} lang={this.props.lang} />
+  );
 
   keyExtractor = (_, index) => index + '';
 
   renderSearchBar = () => <View style={styles.line} />;
 
-  onPress = (item) => () => this.props.navigation.navigate('NewsPage', { item: item });
+  onPress = (item) => () =>
+    this.props.navigation.navigate('NewsPage', { item, lang: this.props.lang });
 
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          data={mockNews}
+          data={this.props.newsItems}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={this.renderSearchBar}
@@ -50,7 +38,7 @@ class News extends Component {
   }
 }
 
-News.propTypes = propTypes;
+NewsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -65,4 +53,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export { News };
+const mapStateToProps = ({ news, settings }) => ({
+  newsItems: news.newsItems,
+  lang: settings.lang,
+});
+
+export const News = connect(mapStateToProps)(NewsScreen);

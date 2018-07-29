@@ -2,23 +2,22 @@ import React, { Component } from 'react';
 import { ScrollView, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { fonts } from '../../assets';
-
 const propTypes = {
   navigation: PropTypes.object,
 };
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class NewsPage extends Component {
   render() {
     const item = this.props.navigation.getParam('item');
+    const lang = this.props.navigation.getParam('lang');
+
     return (
       <ScrollView style={styles.container}>
-        <Image source={item.imgSource} style={styles.image} />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <Image source={{ uri: item.imageUrl }} style={styles.image} />
+        <Text style={styles.title}>{item[lang].title}</Text>
+        <Text style={styles.description}>{item[lang].content}</Text>
       </ScrollView>
     );
   }
@@ -33,17 +32,18 @@ const styles = StyleSheet.create({
   },
   image: {
     width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT / 3,
+    height: 200,
   },
   title: {
-    fontSize: 22,
-    fontFamily: fonts.MerriweatherBlack,
-    margin: 5,
+    fontSize: 20,
+    marginHorizontal: 15,
+    fontWeight: 'bold',
+    marginTop: 10,
   },
   description: {
-    fontSize: 20,
-    fontFamily: fonts.MerriweatherRegular,
-    margin: 5,
+    fontSize: 16,
+    marginHorizontal: 15,
+    marginTop: 10,
   },
 });
 
