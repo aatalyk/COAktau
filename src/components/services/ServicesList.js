@@ -33,7 +33,9 @@ class ServicesList extends Component {
   render() {
     const { isPartiallyShown } = this.props;
     return (
-      <View style={[styles.container, this.props.style, { flex: !isPartiallyShown && 1 }]}>
+      <View
+        style={[styles.container, this.props.style, { flex: !isPartiallyShown ? 1 : undefined }]}
+      >
         <View>
           <FlatList
             ItemSeparatorComponent={this.renderSeparator}

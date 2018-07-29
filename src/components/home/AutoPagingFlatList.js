@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, FlatList, StyleSheet, Image, Dimensions, Platform } from 'react-native';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
 
@@ -14,15 +14,19 @@ class AutoPagingFlatList extends Component {
   };
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      const { currentIndex } = this.state;
-      const nextIndex = currentIndex < this.props.data.length - 1 ? currentIndex + 1 : 0;
-      this.flatList.scrollToIndex({ index: nextIndex, animated: true });
-    }, 2500);
+    if (Platform.OS === 'ios') {
+      this.interval = setInterval(() => {
+        const { currentIndex } = this.state;
+        const nextIndex = currentIndex < this.props.data.length - 1 ? currentIndex + 1 : 0;
+        this.flatList.scrollToIndex({ index: nextIndex, animated: true });
+      }, 2500);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    if (Platform.OS === 'ios') {
+      clearInterval(this.interval);
+    }
   }
 
   onScrollEnd = (event) => {

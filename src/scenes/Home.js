@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   tabbar: {
-    backgroundColor: colors.transparent,
+    backgroundColor: Platform.OS === 'android' ? 'white' : colors.transparent,
     height: 44,
     borderBottomColor: colors.grayUltraLight,
     borderBottomWidth: 1,
