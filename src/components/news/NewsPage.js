@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { ScrollView, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { textStyles } from '../../assets';
+
 const propTypes = {
   navigation: PropTypes.object,
 };
@@ -35,15 +37,14 @@ const styles = StyleSheet.create({
     height: 200,
   },
   title: {
-    fontSize: 20,
     marginHorizontal: 15,
-    fontWeight: 'bold',
     marginTop: 10,
+    ...textStyles.h1,
   },
   description: {
-    fontSize: 16,
     marginHorizontal: 15,
     marginTop: 10,
+    ...textStyles.p,
   },
 });
 

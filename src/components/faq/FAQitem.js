@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../../assets';
+import { images, textStyles } from '../../assets';
 
 const propTypes = {
   index: PropTypes.number,
@@ -85,12 +85,12 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 18,
+    ...textStyles.h1,
   },
   detail: {
+    ...textStyles.p,
     flex: 1,
     paddingTop: 10,
-    fontSize: 18,
     color: 'grey',
     paddingBottom: 10,
   },

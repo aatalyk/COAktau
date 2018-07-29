@@ -4,7 +4,7 @@ import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { colors, images } from '../../assets';
+import { colors, images, textStyles } from '../../assets';
 import { Header } from '../navigation/Header';
 import { SearchBar, IconButton } from '../common';
 import { FAQitem } from './FAQitem';
@@ -85,9 +85,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
+    ...textStyles.p,
     marginLeft: 15,
     marginTop: 20,
-    fontSize: 18,
     color: colors.grayLight,
   },
   showMoreButton: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { colors } from '../../assets';
+import { colors, textStyles } from '../../assets';
 
 const propTypes = {
   leftItem: PropTypes.node,
@@ -15,7 +15,7 @@ export const Header = ({ leftItem, rightItem, title }) => (
     <View style={styles.orangeView} />
     <View style={styles.container}>
       <View style={styles.leftItem}>{leftItem}</View>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={textStyles.p}>{title}</Text>
       <View style={styles.rightItem}>{rightItem}</View>
     </View>
   </View>

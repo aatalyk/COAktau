@@ -4,7 +4,7 @@ import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import { ServiceItem } from './ServiceItem';
-import { colors } from '../../assets';
+import { colors, textStyles } from '../../assets';
 
 const services = [{ title: 'title', key: '1' }, { title: 'title', key: '2' }];
 
@@ -36,6 +36,7 @@ class ServicesList extends Component {
       <View
         style={[styles.container, this.props.style, { flex: !isPartiallyShown ? 1 : undefined }]}
       >
+        {isPartiallyShown && <Text style={styles.title}>Services</Text>}
         <View>
           <FlatList
             ItemSeparatorComponent={this.renderSeparator}
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   separator: {
     backgroundColor: colors.grayUltraLight,
     height: 1,
-    marginLeft: 70,
+    marginLeft: 10,
   },
   showMoreButton: {
     flexDirection: 'row',
@@ -73,6 +74,12 @@ const styles = StyleSheet.create({
   showMoreText: {
     marginRight: 15,
     color: colors.blue,
+  },
+  title: {
+    ...textStyles.h1,
+    marginLeft: 15,
+    marginTop: 20,
+    color: colors.grayLight,
   },
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { fonts, colors } from '../../assets';
+import { fonts, colors, textStyles } from '../../assets';
 
 const propTypes = {
   onPress: PropTypes.func,
@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginLeft: 30,
-    fontSize: 18,
-    textAlign: 'left',
-    color: 'black',
     fontFamily: fonts.MerriweatherRegular,
+    ...textStyles.p,
   },
 });
