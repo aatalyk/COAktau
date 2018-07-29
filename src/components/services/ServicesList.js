@@ -3,11 +3,8 @@ import { View, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native
 import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import { Header } from '../navigation/Header';
-import { IconButton } from '../common';
 import { ServiceItem } from './ServiceItem';
-import { colors, images } from '../../assets';
-import { HomeRoutes } from '../navigation';
+import { colors } from '../../assets';
 
 const services = [{ title: 'title', key: '1' }, { title: 'title', key: '2' }];
 
@@ -18,16 +15,6 @@ const propTypes = {
 };
 
 class ServicesList extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Home',
-    header: () => (
-      <Header
-        title="Услуги"
-        leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
-      />
-    ),
-  });
-
   renderItem() {
     return <ServiceItem />;
   }
@@ -38,7 +25,7 @@ class ServicesList extends Component {
 
   onShowMorePress = () => {
     const action = StackActions.push({
-      routeName: HomeRoutes.Services,
+      routeName: 'ServicesList',
     });
     this.props.navigation.dispatch(action);
   };

@@ -5,14 +5,11 @@ import PropTypes from 'prop-types';
 
 import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
-import { colors, images } from '../assets';
+import { colors } from '../assets';
 
 const FirstRoute = () => (
   <View style={[styles.container, { backgroundColor: colors.blueUltraLight }]} />
 );
-
-import { Header } from '../components/navigation';
-import { IconButton } from '../components/common';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const mockData = [
@@ -29,16 +26,6 @@ const propTypes = {
 };
 
 class Home extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Home',
-    header: () => (
-      <Header
-        title="Home"
-        leftItem={<IconButton imgSource={images.menu} onPress={() => navigation.openDrawer()} />}
-      />
-    ),
-  });
-
   state = {
     index: 0,
     routes: [{ key: 'first', title: 'First' }, { key: 'second', title: 'Second' }],
