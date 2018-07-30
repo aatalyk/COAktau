@@ -27,6 +27,8 @@ class ServicesListScreen extends Component {
 		return <ServiceItem item={localizedItem} />;
 	};
 
+	keyExtractor = ({ index }) => index + '';
+
 	renderSeparator() {
 		return <View style={styles.separator} />;
 	}
@@ -48,6 +50,7 @@ class ServicesListScreen extends Component {
 						ItemSeparatorComponent={this.renderSeparator}
 						data={this.props.data}
 						renderItem={this.renderItem}
+						keyExtractor={this.keyExtractor}
 					/>
 				</View>
 				{this.props.isPartiallyShown && (
