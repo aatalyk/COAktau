@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, Switch, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../../assets';
+import { images, fonts } from '../../assets';
 
 const propTypes = {
 	isEnabled: PropTypes.bool,
@@ -23,7 +23,7 @@ NotifsSwitch.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	fill: {
-		marginTop: 40,
+		marginTop: 30,
 		backgroundColor: 'white'
 	},
 	container: {
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		flex: 1,
-		fontSize: 18
+		fontSize: 16,
+		fontFamily: fonts.MerriweatherRegular
 	},
 	image: {
 		width: 25,
