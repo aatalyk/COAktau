@@ -15,5 +15,7 @@ export const images = {
 	close: require('../../resources/img/close.png'),
 	plus: require('../../resources/img/plus.png'),
 	back: require('../../resources/img/back.png'),
+	checkmark: require('../../resources/img/checkmark.png'),
+	bell: require('../../resources/img/bell.png'),
 	example: require('../../resources/img/example.jpg')
 };

@@ -1,27 +1,20 @@
 import { createLogic } from 'redux-logic';
 
 import { FETCH_NEWS_REQUESTED, fetchNewsSucceeded, fetchNewsFailed } from '../actions';
-import { database } from '../config';
+import { fetch } from '../config';
 
 const fetchNewsLogic = createLogic({
-  type: FETCH_NEWS_REQUESTED,
-  warnTimeout: 0,
-  process: async (_, dispatch) => {
-    database.ref('news').on(
-      'value',
-      (snapshot) => {
-        const items = [];
-        snapshot.forEach((child) => {
-          const item = child.val();
-          items.push(item);
-        });
-        dispatch(fetchNewsSucceeded(items));
-      },
-      (error) => {
-        dispatch(fetchNewsFailed(error));
-      },
-    );
-  },
+	type: FETCH_NEWS_REQUESTED,
+	warnTimeout: 0,
+	process: async (_, dispatch, done) => {
+		try {
+			const items = await fetch('news');
+			dispatch(fetchNewsSucceeded(items));
+		} catch (error) {
+			dispatch(fetchNewsFailed(error));
+		}
+		done();
+	}
 });
 
 export const newsLogic = [fetchNewsLogic];
