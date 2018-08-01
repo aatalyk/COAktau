@@ -9,6 +9,7 @@ import { FAQ } from '../faq';
 import { News } from '../news';
 import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
+import { Contact } from '../../components/contact';
 import { SideMenu } from '../side_menu/SideMenu';
 import { images } from '../../assets';
 
@@ -18,7 +19,8 @@ export const DrawerRoutes = {
 	MyServicesNavigator: 'MyServicesNavigator',
 	NotifsNavigator: 'NotifsNavigator',
 	NewsNavigator: 'NewsNavigator',
-	SettingsNavigator: 'SettingsNavigator'
+	SettingsNavigator: 'SettingsNavigator',
+	ContactNavigator: 'ContactNavigator'
 };
 
 /* eslint-disable */
@@ -57,9 +59,13 @@ const stack = {
 		screen: NewsPage,
 		navigationOptions: navigationOptions('NewsPage')
 	},
-	SettingsPage: {
+	Settings: {
 		screen: Settings,
 		navigationOptions: navigationOptions('Settings')
+	},
+	Contact: {
+		screen: Contact,
+		navigationOptions: navigationOptions('Contact')
 	}
 };
 
@@ -135,6 +141,18 @@ export const DrawerNavigator = createDrawerNavigator(
 			},
 			{
 				initialRouteName: 'Settings'
+			}
+		),
+		[DrawerRoutes.ContactNavigator]: createStackNavigator(
+			{
+				...stack,
+				Contact: {
+					screen: Contact,
+					navigationOptions: navigationOptions('Contact', true)
+				}
+			},
+			{
+				initialRouteName: 'Contact'
 			}
 		)
 	},
