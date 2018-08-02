@@ -4,10 +4,6 @@ PODS:
   - GoogleMaps/Base (2.5.0)
   - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
-  - React (0.56.0):
-    - React/Core (= 0.56.0)
-  - react-native-maps (0.21.0):
-    - React
   - React/Core (0.56.0):
     - yoga (= 0.56.0.React)
   - React/fishhook (0.56.0)
@@ -40,7 +36,6 @@ PODS:
 
 DEPENDENCIES:
   - GoogleMaps
-  - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
@@ -57,17 +52,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
-  react-native-maps:
-    :path: ../node_modules/react-native-maps
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
-  react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 110a679ce2e3811a6146d0fb793911c3570c84cb
+PODFILE CHECKSUM: 2d5c9ba57cd80921e5ade14e1273b2cae346c552
 
 COCOAPODS: 1.4.0
