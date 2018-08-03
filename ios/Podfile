@@ -21,5 +21,7 @@ target 'COAktau' do
   pod 'GoogleMaps' 
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+ 
+  pod  Firebase/Core'
 
 end
