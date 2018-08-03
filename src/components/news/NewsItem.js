@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		flex: 1,
+		fontFamily: fonts.MerriweatherRegular,
 		...textStyles.p
 	},
 	image: {

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { LanguageItem } from './LanguageItem';
 import { NotifsSwitch } from './NotifsSwitch';
 import { setLang, enableNotification, disableNotification } from '../../actions';
-import { colors, fonts } from '../../assets';
+import { colors } from '../../assets';
 
 const propTypes = {
 	lang: PropTypes.string,
