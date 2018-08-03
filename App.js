@@ -5,24 +5,26 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from './src/store';
 import { DrawerNavigator } from './src/components/navigation';
+import { setupFCM } from './src/config';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    if (Platform.OS === 'android') {
-      UIManager.setLayoutAnimationEnabledExperimental &&
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
-  }
+		setupFCM();
 
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <DrawerNavigator />
-        </PersistGate>
-      </Provider>
-    );
-  }
+		if (Platform.OS === 'android') {
+			UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+		}
+	}
+
+	render() {
+		return (
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+					<DrawerNavigator />
+				</PersistGate>
+			</Provider>
+		);
+	}
 }
