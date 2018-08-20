@@ -24,7 +24,7 @@ class ServicesListScreen extends Component {
 
 	renderItem = ({ item }) => {
 		const localizedItem = item[this.props.lang];
-		return <ServiceItem item={localizedItem} />;
+		return <ServiceItem item={localizedItem} onPress={this.onPress(localizedItem)} />;
 	};
 
 	keyExtractor = ({ index }) => index + '';
@@ -39,6 +39,8 @@ class ServicesListScreen extends Component {
 		});
 		this.props.navigation.dispatch(action);
 	};
+
+	onPress = item => this.props.navigation.navigate('ServiceDetails', { item });
 
 	render() {
 		const { isPartiallyShown } = this.props;

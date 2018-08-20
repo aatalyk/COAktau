@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { IconButton } from '../common/IconButton';
 import { Home } from '../../scenes/Home';
 import { ServicesList } from '../services';
+import { ServiceDetails } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
 import { NewsPage } from '../news';
@@ -44,6 +45,10 @@ const stack = {
 	ServicesList: {
 		screen: ServicesList,
 		navigationOptions: navigationOptions('Services')
+	},
+	ServiceDetails: {
+		screen: ServiceDetails,
+		navigationOptions: navigationOptions('ServiceDetails')
 	},
 	FAQ: {
 		screen: FAQ,
