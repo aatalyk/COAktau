@@ -31,6 +31,12 @@ class About extends Component {
 									inputRange: [-1, 0, 1],
 									outputRange: [1.001, 1, 1]
 								})
+							},
+							{
+								translateY: this.scrollY.interpolate({
+									inputRange: [-1, 0, 1],
+									outputRange: [-1, 0, 0]
+								})
 							}
 						]
 					}}

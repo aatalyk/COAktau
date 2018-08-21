@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1005597128414",
+    "firebase_url": "https://coaktau.firebaseio.com",
+    "project_id": "coaktau",
+    "storage_bucket": "coaktau.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005597128414:android:04093e0b24ea941a",
+        "android_client_info": {
+          "package_name": "com.coaktau"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005597128414-n0oi3mda960tlv6f12h1693e005f4md0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6XHvWw_pdhRyDb_TIsYY05Ei1N1lfz8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
