@@ -10,8 +10,10 @@ const fetchNewsLogic = createLogic({
 		try {
 			const items = await fetch('news');
 			dispatch(fetchNewsSucceeded(items));
+			console.log(items);
 		} catch (error) {
 			dispatch(fetchNewsFailed(error));
+			console.error(error);
 		}
 		done();
 	}
