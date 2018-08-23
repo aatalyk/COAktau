@@ -1,24 +1,28 @@
 export const settings = {
-    kaz: {
-        navigation: {
-            home: 'Үй',
-            services: 'Сервистер',
-            notifs: 'Notifter',
-            news: 'Janalyktar',
-            settings: 'Nuskaular',
-            contact: 'Bailanys',
-            about: 'Biz'
-        }
-    },
-    rus: {
-        navigation: {
-            home: 'Dom',
-            services: 'Сервисy',
-            notifs: 'Notify',
-            news: 'Novosti',
-            settings: 'Nastroiki',
-            contact: 'Контакт',
-            about: 'О нас'
-        }
-    }
-}
+	kaz: {
+		navigation: {
+			home: 'Басты бет',
+			services: 'Барлық қызметтер',
+			myServices: 'Менің қызметтерім',
+			notifs: 'Хабарландыру',
+			news: 'Жаңалықтар',
+			faq: 'Анықтама',
+			settings: 'Баптау',
+			contact: 'Мекенжай',
+			about: 'Жоба туралы'
+		}
+	},
+	rus: {
+		navigation: {
+			home: 'Главная',
+			services: 'Все услуги',
+			myServices: 'Мои услуги',
+			notifs: 'Уведомления',
+			news: 'Новости',
+			faq: 'Справка',
+			settings: 'Настройка',
+			contact: 'Контакты',
+			about: 'О проекте'
+		}
+	}
+};

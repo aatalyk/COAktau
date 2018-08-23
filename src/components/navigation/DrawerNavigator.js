@@ -4,8 +4,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import { Header } from './Header';
 import { IconButton } from '../common/IconButton';
 import { Home } from '../../scenes/Home';
-import { ServicesList } from '../services';
-import { ServiceDetails } from '../services';
+import { ServicesList, Services, ServiceDetails } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
 import { NewsPage } from '../news';
@@ -21,9 +20,10 @@ export const DrawerRoutes = {
 	MyServicesNavigator: 'MyServicesNavigator',
 	NotifsNavigator: 'NotifsNavigator',
 	NewsNavigator: 'NewsNavigator',
-	SettingsNavigator: 'SettingsNavigator',
+	FAQNavigator: 'FAQNavigator',
 	ContactNavigator: 'ContactNavigator',
-	AboutNavigator: 'AboutNavigator'
+	AboutNavigator: 'AboutNavigator',
+	SettingsNavigator: 'SettingsNavigator'
 };
 
 /* eslint-disable */
@@ -44,6 +44,10 @@ const stack = {
 	},
 	ServicesList: {
 		screen: ServicesList,
+		navigationOptions: navigationOptions('Services')
+	},
+	Services: {
+		screen: Services,
 		navigationOptions: navigationOptions('Services')
 	},
 	ServiceDetails: {
@@ -176,6 +180,18 @@ export const DrawerNavigator = createDrawerNavigator(
 			},
 			{
 				initialRouteName: 'About'
+			}
+		),
+		[DrawerRoutes.FAQNavigator]: createStackNavigator(
+			{
+				...stack,
+				FAQ: {
+					screen: FAQ,
+					navigationOptions: navigationOptions(FAQ, true)
+				}
+			},
+			{
+				initialRouteName: 'FAQ'
 			}
 		)
 	},

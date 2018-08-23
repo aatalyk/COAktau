@@ -1,91 +1,148 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Header } from './Header';
 import { MenuItem } from './MenuItem';
 
-import { images } from '../../assets';
+import { images, settings } from '../../assets';
 import { DrawerRoutes } from '../navigation';
 
 const menuItems = [
-  { image: images.home, title: 'Главная' },
-  { image: images.case, title: 'Все услуги' },
-  { image: images.star, title: 'Мои услуги' },
-  { image: images.news, title: 'Уведомления' },
-  { image: images.speaker, title: 'Новости' },
-  { image: images.question, title: 'Справка' },
-  { image: images.pin, title: 'Контакты' },
-  { image: images.info, title: 'О приложении' },
-  { image: images.settings, title: 'Настройки' },
-  { image: images.exit, title: 'Выход' },
+	{
+		image: images.home,
+		title: {
+			kaz: settings.kaz.navigation.home,
+			rus: settings.rus.navigation.home
+		}
+	},
+	{
+		image: images.case,
+		title: {
+			kaz: settings.kaz.navigation.services,
+			rus: settings.rus.navigation.services
+		}
+	},
+	{
+		image: images.star,
+		title: {
+			kaz: settings.kaz.navigation.myServices,
+			rus: settings.rus.navigation.myServices
+		}
+	},
+	{
+		image: images.news,
+		title: {
+			kaz: settings.kaz.navigation.news,
+			rus: settings.rus.navigation.news
+		}
+	},
+	{
+		image: images.speaker,
+		title: {
+			kaz: settings.kaz.navigation.notifs,
+			rus: settings.rus.navigation.notifs
+		}
+	},
+	{
+		image: images.question,
+		title: {
+			kaz: settings.kaz.navigation.faq,
+			rus: settings.rus.navigation.faq
+		}
+	},
+	{
+		image: images.pin,
+		title: {
+			kaz: settings.kaz.navigation.contact,
+			rus: settings.rus.navigation.contact
+		}
+	},
+	{
+		image: images.info,
+		title: {
+			kaz: settings.kaz.navigation.about,
+			rus: settings.rus.navigation.about
+		}
+	},
+	{
+		image: images.settings,
+		title: {
+			kaz: settings.kaz.navigation.settings,
+			rus: settings.rus.navigation.settings
+		}
+	}
 ];
 
 const propTypes = {
-  navigation: PropTypes.object,
+	navigation: PropTypes.object,
+	lang: PropTypes.string
 };
 
-class SideMenu extends Component {
-  state = {
-    currentIndex: 0,
-    itemHeight: 44,
-  };
+class SideMenuPage extends Component {
+	state = {
+		currentIndex: 0,
+		itemHeight: 44
+	};
 
-  renderItem = ({ item }) => <MenuItem image={item.image} title={item.title} />;
+	onPress = currentIndex => () => {
+		this.setState({ currentIndex });
+		this.navigateRoute(currentIndex);
+	};
 
-  onPress = (currentIndex) => () => {
-    this.setState({ currentIndex });
-    this.navigateRoute(currentIndex);
-  };
+	navigateRoute = index => {
+		const routes = Object.keys(DrawerRoutes);
+		const navigateAction = NavigationActions.navigate({
+			routeName: routes[index]
+		});
+		this.props.navigation.dispatch(navigateAction);
+	};
 
-  navigateRoute = (index) => {
-    const routes = Object.keys(DrawerRoutes);
-    const navigateAction = NavigationActions.navigate({
-      routeName: routes[index],
-    });
-    this.props.navigation.dispatch(navigateAction);
-  };
+	onLayout = ({ nativeEvent }) => {
+		const { height } = nativeEvent.layout;
+		const itemHeight = menuItems.length > 0 ? height / menuItems.length : 0;
+		this.setState({ itemHeight });
+	};
 
-  onLayout = ({ nativeEvent }) => {
-    const { height } = nativeEvent.layout;
-    const itemHeight = menuItems.length > 0 ? height / menuItems.length : 0;
-    this.setState({ itemHeight });
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Header title="социальное обеспечение актау" />
-        <View style={styles.menuContainer} onLayout={this.onLayout}>
-          {menuItems.map((item, index) => (
-            <MenuItem
-              onPress={this.onPress(index)}
-              key={index}
-              regularImage={item.image}
-              selectedImage={item.image}
-              title={item.title}
-              isSelected={index === this.state.currentIndex}
-              height={this.state.itemHeight}
-            />
-          ))}
-        </View>
-      </View>
-    );
-  }
+	render() {
+		return (
+			<View style={styles.container}>
+				<Header title="социальное обеспечение актау" />
+				<View style={styles.menuContainer} onLayout={this.onLayout}>
+					{menuItems.map((item, index) => (
+						<MenuItem
+							onPress={this.onPress(index)}
+							key={index}
+							regularImage={item.image}
+							selectedImage={item.image}
+							title={item.title[this.props.lang]}
+							isSelected={index === this.state.currentIndex}
+							height={this.state.itemHeight}
+						/>
+					))}
+				</View>
+			</View>
+		);
+	}
 }
 
-SideMenu.propTypes = propTypes;
+SideMenuPage.propTypes = propTypes;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  menuContainer: {
-    flex: 1,
-    marginVertical: 10,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	menuContainer: {
+		flex: 1,
+		marginVertical: 10
+	}
 });
 
-export { SideMenu };
+const mapStateToProps = ({ settings }) => ({
+	lang: settings.lang
+});
+
+export const SideMenu = connect(mapStateToProps)(SideMenuPage);

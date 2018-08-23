@@ -24,14 +24,12 @@ class ServicesListScreen extends Component {
 
 	renderItem = ({ item }) => {
 		const localizedItem = item[this.props.lang];
-		return <ServiceItem item={localizedItem} onPress={this.onPress(localizedItem)} />;
+		return <ServiceItem item={localizedItem} onPress={() => this.onPress(localizedItem)} />;
 	};
 
 	keyExtractor = ({ index }) => index + '';
 
-	renderSeparator() {
-		return <View style={styles.separator} />;
-	}
+	renderSeparator = () => <View style={styles.separator} />;
 
 	onShowMorePress = () => {
 		const action = StackActions.push({
@@ -40,7 +38,7 @@ class ServicesListScreen extends Component {
 		this.props.navigation.dispatch(action);
 	};
 
-	onPress = item => this.props.navigation.navigate('ServiceDetails', { item });
+	onPress = e => this.props.navigation.navigate('Services', { e });
 
 	render() {
 		const { isPartiallyShown } = this.props;
@@ -49,10 +47,10 @@ class ServicesListScreen extends Component {
 				{isPartiallyShown && <Text style={styles.title}>Services</Text>}
 				<View>
 					<FlatList
-						ItemSeparatorComponent={this.renderSeparator}
 						data={this.props.data}
 						renderItem={this.renderItem}
 						keyExtractor={this.keyExtractor}
+						ItemSeparatorComponent={this.renderSeparator}
 					/>
 				</View>
 				{this.props.isPartiallyShown && (
@@ -72,9 +70,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	separator: {
+		height: 0.5,
 		backgroundColor: colors.grayUltraLight,
-		height: 1,
-		marginLeft: 10
+		marginLeft: 10,
+		marginRight: 10
 	},
 	showMoreButton: {
 		flexDirection: 'row',

@@ -18,7 +18,7 @@ class NewsScreen extends Component {
 
 	keyExtractor = (_, index) => index + '';
 
-	renderSearchBar = () => <View style={styles.line} />;
+	renderSeparator = () => <View style={styles.separator} />;
 
 	onPress = item => () => this.props.navigation.navigate('NewsPage', { item, lang: this.props.lang });
 
@@ -29,7 +29,7 @@ class NewsScreen extends Component {
 					data={this.props.newsItems}
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
-					ItemSeparatorComponent={this.renderSearchBar}
+					ItemSeparatorComponent={this.renderSeparator}
 				/>
 			</View>
 		);
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'white'
 	},
-	line: {
+	separator: {
 		height: 0.5,
 		backgroundColor: colors.grayUltraLight,
 		marginLeft: 10,
