@@ -20,5 +20,7 @@ export const images = {
 	marker: require('../../resources/img/marker.png'),
 	call: require('../../resources/img/call.png'),
 	email: require('../../resources/img/email.png'),
-	example: require('../../resources/img/example.jpg')
+	right: require('../../resources/img/right.png'),
+	example: require('../../resources/img/example.jpg'),
+	register: require('../../resources/img/register.png')
 };
