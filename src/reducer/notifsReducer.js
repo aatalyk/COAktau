@@ -1,7 +1,7 @@
 import { FETCH_NOTIFS_REQUESTED, FETCH_NOTIFS_SUCCEEDED, FETCH_NOTIFS_FAILED } from '../actions';
 
 const initialState = {
-	data: [],
+	notifsItems: [],
 	loading: false,
 	error: null
 };
@@ -16,7 +16,7 @@ export const notifsReducer = (state = initialState, action) => {
 		case FETCH_NOTIFS_SUCCEEDED:
 			return {
 				...state,
-				data: action.items,
+				notifsItems: action.notifsItems,
 				loading: false
 			};
 		case FETCH_NOTIFS_FAILED:
