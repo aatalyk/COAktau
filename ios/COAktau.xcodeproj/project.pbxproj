@@ -688,7 +688,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				73B39A1118C48AA8EEDCD510 /* [CP] Embed Pods Frameworks */,
 				643F0D35643718820D603F89 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1193,21 +1192,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-COAktau/Pods-COAktau-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73B39A1118C48AA8EEDCD510 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-COAktau/Pods-COAktau-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B45C70BBFE387F4873BD2B21 /* [CP] Check Pods Manifest.lock */ = {
