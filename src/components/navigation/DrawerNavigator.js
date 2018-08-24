@@ -4,7 +4,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import { Header } from './Header';
 import { IconButton } from '../common/IconButton';
 import { Home } from '../../scenes/Home';
-import { ServicesList, Services, ServiceDetails } from '../services';
+import { ServicesList, Services, ServiceDetails, AboutService } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
 import { Notifications } from '../notifications';
@@ -59,6 +59,10 @@ const stack = {
 	},
 	ServiceDetails: {
 		screen: ServiceDetails,
+		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
+	},
+	AboutService: {
+		screen: AboutService,
 		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
 	},
 	FAQ: {

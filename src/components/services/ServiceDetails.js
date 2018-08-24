@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -8,34 +8,37 @@ const propTypes = {
 	navigation: PropTypes.object
 };
 
-const renderItem = e => {
-	const { item } = e;
-	e;
-	return (
-		<TouchableOpacity>
-			<View style={styles.detailContainer}>
-				<Text style={styles.title}>{item.title}</Text>
-				<Image source={images.right} style={styles.image} />
+class ServiceDetails extends Component {
+	renderItem = e => {
+		const { item } = e;
+		return (
+			<TouchableOpacity onPress={this.onPress}>
+				<View style={styles.detailContainer}>
+					<Text style={styles.title}>{item.title}</Text>
+					<Image source={images.right} style={styles.image} />
+				</View>
+			</TouchableOpacity>
+		);
+	};
+
+	renderSeparator = () => <View style={styles.separator} />;
+
+	onPress = item => this.props.navigation.navigate('AboutService');
+
+	render() {
+		const { details } = this.props.navigation.getParam('e', {});
+		return (
+			<View style={styles.container}>
+				<FlatList
+					data={details}
+					renderItem={this.renderItem}
+					keyExtractor={(_, index) => index + ''}
+					ItemSeparatorComponent={this.renderSeparator}
+				/>
 			</View>
-		</TouchableOpacity>
-	);
-};
-
-const renderSeparator = () => <View style={styles.separator} />;
-
-export const ServiceDetails = ({ navigation }) => {
-	const { details } = navigation.getParam('e', {});
-	return (
-		<View style={styles.container}>
-			<FlatList
-				data={details}
-				renderItem={renderItem}
-				keyExtractor={(_, index) => index + ''}
-				ItemSeparatorComponent={renderSeparator}
-			/>
-		</View>
-	);
-};
+		);
+	}
+}
 
 ServiceDetails.propTypes = propTypes;
 
@@ -64,3 +67,5 @@ const styles = StyleSheet.create({
 		marginRight: 10
 	}
 });
+
+export { ServiceDetails };
