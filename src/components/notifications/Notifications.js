@@ -7,31 +7,36 @@ import { NotificationItem } from './NotificationItem';
 import { colors } from '../../assets';
 import { fetchNotifsRequested } from '../../actions';
 
-const MOCK_DATA = [{ key: '1', title: 'Abcdefg' }, { key: '2', title: 'Abcdefg' }];
-
 const propTypes = {
+	navigation: PropTypes.object,
 	notifsItems: PropTypes.array,
-	fetchNotifsRequested: PropTypes.func
+	fetchNotifsRequested: PropTypes.func,
+	lang: PropTypes.string
 };
 
 class NotificationsScreen extends Component {
 	componentDidMount() {
 		this.props.fetchNotifsRequested();
-		console.warn('notifs', this.props.data);
 	}
 
-	renderItem = ({ item }) => <NotificationItem item={item} />;
+	renderItem = ({ item }) => {
+		const localizedItem = item[this.props.lang];
+		return <NotificationItem item={localizedItem} onPress={() => this.onPress(localizedItem)} />;
+	};
 
 	renderSeparator = () => <View style={styles.separator} />;
+
+	onPress = item => this.props.navigation.navigate('NotificationPage', { item });
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={MOCK_DATA}
+					data={this.props.notifsItems}
 					renderItem={this.renderItem}
 					style={styles.flatList}
 					ItemSeparatorComponent={this.renderSeparator}
+					keyExtractor={(_, index) => index + ''}
 				/>
 			</View>
 		);
@@ -55,8 +60,9 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ notifs }) => ({
-	notifsItems: notifs.notifsItems
+const mapStateToProps = ({ notifs, settings }) => ({
+	notifsItems: notifs.notifsItems,
+	lang: settings.lang
 });
 
 export const Notifications = connect(

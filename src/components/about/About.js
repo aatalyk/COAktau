@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image, StyleSheet, Dimensions, Animated } from 'react-native';
+import { Text, StyleSheet, Dimensions, Animated } from 'react-native';
 
 import { images, textStyles } from '../../assets';
 
