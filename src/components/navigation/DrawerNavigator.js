@@ -8,6 +8,7 @@ import { ServicesList, Services, ServiceDetails } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
 import { Notifications } from '../notifications';
+import { NotificationPage } from '../notifications';
 import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
@@ -62,6 +63,10 @@ const stack = {
 	Notifications: {
 		screen: Notifications,
 		navigationOptions: navigationOptions('Notifications')
+	},
+	NotificationPage: {
+		screen: NotificationPage,
+		navigationOptions: navigationOptions('')
 	},
 	News: {
 		screen: News,

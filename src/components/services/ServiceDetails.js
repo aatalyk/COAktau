@@ -10,7 +10,7 @@ const propTypes = {
 
 const renderItem = e => {
 	const { item } = e;
-	console.warn(e);
+	e;
 	return (
 		<TouchableOpacity>
 			<View style={styles.detailContainer}>
@@ -25,7 +25,6 @@ const renderSeparator = () => <View style={styles.separator} />;
 
 export const ServiceDetails = ({ navigation }) => {
 	const { details } = navigation.getParam('e', {});
-	console.warn('services', details);
 	return (
 		<View style={styles.container}>
 			<FlatList
