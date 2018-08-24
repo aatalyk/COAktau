@@ -8,7 +8,7 @@ import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors } from '../assets';
 import { fetchNewsRequested } from '../actions';
-import { Notifications } from './Notifications';
+import { Notifications } from '../components/notifications';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 

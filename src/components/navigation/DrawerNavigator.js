@@ -7,6 +7,7 @@ import { Home } from '../../scenes/Home';
 import { ServicesList, Services, ServiceDetails } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
+import { Notifications } from '../notifications';
 import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
@@ -18,8 +19,8 @@ export const DrawerRoutes = {
 	HomeNavigator: 'HomeNavigator',
 	ServicesNavigator: 'ServicesNavigator',
 	MyServicesNavigator: 'MyServicesNavigator',
-	NotifsNavigator: 'NotifsNavigator',
 	NewsNavigator: 'NewsNavigator',
+	NotifsNavigator: 'NotifsNavigator',
 	FAQNavigator: 'FAQNavigator',
 	ContactNavigator: 'ContactNavigator',
 	AboutNavigator: 'AboutNavigator',
@@ -59,7 +60,7 @@ const stack = {
 		navigationOptions: navigationOptions('FAQ')
 	},
 	Notifications: {
-		screen: FAQ,
+		screen: Notifications,
 		navigationOptions: navigationOptions('Notifications')
 	},
 	News: {
@@ -125,13 +126,13 @@ export const DrawerNavigator = createDrawerNavigator(
 		[DrawerRoutes.NotifsNavigator]: createStackNavigator(
 			{
 				...stack,
-				News: {
-					screen: News,
+				Notifications: {
+					screen: Notifications,
 					navigationOptions: navigationOptions('Notifications', true)
 				}
 			},
 			{
-				initialRouteName: 'News'
+				initialRouteName: 'Notifications'
 			}
 		),
 		[DrawerRoutes.NewsNavigator]: createStackNavigator(
