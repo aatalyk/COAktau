@@ -28,7 +28,7 @@ export const settings = {
       notifs: "Уведомления",
       news: "Новости",
       faq: "Справка",
-      settings: "Настройка",
+      settings: "Настройки",
       contact: "Контакты",
       about: "О проекте",
       calc: "Калькулятор"

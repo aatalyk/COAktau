@@ -1,15 +1,15 @@
-import { createLogicMiddleware } from 'redux-logic';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createLogicMiddleware } from "redux-logic";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import { rootReducer } from '../reducer';
-import { logicArr } from '../logic';
-import { applyMiddleware, createStore } from 'redux';
+import { rootReducer } from "../reducer";
+import { logicArr } from "../logic";
+import { applyMiddleware, createStore } from "redux";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  blacklist: ['faq'],
+  whitelist: ["settings", "about", "servicesReducer"]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
