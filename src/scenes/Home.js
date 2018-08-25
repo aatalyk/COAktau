@@ -10,6 +10,8 @@ import { colors } from '../assets';
 import { fetchNewsRequested } from '../actions';
 import { Notifications } from '../components/notifications';
 
+import { CalcScreen } from '../components/calculator';
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const propTypes = {
