@@ -12,7 +12,7 @@ const propTypes = {
 const ServiceItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<Image source={images[item.icon]} style={item.icon ? styles.image : { width: 0, height: 0 }} />
+			<Image source={{ uri: item.icon }} style={item.icon ? styles.image : { width: 0, height: 0 }} />
 			<Text style={styles.title}>{item.title}</Text>
 		</View>
 	</TouchableOpacity>

@@ -1,35 +1,45 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import { ScrollView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
 
 import { textStyles } from '../../assets';
 
 const propTypes = {
-	item: PropTypes.object
+	navigation: PropTypes.object
 };
 
-const AboutService = ({ item }) => (
-	<View style={styles.container}>
-		<HTMLView value={`<p><a href="http://jsdf.co">&hearts; nice job!</a></p>`} />
-	</View>
-);
+class AboutService extends Component {
+	render() {
+		const detail = this.props.navigation.getParam('detail', {});
+		console.warn(detail);
+		return (
+			<ScrollView style={styles.container}>
+				<HTMLView value={`${detail}`} style={styles.htmlView} stylesheet={styles} />
+			</ScrollView>
+		);
+	}
+}
 
 AboutService.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		margin: 15
+		flex: 1,
+		backgroundColor: 'white'
 	},
-	image: {
-		width: 30,
-		height: 30
+	htmlView: {
+		margin: 10
 	},
-	title: {
-		marginLeft: 10,
+	p: {
 		...textStyles.p
+	},
+	a: {
+		fontWeight: '300',
+		color: '#FF3366' // make links coloured pink
+	},
+	b: {
+		fontWeight: 'bold'
 	}
 });
 

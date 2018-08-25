@@ -4,6 +4,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import { Header } from './Header';
 import { IconButton } from '../common/IconButton';
 import { Home } from '../../scenes/Home';
+import { NotificationPage } from '../notifications';
 import { ServicesList, Services, ServiceDetails, AboutService } from '../services';
 import { FAQ } from '../faq';
 import { News } from '../news';
@@ -72,6 +73,10 @@ const stack = {
 	Notifications: {
 		screen: Notifications,
 		navigationOptions: navigationOptions(settings.kaz.navigation.notifs, settings.rus.navigation.notifs)
+	},
+	NotificationPage: {
+		screen: NotificationPage,
+		navigationOptions: navigationOptions('', '')
 	},
 	News: {
 		screen: News,

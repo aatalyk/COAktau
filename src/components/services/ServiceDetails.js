@@ -12,7 +12,7 @@ class ServiceDetails extends Component {
 	renderItem = e => {
 		const { item } = e;
 		return (
-			<TouchableOpacity onPress={this.onPress}>
+			<TouchableOpacity onPress={() => this.onPress(item.detail)}>
 				<View style={styles.detailContainer}>
 					<Text style={styles.title}>{item.title}</Text>
 					<Image source={images.right} style={styles.image} />
@@ -23,7 +23,7 @@ class ServiceDetails extends Component {
 
 	renderSeparator = () => <View style={styles.separator} />;
 
-	onPress = item => this.props.navigation.navigate('AboutService');
+	onPress = detail => this.props.navigation.navigate('AboutService', { detail });
 
 	render() {
 		const { details } = this.props.navigation.getParam('e', {});
