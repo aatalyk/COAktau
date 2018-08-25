@@ -51,8 +51,12 @@ class ServicesListScreen extends Component {
 
   onPress = e => this.props.navigation.navigate("Services", { e });
 
+  getShortData = () => this.props.data.slice(0, 2);
+
   render() {
     const { isPartiallyShown, data, lang } = this.props;
+    const serviceItems = isPartiallyShown ? this.getShortData() : data;
+
     return (
       <View
         style={[
@@ -66,7 +70,7 @@ class ServicesListScreen extends Component {
         )}
         <View>
           <FlatList
-            data={data}
+            data={serviceItems}
             renderItem={this.renderItem}
             keyExtractor={this.keyExtractor}
             ItemSeparatorComponent={this.renderSeparator}

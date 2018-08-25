@@ -57,19 +57,22 @@ class FAQScreen extends Component {
     this.props.navigation.dispatch(action);
   };
 
+  getShortData = () => this.props.data.slice(0, 2);
+
   render() {
-    const { lang } = this.props;
+    const { lang, isPartiallyShown, data } = this.props;
+    const faqItems = isPartiallyShown ? this.getShortData() : data;
 
     return (
       <View style={[styles.container, this.props.style]}>
         <FlatList
-          data={this.props.data}
+          data={faqItems}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
           ListHeaderComponent={this.renderSearchBar}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        {this.props.isPartiallyShown && (
+        {isPartiallyShown && (
           <TouchableOpacity
             style={styles.showMoreButton}
             onPress={this.onShowMorePress}
