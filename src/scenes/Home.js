@@ -3,10 +3,11 @@ import { View, Dimensions, StyleSheet, Platform } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { store } from "../store";
 
 import { ServicesAndFAQ } from "../components/services";
 import { AutoPagingFlatList } from "../components/home/AutoPagingFlatList";
-import { colors } from "../assets";
+import { colors, settings } from "../assets";
 import { fetchNewsRequested } from "../actions";
 import { Notifications } from "../components/notifications";
 
@@ -25,8 +26,14 @@ class HomeScreen extends Component {
   state = {
     index: 0,
     routes: [
-      { key: "first", title: "First" },
-      { key: "second", title: "Second" }
+      {
+        key: "first",
+        title: settings[store.getState().settings.lang].navigation.notifs
+      },
+      {
+        key: "second",
+        title: settings[store.getState().settings.lang].navigation.faq
+      }
     ]
   };
 
@@ -47,19 +54,21 @@ class HomeScreen extends Component {
   onTabViewIndexChange = index => this.setState({ index });
 
   render() {
+    const { lang, navigation, newsItems } = this.props;
+
     return (
       <View style={styles.container}>
         <AutoPagingFlatList
-          data={this.props.newsItems}
-          lang={this.props.lang}
-          navigation={this.props.navigation}
+          data={newsItems}
+          lang={lang}
+          navigation={navigation}
         />
         <TabView
           renderTabBar={this.renderTabBar}
           navigationState={this.state}
           renderScene={SceneMap({
-            first: () => <Notifications navigation={this.props.navigation} />,
-            second: () => <ServicesAndFAQ navigation={this.props.navigation} />
+            first: () => <Notifications navigation={navigation} />,
+            second: () => <ServicesAndFAQ navigation={navigation} />
           })}
           onIndexChange={this.onTabViewIndexChange}
           initialLayout={styles.tabViewInitialLayout}
