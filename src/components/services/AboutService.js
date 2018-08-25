@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,6 @@ const propTypes = {
 class AboutService extends Component {
 	render() {
 		const detail = this.props.navigation.getParam('detail', {});
-		console.warn(detail);
 		return (
 			<ScrollView style={styles.container}>
 				<HTMLView value={`${detail}`} style={styles.htmlView} stylesheet={styles} />

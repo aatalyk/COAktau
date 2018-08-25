@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { images, textStyles } from '../../assets';
-import { faqLocalizedPropType } from '../../propTypes';
 
 const propTypes = {
 	index: PropTypes.number,
-	item: faqLocalizedPropType
+	item: PropTypes.object
 };
 
-class FAQitem extends Component {
+class FAQItem extends Component {
 	state = {
 		isSelected: false
 	};
@@ -21,20 +20,16 @@ class FAQitem extends Component {
 		}
 	}
 
-	onPress = () => this.setState({ isSelected: !this.state.isSelected });
-
-	onWriteButtonPress = () => this.setState({ isSelected: this.state.isSelected });
+	onPress = () => {
+		this.setState((prevState, prevProps) => ({
+			isSelected: !prevState.isSelected
+		}));
+	};
 
 	renderDetails() {
 		return (
 			<View>
-				<Text style={styles.detail}>{this.props.item.date}</Text>
-				<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.answer}</Text>
-				<View style={styles.separator} />
-				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>Не нашли ответ?</Text>
-				<View style={styles.replyButton}>
-					<Button title="Написать" onPress={this.onWriteButtonPress} />
-				</View>
+				<Text style={[styles.detail, { color: 'black' }]}>{`${this.props.item.description}`}</Text>
 			</View>
 		);
 	}
@@ -46,7 +41,7 @@ class FAQitem extends Component {
 				<TouchableWithoutFeedback style={styles.touchable} onPress={this.onPress}>
 					<View style={styles.titleContainer}>
 						<Text style={[styles.title, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
-							{`${this.props.index + 1}. ${this.props.item.question}`}
+							{this.props.item.title}
 						</Text>
 						<View style={styles.button}>
 							<Image source={isSelected ? images.close : images.plus} style={styles.image} />
@@ -59,7 +54,7 @@ class FAQitem extends Component {
 	}
 }
 
-FAQitem.propTypes = propTypes;
+FAQItem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	touchable: {
@@ -103,4 +98,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { FAQitem };
+export { FAQItem };
