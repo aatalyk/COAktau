@@ -3,6 +3,7 @@ import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react
 import PropTypes from 'prop-types';
 
 import { colors, images, textStyles } from '../../assets';
+import { calculate } from '../calculator/actions';
 
 const propTypes = {
 	navigation: PropTypes.object
@@ -12,7 +13,7 @@ class ServiceDetails extends Component {
 	renderItem = e => {
 		const { item } = e;
 		return (
-			<TouchableOpacity onPress={() => this.onPress(item.detail, item)}>
+			<TouchableOpacity onPress={() => this.onPress(item.detail, item.calc, item)}>
 				<View style={styles.detailContainer}>
 					<Text style={styles.title}>{item.title}</Text>
 					<Image source={images.right} style={styles.image} />
@@ -23,10 +24,11 @@ class ServiceDetails extends Component {
 
 	renderSeparator = () => <View style={styles.separator} />;
 
-	onPress = (detail, item) =>
-		detail
-			? this.props.navigation.navigate('AboutService', { detail })
-			: this.props.navigation.navigate('CalcScreen', { item });
+	onPress = (detail, calc, item) => {
+		calc
+			? this.props.navigation.navigate('CalcScreen', { item })
+			: this.props.navigation.navigate('AboutService', { detail });
+	};
 
 	render() {
 		const { details } = this.props.navigation.getParam('e', {});
