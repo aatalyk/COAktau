@@ -20,7 +20,8 @@ export const settings = {
 		},
 		buttons: {
 			composeEmail: 'Жазу',
-			calculate: 'Есептеу'
+			calculate: 'Есептеу',
+			showMore: 'Толығырақ'
 		},
 		text: {
 			title: 'Социальное Обеспечение Актау',
@@ -46,7 +47,7 @@ export const settings = {
 			notifs: 'Уведомления',
 			news: 'Новости',
 			faq: 'Справка',
-			settings: 'Настройка',
+			settings: 'Настройки',
 			contact: 'Контакты',
 			about: 'О проекте',
 			calc: 'Калькулятор'
@@ -58,7 +59,8 @@ export const settings = {
 		},
 		buttons: {
 			composeEmail: 'Написать',
-			calculate: 'Посчитать'
+			calculate: 'Посчитать',
+			showMore: 'Показать ещё'
 		},
 		text: {
 			title: 'Социальное Обеспечение Актау',

@@ -7,8 +7,8 @@ import {
 	StyleSheet,
 	TouchableWithoutFeedback,
 	LayoutAnimation,
-	Platform,
-	Linking
+	Linking,
+	Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -46,7 +46,11 @@ class FAQitem extends Component {
 					{settings[this.props.lang].text.noAnswer}
 				</Text>
 				<View style={styles.replyButton}>
-					<Button title={settings[this.props.lang].buttons.composeEmail} onPress={this.onWriteButtonPress} />
+					<Button
+						title={settings[this.props.lang].buttons.composeEmail}
+						onPress={this.onWriteButtonPress}
+						color={colors.orange}
+					/>
 				</View>
 			</View>
 		);
