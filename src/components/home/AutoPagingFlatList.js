@@ -28,7 +28,10 @@ class AutoPagingFlatList extends Component {
       this.interval = setInterval(() => {
         const { currentIndex } = this.state;
         const nextIndex =
-          currentIndex < this.props.data.length - 1 ? currentIndex + 1 : 0;
+          this.props.data.length > 0 &&
+          currentIndex < this.props.data.length - 1
+            ? currentIndex + 1
+            : 0;
         this.flatList.scrollToIndex({ index: nextIndex, animated: true });
       }, 2500);
     }
