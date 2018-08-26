@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { textStyles } from "../../assets";
 
@@ -9,21 +10,28 @@ const propTypes = {
     icon: PropTypes.string,
     title: PropTypes.string
   }),
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  lang: PropTypes.oneOf(["kaz", "rus"])
 };
 
-const ServiceItem = ({ item, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={styles.container}>
-      {!!item.icon && (
-        <Image source={{ uri: item.icon }} style={styles.image} />
-      )}
-      {!!item.title && <Text style={styles.title}>{item.title}</Text>}
-    </View>
-  </TouchableOpacity>
-);
+const ServiceItemScreen = ({ item, onPress, lang }) => {
+  const localizedItem = item[lang];
 
-ServiceItem.propTypes = propTypes;
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.container}>
+        {!!localizedItem.icon && (
+          <Image source={{ uri: localizedItem.icon }} style={styles.image} />
+        )}
+        {!!localizedItem.title && (
+          <Text style={styles.title}>{localizedItem.title}</Text>
+        )}
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+ServiceItemScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -41,4 +49,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export { ServiceItem };
+const mapStateToProps = ({ settings }) => ({ lang: settings.lang });
+
+export const ServiceItem = connect(mapStateToProps)(ServiceItemScreen);

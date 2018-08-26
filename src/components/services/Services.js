@@ -8,16 +8,23 @@ import {
   StyleSheet
 } from "react-native";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { colors, images, textStyles } from "../../assets";
+import { addToMyServices, removeFromMyServices } from "../../actions";
+import { colors, images, textStyles, settings } from "../../assets";
 
 const propTypes = {
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  lang: PropTypes.oneOf(["kaz", "rus"]),
+  addToMyServices: PropTypes.func,
+  removeFromMyServices: PropTypes.func,
+  myServices: PropTypes.array
 };
 
-class Services extends Component {
+class ServicesScreen extends Component {
   renderItem = e => {
     const { item } = e;
+
     return (
       <TouchableOpacity onPress={() => this.onPress(item)}>
         <View style={styles.detailContainer}>
@@ -32,23 +39,44 @@ class Services extends Component {
     this.props.navigation.navigate("ServiceDetails", { e });
   };
 
+  addToMyServices = serviceItem => () =>
+    this.props.addToMyServices(serviceItem);
+
+  removeFromMyServices = serviceItem => () =>
+    this.props.removeFromMyServices(serviceItem);
+
   render() {
-    const e = this.props.navigation.getParam("e", {});
+    const { lang, myServices, navigation } = this.props;
+    const e = navigation.getParam("e", {});
+    const isInMyServices =
+      myServices.filter(item => item[lang].title === e[lang].title).length > 0; // true if an item with the same title exists in myServices
+
+    const onButtonPress = isInMyServices
+      ? this.removeFromMyServices(e)
+      : this.addToMyServices(e);
+    const buttonTitle = isInMyServices
+      ? settings[lang].buttons.removeFromMyServices
+      : settings[lang].buttons.addToMyServices;
 
     return (
       <View style={styles.container}>
         <FlatList
-          data={e.list}
+          data={e[this.props.lang].list}
           renderItem={this.renderItem}
           keyExtractor={(_, index) => index + ""}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
+        <TouchableOpacity onPress={onButtonPress}>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.buttonText}>{buttonTitle}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-Services.propTypes = propTypes;
+ServicesScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +101,25 @@ const styles = StyleSheet.create({
     backgroundColor: colors.grayUltraLight,
     marginLeft: 10,
     marginRight: 10
+  },
+  buttonText: {
+    ...textStyles.p,
+    color: "white"
+  },
+  buttonContainer: {
+    backgroundColor: colors.orange,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
-export { Services };
+const mapStateToProps = ({ settings, myServices }) => ({
+  lang: settings.lang,
+  myServices
+});
+
+export const Services = connect(
+  mapStateToProps,
+  { addToMyServices, removeFromMyServices }
+)(ServicesScreen);

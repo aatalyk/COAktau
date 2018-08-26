@@ -20,7 +20,9 @@ const propTypes = {
   isPartiallyShown: PropTypes.bool,
   lang: PropTypes.string,
   data: PropTypes.array,
-  fetchServicesRequested: PropTypes.func
+  fetchServicesRequested: PropTypes.func,
+  myServices: PropTypes.array,
+  showsMyServices: PropTypes.bool
 };
 
 class ServicesListScreen extends Component {
@@ -28,15 +30,9 @@ class ServicesListScreen extends Component {
     this.props.fetchServicesRequested();
   }
 
-  renderItem = ({ item }) => {
-    const localizedItem = item[this.props.lang];
-    return (
-      <ServiceItem
-        item={localizedItem}
-        onPress={() => this.onPress(localizedItem)}
-      />
-    );
-  };
+  renderItem = ({ item }) => (
+    <ServiceItem item={item} onPress={() => this.onPress(item)} />
+  );
 
   keyExtractor = (_, index) => index + "";
 
@@ -51,11 +47,20 @@ class ServicesListScreen extends Component {
 
   onPress = e => this.props.navigation.navigate("Services", { e });
 
-  getShortData = () => this.props.data.slice(0, 2);
+  getShortData = data => data.slice(0, 2);
 
   render() {
-    const { isPartiallyShown, data, lang } = this.props;
-    const serviceItems = isPartiallyShown ? this.getShortData() : data;
+    const {
+      isPartiallyShown,
+      data,
+      lang,
+      showsMyServices,
+      myServices
+    } = this.props;
+    const services = showsMyServices ? myServices : data;
+    const serviceItems = isPartiallyShown
+      ? this.getShortData(services)
+      : services;
 
     return (
       <View
@@ -119,7 +124,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ services, settings }) => ({
+const mapStateToProps = ({ services, settings, myServices }) => ({
+  myServices,
   data: services.data,
   lang: settings.lang
 });
