@@ -35,9 +35,9 @@ class Contact extends Component {
 					/>
 				</MapView>
 				<View style={styles.itemsContainer}>
-					<ContactItem title="1600 Amphitheatre Parkway, Mountain View, CA" imgSource={images.marker} />
-					<ContactItem title="+7 777 7777777" imgSource={images.call} onPress={this.call} />
-					<ContactItem title="example@gmail.com" imgSource={images.email} onPress={this.composeEmail} />
+					<ContactItem title="1600 Amphitheatre Parkway, Mountain View, CA" imgSource={images.pinOrange} />
+					<ContactItem title="+7 777 7777777" imgSource={images.callOrange} onPress={this.call} />
+					<ContactItem title="example@gmail.com" imgSource={images.emailOrange} onPress={this.composeEmail} />
 				</View>
 			</View>
 		);

@@ -1,5 +1,6 @@
 export const colors = {
 	blue: 'rgb(12,78,155)',
+	bluePicton: 'rgb(34, 167, 240)',
 	blueDark: 'rgb(0,74,142)',
 	blueLight: 'rgb(8,79,158)',
 	blueUltraLight: 'rgb(236,244,244)',
