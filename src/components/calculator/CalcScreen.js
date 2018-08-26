@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,19 +8,23 @@ import { FAQItem } from './FAQItem';
 
 const propTypes = {
 	navigation: PropTypes.object,
-	lang: PropTypes.object
+	lang: PropTypes.string
 };
 
 class Calc extends Component {
-	renderItem = ({ item, index }) => <FAQItem item={item} />;
+	renderItem = ({ item }) => <FAQItem item={item} />;
 
 	render() {
-		const faq = this.props.navigation.getParam('faq', {});
-		console.warn(faq);
+		const { faq, livingCost, povertyMin } = this.props.navigation.getParam('item', {});
 		return (
 			<View style={styles.container}>
-				<Calculator lang={this.props.lang} />
-				<FlatList data={faq} renderItem={this.renderItem} />
+				<Calculator
+					lang={this.props.lang}
+					navigation={this.props.navigation}
+					livingCost={livingCost}
+					povertyMin={povertyMin}
+				/>
+				<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
 			</View>
 		);
 	}

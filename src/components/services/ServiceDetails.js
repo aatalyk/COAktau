@@ -12,7 +12,7 @@ class ServiceDetails extends Component {
 	renderItem = e => {
 		const { item } = e;
 		return (
-			<TouchableOpacity onPress={() => this.onPress(item.detail, item.faq)}>
+			<TouchableOpacity onPress={() => this.onPress(item.detail, item)}>
 				<View style={styles.detailContainer}>
 					<Text style={styles.title}>{item.title}</Text>
 					<Image source={images.right} style={styles.image} />
@@ -23,10 +23,10 @@ class ServiceDetails extends Component {
 
 	renderSeparator = () => <View style={styles.separator} />;
 
-	onPress = (detail, faq) =>
+	onPress = (detail, item) =>
 		detail
 			? this.props.navigation.navigate('AboutService', { detail })
-			: this.props.navigation.navigate('CalcScreen', { faq });
+			: this.props.navigation.navigate('CalcScreen', { item });
 
 	render() {
 		const { details } = this.props.navigation.getParam('e', {});
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 	detailContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		margin: 10
+		margin: 20
 	},
 	title: {
 		flex: 1,

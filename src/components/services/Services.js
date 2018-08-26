@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 	detailContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		margin: 10
+		margin: 20
 	},
 	title: {
 		flex: 1,

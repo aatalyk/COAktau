@@ -13,6 +13,7 @@ import { DrawerRoutes } from '../navigation';
 const menuItems = [
 	{
 		image: images.home,
+		selectedImage: images.homeOrange,
 		title: {
 			kaz: settings.kaz.navigation.home,
 			rus: settings.rus.navigation.home
@@ -20,6 +21,7 @@ const menuItems = [
 	},
 	{
 		image: images.case,
+		selectedImage: images.caseOrange,
 		title: {
 			kaz: settings.kaz.navigation.services,
 			rus: settings.rus.navigation.services
@@ -27,6 +29,7 @@ const menuItems = [
 	},
 	{
 		image: images.star,
+		selectedImage: images.starOrange,
 		title: {
 			kaz: settings.kaz.navigation.myServices,
 			rus: settings.rus.navigation.myServices
@@ -34,6 +37,7 @@ const menuItems = [
 	},
 	{
 		image: images.news,
+		selectedImage: images.newsOrange,
 		title: {
 			kaz: settings.kaz.navigation.news,
 			rus: settings.rus.navigation.news
@@ -41,6 +45,7 @@ const menuItems = [
 	},
 	{
 		image: images.speaker,
+		selectedImage: images.speakerOrange,
 		title: {
 			kaz: settings.kaz.navigation.notifs,
 			rus: settings.rus.navigation.notifs
@@ -48,6 +53,7 @@ const menuItems = [
 	},
 	{
 		image: images.question,
+		selectedImage: images.questionOrange,
 		title: {
 			kaz: settings.kaz.navigation.faq,
 			rus: settings.rus.navigation.faq
@@ -55,6 +61,7 @@ const menuItems = [
 	},
 	{
 		image: images.pin,
+		selectedImage: images.pinOrange,
 		title: {
 			kaz: settings.kaz.navigation.contact,
 			rus: settings.rus.navigation.contact
@@ -62,6 +69,7 @@ const menuItems = [
 	},
 	{
 		image: images.info,
+		selectedImage: images.infoOrange,
 		title: {
 			kaz: settings.kaz.navigation.about,
 			rus: settings.rus.navigation.about
@@ -69,6 +77,7 @@ const menuItems = [
 	},
 	{
 		image: images.settings,
+		selectedImage: images.settingsOrange,
 		title: {
 			kaz: settings.kaz.navigation.settings,
 			rus: settings.rus.navigation.settings
@@ -109,14 +118,14 @@ class SideMenuPage extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Header title="социальное обеспечение актау" />
+				<Header title={settings[this.props.lang].text.title} />
 				<View style={styles.menuContainer} onLayout={this.onLayout}>
 					{menuItems.map((item, index) => (
 						<MenuItem
 							onPress={this.onPress(index)}
 							key={index}
 							regularImage={item.image}
-							selectedImage={item.image}
+							selectedImage={item.selectedImage}
 							title={item.title[this.props.lang]}
 							isSelected={index === this.state.currentIndex}
 							height={this.state.itemHeight}

@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images } from '../../assets';
+import { images, colors, settings } from '../../assets';
 
 const propTypes = {
-	title: PropTypes.string
+	title: PropTypes.string,
+	search: PropTypes.func,
+	clear: PropTypes.func,
+	lang: PropTypes.string
 };
 
 class SearchBar extends Component {
@@ -13,11 +16,17 @@ class SearchBar extends Component {
 		text: ''
 	};
 
-	search = text => this.setState({ text });
+	search = text => {
+		this.setState({ text });
+		this.props.search(text);
+	};
 
-	clear = () => this.setState({ text: '' });
+	clear = () => {
+		this.setState({ text: '' });
+		this.props.clear();
+	};
 
-	onPress = () => {};
+	onPress = () => this.props.search(this.state.text);
 
 	render() {
 		return (
@@ -28,7 +37,7 @@ class SearchBar extends Component {
 					</TouchableOpacity>
 					<TextInput
 						value={this.state.text}
-						placeholder="Search"
+						placeholder={settings[this.props.lang].text.search}
 						onChangeText={this.search}
 						style={styles.textInput}
 					/>
@@ -47,7 +56,7 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		backgroundColor: 'gray',
+		backgroundColor: colors.grayUltraLight,
 		height: 50
 	},
 	searchContainer: {

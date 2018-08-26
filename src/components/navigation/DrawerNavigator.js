@@ -13,7 +13,7 @@ import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
 import { About } from '../about';
-import { CalcScreen } from '../calculator';
+import { CalcScreen, AlertScreen } from '../calculator';
 import { SideMenu } from '../side_menu/SideMenu';
 import { images, settings } from '../../assets';
 
@@ -102,6 +102,9 @@ const stack = {
 	CalcScreen: {
 		screen: CalcScreen,
 		navigationOptions: navigationOptions(settings.kaz.navigation.calc, settings.rus.navigation.calc)
+	},
+	AlertScreen: {
+		screen: AlertScreen
 	}
 };
 

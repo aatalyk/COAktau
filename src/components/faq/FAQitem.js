@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
+import {
+	View,
+	Text,
+	Button,
+	Image,
+	StyleSheet,
+	TouchableWithoutFeedback,
+	LayoutAnimation,
+	Linking
+} from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images, textStyles } from '../../assets';
+import { images, textStyles, settings } from '../../assets';
 import { faqLocalizedPropType } from '../../propTypes';
 
 const propTypes = {
 	index: PropTypes.number,
-	item: faqLocalizedPropType
+	item: faqLocalizedPropType,
+	lang: PropTypes.string
 };
 
 class FAQitem extends Component {
@@ -23,7 +33,7 @@ class FAQitem extends Component {
 
 	onPress = () => this.setState({ isSelected: !this.state.isSelected });
 
-	onWriteButtonPress = () => this.setState({ isSelected: this.state.isSelected });
+	onWriteButtonPress = () => Linking.openURL('mailto:atalyk.akash@nu.edu.kz');
 
 	renderDetails() {
 		return (
@@ -31,9 +41,11 @@ class FAQitem extends Component {
 				<Text style={styles.detail}>{this.props.item.date}</Text>
 				<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.answer}</Text>
 				<View style={styles.separator} />
-				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>Не нашли ответ?</Text>
+				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>
+					{settings[this.props.lang].text.noAnswer}
+				</Text>
 				<View style={styles.replyButton}>
-					<Button title="Написать" onPress={this.onWriteButtonPress} />
+					<Button title={settings[this.props.lang].buttons.composeEmail} onPress={this.onWriteButtonPress} />
 				</View>
 			</View>
 		);

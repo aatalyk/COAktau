@@ -20,6 +20,10 @@ const propTypes = {
 };
 
 class FAQScreen extends Component {
+	state = {
+		data: this.props.data
+	};
+
 	componentDidMount() {
 		this.props.fetchFAQRequested();
 	}
@@ -30,13 +34,17 @@ class FAQScreen extends Component {
 
 	renderItem = ({ item, index }) => {
 		const localizedItem = item[this.props.lang];
-		return <FAQitem item={localizedItem} index={index} />;
+		return <FAQitem item={localizedItem} index={index} lang={this.props.lang} />;
 	};
 
 	keyExtractor = (_, index) => index + '';
 
 	renderSearchBar = () =>
-		this.props.isPartiallyShown ? <Text style={styles.title}>Frequently asked questions</Text> : <SearchBar />;
+		this.props.isPartiallyShown ? (
+			<Text style={styles.title}>Frequently asked questions</Text>
+		) : (
+			<SearchBar lang={this.props.lang} search={this.search} clear={this.clear} />
+		);
 
 	onShowMorePress = () => {
 		const action = StackActions.push({
@@ -45,11 +53,29 @@ class FAQScreen extends Component {
 		this.props.navigation.dispatch(action);
 	};
 
+	search = text => {
+		this.setState({
+			data: this.filter(text)
+		});
+	};
+
+	clear = () => {
+		this.setState({
+			data: this.props.data
+		});
+	};
+
+	filter = text =>
+		this.props.data.filter(item => {
+			const localizedItem = item[this.props.lang];
+			return localizedItem.question.indexOf(text) >= 0;
+		});
+
 	render() {
 		return (
 			<View style={[styles.container, this.props.style]}>
 				<FlatList
-					data={this.props.data}
+					data={this.state.data}
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
 					ListHeaderComponent={this.renderSearchBar}

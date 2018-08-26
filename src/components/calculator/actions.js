@@ -1,4 +1,8 @@
-export const calculate = (amount, numberOfPeople) => {
-	const result = Math.abs(Math.floor((amount / 3 / numberOfPeople - 15531) * 7));
-	return result;
+export const calculate = (revenue, numberOfPeople, povertyMin, livingCost) => {
+	console.warn(revenue, numberOfPeople, povertyMin, livingCost);
+	const monthlyRevenue = revenue / 3;
+	const revenuePerPerson = monthlyRevenue / numberOfPeople;
+	const result = Math.floor(Math.abs(revenuePerPerson - povertyMin) * numberOfPeople);
+	const year = new Date().getFullYear();
+	return { result, revenuePerPerson, povertyMin, livingCost, year };
 };
