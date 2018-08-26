@@ -55,10 +55,10 @@ class Alert extends Component {
 				<Text
 					style={[
 						styles.finalText,
-						{ color: result.result > result.povertyMin ? colors.redLight : colors.greenLight }
+						{ color: result.revenuePerPerson > result.povertyMin ? colors.redLight : colors.greenLight }
 					]}
 				>
-					{result.result > result.povertyMin
+					{result.revenuePerPerson > result.povertyMin
 						? settings[this.props.lang].text.calcResultNegative
 						: settings[this.props.lang].text.calcResultPositive}
 				</Text>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 		fontSize: 22,
 		color: colors.orange,
 		textAlign: 'center',
-		margin: 20
+		margin: 10
 	},
 	title: {
 		flex: 1,
@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
 		...textStyles.h1,
 		color: 'green',
 		textAlign: 'center',
-		margin: 20
+		margin: 10,
+		marginBottom: 20
 	}
 });
 
