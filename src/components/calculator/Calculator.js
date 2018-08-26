@@ -16,32 +16,66 @@ import { colors, textStyles, settings } from '../../assets';
 import { calculate } from './actions';
 
 const propTypes = {
-	lang: PropTypes.object
+	livingCost: PropTypes.number,
+	povertyMin: PropTypes.number,
+	navigation: PropTypes.object,
+	lang: PropTypes.string
 };
 
 class Calculator extends Component {
 	state = {
 		amount: 0,
-		numberOfPeople: 0
+		numberOfPeople: 0,
+		warning: ''
 	};
 
 	onPress = () => {
-		const result = calculate(this.state.amount, this.state.numberOfPeople);
-		console.warn(result);
+		if (this.state.amount === 0 || this.state.numberOfPeople === 0) {
+			this.setState({
+				warning: settings[this.props.lang].text.warning
+			});
+			return;
+		} else {
+			this.setState({
+				warning: ''
+			});
+		}
+		const result = calculate(
+			this.state.amount,
+			this.state.numberOfPeople,
+			this.props.povertyMin,
+			this.props.livingCost
+		);
+
+		this.props.navigation.navigate('AlertScreen', { result });
 	};
 
 	changeAmount = amount => {
-		this.setState((prevState, prevProps) => ({
-			...prevState,
-			amount
-		}));
+		if (amount === '') {
+			this.setState((prevState, prevProps) => ({
+				...prevState,
+				amount: 0
+			}));
+		} else {
+			this.setState((prevState, prevProps) => ({
+				...prevState,
+				amount
+			}));
+		}
 	};
 
 	changeNumberOfPeople = numberOfPeople => {
-		this.setState((prevState, prevProps) => ({
-			...prevState,
-			numberOfPeople
-		}));
+		if (numberOfPeople === '') {
+			this.setState((prevState, prevProps) => ({
+				...prevState,
+				numberOfPeople: 0
+			}));
+		} else {
+			this.setState((prevState, prevProps) => ({
+				...prevState,
+				numberOfPeople
+			}));
+		}
 	};
 
 	render() {
@@ -68,6 +102,7 @@ class Calculator extends Component {
 							onPress={this.onPress}
 						/>
 					</View>
+					<Text style={styles.warning}>{this.state.warning}</Text>
 				</KeyboardAvoidingView>
 			</TouchableWithoutFeedback>
 		);
@@ -93,6 +128,13 @@ const styles = StyleSheet.create({
 		...textStyles.h1,
 		textAlign: 'center',
 		margin: 10
+	},
+	warning: {
+		...textStyles.p,
+		fontSize: 12,
+		color: 'red',
+		marginLeft: 20,
+		marginRight: 20
 	},
 	textInput: {
 		borderWidth: 1,

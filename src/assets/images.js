@@ -22,5 +22,14 @@ export const images = {
 	email: require('../../resources/img/email.png'),
 	right: require('../../resources/img/right.png'),
 	example: require('../../resources/img/example.jpg'),
-	register: require('../../resources/img/register.png')
+	register: require('../../resources/img/register.png'),
+	caseOrange: require('../../resources/img/caseOrange.png'),
+	homeOrange: require('../../resources/img/homeOrange.png'),
+	infoOrange: require('../../resources/img/infoOrange.png'),
+	newsOrange: require('../../resources/img/newsOrange.png'),
+	pinOrange: require('../../resources/img/pinOrange.png'),
+	questionOrange: require('../../resources/img/questionOrange.png'),
+	settingsOrange: require('../../resources/img/settingsOrange.png'),
+	speakerOrange: require('../../resources/img/speakerOrange.png'),
+	starOrange: require('../../resources/img/starOrange.png')
 };
