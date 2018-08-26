@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     height: 30
   },
   title: {
+    flex: 1,
     marginLeft: 10,
     ...textStyles.p
   }

@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { colors } from '../../assets';
+
 const propTypes = {
 	item: PropTypes.object,
 	onPress: PropTypes.func
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 30,
 		borderRadius: 30,
-		backgroundColor: 'blue',
+		backgroundColor: colors.bluePicton,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
