@@ -81,12 +81,14 @@ class ServicesListScreen extends Component {
             ItemSeparatorComponent={this.renderSeparator}
           />
         </View>
-        {this.props.isPartiallyShown && (
+        {isPartiallyShown && (
           <TouchableOpacity
             style={styles.showMoreButton}
             onPress={this.onShowMorePress}
           >
-            <Text style={styles.showMoreText}>{settings[lang].showMore}</Text>
+            <Text style={styles.showMoreText}>
+              {settings[lang].buttons.showMore}
+            </Text>
           </TouchableOpacity>
         )}
       </View>
