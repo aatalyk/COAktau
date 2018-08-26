@@ -7,11 +7,12 @@ import {
 	StyleSheet,
 	TouchableWithoutFeedback,
 	LayoutAnimation,
+	Platform,
 	Linking
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images, textStyles, settings } from '../../assets';
+import { images, textStyles, settings, colors } from '../../assets';
 import { faqLocalizedPropType } from '../../propTypes';
 
 const propTypes = {
