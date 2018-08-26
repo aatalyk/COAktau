@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0.5
 	},
 	replyButton: {
-		borderColor: 'orange',
-		borderWidth: 1
+		borderColor: colors.orange,
+		borderWidth: Platform.OS === 'ios' ? 1 : 0
 	},
 	image: {
 		width: 20,

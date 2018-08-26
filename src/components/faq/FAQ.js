@@ -4,7 +4,7 @@ import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { colors, textStyles } from '../../assets';
+import { colors, textStyles, settings } from '../../assets';
 import { SearchBar } from '../common';
 import { FAQitem } from './FAQitem';
 import { fetchFAQRequested } from '../../actions';
@@ -95,7 +95,8 @@ FAQScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+		flex: 1
 	},
 	title: {
 		...textStyles.p,
