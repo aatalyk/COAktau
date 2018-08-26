@@ -5,6 +5,7 @@ import { newsReducer } from "./newsReducer";
 import { notifsReducer } from "./notifsReducer";
 import { servicesReducer } from "./servicesReducer";
 import { aboutReducer } from "./aboutReducer";
+import { myServicesReducer } from "./myServicesReducer";
 
 export const rootReducer = combineReducers({
   faq: faqReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   news: newsReducer,
   notifs: notifsReducer,
   services: servicesReducer,
+  myServices: myServicesReducer,
   about: aboutReducer
 });

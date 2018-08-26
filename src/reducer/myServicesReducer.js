@@ -1,32 +1,13 @@
-import {
-  FETCH_SERVICES_REQUESTED,
-  FETCH_SERVICES_SUCCEEDED,
-  FETCH_SERVICES_FAILED
-} from "../actions";
+import { ADD_TO_MY_SERVICES, REMOVE_FROM_MY_SERVICES } from "../actions";
 
-const initialState = {
-  data: []
-};
+const initialState = [];
 
 export const servicesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_SERVICES_REQUESTED:
-      return {
-        ...state,
-        loading: true
-      };
-    case FETCH_SERVICES_SUCCEEDED:
-      return {
-        ...state,
-        data: action.items,
-        loading: false
-      };
-    case FETCH_SERVICES_FAILED:
-      return {
-        ...state,
-        loading: false,
-        error: action.error
-      };
+    case ADD_TO_MY_SERVICES:
+      return [...state, action.service];
+    case REMOVE_FROM_MY_SERVICES:
+      return [...state].filter(item => item !== action.service);
     default:
       return state;
   }
