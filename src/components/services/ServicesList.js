@@ -38,7 +38,7 @@ class ServicesListScreen extends Component {
     );
   };
 
-  keyExtractor = ({ index }) => index + "";
+  keyExtractor = (_, index) => index + "";
 
   renderSeparator = () => <View style={styles.separator} />;
 

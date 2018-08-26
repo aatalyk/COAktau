@@ -59,7 +59,9 @@ SettingsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20
+    paddingTop: 20,
+    flex: 1,
+    backgroundColor: colors.blueUltraLight
   },
   title: {
     fontSize: 14,
