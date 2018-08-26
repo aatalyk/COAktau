@@ -2,7 +2,7 @@ import { ADD_TO_MY_SERVICES, REMOVE_FROM_MY_SERVICES } from "../actions";
 
 const initialState = [];
 
-export const servicesReducer = (state = initialState, action) => {
+export const myServicesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_MY_SERVICES:
       return [...state, action.service];
