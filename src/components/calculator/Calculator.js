@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 		...textStyles.h1,
 		textAlign: 'center',
 		fontSize: 20,
-		color: colors.blueLight,
+		color: colors.bluePicton,
 		margin: 10
 	},
 	text: {
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
 	button: {
 		height: 44,
 		width: Dimensions.get('window').width * 0.7,
-		backgroundColor: colors.blueLight,
+		backgroundColor: colors.bluePicton,
 		borderWidth: 1,
 		borderColor: colors.transparent,
 		margin: 10
