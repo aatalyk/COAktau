@@ -39,8 +39,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* COAktauTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COAktauTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		6D2F6CB92C37E85217272453 /* libPods-COAktau.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0C7FCAF63D3347A015F167 /* libPods-COAktau.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		98AB54E511643144719130FE /* libPods-COAktau.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1195D97EE501D9018CB45A /* libPods-COAktau.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BF4BAAF375C3408281F27F31 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0337A69F01E4F3C9C7ACE98 /* Merriweather-Regular.ttf */; };
 		D24548209391464DBB893B87 /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0675C9BB56E45C9ABCD667C /* Merriweather-Black.ttf */; };
@@ -334,6 +334,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* COAktauTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COAktauTests.m; sourceTree = "<group>"; };
 		019CF4A753614E5EA354C175 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
+		021F49BDBB1C9015CE9B3C09 /* Pods-COAktau.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COAktau.debug.xcconfig"; path = "Pods/Target Support Files/Pods-COAktau/Pods-COAktau.debug.xcconfig"; sourceTree = "<group>"; };
 		04A439EA212F3E46007B9579 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B2D65521139BC100CBBAC3 /* COAktau.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COAktau.entitlements; path = COAktau/COAktau.entitlements; sourceTree = "<group>"; };
 		04B9A4A82110DAC000DF3470 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
@@ -350,16 +351,15 @@
 		2D02E47B1E0B4A5D006451C7 /* COAktau-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COAktau-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* COAktau-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "COAktau-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F0C7FCAF63D3347A015F167 /* libPods-COAktau.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COAktau.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		467C6630DFE224041258B78A /* Pods-COAktau.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COAktau.release.xcconfig"; path = "Pods/Target Support Files/Pods-COAktau/Pods-COAktau.release.xcconfig"; sourceTree = "<group>"; };
 		5E15C96AD34E4A159CF07380 /* LibreFranklin-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LibreFranklin-Black.ttf"; path = "../src/assets/fonts/LibreFranklin-Black.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6A1195D97EE501D9018CB45A /* libPods-COAktau.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COAktau.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9248B84B1C87400B94112FAC /* LibreFranklin-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LibreFranklin-Bold.ttf"; path = "../src/assets/fonts/LibreFranklin-Bold.ttf"; sourceTree = "<group>"; };
 		A0337A69F01E4F3C9C7ACE98 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Regular.ttf"; path = "../src/assets/fonts/Merriweather-Regular.ttf"; sourceTree = "<group>"; };
-		A05CCEEFB736EA2363BDAF01 /* Pods-COAktau.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COAktau.release.xcconfig"; path = "Pods/Target Support Files/Pods-COAktau/Pods-COAktau.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		CBE8FEA8104C6E1BF1B0F4AE /* Pods-COAktau.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COAktau.debug.xcconfig"; path = "Pods/Target Support Files/Pods-COAktau/Pods-COAktau.debug.xcconfig"; sourceTree = "<group>"; };
 		F0675C9BB56E45C9ABCD667C /* Merriweather-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Black.ttf"; path = "../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -389,7 +389,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				6D2F6CB92C37E85217272453 /* libPods-COAktau.a in Frameworks */,
+				98AB54E511643144719130FE /* libPods-COAktau.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +486,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		0EBF5B492DD6FF4153953C34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				021F49BDBB1C9015CE9B3C09 /* Pods-COAktau.debug.xcconfig */,
+				467C6630DFE224041258B78A /* Pods-COAktau.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,7 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				3F0C7FCAF63D3347A015F167 /* libPods-COAktau.a */,
+				6A1195D97EE501D9018CB45A /* libPods-COAktau.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -622,7 +631,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				76D70FC160584988A6CA4126 /* Resources */,
 				087B3FF62105B6280083AA32 /* Recovered References */,
-				AF2F407B3B596D37B0ABD68A /* Pods */,
+				0EBF5B492DD6FF4153953C34 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -647,15 +656,6 @@
 				2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		AF2F407B3B596D37B0ABD68A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBE8FEA8104C6E1BF1B0F4AE /* Pods-COAktau.debug.xcconfig */,
-				A05CCEEFB736EA2363BDAF01 /* Pods-COAktau.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -683,12 +683,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "COAktau" */;
 			buildPhases = (
-				D96C5B9C041BB2A222AB4078 /* [CP] Check Pods Manifest.lock */,
+				E6E9FB634EAF1367E268B9C3 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				080BF022485616C0056DDC5E /* [CP] Copy Pods Resources */,
+				12D3339D6F9EBE69C7A60EC1 /* [CP] Embed Pods Frameworks */,
+				B3B17A60EBF8FBA0AE48E9EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1162,7 +1163,36 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		080BF022485616C0056DDC5E /* [CP] Copy Pods Resources */ = {
+		12D3339D6F9EBE69C7A60EC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-COAktau/Pods-COAktau-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		B3B17A60EBF8FBA0AE48E9EF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1180,21 +1210,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-COAktau/Pods-COAktau-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		D96C5B9C041BB2A222AB4078 /* [CP] Check Pods Manifest.lock */ = {
+		E6E9FB634EAF1367E268B9C3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1332,7 +1348,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBE8FEA8104C6E1BF1B0F4AE /* Pods-COAktau.debug.xcconfig */;
+			baseConfigurationReference = 021F49BDBB1C9015CE9B3C09 /* Pods-COAktau.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = COAktau/COAktau.entitlements;
@@ -1363,7 +1379,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A05CCEEFB736EA2363BDAF01 /* Pods-COAktau.release.xcconfig */;
+			baseConfigurationReference = 467C6630DFE224041258B78A /* Pods-COAktau.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = COAktau/COAktau.entitlements;
