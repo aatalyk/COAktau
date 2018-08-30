@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 	image: {
 		width: 90,
 		height: 90,
-		marginLeft: 5
+		marginLeft: 0
 	},
 	title: {
 		flex: 1,
