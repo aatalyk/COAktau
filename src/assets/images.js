@@ -23,7 +23,7 @@ export const images = {
 	callOrange: require('../../resources/img/callOrange.png'),
 	emailOrange: require('../../resources/img/emailOrange.png'),
 	right: require('../../resources/img/right.png'),
-	example: require('../../resources/img/example.jpg'),
+	logo: require('../../resources/img/logo.png'),
 	register: require('../../resources/img/register.png'),
 	caseOrange: require('../../resources/img/caseOrange.png'),
 	homeOrange: require('../../resources/img/homeOrange.png'),
@@ -34,5 +34,6 @@ export const images = {
 	settingsOrange: require('../../resources/img/settingsOrange.png'),
 	speakerOrange: require('../../resources/img/speakerOrange.png'),
 	starOrange: require('../../resources/img/starOrange.png'),
+	bus: require('../../resources/img/bus.png'),
 	network: require('../../resources/img/network.png')
 };
