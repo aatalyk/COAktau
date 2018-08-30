@@ -81,7 +81,7 @@ class Calculator extends Component {
 	render() {
 		return (
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-				<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+				<View style={styles.container}>
 					<Text style={styles.title}>{settings[this.props.lang].calc.title}</Text>
 					<Text style={styles.text}>{settings[this.props.lang].calc.text1}</Text>
 					<TextInput
@@ -97,13 +97,13 @@ class Calculator extends Component {
 					/>
 					<View style={styles.button}>
 						<Button
-							title={settings[this.props.lang].calc.buttonText}
+							title={settings[this.props.lang].buttons.calculate}
 							color="white"
 							onPress={this.onPress}
 						/>
 					</View>
 					<Text style={styles.warning}>{this.state.warning}</Text>
-				</KeyboardAvoidingView>
+				</View>
 			</TouchableWithoutFeedback>
 		);
 	}

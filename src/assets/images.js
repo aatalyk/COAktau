@@ -33,5 +33,6 @@ export const images = {
 	questionOrange: require('../../resources/img/questionOrange.png'),
 	settingsOrange: require('../../resources/img/settingsOrange.png'),
 	speakerOrange: require('../../resources/img/speakerOrange.png'),
-	starOrange: require('../../resources/img/starOrange.png')
+	starOrange: require('../../resources/img/starOrange.png'),
+	network: require('../../resources/img/network.png')
 };
