@@ -77,12 +77,12 @@ class FAQScreen extends Component {
 
 	render() {
 		const { isPartiallyShown, lang, data, style } = this.props;
-		const faqItems = isPartiallyShown ? this.getPartialData() : data;
+		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
 		return (
 			<View style={[styles.container, style]}>
 				<FlatList
-					data={this.state.data}
+					data={faqItems}
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
 					ListHeaderComponent={this.renderSearchBar}

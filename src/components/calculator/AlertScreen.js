@@ -28,7 +28,7 @@ class Alert extends Component {
 		const result = this.props.navigation.getParam('result', {});
 		return (
 			<View style={styles.container}>
-				<Text style={styles.headerTitle}>Resultat rascheta</Text>
+				<Text style={styles.headerTitle}>{settings[this.props.lang].calc.result}</Text>
 				<View style={styles.itemContainer}>
 					<Text style={styles.title}>{settings[this.props.lang].text.calcYear}</Text>
 					<Text style={styles.detail}>{result.year} тг</Text>
