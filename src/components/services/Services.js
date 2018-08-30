@@ -67,7 +67,12 @@ class ServicesScreen extends Component {
           ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
         <TouchableOpacity onPress={onButtonPress}>
-          <View style={styles.buttonContainer}>
+          <View
+            style={[
+              styles.buttonContainer,
+              { backgroundColor: isInMyServices ? colors.orange : colors.blue }
+            ]}
+          >
             <Text style={styles.buttonText}>{buttonTitle}</Text>
           </View>
         </TouchableOpacity>

@@ -57,10 +57,8 @@ class ServicesListScreen extends Component {
       showsMyServices,
       myServices
     } = this.props;
-    const services = showsMyServices ? myServices : data;
-    const serviceItems = isPartiallyShown
-      ? this.getShortData(services)
-      : services;
+    const serviceItems =
+      isPartiallyShown || showsMyServices ? myServices : data;
 
     return (
       <View
@@ -74,12 +72,18 @@ class ServicesListScreen extends Component {
           <Text style={styles.title}>{settings[lang].navigation.services}</Text>
         )}
         <View>
-          <FlatList
-            data={serviceItems}
-            renderItem={this.renderItem}
-            keyExtractor={this.keyExtractor}
-            ItemSeparatorComponent={this.renderSeparator}
-          />
+          {serviceItems.length === 0 ? (
+            <Text style={styles.noDataText}>
+              {settings[lang].text.noMyServices}
+            </Text>
+          ) : (
+            <FlatList
+              data={serviceItems}
+              renderItem={this.renderItem}
+              keyExtractor={this.keyExtractor}
+              ItemSeparatorComponent={this.renderSeparator}
+            />
+          )}
         </View>
         {isPartiallyShown && (
           <TouchableOpacity
@@ -123,6 +127,13 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 20,
     color: colors.grayLight
+  },
+  noDataText: {
+    ...textStyles.p,
+    marginHorizontal: 15,
+    marginTop: 20,
+    textAlign: "center",
+    fontSize: 12
   }
 });
 
