@@ -21,8 +21,12 @@ class AutoPagingFlatList extends Component {
 				const { currentIndex } = this.state;
 				const nextIndex =
 					this.props.data.length > 0 && currentIndex < this.props.data.length - 1 ? currentIndex + 1 : 0;
-				if (this.props.data.length > 0) {
-					this.flatList.scrollToIndex({ index: nextIndex, animated: true });
+
+				if (this.props.data && this.props.data.length > 0) {
+					this.flatList.scrollToIndex({
+						index: Math.max(nextIndex, 0),
+						animated: true
+					});
 				}
 			}, 2500);
 		}
