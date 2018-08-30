@@ -34,7 +34,7 @@ class FAQitem extends Component {
 
 	onPress = () => this.setState({ isSelected: !this.state.isSelected });
 
-	onWriteButtonPress = () => Linking.openURL('mailto:atalyk.akash@nu.edu.kz');
+	onWriteButtonPress = () => Linking.openURL('mailto:soaktau@gmail.com');
 
 	renderDetails() {
 		return (
