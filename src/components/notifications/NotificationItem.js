@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { colors } from '../../assets';
+import { colors, textStyles } from '../../assets';
 
 const propTypes = {
 	item: PropTypes.object,
@@ -39,9 +39,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	letter: {
+		...textStyles.p,
 		color: 'white'
 	},
 	title: {
+		...textStyles.p,
 		marginLeft: 10
 	}
 });

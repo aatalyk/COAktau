@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, Linking } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import MapView, { Marker } from 'react-native-maps';
 import Communications from 'react-native-communications';
 
 import { ContactItem } from './ContactItem';
-import { images } from '../../assets';
+import { images, settings } from '../../assets';
+
+const propTypes = {
+	lang: PropTypes.string
+};
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-class Contact extends Component {
-	call = () => Communications.phonecall('+77016536415', true);
+class ContactScreen extends Component {
+	call = phone => Communications.phonecall(phone, true);
 
-	composeEmail = () => Linking.openURL('mailto:atalyk.akash@nu.edu.kz');
+	composeEmail = () => Linking.openURL('mailto:soaktau@gmail.com');
 
 	render() {
 		return (
@@ -20,8 +26,8 @@ class Contact extends Component {
 				<MapView
 					style={styles.map}
 					initialRegion={{
-						latitude: 37.78825,
-						longitude: -122.4324,
+						latitude: 43.65635,
+						longitude: 51.155778,
 						latitudeDelta: 0.0922,
 						longitudeDelta: 0.0421
 					}}
@@ -29,20 +35,32 @@ class Contact extends Component {
 					<Marker
 						title="We"
 						coordinate={{
-							latitude: 37.78825,
-							longitude: -122.4324
+							latitude: 43.65635,
+							longitude: 51.155778
 						}}
 					/>
 				</MapView>
 				<View style={styles.itemsContainer}>
-					<ContactItem title="1600 Amphitheatre Parkway, Mountain View, CA" imgSource={images.pinOrange} />
-					<ContactItem title="+7 777 7777777" imgSource={images.callOrange} onPress={this.call} />
-					<ContactItem title="example@gmail.com" imgSource={images.emailOrange} onPress={this.composeEmail} />
+					<ContactItem title={settings[this.props.lang].text.address} imgSource={images.pinOrange} />
+					<ContactItem title={settings[this.props.lang].text.bus} imgSource={images.bus} />
+					<ContactItem
+						title="+7 (7292) 43‒26‒70"
+						imgSource={images.callOrange}
+						onPress={() => this.call('+77292432670')}
+					/>
+					<ContactItem
+						title="+7 (7292) 43‒26‒52"
+						imgSource={images.callOrange}
+						onPress={() => this.call('+77292432652')}
+					/>
+					<ContactItem title="soaktau@gmail.com" imgSource={images.emailOrange} onPress={this.composeEmail} />
 				</View>
 			</View>
 		);
 	}
 }
+
+ContactScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -59,4 +77,8 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { Contact };
+const mapStateToProps = ({ settings }) => ({
+	lang: settings.lang
+});
+
+export const Contact = connect(mapStateToProps)(ContactScreen);

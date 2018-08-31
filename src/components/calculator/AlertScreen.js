@@ -26,10 +26,9 @@ class Alert extends Component {
 	};
 	render() {
 		const result = this.props.navigation.getParam('result', {});
-		console.warn('result', result);
 		return (
 			<View style={styles.container}>
-				<Text style={styles.headerTitle}>Resultat rascheta</Text>
+				<Text style={styles.headerTitle}>{settings[this.props.lang].calc.result}</Text>
 				<View style={styles.itemContainer}>
 					<Text style={styles.title}>{settings[this.props.lang].text.calcYear}</Text>
 					<Text style={styles.detail}>{result.year} тг</Text>
@@ -60,7 +59,9 @@ class Alert extends Component {
 				>
 					{result.revenuePerPerson > result.povertyMin
 						? settings[this.props.lang].text.calcResultNegative
-						: settings[this.props.lang].text.calcResultPositive}
+						: `${settings[this.props.lang].text.calcResultPositive}${result.result} ${
+								settings[this.props.lang].text.calcResultPositivePerFamily
+						  }`}
 				</Text>
 			</View>
 		);
