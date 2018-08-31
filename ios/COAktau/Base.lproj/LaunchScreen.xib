@@ -15,16 +15,16 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="vFR-2Z-lLf">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aktau" translatesAutoresizingMaskIntoConstraints="NO" id="Vtj-8r-F3k">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.956096351146698" green="0.61741334199905396" blue="0.24678581953048706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vFR-2Z-lLf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1VE-a6-6wY"/>
-                <constraint firstItem="vFR-2Z-lLf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mrt-h8-Sv7"/>
-                <constraint firstAttribute="bottom" secondItem="vFR-2Z-lLf" secondAttribute="bottom" id="tH6-9d-3Q1"/>
-                <constraint firstAttribute="trailing" secondItem="vFR-2Z-lLf" secondAttribute="trailing" id="yx4-Nm-a4N"/>
+                <constraint firstAttribute="bottom" secondItem="Vtj-8r-F3k" secondAttribute="bottom" id="63o-qN-6JA"/>
+                <constraint firstItem="Vtj-8r-F3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mbv-Bl-XnQ"/>
+                <constraint firstAttribute="trailing" secondItem="Vtj-8r-F3k" secondAttribute="trailing" id="ZYS-GM-hmu"/>
+                <constraint firstItem="Vtj-8r-F3k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nUA-OQ-LFo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -32,6 +32,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Logo" width="1536" height="1536"/>
+        <image name="aktau" width="1536" height="1536"/>
     </resources>
 </document>
