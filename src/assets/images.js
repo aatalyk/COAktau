@@ -35,5 +35,8 @@ export const images = {
 	speakerOrange: require('../../resources/img/speakerOrange.png'),
 	starOrange: require('../../resources/img/starOrange.png'),
 	bus: require('../../resources/img/bus.png'),
-	network: require('../../resources/img/network.png')
+	network: require('../../resources/img/network.png'),
+	reload: require('../../resources/img/refresh80.png'),
+	box: require('../../resources/img/box80.png'),
+	internet: require('../../resources/img/internet.png')
 };

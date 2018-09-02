@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { ScrollView, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -17,7 +17,7 @@ class Calc extends Component {
 	render() {
 		const { faq, livingCost, povertyMin } = this.props.navigation.getParam('item', {});
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<Calculator
 					lang={this.props.lang}
 					navigation={this.props.navigation}
@@ -25,7 +25,7 @@ class Calc extends Component {
 					povertyMin={povertyMin}
 				/>
 				<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
-			</View>
+			</ScrollView>
 		);
 	}
 }
