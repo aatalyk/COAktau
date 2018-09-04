@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
+import {
+	View,
+	FlatList,
+	StyleSheet,
+	Image,
+	Dimensions,
+	Platform,
+	TouchableWithoutFeedback,
+	NativeModules
+} from 'react-native';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
+import { images } from '../../assets';
 
 const propTypes = {
 	data: PropTypes.array,
 	lang: PropTypes.string,
 	navigation: PropTypes.object
 };
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class AutoPagingFlatList extends Component {
@@ -62,6 +73,7 @@ class AutoPagingFlatList extends Component {
 	renderItem = ({ item }) => (
 		<TouchableWithoutFeedback onPress={this.onItemPress}>
 			<Image
+				defaultSource={images.imgPlaceholder}
 				resizeMode="cover"
 				style={{ width: SCREEN_WIDTH, height: 150 }}
 				source={{ uri: item.imageUrl || undefined }}
@@ -81,7 +93,7 @@ class AutoPagingFlatList extends Component {
 					data={this.props.data.slice(0, 5)}
 					renderItem={this.renderItem}
 					horizontal
-					pagingEnabled
+					pagingEnabled={Platform.OS === 'ios'}
 					onMomentumScrollEnd={this.onScrollEnd}
 					getItemLayout={this.getItemLayout}
 					showsHorizontalScrollIndicator={false}

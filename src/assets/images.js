@@ -38,5 +38,7 @@ export const images = {
 	network: require('../../resources/img/network.png'),
 	reload: require('../../resources/img/refresh80.png'),
 	box: require('../../resources/img/box80.png'),
-	internet: require('../../resources/img/internet.png')
+	internet: require('../../resources/img/internet.png'),
+	placeholder: require('../../resources/img/placeholder.png'),
+	imgPlaceholder: require('../../resources/img/img_placeholder.png')
 };

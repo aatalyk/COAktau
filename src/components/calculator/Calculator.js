@@ -98,7 +98,7 @@ class Calculator extends Component {
 					<View style={styles.button}>
 						<Button
 							title={settings[this.props.lang].buttons.calculate}
-							color="white"
+							color={colors.bluePicton}
 							onPress={this.onPress}
 						/>
 					</View>
@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
 	button: {
 		height: 44,
 		width: Dimensions.get('window').width * 0.7,
-		backgroundColor: colors.bluePicton,
 		borderWidth: 1,
 		borderColor: colors.transparent,
 		margin: 10

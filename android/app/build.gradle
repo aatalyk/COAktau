@@ -149,6 +149,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-maps')
+    compile project(':react-native-fcm')
     implementation project(':react-native-maps')
     implementation project(':react-native-fcm')
     implementation fileTree(dir: "libs", include: ["*.jar"])

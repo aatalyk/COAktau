@@ -21,7 +21,11 @@ const ServiceItemScreen = ({ item, onPress, lang }) => {
 		<TouchableOpacity onPress={onPress}>
 			<View style={styles.container}>
 				{!!localizedItem.icon && (
-					<Image source={{ uri: localizedItem.icon } || images.search} style={styles.image} />
+					<Image
+						defaultSource={images.placeholder}
+						source={{ uri: localizedItem.icon } || images.search}
+						style={styles.image}
+					/>
 				)}
 				{!!localizedItem.title && <Text style={styles.title}>{localizedItem.title}</Text>}
 			</View>
