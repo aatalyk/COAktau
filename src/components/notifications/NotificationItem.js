@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
 		color: 'white'
 	},
 	title: {
+		flex: 1,
 		...textStyles.p,
 		marginLeft: 10
 	}

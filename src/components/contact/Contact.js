@@ -48,11 +48,7 @@ class ContactScreen extends Component {
 						imgSource={images.callOrange}
 						onPress={() => this.call('+77292432670')}
 					/>
-					<ContactItem
-						title="+7 (7292) 43‒26‒52"
-						imgSource={images.callOrange}
-						onPress={() => this.call('+77292432652')}
-					/>
+					<ContactItem title="+7 (7292) 43‒26‒52" onPress={() => this.call('+77292432652')} />
 					<ContactItem title="soaktau@gmail.com" imgSource={images.emailOrange} onPress={this.composeEmail} />
 				</View>
 			</View>

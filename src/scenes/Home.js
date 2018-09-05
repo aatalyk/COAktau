@@ -7,10 +7,10 @@ import { store } from '../store';
 
 import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
-import { colors, settings } from '../assets';
+import { colors, settings, images } from '../assets';
 import { fetchNewsRequested } from '../actions';
 import { Notifications } from '../components/notifications';
-import { ConnectionPage } from '../components/common';
+import { MessageScreen } from '../components/common';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -31,7 +31,7 @@ class HomeScreen extends Component {
 			},
 			{
 				key: 'second',
-				title: settings[store.getState().settings.lang].navigation.faq
+				title: settings[store.getState().settings.lang].navigation.myServices
 			}
 		],
 		connected: true
@@ -89,7 +89,11 @@ class HomeScreen extends Component {
 				/>
 			</View>
 		) : (
-			<ConnectionPage lang={lang} onPress={this.checkConnection} />
+			<MessageScreen
+				title={settings[lang].text.network}
+				imgSource={images.internet}
+				onPress={this.checkConnection}
+			/>
 		);
 	}
 }

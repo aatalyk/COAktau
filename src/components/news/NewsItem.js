@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { fonts, textStyles } from '../../assets';
+import { fonts, textStyles, images } from '../../assets';
 import { newsPropType } from '../../propTypes';
 
 const propTypes = {
@@ -15,7 +15,7 @@ export const NewsItem = ({ item, onPress, lang }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
 			<Text style={styles.title}>{item[lang].title}</Text>
-			<Image source={{ uri: item.imageUrl }} style={styles.image} />
+			<Image defaultSource={images.placeholder} source={{ uri: item.imageUrl }} style={styles.image} />
 		</View>
 	</TouchableOpacity>
 );

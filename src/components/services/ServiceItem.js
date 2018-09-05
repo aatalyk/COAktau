@@ -1,53 +1,55 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { textStyles } from "../../assets";
+import { textStyles, images } from '../../assets';
 
 const propTypes = {
-  item: PropTypes.shape({
-    icon: PropTypes.string,
-    title: PropTypes.string
-  }),
-  onPress: PropTypes.func,
-  lang: PropTypes.oneOf(["kaz", "rus"])
+	item: PropTypes.shape({
+		icon: PropTypes.string,
+		title: PropTypes.string
+	}),
+	onPress: PropTypes.func,
+	lang: PropTypes.oneOf(['kaz', 'rus'])
 };
 
 const ServiceItemScreen = ({ item, onPress, lang }) => {
-  const localizedItem = item[lang];
+	const localizedItem = item[lang];
 
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
-        {!!localizedItem.icon && (
-          <Image source={{ uri: localizedItem.icon }} style={styles.image} />
-        )}
-        {!!localizedItem.title && (
-          <Text style={styles.title}>{localizedItem.title}</Text>
-        )}
-      </View>
-    </TouchableOpacity>
-  );
+	return (
+		<TouchableOpacity onPress={onPress}>
+			<View style={styles.container}>
+				{!!localizedItem.icon && (
+					<Image
+						defaultSource={images.placeholder}
+						source={{ uri: localizedItem.icon } || images.search}
+						style={styles.image}
+					/>
+				)}
+				{!!localizedItem.title && <Text style={styles.title}>{localizedItem.title}</Text>}
+			</View>
+		</TouchableOpacity>
+	);
 };
 
 ServiceItemScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    margin: 15
-  },
-  image: {
-    width: 30,
-    height: 30
-  },
-  title: {
-    flex: 1,
-    marginLeft: 10,
-    ...textStyles.p
-  }
+	container: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		margin: 15
+	},
+	image: {
+		width: 30,
+		height: 30
+	},
+	title: {
+		flex: 1,
+		marginLeft: 10,
+		...textStyles.p
+	}
 });
 
 const mapStateToProps = ({ settings }) => ({ lang: settings.lang });

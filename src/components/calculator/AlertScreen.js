@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { textStyles, settings, images, colors } from '../../assets';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ class Alert extends Component {
 	render() {
 		const result = this.props.navigation.getParam('result', {});
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<Text style={styles.headerTitle}>{settings[this.props.lang].calc.result}</Text>
 				<View style={styles.itemContainer}>
 					<Text style={styles.title}>{settings[this.props.lang].text.calcYear}</Text>
@@ -59,11 +59,11 @@ class Alert extends Component {
 				>
 					{result.revenuePerPerson > result.povertyMin
 						? settings[this.props.lang].text.calcResultNegative
-						: `${settings[this.props.lang].text.calcResultPositive}${result.result} ${
+						: `${settings[this.props.lang].text.calcResultPositive} ${result.result} ${
 								settings[this.props.lang].text.calcResultPositivePerFamily
 						  }`}
 				</Text>
-			</View>
+			</ScrollView>
 		);
 	}
 }
