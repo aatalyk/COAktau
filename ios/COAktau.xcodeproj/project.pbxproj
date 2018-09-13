@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -1358,7 +1357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = COAktau/COAktau.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1378,8 +1377,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.coaktau;
 				PRODUCT_NAME = COAktau;
-				PROVISIONING_PROFILE = "34c14ea0-451e-4e5c-bb15-31416b2661bd";
-				PROVISIONING_PROFILE_SPECIFIER = COAktauDevelopment;
+				PROVISIONING_PROFILE = "345b9e38-e6bb-4086-846a-a3133539ad76";
+				PROVISIONING_PROFILE_SPECIFIER = COAktauDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "COAktau-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1394,7 +1393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = COAktau/COAktau.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SQGZ5MNAN6;
@@ -1413,8 +1412,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.coaktau;
 				PRODUCT_NAME = COAktau;
-				PROVISIONING_PROFILE = "34c14ea0-451e-4e5c-bb15-31416b2661bd";
-				PROVISIONING_PROFILE_SPECIFIER = COAktauDevelopment;
+				PROVISIONING_PROFILE = "345b9e38-e6bb-4086-846a-a3133539ad76";
+				PROVISIONING_PROFILE_SPECIFIER = COAktauDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "COAktau-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
