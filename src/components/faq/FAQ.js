@@ -54,7 +54,6 @@ class FAQScreen extends Component {
 	};
 
 	search = text => {
-		console.warn(text);
 		this.setState({
 			data: this.filter(text)
 		});
@@ -69,7 +68,6 @@ class FAQScreen extends Component {
 	filter = text =>
 		this.props.data.filter(item => {
 			const localizedItem = item[this.props.lang];
-			console.warn(localizedItem, localizedItem.question.indexOf(text) >= 0);
 			return localizedItem.question.indexOf(text) >= 0;
 		});
 
@@ -78,6 +76,8 @@ class FAQScreen extends Component {
 	render() {
 		const { isPartiallyShown, lang, data, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
+
+		console.log('FAQITEMS', faqItems, lang);
 
 		return (
 			<View style={[styles.container, style]}>

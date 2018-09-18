@@ -40,5 +40,7 @@ export const images = {
 	box: require('../../resources/img/box80.png'),
 	internet: require('../../resources/img/internet.png'),
 	placeholder: require('../../resources/img/placeholder.png'),
-	imgPlaceholder: require('../../resources/img/img_placeholder.png')
+	imgPlaceholder: require('../../resources/img/img_placeholder.png'),
+	chat: require('../../resources/img/chat.png'),
+	options: require('../../resources/img/options.png')
 };

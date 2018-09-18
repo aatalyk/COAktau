@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -26,7 +27,8 @@ class ChatScreen extends Component {
 				<Header
 					titleKaz="{titleKaz}"
 					titleRus="{titleRus}"
-					leftItem={<IconButton imgSource={images.search} onPress={() => params.saveChatHistory()} />}
+					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
+					rightItem={<IconButton imgSource={images.options} onPress={() => params.showOptions()} />}
 				/>
 			)
 		};
@@ -41,6 +43,19 @@ class ChatScreen extends Component {
 		this.setState(prevState => ({
 			messages: GiftedChat.append(prevState.messages, messages)
 		}));
+	};
+
+	showOptions = () => {
+		Alert.alert(
+			'Alert Title',
+			'Alert Message',
+			[
+				{ text: 'Save Chat History', onPress: () => this.saveChatHistory() },
+				{ text: 'Clear Chat History', onPress: () => this.clearChatHistory() },
+				{ text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'destructive' }
+			],
+			{ cancelable: true }
+		);
 	};
 
 	saveChatHistory = () => {
@@ -58,14 +73,12 @@ class ChatScreen extends Component {
 	};
 
 	componentDidMount() {
-		this.props.navigation.setParams({ saveChatHistory: this.saveChatHistory });
+		this.props.navigation.setParams({ showOptions: this.showOptions });
 		const { lang, chat } = this.props;
-		console.log('chat', chat);
 		const messages = chat.filter(item => item.id === 1 && item.lang === lang);
 		if (messages.length === 0) {
 			return;
 		}
-		console.log('messages', messages);
 		this.setState({
 			messages: messages[0].messages
 		});

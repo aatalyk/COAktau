@@ -13,7 +13,7 @@ import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
 import { About } from '../about';
-import { Chat } from '../chat';
+import { ChatRooms, Chat } from '../chat';
 import { CalcScreen, AlertScreen } from '../calculator';
 import { SideMenu } from '../side_menu/SideMenu';
 import { images, settings } from '../../assets';
@@ -25,7 +25,7 @@ export const DrawerRoutes = {
 	NewsNavigator: 'NewsNavigator',
 	NotifsNavigator: 'NotifsNavigator',
 	FAQNavigator: 'FAQNavigator',
-	ChatNavigator: 'ChatNavigator',
+	ChatRoomsNavigator: 'ChatRoomsNavigator',
 	ContactNavigator: 'ContactNavigator',
 	AboutNavigator: 'AboutNavigator',
 	SettingsNavigator: 'SettingsNavigator'
@@ -72,6 +72,9 @@ const stack = {
 	FAQ: {
 		screen: FAQ,
 		navigationOptions: navigationOptions(settings.kaz.navigation.faq, settings.rus.navigation.faq)
+	},
+	ChatRooms: {
+		screen: ChatRooms
 	},
 	Chat: {
 		screen: Chat
@@ -255,15 +258,15 @@ export const DrawerNavigator = createDrawerNavigator(
 				initialRouteName: 'FAQ'
 			}
 		),
-		[DrawerRoutes.ChatNavigator]: createStackNavigator(
+		[DrawerRoutes.ChatRoomsNavigator]: createStackNavigator(
 			{
 				...stack,
-				Chat: {
-					screen: Chat
+				ChatRooms: {
+					screen: ChatRooms
 				}
 			},
 			{
-				initialRouteName: 'Chat'
+				initialRouteName: 'ChatRooms'
 			}
 		)
 	},
