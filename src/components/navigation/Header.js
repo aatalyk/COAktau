@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { IconButton } from '../common';
 import { colors, textStyles } from '../../assets';
 
 const propTypes = {
@@ -18,8 +19,10 @@ const HeaderComponent = ({ leftItem, rightItem, titleKaz, titleRus, lang }) => (
 		<View style={styles.orangeView} />
 		<View style={styles.container}>
 			<View style={styles.leftItem}>{leftItem}</View>
-			<Text style={textStyles.p}>{lang === 'kaz' ? titleKaz : titleRus}</Text>
-			<View style={styles.rightItem}>{rightItem}</View>
+			<Text style={[textStyles.p, { flex: 1, textAlign: 'center' }]} numberOfLines={1}>
+				{lang === 'kaz' ? titleKaz : titleRus}
+			</Text>
+			<View style={styles.rightItem}>{rightItem ? rightItem : <IconButton />}</View>
 		</View>
 	</View>
 );
@@ -45,12 +48,10 @@ const styles = StyleSheet.create({
 	leftItem: {
 		marginLeft: 5,
 		alignItems: 'flex-start',
-		flex: 1,
 		justifyContent: 'center'
 	},
 	rightItem: {
 		alignItems: 'flex-end',
-		flex: 1,
 		justifyContent: 'center',
 		marginRight: 5
 	},

@@ -39,7 +39,6 @@ class ChatScreen extends Component {
 	};
 
 	onSend = messages => {
-		console.log(messages);
 		this.setState(prevState => ({
 			messages: GiftedChat.append(prevState.messages, messages)
 		}));
@@ -59,7 +58,6 @@ class ChatScreen extends Component {
 	};
 
 	saveChatHistory = () => {
-		console.log('saveChatHistory');
 		const { messages } = this.state;
 		const { lang } = this.props;
 		this.props.clearChatHistory({ id: ID, lang, messages });
@@ -91,14 +89,12 @@ class ChatScreen extends Component {
 				onSend={this.onSend}
 				user={{
 					_id: 1,
-					name: 'React Native',
-					avatar: 'https://placeimg.com/140/140/any'
+					avatar: images.starOrange
 				}}
 				guest={{
-					_id: 2,
-					name: 'React Native',
-					avatar: 'https://placeimg.com/140/140/any'
+					_id: 2
 				}}
+				lang={this.props.lang}
 			/>
 		);
 	}

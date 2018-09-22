@@ -3,6 +3,8 @@ import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { Header } from '../navigation';
+import { IconButton } from '../common';
 import { addToMyServices, removeFromMyServices } from '../../actions';
 import { colors, images, textStyles, settings } from '../../assets';
 
@@ -15,6 +17,18 @@ const propTypes = {
 };
 
 class ServicesScreen extends Component {
+	static navigationOptions = ({ navigation }) => {
+		return {
+			header: () => (
+				<Header
+					titleKaz={navigation.getParam('titleKaz', '')}
+					titleRus={navigation.getParam('titleRus', '')}
+					leftItem={<IconButton imgSource={images.close} onPress={() => navigation.goBack()} />}
+				/>
+			)
+		};
+	};
+
 	renderItem = e => {
 		const { item } = e;
 
@@ -36,10 +50,17 @@ class ServicesScreen extends Component {
 
 	removeFromMyServices = serviceItem => () => this.props.removeFromMyServices(serviceItem);
 
+	componentDidMount() {
+		const e = this.props.navigation.getParam('e', {});
+		this.props.navigation.setParams({ titleKaz: e.kaz.title, titleRus: e.rus.title });
+	}
+
 	render() {
 		const { lang, myServices, navigation } = this.props;
 		const e = navigation.getParam('e', {});
 		const isInMyServices = myServices.filter(item => item[lang].title === e[lang].title).length > 0; // true if an item with the same title exists in myServices
+
+		console.log('Services', e);
 
 		const onButtonPress = isInMyServices ? this.removeFromMyServices(e) : this.addToMyServices(e);
 		const buttonTitle = isInMyServices

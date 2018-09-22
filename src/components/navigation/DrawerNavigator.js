@@ -58,8 +58,7 @@ const stack = {
 		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
 	},
 	Services: {
-		screen: Services,
-		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
+		screen: Services
 	},
 	ServiceDetails: {
 		screen: ServiceDetails,

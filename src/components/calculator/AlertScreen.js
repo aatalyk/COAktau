@@ -24,6 +24,7 @@ class Alert extends Component {
 			)
 		};
 	};
+
 	render() {
 		const result = this.props.navigation.getParam('result', {});
 		return (
