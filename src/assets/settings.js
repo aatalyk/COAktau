@@ -10,7 +10,8 @@ export const settings = {
 			settings: 'Баптау',
 			contact: 'Мекенжай',
 			about: 'Жоба туралы',
-			calc: 'АӘК Есептеуіш'
+			calc: 'АӘК Есептеуіш',
+			chatRooms: 'Хаттар'
 		},
 		calc: {
 			title: 'Атаулы әлеуметтік көмекті алдын ала есептеу',
@@ -57,7 +58,8 @@ export const settings = {
 			settings: 'Настройки',
 			contact: 'Контакты',
 			about: 'О проекте',
-			calc: 'АСП Калькулятор'
+			calc: 'АСП Калькулятор',
+			chatRooms: 'Сообщения'
 		},
 		calc: {
 			title: 'Предварительный расчет адресной социальной помощи',

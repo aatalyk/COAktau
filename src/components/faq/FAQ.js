@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, RefreshControl, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { StackActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ const propTypes = {
 	style: PropTypes.object,
 	navigation: PropTypes.object,
 	isPartiallyShown: PropTypes.bool,
+	loading: PropTypes.bool,
 	data: PropTypes.arrayOf(faqPropType),
 	fetchFAQRequested: PropTypes.func,
 	lang: PropTypes.string
@@ -54,7 +55,6 @@ class FAQScreen extends Component {
 	};
 
 	search = text => {
-		console.warn(text);
 		this.setState({
 			data: this.filter(text)
 		});
@@ -69,14 +69,15 @@ class FAQScreen extends Component {
 	filter = text =>
 		this.props.data.filter(item => {
 			const localizedItem = item[this.props.lang];
-			console.warn(localizedItem, localizedItem.question.indexOf(text) >= 0);
 			return localizedItem.question.indexOf(text) >= 0;
 		});
 
 	getPartialData = () => this.props.data.slice(0, 2);
 
+	onRefresh = () => this.props.fetchFAQRequested();
+
 	render() {
-		const { isPartiallyShown, lang, data, style } = this.props;
+		const { isPartiallyShown, lang, loading, data, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
 		return (
@@ -87,6 +88,7 @@ class FAQScreen extends Component {
 					keyExtractor={this.keyExtractor}
 					ListHeaderComponent={this.renderSearchBar}
 					ItemSeparatorComponent={this.renderSeparator}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				{isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
@@ -128,6 +130,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ faq, settings }) => ({
+	loading: faq.loading,
 	data: faq.data,
 	lang: settings.lang
 });

@@ -60,6 +60,14 @@ const menuItems = [
 		}
 	},
 	{
+		image: images.reload,
+		selectedImage: images.questionOrange,
+		title: {
+			kaz: settings.kaz.navigation.faq,
+			rus: settings.rus.navigation.faq
+		}
+	},
+	{
 		image: images.pin,
 		selectedImage: images.pinOrange,
 		title: {

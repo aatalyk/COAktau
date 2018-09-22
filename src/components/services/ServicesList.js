@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, StyleSheet, TouchableOpacity, Text, RefreshControl } from 'react-native';
 import { StackActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,6 +14,7 @@ const propTypes = {
 	navigation: PropTypes.object,
 	isPartiallyShown: PropTypes.bool,
 	lang: PropTypes.string,
+	loading: PropTypes.bool,
 	data: PropTypes.array,
 	fetchServicesRequested: PropTypes.func,
 	myServices: PropTypes.array,
@@ -42,8 +43,10 @@ class ServicesListScreen extends Component {
 
 	getShortData = data => data.slice(0, 2);
 
+	onRefresh = () => this.props.fetchServicesRequested();
+
 	render() {
-		const { isPartiallyShown, data, lang, showsMyServices, myServices } = this.props;
+		const { isPartiallyShown, loading, data, lang, showsMyServices, myServices } = this.props;
 		const serviceItems = isPartiallyShown || showsMyServices ? myServices : data;
 
 		return (
@@ -61,6 +64,7 @@ class ServicesListScreen extends Component {
 							renderItem={this.renderItem}
 							keyExtractor={this.keyExtractor}
 							ItemSeparatorComponent={this.renderSeparator}
+							refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 						/>
 					)}
 				</View>
@@ -108,6 +112,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ services, settings, myServices }) => ({
 	myServices,
 	data: services.data,
+	loading: services.loading,
 	lang: settings.lang
 });
 

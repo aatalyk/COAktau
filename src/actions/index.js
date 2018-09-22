@@ -5,3 +5,4 @@ export * from './servicesActions';
 export * from './settingsActions';
 export * from './types';
 export * from './aboutActions';
+export * from './chatActions';

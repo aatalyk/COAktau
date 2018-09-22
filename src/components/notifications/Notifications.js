@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, NetInfo } from 'react-native';
+import { View, StyleSheet, FlatList, RefreshControl, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,7 @@ import { fetchNotifsRequested } from '../../actions';
 
 const propTypes = {
 	navigation: PropTypes.object,
+	loading: PropTypes.bool,
 	notifsItems: PropTypes.array,
 	fetchNotifsRequested: PropTypes.func,
 	lang: PropTypes.string
@@ -28,6 +29,8 @@ class NotificationsScreen extends Component {
 
 	onPress = item => this.props.navigation.navigate('NotificationPage', { item });
 
+	onRefresh = () => this.props.fetchNotifsRequested();
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -37,6 +40,7 @@ class NotificationsScreen extends Component {
 					style={styles.flatList}
 					ItemSeparatorComponent={this.renderSeparator}
 					keyExtractor={(_, index) => index + ''}
+					refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
 		);
@@ -61,6 +65,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ notifs, settings }) => ({
+	loading: notifs.loading,
 	notifsItems: notifs.notifsItems,
 	lang: settings.lang
 });
