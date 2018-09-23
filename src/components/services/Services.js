@@ -23,15 +23,26 @@ class ServicesScreen extends Component {
 				<Header
 					titleKaz={navigation.getParam('titleKaz', '')}
 					titleRus={navigation.getParam('titleRus', '')}
-					leftItem={<IconButton imgSource={images.close} onPress={() => navigation.goBack()} />}
+					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 				/>
 			)
 		};
 	};
 
-	renderItem = e => {
-		const { item } = e;
+	componentDidMount() {
+		this.setHeaderTitle();
+	}
 
+	setHeaderTitle = () => {
+		const item = this.props.navigation.getParam('item', {});
+		this.props.navigation.setParams({ titleKaz: item.kaz.title, titleRus: item.rus.title });
+	};
+
+	addToMyServices = serviceItem => () => this.props.addToMyServices(serviceItem);
+
+	removeFromMyServices = serviceItem => () => this.props.removeFromMyServices(serviceItem);
+
+	renderItem = ({ item }) => {
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
@@ -42,27 +53,15 @@ class ServicesScreen extends Component {
 		);
 	};
 
-	onPress = e => {
-		this.props.navigation.navigate('ServiceDetails', { e });
-	};
-
-	addToMyServices = serviceItem => () => this.props.addToMyServices(serviceItem);
-
-	removeFromMyServices = serviceItem => () => this.props.removeFromMyServices(serviceItem);
-
-	componentDidMount() {
-		const e = this.props.navigation.getParam('e', {});
-		this.props.navigation.setParams({ titleKaz: e.kaz.title, titleRus: e.rus.title });
-	}
+	onPress = item => this.props.navigation.navigate('ServiceDetails', { item });
 
 	render() {
 		const { lang, myServices, navigation } = this.props;
-		const e = navigation.getParam('e', {});
-		const isInMyServices = myServices.filter(item => item[lang].title === e[lang].title).length > 0; // true if an item with the same title exists in myServices
+		const item = navigation.getParam('item', {});
 
-		console.log('Services', e);
+		const isInMyServices = myServices.filter(i => i[lang].title === item[lang].title).length > 0; // true if an item with the same title exists in myServices
 
-		const onButtonPress = isInMyServices ? this.removeFromMyServices(e) : this.addToMyServices(e);
+		const onButtonPress = isInMyServices ? this.removeFromMyServices(item) : this.addToMyServices(item);
 		const buttonTitle = isInMyServices
 			? settings[lang].buttons.removeFromMyServices
 			: settings[lang].buttons.addToMyServices;
@@ -70,7 +69,7 @@ class ServicesScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={e[this.props.lang].list}
+					data={item[this.props.lang].list}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={() => <View style={styles.separator} />}

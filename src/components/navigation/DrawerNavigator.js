@@ -61,12 +61,10 @@ const stack = {
 		screen: Services
 	},
 	ServiceDetails: {
-		screen: ServiceDetails,
-		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
+		screen: ServiceDetails
 	},
 	AboutService: {
-		screen: AboutService,
-		navigationOptions: navigationOptions(settings.kaz.navigation.services, settings.rus.navigation.services)
+		screen: AboutService
 	},
 	FAQ: {
 		screen: FAQ,

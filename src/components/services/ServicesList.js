@@ -26,6 +26,10 @@ class ServicesListScreen extends Component {
 		this.props.fetchServicesRequested();
 	}
 
+	getShortData = data => data.slice(0, 2);
+
+	onRefresh = () => this.props.fetchServicesRequested();
+
 	renderItem = ({ item }) => <ServiceItem item={item} onPress={() => this.onPress(item)} />;
 
 	keyExtractor = (_, index) => index + '';
@@ -39,11 +43,7 @@ class ServicesListScreen extends Component {
 		this.props.navigation.dispatch(action);
 	};
 
-	onPress = e => this.props.navigation.navigate('Services', { e });
-
-	getShortData = data => data.slice(0, 2);
-
-	onRefresh = () => this.props.fetchServicesRequested();
+	onPress = item => this.props.navigation.navigate('Services', { item });
 
 	render() {
 		const { isPartiallyShown, loading, data, lang, showsMyServices, myServices } = this.props;
