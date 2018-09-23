@@ -30,12 +30,16 @@ class AutoPagingFlatList extends Component {
 		if (Platform.OS === 'ios') {
 			this.interval = setInterval(() => {
 				const { currentIndex } = this.state;
+				const { data } = this.props;
+				const count = Math.min(5, data.length - 1);
 				const nextIndex =
-					this.props.data.length > 0 && currentIndex < this.props.data.length - 1 ? currentIndex + 1 : 0;
+					data.slice(0, count).length > 0 && currentIndex < data.slice(0, count).length - 1
+						? currentIndex + 1
+						: 0;
 
-				if (this.props.data && this.props.data.length > 0) {
+				if (data.slice(0, count) && data.slice(0, count).length > 0) {
 					this.flatList.scrollToIndex({
-						index: Math.max(nextIndex, 0),
+						index: nextIndex,
 						animated: true
 					});
 				}
@@ -84,13 +88,15 @@ class AutoPagingFlatList extends Component {
 	keyExtractor = (_, index) => index + '';
 
 	render() {
+		const { data } = this.props;
+		const count = Math.min(5, data.length - 1);
 		return (
 			<View style={styles.container}>
 				<FlatList
 					ref={ref => {
 						this.flatList = ref;
 					}}
-					data={this.props.data.slice(0, 5)}
+					data={data.slice(0, count)}
 					renderItem={this.renderItem}
 					horizontal
 					pagingEnabled={Platform.OS === 'ios'}
@@ -101,7 +107,7 @@ class AutoPagingFlatList extends Component {
 				/>
 				<PageControl
 					style={styles.pageControl}
-					numberOfPages={this.props.data.length}
+					numberOfPages={data.slice(0, count).length}
 					currentPage={this.state.currentIndex}
 					hidesForSinglePage
 					pageIndicatorTintColor="gray"
