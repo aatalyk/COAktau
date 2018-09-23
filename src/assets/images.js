@@ -42,5 +42,6 @@ export const images = {
 	placeholder: require('../../resources/img/placeholder.png'),
 	imgPlaceholder: require('../../resources/img/img_placeholder.png'),
 	chat: require('../../resources/img/chat.png'),
+	chatOrange: require('../../resources/img/chatOrange.png'),
 	options: require('../../resources/img/options.png')
 };
