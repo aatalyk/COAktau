@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-	View,
-	FlatList,
-	StyleSheet,
-	Image,
-	Dimensions,
-	Platform,
-	TouchableWithoutFeedback,
-	NativeModules
-} from 'react-native';
+import { View, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
 import { images } from '../../assets';
