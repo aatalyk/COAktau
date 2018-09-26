@@ -25,13 +25,9 @@ class NewsScreen extends Component {
 
 	onPress = item => () => this.props.navigation.navigate('NewsPage', { item, lang: this.props.lang });
 
-	onRefresh = () => {
-		console.log('before loading', this.props.loading);
-		this.props.fetchNewsRequested();
-	};
+	onRefresh = () => this.props.fetchNewsRequested();
 
 	render() {
-		console.log('after', this.props.loading);
 		return (
 			<View style={styles.container}>
 				<FlatList

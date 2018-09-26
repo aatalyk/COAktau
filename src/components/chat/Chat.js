@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
-import { images } from '../../assets';
+import { images, settings } from '../../assets';
 import { saveChatHistory, clearChatHistory } from '../../actions';
 
 const propTypes = {
@@ -17,16 +17,14 @@ const propTypes = {
 	clearChatHistory: PropTypes.func
 };
 
-const ID = 1;
-
 class ChatScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
 		const { params = {} } = navigation.state;
 		return {
 			header: () => (
 				<Header
-					titleKaz="{titleKaz}"
-					titleRus="{titleRus}"
+					titleKaz={settings.kaz.navigation.chat}
+					titleRus={settings.rus.navigation.chat}
 					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 					rightItem={<IconButton imgSource={images.options} onPress={() => params.showOptions()} />}
 				/>
@@ -35,10 +33,13 @@ class ChatScreen extends Component {
 	};
 
 	state = {
+		id: 0,
 		messages: []
 	};
 
 	onSend = messages => {
+		const { id } = this.state;
+		console.log('onSend id', id);
 		this.setState(prevState => ({
 			messages: GiftedChat.append(prevState.messages, messages)
 		}));
@@ -58,27 +59,32 @@ class ChatScreen extends Component {
 	};
 
 	saveChatHistory = () => {
-		const { messages } = this.state;
+		const { id, messages } = this.state;
 		const { lang } = this.props;
-		this.props.clearChatHistory({ id: ID, lang, messages });
-		this.props.saveChatHistory({ id: ID, lang, messages });
+		console.log('save id lang', id, lang);
+		this.props.clearChatHistory({ id, lang, messages });
+		this.props.saveChatHistory({ id, lang, messages });
 	};
 
 	clearChatHistory = () => {
-		const { messages } = this.state;
+		const { id, messages } = this.state;
 		const { lang } = this.props;
-		this.props.clearChatHistory({ id: 1, lang, messages });
+		this.props.clearChatHistory({ id, lang, messages });
+		this.setState({
+			id: id,
+			messages: []
+		});
 	};
 
 	componentDidMount() {
-		this.props.navigation.setParams({ showOptions: this.showOptions });
-		const { lang, chat } = this.props;
-		const messages = chat.filter(item => item.id === 1 && item.lang === lang);
-		if (messages.length === 0) {
-			return;
-		}
+		const { lang, chat, navigation } = this.props;
+		const chatID = navigation.getParam('id', 0);
+		console.log('ChatID', chatID);
+		const messages = chat.filter(item => item.id === chatID && item.lang === lang);
+		navigation.setParams({ showOptions: this.showOptions });
 		this.setState({
-			messages: messages[0].messages
+			id: chatID,
+			messages: messages.length === 0 ? [] : messages[0].messages
 		});
 	}
 
@@ -89,7 +95,7 @@ class ChatScreen extends Component {
 				onSend={this.onSend}
 				user={{
 					_id: 1,
-					avatar: images.starOrange
+					avatar: null
 				}}
 				guest={{
 					_id: 2

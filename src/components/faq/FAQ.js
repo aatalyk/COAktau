@@ -68,8 +68,8 @@ class FAQScreen extends Component {
 
 	filter = text =>
 		this.props.data.filter(item => {
-			const localizedItem = item[this.props.lang];
-			return localizedItem.question.indexOf(text) >= 0;
+			const question = item[this.props.lang].question.toLowerCase();
+			return question.indexOf(text.toLowerCase()) >= 0;
 		});
 
 	getPartialData = () => this.props.data.slice(0, 2);
@@ -77,7 +77,7 @@ class FAQScreen extends Component {
 	onRefresh = () => this.props.fetchFAQRequested();
 
 	render() {
-		const { isPartiallyShown, lang, loading, data, style } = this.props;
+		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
 		return (

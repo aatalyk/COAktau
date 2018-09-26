@@ -3,18 +3,41 @@ import { ScrollView, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
 
-import { textStyles } from '../../assets';
+import { Header } from '../navigation';
+import { IconButton } from '../common';
+import { images, textStyles } from '../../assets';
 
 const propTypes = {
 	navigation: PropTypes.object
 };
 
 class AboutService extends Component {
+	static navigationOptions = ({ navigation }) => {
+		return {
+			header: () => (
+				<Header
+					titleKaz={navigation.getParam('titleKaz', '')}
+					titleRus={navigation.getParam('titleRus', '')}
+					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
+				/>
+			)
+		};
+	};
+
+	componentDidMount() {
+		this.setHeaderTitle();
+	}
+
+	setHeaderTitle = () => {
+		const item = this.props.navigation.getParam('item', {});
+		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
+	};
+
 	render() {
-		const detail = this.props.navigation.getParam('detail', {});
+		const item = this.props.navigation.getParam('item', {});
 		return (
 			<ScrollView style={styles.container}>
-				<HTMLView value={`${detail}`} style={styles.htmlView} stylesheet={styles} />
+				<HTMLView value={`${item ? item.detail : ''}`} style={styles.htmlView} stylesheet={styles} />
 			</ScrollView>
 		);
 	}

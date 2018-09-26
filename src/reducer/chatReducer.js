@@ -7,7 +7,11 @@ export const chatReducer = (state = initialState, action) => {
 		case SAVE_CHAT_HISTORY:
 			return state.length > 0 ? [...state, action.chat] : [action.chat];
 		case CLEAR_CHAT_HISTORY:
-			return [...state].filter(item => item.id !== action.chat.id && item.lang !== action.chat.lang);
+			console.log('chatReducer', action.chat, [...state]);
+			return [...state].filter(item => {
+				console.log(item.id !== action.chat.id && item.lang !== action.chat.lang);
+				return item.id !== action.chat.id || item.lang !== action.chat.lang;
+			});
 		default:
 			return state;
 	}

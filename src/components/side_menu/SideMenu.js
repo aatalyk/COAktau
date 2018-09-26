@@ -60,11 +60,11 @@ const menuItems = [
 		}
 	},
 	{
-		image: images.reload,
-		selectedImage: images.questionOrange,
+		image: images.chat,
+		selectedImage: images.chatOrange,
 		title: {
-			kaz: settings.kaz.navigation.faq,
-			rus: settings.rus.navigation.faq
+			kaz: settings.kaz.navigation.chatRooms,
+			rus: settings.rus.navigation.chatRooms
 		}
 	},
 	{

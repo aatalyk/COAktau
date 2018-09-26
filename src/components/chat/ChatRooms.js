@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
 
 const rooms = [{ title: 'Room One', id: 1 }, { title: 'Room Two', id: 2 }];
+
+const propTypes = {
+	navigation: PropTypes.object
+};
 
 class ChatRooms extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -24,7 +29,7 @@ class ChatRooms extends Component {
 
 	renderItem = ({ item }) => {
 		return (
-			<TouchableOpacity onPress={() => console.log('Press')}>
+			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
 					<Text style={styles.title}>{item.title}</Text>
 					<Image source={images.right} style={styles.image} />
@@ -32,6 +37,8 @@ class ChatRooms extends Component {
 			</TouchableOpacity>
 		);
 	};
+
+	onPress = item => this.props.navigation.navigate('Chat', { id: item.id });
 
 	render() {
 		return (
@@ -41,6 +48,8 @@ class ChatRooms extends Component {
 		);
 	}
 }
+
+ChatRooms.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
