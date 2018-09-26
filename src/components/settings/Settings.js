@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, NativeModules } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FCM from 'react-native-fcm';
 
 import { LanguageItem } from './LanguageItem';
 import { NotifsSwitch } from './NotifsSwitch';
@@ -27,11 +26,9 @@ class SettingsScreen extends Component {
 
 	onValueChange = () => {
 		if (this.props.notifsEnabled) {
-			FCM.unregisterMessageHandler();
 			NotificationManager.disableNotification();
 			this.props.disableNotification();
 		} else {
-			FCM.registerMessageHandler();
 			NotificationManager.enableNotification();
 			this.props.enableNotification();
 		}
