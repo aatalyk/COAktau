@@ -11,6 +11,7 @@
 #import <React/RCTRootView.h>
 #import "RNFIRMessaging.h"
 
+@import PushNotifications;
 @import GoogleMaps;
 
 @implementation AppDelegate
@@ -38,33 +39,40 @@
   [FIRApp configure];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
   
+  [[PushNotifications shared] startWithInstanceId:@"4db53e99-e2d5-4d12-b1a5-273bf7c6c363"];
+  [[PushNotifications shared] registerForRemoteNotifications];
+  
   [GMSServices provideAPIKey:@"AIzaSyDeyZoP-KU9RajmzDlm8CJb38tK1wnBZwE"];
+  
+  UIUserNotificationType notificationTypes = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+  UIUserNotificationSettings *pushNotificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories: nil];
+  [application registerUserNotificationSettings:pushNotificationSettings];
+  [application registerForRemoteNotifications];
   
   return YES;
 }
 
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-  [RNFIRMessaging willPresentNotification:notification withCompletionHandler:completionHandler];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [[PushNotifications shared] registerDeviceToken:deviceToken completion:^{
+    NSError *anyError;
+    [[PushNotifications shared] subscribeWithInterest:@"hello" error:&anyError completion:^{
+      if (anyError) {
+        NSLog(@"Error: %@", anyError);
+      }
+      else {
+        NSLog(@"Subscribed to interest hello.");
+      }
+    }];
+  }];
 }
 
-#if defined(__IPHONE_11_0)
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-  [RNFIRMessaging didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  [[PushNotifications shared] handleNotificationWithUserInfo:userInfo];
+  NSLog(@"%@", userInfo);
 }
-#else
- - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
-     [RNFIRMessaging didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
-   
- }
-#endif
 
- //You can skip this method if you don't want to use local notification
- -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-     [RNFIRMessaging didReceiveLocalNotification:notification];
-   }
-
- - (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
-   [RNFIRMessaging didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Remote notification support is unavailable due to error: %@", error.localizedDescription);
 }
 
 @end
