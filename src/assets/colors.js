@@ -10,5 +10,6 @@ export const colors = {
 	orange: 'rgb(248,157,45)',
 	redLight: 'rgb(210, 82, 127)',
 	greenLight: 'rgb(3, 201, 169)',
-	transparent: 'transparent'
+	transparent: 'transparent',
+	purple: 'rgb(227, 71, 111)'
 };

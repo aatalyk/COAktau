@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { IconButton } from '../common';
 import { colors, textStyles } from '../../assets';
@@ -16,6 +17,7 @@ const propTypes = {
 
 const HeaderComponent = ({ leftItem, rightItem, titleKaz, titleRus, lang }) => (
 	<View>
+		<LinearGradient colors={['#e33b6eff', '#d1478bff', '#d1478bff']} style={styles.linearGradient} />
 		<View style={styles.orangeView} />
 		<View style={styles.container}>
 			<View style={styles.leftItem}>{leftItem}</View>
@@ -55,8 +57,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		marginRight: 5
 	},
-	orangeView: {
-		backgroundColor: colors.orange,
+	linearGradient: {
 		height: 20
 	}
 });

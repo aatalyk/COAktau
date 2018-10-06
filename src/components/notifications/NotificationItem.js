@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { colors, textStyles } from '../../assets';
+import { colors, images, fonts, textStyles } from '../../assets';
 
 const propTypes = {
 	item: PropTypes.object,
@@ -12,9 +12,7 @@ const propTypes = {
 export const NotificationItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<View style={styles.letterContainer}>
-				<Text style={styles.letter}>{item.title.charAt(0)}</Text>
-			</View>
+			<Image defaultSource={images.placeholder} source={{ uri: item.imageURL }} style={styles.image} />
 			<Text style={styles.title}>{item.title}</Text>
 		</View>
 	</TouchableOpacity>
@@ -24,27 +22,19 @@ NotificationItem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white',
-		height: 50,
-		paddingHorizontal: 15,
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		margin: 15
 	},
-	letterContainer: {
-		width: 30,
-		height: 30,
-		borderRadius: 30,
-		backgroundColor: colors.bluePicton,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	letter: {
-		...textStyles.p,
-		color: 'white'
+	image: {
+		width: 50,
+		height: 50,
+		borderRadius: 5,
+		marginLeft: 5
 	},
 	title: {
 		flex: 1,
-		...textStyles.p,
-		marginLeft: 10
+		marginLeft: 10,
+		...textStyles.p
 	}
 });

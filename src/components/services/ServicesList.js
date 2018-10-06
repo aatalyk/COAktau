@@ -24,7 +24,20 @@ const propTypes = {
 class ServicesListScreen extends Component {
 	componentDidMount() {
 		this.props.fetchServicesRequested();
+		const data = this.test();
+		console.log(data);
 	}
+
+	test = () => {
+		fetch('https://facebook.github.io/react-native/movies.json')
+			.then(response => response.json())
+			.then(responseJson => {
+				return responseJson;
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	};
 
 	getShortData = data => data.slice(0, 2);
 
