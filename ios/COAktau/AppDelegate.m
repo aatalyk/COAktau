@@ -55,14 +55,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   [[PushNotifications shared] registerDeviceToken:deviceToken completion:^{
     NSError *anyError;
-    [[PushNotifications shared] subscribeWithInterest:@"hello" error:&anyError completion:^{
-      if (anyError) {
-        NSLog(@"Error: %@", anyError);
-      }
-      else {
-        NSLog(@"Subscribed to interest hello.");
-      }
-    }];
+    [[PushNotifications shared] subscribeWithInterest:@"kaz" error:&anyError completion:^{}];
   }];
 }
 

@@ -43,5 +43,6 @@ export const images = {
 	imgPlaceholder: require('../../resources/img/img_placeholder.png'),
 	chat: require('../../resources/img/chat.png'),
 	chatOrange: require('../../resources/img/chatOrange.png'),
-	options: require('../../resources/img/options.png')
+	options: require('../../resources/img/options.png'),
+	logoIcon: require('../../resources/img/soaktau.png')
 };

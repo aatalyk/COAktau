@@ -12,9 +12,8 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Hello", "World");
         PushNotifications.start(getApplicationContext(), "4db53e99-e2d5-4d12-b1a5-273bf7c6c363");
-        PushNotifications.subscribe("soaktau");
+        PushNotifications.subscribe("kaz");
     }
 
     /**

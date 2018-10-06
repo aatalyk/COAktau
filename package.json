@@ -14,6 +14,7 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "firebase": "5.0.3",
     "md5": "^2.2.1",
     "npm": "^6.4.1",
@@ -24,6 +25,7 @@
     "react-native-gifted-chat": "https://github.com/aatalyk/react-native-gifted-chat/tarball/master",
     "react-native-htmlview": "^0.13.0",
     "react-native-invertible-scroll-view": "^1.1.1",
+    "react-native-linear-gradient": "^2.4.2",
     "react-native-maps": "^0.21.0",
     "react-native-page-control": "1.1.1",
     "react-native-tab-view": "1.0.2",

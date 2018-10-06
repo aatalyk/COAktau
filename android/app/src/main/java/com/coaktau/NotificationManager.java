@@ -5,6 +5,7 @@ import android.util.Log;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.pusher.pushnotifications.PushNotifications;
 
 public class NotificationManager extends ReactContextBaseJavaModule {
 
@@ -18,12 +19,31 @@ public class NotificationManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void enableNotification() {
-        Log.d("Enable", "Notif");
+    public void enableNotification(String lang) {
+        if(lang.equals("rus")) {
+            PushNotifications.subscribe("rus");
+        } else {
+            PushNotifications.subscribe("kaz");
+        }
     }
 
     @ReactMethod
     public void disableNotification() {
-        Log.d("Disable", "Notif");
+        PushNotifications.unsubscribe("rus");
+        PushNotifications.unsubscribe("kaz");
+    }
+
+    @ReactMethod
+    public void subscribeRus() {
+        PushNotifications.unsubscribe("kaz");
+        PushNotifications.subscribe("rus");
+        Log.v("rus", "msg");
+    }
+
+    @ReactMethod
+    public void subscribeKaz() {
+        PushNotifications.unsubscribe("rus");
+        PushNotifications.subscribe("kaz");
+        Log.v("kaz", "msg");
     }
 }

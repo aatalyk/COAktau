@@ -52,7 +52,7 @@ NotificationsScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: colors.blueUltraLight
+		backgroundColor: 'white'
 	},
 	flatList: {
 		flex: 1,

@@ -21,6 +21,7 @@ const NotificationManager = NativeModules.NotificationManager;
 class SettingsScreen extends Component {
 	onPress = () => {
 		const lang = this.props.lang === 'kaz' ? 'rus' : 'kaz';
+		lang === 'rus' ? NotificationManager.subscribeRus() : NotificationManager.subscribeKaz();
 		this.props.setLang(lang);
 	};
 
@@ -29,7 +30,7 @@ class SettingsScreen extends Component {
 			NotificationManager.disableNotification();
 			this.props.disableNotification();
 		} else {
-			NotificationManager.enableNotification();
+			NotificationManager.enableNotification(this.props.lang);
 			this.props.enableNotification();
 		}
 	};

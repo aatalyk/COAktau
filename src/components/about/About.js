@@ -42,8 +42,8 @@ class AboutScreen extends Component {
 				})}
 			>
 				<Animated.Image
-					source={images.logo}
-					resizeMode="cover"
+					source={images.logoIcon}
+					resizeMode="center"
 					style={{
 						...styles.image,
 						transform: [
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		width: SCREEN_WIDTH,
-		height: SCREEN_HEIGHT / 3
+		height: SCREEN_HEIGHT / 3,
+		marginTop: 10
 	},
 	text: {
 		...textStyles.p,
