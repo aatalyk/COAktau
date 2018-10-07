@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { IconButton } from '../common';
-import { colors, textStyles } from '../../assets';
+import { textStyles } from '../../assets';
 
 const propTypes = {
 	leftItem: PropTypes.node,

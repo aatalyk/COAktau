@@ -13,7 +13,7 @@ import { DrawerRoutes } from '../navigation';
 const menuItems = [
 	{
 		image: images.home,
-		selectedImage: images.homeOrange,
+		selectedImage: images.homePurple,
 		title: {
 			kaz: settings.kaz.navigation.home,
 			rus: settings.rus.navigation.home
@@ -21,7 +21,7 @@ const menuItems = [
 	},
 	{
 		image: images.case,
-		selectedImage: images.caseOrange,
+		selectedImage: images.casePurple,
 		title: {
 			kaz: settings.kaz.navigation.services,
 			rus: settings.rus.navigation.services
@@ -29,7 +29,7 @@ const menuItems = [
 	},
 	{
 		image: images.star,
-		selectedImage: images.starOrange,
+		selectedImage: images.starPurple,
 		title: {
 			kaz: settings.kaz.navigation.myServices,
 			rus: settings.rus.navigation.myServices
@@ -37,7 +37,7 @@ const menuItems = [
 	},
 	{
 		image: images.news,
-		selectedImage: images.newsOrange,
+		selectedImage: images.newsPurple,
 		title: {
 			kaz: settings.kaz.navigation.news,
 			rus: settings.rus.navigation.news
@@ -45,7 +45,7 @@ const menuItems = [
 	},
 	{
 		image: images.speaker,
-		selectedImage: images.speakerOrange,
+		selectedImage: images.speakerPurple,
 		title: {
 			kaz: settings.kaz.navigation.notifs,
 			rus: settings.rus.navigation.notifs
@@ -53,7 +53,7 @@ const menuItems = [
 	},
 	{
 		image: images.question,
-		selectedImage: images.questionOrange,
+		selectedImage: images.questionPurple,
 		title: {
 			kaz: settings.kaz.navigation.faq,
 			rus: settings.rus.navigation.faq
@@ -61,7 +61,7 @@ const menuItems = [
 	},
 	{
 		image: images.chat,
-		selectedImage: images.chatOrange,
+		selectedImage: images.chatPurple,
 		title: {
 			kaz: settings.kaz.navigation.chatRooms,
 			rus: settings.rus.navigation.chatRooms
@@ -69,7 +69,7 @@ const menuItems = [
 	},
 	{
 		image: images.pin,
-		selectedImage: images.pinOrange,
+		selectedImage: images.pinPurple,
 		title: {
 			kaz: settings.kaz.navigation.contact,
 			rus: settings.rus.navigation.contact
@@ -77,7 +77,7 @@ const menuItems = [
 	},
 	{
 		image: images.info,
-		selectedImage: images.infoOrange,
+		selectedImage: images.infoPurple,
 		title: {
 			kaz: settings.kaz.navigation.about,
 			rus: settings.rus.navigation.about
@@ -85,7 +85,7 @@ const menuItems = [
 	},
 	{
 		image: images.settings,
-		selectedImage: images.settingsOrange,
+		selectedImage: images.settingsPurple,
 		title: {
 			kaz: settings.kaz.navigation.settings,
 			rus: settings.rus.navigation.settings

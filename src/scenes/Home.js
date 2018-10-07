@@ -7,7 +7,7 @@ import { store } from '../store';
 
 import { ServicesAndFAQ } from '../components/services';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
-import { colors, settings, images, textStyles } from '../assets';
+import { colors, settings, images } from '../assets';
 import { fetchNewsRequested } from '../actions';
 import { Notifications } from '../components/notifications';
 import { MessageScreen } from '../components/common';
@@ -71,7 +71,6 @@ class HomeScreen extends Component {
 	onTabViewIndexChange = index => this.setState({ index });
 
 	render() {
-		console.log(SCREEN_WIDTH, 'width');
 		const { lang, navigation, newsItems } = this.props;
 		return this.state.connected ? (
 			<View style={styles.container}>
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center'
 	},
 	tabbarIndicator: {
-		backgroundColor: colors.blue,
+		backgroundColor: colors.purple,
 		height: 3
 	},
 	tabViewInitialLayout: {
