@@ -49,7 +49,7 @@ class FAQitem extends Component {
 					<Button
 						title={settings[this.props.lang].buttons.composeEmail}
 						onPress={this.onWriteButtonPress}
-						color={colors.orange}
+						color={colors.purple}
 					/>
 				</View>
 			</View>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0.5
 	},
 	replyButton: {
-		borderColor: colors.orange,
+		borderColor: colors.purple,
 		borderWidth: Platform.OS === 'ios' ? 1 : 0
 	},
 	image: {

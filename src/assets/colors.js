@@ -11,5 +11,6 @@ export const colors = {
 	redLight: 'rgb(210, 82, 127)',
 	greenLight: 'rgb(3, 201, 169)',
 	transparent: 'transparent',
-	purple: 'rgb(227, 71, 111)'
+	purple: 'rgb(227, 71, 111)',
+	violet: 'rgb(130, 105, 222)'
 };

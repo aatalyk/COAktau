@@ -41,15 +41,15 @@ class ContactScreen extends Component {
 					/>
 				</MapView>
 				<View style={styles.itemsContainer}>
-					<ContactItem title={settings[this.props.lang].text.address} imgSource={images.pinOrange} />
+					<ContactItem title={settings[this.props.lang].text.address} imgSource={images.pinPurple} />
 					<ContactItem title={settings[this.props.lang].text.bus} imgSource={images.bus} />
 					<ContactItem
 						title="+7 (7292) 43‒26‒70"
-						imgSource={images.callOrange}
+						imgSource={images.callPurple}
 						onPress={() => this.call('+77292432670')}
 					/>
 					<ContactItem title="+7 (7292) 43‒26‒52" onPress={() => this.call('+77292432652')} />
-					<ContactItem title="soaktau@gmail.com" imgSource={images.emailOrange} onPress={this.composeEmail} />
+					<ContactItem title="soaktau@gmail.com" imgSource={images.emailPurple} onPress={this.composeEmail} />
 				</View>
 			</View>
 		);

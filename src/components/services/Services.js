@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, Image, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
-import { addToMyServices, removeFromMyServices } from '../../actions';
+import { addToMyServices, removeFromMyServices, fetchSubServicesRequested } from '../../actions';
 import { colors, images, textStyles, settings } from '../../assets';
 
 const propTypes = {
@@ -13,7 +14,10 @@ const propTypes = {
 	lang: PropTypes.oneOf(['kaz', 'rus']),
 	addToMyServices: PropTypes.func,
 	removeFromMyServices: PropTypes.func,
-	myServices: PropTypes.array
+	fetchSubServicesRequested: PropTypes.func,
+	myServices: PropTypes.array,
+	subServices: PropTypes.array,
+	loading: PropTypes.bool
 };
 
 class ServicesScreen extends Component {
@@ -31,16 +35,27 @@ class ServicesScreen extends Component {
 
 	componentDidMount() {
 		this.setHeaderTitle();
+		this.fetchSubServices();
 	}
 
 	setHeaderTitle = () => {
-		const item = this.props.navigation.getParam('item', {});
-		this.props.navigation.setParams({ titleKaz: item.kaz.title, titleRus: item.rus.title });
+		const item = this.getItem();
+		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
 	};
+
+	fetchSubServices = () => {
+		const item = this.getItem();
+		console.log('Services', item);
+		this.props.fetchSubServicesRequested(item.id);
+	};
+
+	getItem = () => this.props.navigation.getParam('item', {});
 
 	addToMyServices = serviceItem => () => this.props.addToMyServices(serviceItem);
 
 	removeFromMyServices = serviceItem => () => this.props.removeFromMyServices(serviceItem);
+
+	onRefresh = () => this.fetchSubServices();
 
 	renderItem = ({ item }) => {
 		return (
@@ -56,10 +71,10 @@ class ServicesScreen extends Component {
 	onPress = item => this.props.navigation.navigate('ServiceDetails', { item });
 
 	render() {
-		const { lang, myServices, navigation } = this.props;
-		const item = navigation.getParam('item', {});
+		const { lang, myServices, subServices, loading } = this.props;
+		const item = this.getItem();
 
-		const isInMyServices = myServices.filter(i => i[lang].title === item[lang].title).length > 0; // true if an item with the same title exists in myServices
+		const isInMyServices = myServices.filter(i => i.title === item.title).length > 0; // true if an item with the same title exists in myServices
 
 		const onButtonPress = isInMyServices ? this.removeFromMyServices(item) : this.addToMyServices(item);
 		const buttonTitle = isInMyServices
@@ -69,20 +84,23 @@ class ServicesScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={item[this.props.lang].list}
+					data={subServices}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={() => <View style={styles.separator} />}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				<TouchableOpacity onPress={onButtonPress}>
-					<View
-						style={[
-							styles.buttonContainer,
-							{ backgroundColor: isInMyServices ? colors.orange : colors.blue }
-						]}
+					<LinearGradient
+						colors={
+							isInMyServices
+								? ['#8269deff', '#5495e9ff', '#5495e9ff']
+								: ['#e33b6eff', '#d1478bff', '#d1478bff']
+						}
+						style={styles.buttonContainer}
 					>
 						<Text style={styles.buttonText}>{buttonTitle}</Text>
-					</View>
+					</LinearGradient>
 				</TouchableOpacity>
 			</View>
 		);
@@ -127,12 +145,14 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ settings, myServices }) => ({
+const mapStateToProps = ({ settings, myServices, services }) => ({
 	lang: settings.lang,
-	myServices
+	myServices,
+	loading: services.loading,
+	subServices: services.subServices
 });
 
 export const Services = connect(
 	mapStateToProps,
-	{ addToMyServices, removeFromMyServices }
+	{ addToMyServices, removeFromMyServices, fetchSubServicesRequested }
 )(ServicesScreen);

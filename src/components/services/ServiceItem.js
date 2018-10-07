@@ -14,20 +14,18 @@ const propTypes = {
 	lang: PropTypes.oneOf(['kaz', 'rus'])
 };
 
-const ServiceItemScreen = ({ item, onPress, lang }) => {
-	const localizedItem = item[lang];
-
+const ServiceItemScreen = ({ item, onPress }) => {
 	return (
 		<TouchableOpacity onPress={onPress}>
 			<View style={styles.container}>
-				{!!localizedItem.icon && (
+				{!!item.icon && (
 					<Image
 						defaultSource={images.placeholder}
-						source={{ uri: localizedItem.icon } || images.search}
+						source={{ uri: item.icon } || images.search}
 						style={styles.image}
 					/>
 				)}
-				{!!localizedItem.title && <Text style={styles.title}>{localizedItem.title}</Text>}
+				{!!item.title && <Text style={styles.title}>{item.title}</Text>}
 			</View>
 		</TouchableOpacity>
 	);

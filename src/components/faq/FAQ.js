@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
 	},
 	showMoreText: {
 		marginRight: 15,
-		color: colors.blue
+		...textStyles.p,
+		color: colors.purple
 	},
 	separator: {
 		backgroundColor: colors.grayUltraLight,

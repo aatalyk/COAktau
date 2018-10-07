@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
+import { fetchServicesTitlesRequested } from '../../actions';
 import { colors, images, textStyles } from '../../assets';
 
 const propTypes = {
 	navigation: PropTypes.object,
-	lang: PropTypes.oneOf(['kaz', 'rus'])
+	lang: PropTypes.oneOf(['kaz', 'rus']),
+	fetchServicesTitlesRequested: PropTypes.func,
+	titles: PropTypes.array
 };
 
 class ServiceDetailsScreen extends Component {
@@ -27,11 +30,18 @@ class ServiceDetailsScreen extends Component {
 
 	componentDidMount() {
 		this.setHeaderTitle();
+		this.fetchSubServices();
 	}
 
 	setHeaderTitle = () => {
 		const item = this.props.navigation.getParam('item', {});
 		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
+	};
+
+	fetchSubServices = () => {
+		const item = this.props.navigation.getParam('item', {});
+		console.log('ServicesDetails', item);
+		this.props.fetchServicesTitlesRequested(item.id);
 	};
 
 	renderItem = ({ item }) => {
@@ -54,11 +64,11 @@ class ServiceDetailsScreen extends Component {
 	};
 
 	render() {
-		const { details } = this.props.navigation.getParam('item', {});
+		const { titles } = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={details}
+					data={titles}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={this.renderSeparator}
@@ -96,6 +106,9 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ settings }) => ({ lang: settings.lang });
+const mapStateToProps = ({ settings, services }) => ({ lang: settings.lang, titles: services.titles });
 
-export const ServiceDetails = connect(mapStateToProps)(ServiceDetailsScreen);
+export const ServiceDetails = connect(
+	mapStateToProps,
+	{ fetchServicesTitlesRequested }
+)(ServiceDetailsScreen);
