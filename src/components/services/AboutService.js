@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
+import { fetchServicesPostRequested } from '../../actions';
 import { images, textStyles } from '../../assets';
 
 const propTypes = {
-	navigation: PropTypes.object
+	navigation: PropTypes.object,
+	fetchServicesPostRequested: PropTypes.func,
+	post: PropTypes.string
 };
 
-class AboutService extends Component {
+class AboutServiceScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
 		return {
 			header: () => (
@@ -26,24 +30,32 @@ class AboutService extends Component {
 
 	componentDidMount() {
 		this.setHeaderTitle();
+		this.fetchServicesPost();
 	}
 
 	setHeaderTitle = () => {
-		const item = this.props.navigation.getParam('item', {});
+		const item = this.getItem();
 		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
 	};
 
+	fetchServicesPost = () => {
+		const item = this.getItem();
+		this.props.fetchServicesPostRequested(item.serviceId, item.subServiceId, item.id);
+	};
+
+	getItem = () => this.props.navigation.getParam('item', {});
+
 	render() {
-		const item = this.props.navigation.getParam('item', {});
+		const { post } = this.props;
 		return (
 			<ScrollView style={styles.container}>
-				<HTMLView value={`${item ? item.detail : ''}`} style={styles.htmlView} stylesheet={styles} />
+				<HTMLView value={post} style={styles.htmlView} stylesheet={styles} />
 			</ScrollView>
 		);
 	}
 }
 
-AboutService.propTypes = propTypes;
+AboutServiceScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -65,4 +77,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { AboutService };
+const mapStateToProps = ({ services }) => ({
+	post: services.post
+});
+
+export const AboutService = connect(
+	mapStateToProps,
+	{ fetchServicesPostRequested }
+)(AboutServiceScreen);

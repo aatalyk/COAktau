@@ -30,19 +30,20 @@ class ServiceDetailsScreen extends Component {
 
 	componentDidMount() {
 		this.setHeaderTitle();
-		this.fetchSubServices();
+		this.fetchServicesTitles();
 	}
 
 	setHeaderTitle = () => {
-		const item = this.props.navigation.getParam('item', {});
+		const item = this.getItem();
 		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
 	};
 
-	fetchSubServices = () => {
-		const item = this.props.navigation.getParam('item', {});
-		console.log('ServicesDetails', item);
-		this.props.fetchServicesTitlesRequested(item.id);
+	fetchServicesTitles = () => {
+		const item = this.getItem();
+		this.props.fetchServicesTitlesRequested(item.serviceId, item.id);
 	};
+
+	getItem = () => this.props.navigation.getParam('item', {});
 
 	renderItem = ({ item }) => {
 		return (

@@ -9,7 +9,10 @@ import {
 	FETCH_SUBSERVICES_FAILED,
 	FETCH_SERVICES_TITLES_REQUESTED,
 	FETCH_SERVICES_TITLES_SUCCEEDED,
-	FETCH_SERVICES_TITLES_FAILED
+	FETCH_SERVICES_TITLES_FAILED,
+	FETCH_SERVICES_POST_REQUESTED,
+	FETCH_SERVICES_POST_SUCCEEDED,
+	FETCH_SERVICES_POST_FAILED
 } from './types';
 
 export const fetchServicesRequested = () => ({
@@ -51,9 +54,9 @@ export const fetchSubServicesFailed = error => ({
 	error: error
 });
 
-export const fetchServicesTitlesRequested = (subServiceID, id) => ({
+export const fetchServicesTitlesRequested = (serviceId, id) => ({
 	type: FETCH_SERVICES_TITLES_REQUESTED,
-	subServiceID,
+	serviceId,
 	id
 });
 
@@ -64,5 +67,22 @@ export const fetchServicesTitlesSucceded = titles => ({
 
 export const fetchServicesTitlesFailed = error => ({
 	type: FETCH_SERVICES_TITLES_FAILED,
+	error: error
+});
+
+export const fetchServicesPostRequested = (serviceId, subServiceId, id) => ({
+	type: FETCH_SERVICES_POST_REQUESTED,
+	serviceId,
+	subServiceId,
+	id
+});
+
+export const fetchServicesPostSucceded = post => ({
+	type: FETCH_SERVICES_POST_SUCCEEDED,
+	post
+});
+
+export const fetchServicesPostFailed = error => ({
+	type: FETCH_SERVICES_POST_FAILED,
 	error: error
 });

@@ -45,7 +45,6 @@ class ServicesScreen extends Component {
 
 	fetchSubServices = () => {
 		const item = this.getItem();
-		console.log('Services', item);
 		this.props.fetchSubServicesRequested(item.id);
 	};
 
