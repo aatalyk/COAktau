@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, Image, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,6 +11,7 @@ import { colors, images, textStyles } from '../../assets';
 const propTypes = {
 	navigation: PropTypes.object,
 	lang: PropTypes.oneOf(['kaz', 'rus']),
+	loading: PropTypes.bool,
 	fetchServicesTitlesRequested: PropTypes.func,
 	titles: PropTypes.array
 };
@@ -64,8 +65,10 @@ class ServiceDetailsScreen extends Component {
 			: this.props.navigation.navigate('AboutService', { item });
 	};
 
+	onRefresh = () => this.fetchServicesTitles();
+
 	render() {
-		const { titles } = this.props;
+		const { loading, titles } = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
@@ -73,6 +76,7 @@ class ServiceDetailsScreen extends Component {
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={this.renderSeparator}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
 		);
@@ -107,7 +111,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ settings, services }) => ({ lang: settings.lang, titles: services.titles });
+const mapStateToProps = ({ settings, services }) => ({
+	lang: settings.lang,
+	loading: services.loading,
+	titles: services.titles
+});
 
 export const ServiceDetails = connect(
 	mapStateToProps,

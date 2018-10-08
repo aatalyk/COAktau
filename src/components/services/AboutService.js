@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, RefreshControl, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import { images, textStyles } from '../../assets';
 
 const propTypes = {
 	navigation: PropTypes.object,
+	loading: PropTypes.bool,
 	fetchServicesPostRequested: PropTypes.func,
 	post: PropTypes.string
 };
@@ -45,10 +46,15 @@ class AboutServiceScreen extends Component {
 
 	getItem = () => this.props.navigation.getParam('item', {});
 
+	onRefresh = () => this.fetchServicesPost();
+
 	render() {
-		const { post } = this.props;
+		const { post, loading } = this.props;
 		return (
-			<ScrollView style={styles.container}>
+			<ScrollView
+				style={styles.container}
+				refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
+			>
 				<HTMLView value={post} style={styles.htmlView} stylesheet={styles} />
 			</ScrollView>
 		);
@@ -78,6 +84,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ services }) => ({
+	loading: services.loading,
 	post: services.post
 });
 
