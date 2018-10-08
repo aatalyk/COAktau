@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ViewPagerAndroid, StyleSheet, Image, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, ViewPagerAndroid, StyleSheet, Image, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { images } from '../../assets';
@@ -19,7 +19,8 @@ class AndroidPagingView extends Component {
 	};
 
 	renderItem = (item, index) => (
-		<TouchableWithoutFeedback onPress={this.props.onItemPress} key={`${index}`}>
+    <View key={`${index}`}>
+		<TouchableWithoutFeedback onPress={this.props.onItemPress} >
 			<Image
 				defaultSource={images.imgPlaceholder}
 				resizeMode="cover"
@@ -27,6 +28,7 @@ class AndroidPagingView extends Component {
 				source={{ uri: item.imageUrl || undefined }}
 			/>
 		</TouchableWithoutFeedback>
+    </View>
 	);
 
 	render() {
