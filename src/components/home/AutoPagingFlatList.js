@@ -98,7 +98,9 @@ class AutoPagingFlatList extends Component {
     const { data, style } = this.props;
 
     if (Platform.OS === "android") {
-      return <AndroidPagingView data={data} />;
+      return (
+        <AndroidPagingView data={data} style={[styles.container, style]} />
+      );
     }
 
     return (

@@ -13,7 +13,8 @@ import { images } from "../../assets";
 const propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({ imageUrl: PropTypes.string.isRequired })
-  )
+  ),
+  style: PropTypes.oneOf([PropTypes.object, PropTypes.number, PropTypes.array])
 };
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -32,7 +33,7 @@ class AndroidPagingView extends Component {
 
   render() {
     return (
-      <ViewPagerAndroid style={styles.viewPager}>
+      <ViewPagerAndroid style={[styles.viewPager, this.props.style]}>
         {this.props.data.map((item, index) => this.renderItem(item, index))}
       </ViewPagerAndroid>
     );
