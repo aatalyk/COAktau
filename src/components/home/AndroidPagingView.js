@@ -15,7 +15,8 @@ const propTypes = {
     PropTypes.shape({ imageUrl: PropTypes.string.isRequired })
   ),
   style: PropTypes.oneOf([PropTypes.object, PropTypes.number, PropTypes.array]),
-  onPageSelected: PropTypes.func
+  onPageSelected: PropTypes.func,
+  onItemPress: PropTypes.func
 };
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -26,7 +27,7 @@ class AndroidPagingView extends Component {
   };
 
   renderItem = (item, index) => (
-    <TouchableWithoutFeedback onPress={this.onItemPress} key={`${index}`}>
+    <TouchableWithoutFeedback onPress={this.props.onItemPress} key={`${index}`}>
       <Image
         defaultSource={images.imgPlaceholder}
         resizeMode="cover"
