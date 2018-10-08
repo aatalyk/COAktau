@@ -97,27 +97,31 @@ class AutoPagingFlatList extends Component {
   render() {
     const { data, style } = this.props;
 
-    if (Platform.OS === "android") {
-      return (
-        <AndroidPagingView data={data} style={[styles.container, style]} />
-      );
-    }
-
     return (
       <View style={[styles.container, style]}>
-        <FlatList
-          ref={ref => {
-            this.flatList = ref;
-          }}
-          data={data}
-          renderItem={this.renderItem}
-          horizontal
-          pagingEnabled={Platform.OS === "ios"}
-          onMomentumScrollEnd={this.onScrollEnd}
-          getItemLayout={this.getItemLayout}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={this.keyExtractor}
-        />
+        {Platform.OS === "ios" ? (
+          <FlatList
+            ref={ref => {
+              this.flatList = ref;
+            }}
+            data={data}
+            renderItem={this.renderItem}
+            horizontal
+            pagingEnabled={Platform.OS === "ios"}
+            onMomentumScrollEnd={this.onScrollEnd}
+            getItemLayout={this.getItemLayout}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={this.keyExtractor}
+          />
+        ) : (
+          <AndroidPagingView
+            data={data}
+            onItemPress={this.props.onItemPress || this.onItemPress}
+            onPageSelected={position =>
+              this.setState({ currentIndex: position })
+            }
+          />
+        )}
         {!!data &&
           data.length > 1 && (
             <PageControl
