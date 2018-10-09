@@ -15,7 +15,7 @@ const propTypes = {
 	navigation: PropTypes.object,
 	isPartiallyShown: PropTypes.bool,
 	loading: PropTypes.bool,
-	data: PropTypes.arrayOf(faqPropType),
+	data: PropTypes.array,
 	fetchFAQRequested: PropTypes.func,
 	lang: PropTypes.string
 };
@@ -27,6 +27,7 @@ class FAQScreen extends Component {
 
 	componentDidMount() {
 		this.props.fetchFAQRequested();
+		console.warn(this.props.data);
 	}
 
 	renderSeparator() {
@@ -34,8 +35,7 @@ class FAQScreen extends Component {
 	}
 
 	renderItem = ({ item, index }) => {
-		const localizedItem = item[this.props.lang];
-		return <FAQitem item={localizedItem} index={index} lang={this.props.lang} />;
+		return <FAQitem item={item} index={index} lang={this.props.lang} />;
 	};
 
 	keyExtractor = (_, index) => index + '';
@@ -68,7 +68,7 @@ class FAQScreen extends Component {
 
 	filter = text =>
 		this.props.data.filter(item => {
-			const question = item[this.props.lang].question.toLowerCase();
+			const question = item.question.toLowerCase();
 			return question.indexOf(text.toLowerCase()) >= 0;
 		});
 
@@ -79,6 +79,8 @@ class FAQScreen extends Component {
 	render() {
 		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
+
+		console.warn('faqItems', faqItems);
 
 		return (
 			<View style={[styles.container, style]}>

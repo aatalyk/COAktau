@@ -21,7 +21,7 @@ class NotificationsScreen extends Component {
 	}
 
 	renderItem = ({ item }) => {
-		return <NotificationItem item={item} onPress={() => this.onPress(localizedItem)} />;
+		return <NotificationItem item={item} onPress={() => this.onPress(item)} />;
 	};
 
 	renderSeparator = () => <View style={styles.separator} />;
@@ -58,8 +58,10 @@ const styles = StyleSheet.create({
 		marginVertical: 20
 	},
 	separator: {
+		height: 1,
 		backgroundColor: colors.grayUltraLight,
-		height: 1
+		marginLeft: 15,
+		marginRight: 15
 	}
 });
 

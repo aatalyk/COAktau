@@ -8,7 +8,6 @@ const fetchNotifsLogic = createLogic({
 	type: FETCH_NOTIFS_REQUESTED,
 	process: ({ getState }, dispatch, done) => {
 		const { lang } = getState().settings;
-		console.log('notifs', lang);
 		fetch(url)
 			.then(response => response.json())
 			.then(json => {
