@@ -27,7 +27,6 @@ class FAQScreen extends Component {
 
 	componentDidMount() {
 		this.props.fetchFAQRequested();
-		console.warn(this.props.data);
 	}
 
 	renderSeparator() {
@@ -79,8 +78,6 @@ class FAQScreen extends Component {
 	render() {
 		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
-
-		console.warn('faqItems', faqItems);
 
 		return (
 			<View style={[styles.container, style]}>

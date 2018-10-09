@@ -29,7 +29,7 @@ class FAQItem extends Component {
 	renderDetails() {
 		return (
 			<View>
-				<Text style={[styles.detail, { color: 'black' }]}>{`${this.props.item.description}`}</Text>
+				<Text style={[styles.detail, { color: 'black' }]}>{`${this.props.item.answer}`}</Text>
 			</View>
 		);
 	}
@@ -41,7 +41,7 @@ class FAQItem extends Component {
 				<TouchableWithoutFeedback style={styles.touchable} onPress={this.onPress}>
 					<View style={styles.titleContainer}>
 						<Text style={[styles.title, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
-							{this.props.item.title}
+							{this.props.item.question}
 						</Text>
 						<View style={styles.button}>
 							<Image source={isSelected ? images.close : images.plus} style={styles.image} />

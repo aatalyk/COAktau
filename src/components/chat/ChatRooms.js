@@ -6,7 +6,38 @@ import { Header } from '../navigation';
 import { IconButton } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
 
-const rooms = [{ title: 'Room One', id: 1 }, { title: 'Room Two', id: 2 }];
+const rooms = [
+	{
+		title: 'Room One',
+		id: 1,
+		messages: [
+			{
+				_id: 1,
+				text: 'First message',
+				createdAt: new Date(),
+				user: {
+					_id: 2,
+					avatar: null
+				}
+			}
+		]
+	},
+	{
+		title: 'Room Two',
+		id: 1,
+		messages: [
+			{
+				_id: 1,
+				text: 'First message',
+				createdAt: new Date(),
+				user: {
+					_id: 2,
+					avatar: null
+				}
+			}
+		]
+	}
+];
 
 const propTypes = {
 	navigation: PropTypes.object
@@ -38,7 +69,7 @@ class ChatRooms extends Component {
 		);
 	};
 
-	onPress = item => this.props.navigation.navigate('Chat', { id: item.id });
+	onPress = room => this.props.navigation.navigate('Chat', { room });
 
 	render() {
 		return (

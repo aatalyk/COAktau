@@ -46,13 +46,14 @@ class ChatScreen extends Component {
 	};
 
 	showOptions = () => {
+		const { lang } = this.props;
 		Alert.alert(
-			'Alert Title',
-			'Alert Message',
+			settings[lang].navigation.chat,
+			'',
 			[
-				{ text: 'Save Chat History', onPress: () => this.saveChatHistory() },
-				{ text: 'Clear Chat History', onPress: () => this.clearChatHistory() },
-				{ text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'destructive' }
+				{ text: settings[lang].text.saveChat, onPress: () => this.saveChatHistory() },
+				{ text: settings[lang].text.clearChat, onPress: () => this.clearChatHistory() },
+				{ text: settings[lang].text.cancel, onPress: () => console.log('Cancel Pressed'), style: 'destructive' }
 			],
 			{ cancelable: true }
 		);
@@ -61,7 +62,6 @@ class ChatScreen extends Component {
 	saveChatHistory = () => {
 		const { id, messages } = this.state;
 		const { lang } = this.props;
-		console.log('save id lang', id, lang);
 		this.props.clearChatHistory({ id, lang, messages });
 		this.props.saveChatHistory({ id, lang, messages });
 	};
@@ -78,13 +78,12 @@ class ChatScreen extends Component {
 
 	componentDidMount() {
 		const { lang, chat, navigation } = this.props;
-		const chatID = navigation.getParam('id', 0);
-		console.log('ChatID', chatID);
-		const messages = chat.filter(item => item.id === chatID && item.lang === lang);
+		const room = navigation.getParam('room', {});
+		const messages = chat.filter(item => item.id === room.id && item.lang === lang);
 		navigation.setParams({ showOptions: this.showOptions });
 		this.setState({
-			id: chatID,
-			messages: messages.length === 0 ? [] : messages[0].messages
+			id: room.id,
+			messages: messages.length === 0 ? room.messages : messages[0].messages
 		});
 	}
 
