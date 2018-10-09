@@ -1,30 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { textStyles, images, colors } from '../../assets';
-import { newsPropType } from '../../propTypes';
-import { ScaledImage } from '../common';
+import { textStyles, images, colors } from '../assets';
+import { ScaledImage } from '../components/common';
 
 const propTypes = {
-	item: newsPropType,
+	item: PropTypes.object,
 	onPress: PropTypes.func,
 	lang: PropTypes.string
 };
 
-export const NewsItem = ({ item, onPress, lang }) => (
+export const MyCityItem = ({ item, onPress, lang }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<ScaledImage defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} />
+			<ScaledImage defaultSource={images.imgPlaceholder} source={{ uri: item.image }} />
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
-				<Text style={styles.date}>Date</Text>
 			</View>
 		</View>
 	</TouchableOpacity>
 );
 
-NewsItem.propTypes = propTypes;
+MyCityItem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -32,8 +30,8 @@ const styles = StyleSheet.create({
 	},
 	textContainer: {
 		marginHorizontal: 10,
-		marginBottom: 15,
-		marginTop: 10
+		paddingTop: 20,
+		paddingBottom: 20
 	},
 	date: {
 		...textStyles.p,

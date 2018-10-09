@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aktau" translatesAutoresizingMaskIntoConstraints="NO" id="Vtj-8r-F3k">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soaktau" translatesAutoresizingMaskIntoConstraints="NO" id="Vtj-8r-F3k">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.956096351146698" green="0.61741334199905396" blue="0.24678581953048706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Vtj-8r-F3k" secondAttribute="bottom" id="63o-qN-6JA"/>
                 <constraint firstItem="Vtj-8r-F3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mbv-Bl-XnQ"/>
@@ -32,6 +32,6 @@
         </view>
     </objects>
     <resources>
-        <image name="aktau" width="1536" height="1536"/>
+        <image name="soaktau" width="1024" height="1024"/>
     </resources>
 </document>

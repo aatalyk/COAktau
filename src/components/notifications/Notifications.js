@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, RefreshControl, NetInfo } from 'react-native';
+import { View, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -21,8 +21,7 @@ class NotificationsScreen extends Component {
 	}
 
 	renderItem = ({ item }) => {
-		const localizedItem = item[this.props.lang];
-		return <NotificationItem item={localizedItem} onPress={() => this.onPress(localizedItem)} />;
+		return <NotificationItem item={item} onPress={() => this.onPress(item)} />;
 	};
 
 	renderSeparator = () => <View style={styles.separator} />;
@@ -59,8 +58,10 @@ const styles = StyleSheet.create({
 		marginVertical: 20
 	},
 	separator: {
+		height: 1,
 		backgroundColor: colors.grayUltraLight,
-		height: 1
+		marginLeft: 15,
+		marginRight: 15
 	}
 });
 

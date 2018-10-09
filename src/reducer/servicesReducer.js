@@ -7,12 +7,16 @@ import {
 	FETCH_SUBSERVICES_FAILED,
 	FETCH_SERVICES_TITLES_REQUESTED,
 	FETCH_SERVICES_TITLES_SUCCEEDED,
-	FETCH_SERVICES_TITLES_FAILED
+	FETCH_SERVICES_TITLES_FAILED,
+	FETCH_SERVICES_POST_REQUESTED,
+	FETCH_SERVICES_POST_SUCCEEDED,
+	FETCH_SERVICES_POST_FAILED
 } from '../actions';
 
 const initialState = {
 	services: [],
 	subServices: [],
+	post: '',
 	titles: [],
 	loading: false,
 	error: null
@@ -66,6 +70,23 @@ export const servicesReducer = (state = initialState, action) => {
 				loading: false
 			};
 		case FETCH_SERVICES_TITLES_FAILED:
+			return {
+				...state,
+				loading: false,
+				error: action.error
+			};
+		case FETCH_SERVICES_POST_REQUESTED:
+			return {
+				...state,
+				loading: true
+			};
+		case FETCH_SERVICES_POST_SUCCEEDED:
+			return {
+				...state,
+				post: action.post,
+				loading: false
+			};
+		case FETCH_SERVICES_POST_FAILED:
 			return {
 				...state,
 				loading: false,

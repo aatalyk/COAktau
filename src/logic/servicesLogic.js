@@ -9,7 +9,10 @@ import {
 	fetchSubServicesFailed,
 	FETCH_SERVICES_TITLES_REQUESTED,
 	fetchServicesTitlesSucceded,
-	fetchServicesTitlesFailed
+	fetchServicesTitlesFailed,
+	fetchServicesPostSucceded,
+	FETCH_SERVICES_POST_REQUESTED,
+	fetchServicesPostFailed
 } from '../actions';
 
 const url = 'http://soaktau.kz/api/v1.00/services';
@@ -52,7 +55,7 @@ const fetchServicesTitlesLogic = createLogic({
 	type: FETCH_SERVICES_TITLES_REQUESTED,
 	process: ({ getState, action }, dispatch, done) => {
 		const { lang } = getState().settings;
-		fetch(`${url}/${action.serviceId}/${action.subServiceId}`)
+		fetch(`${url}/${action.serviceId}/${action.id}`)
 			.then(response => response.json())
 			.then(json => {
 				const titles = json[lang] ? json[lang] : [];
@@ -65,4 +68,28 @@ const fetchServicesTitlesLogic = createLogic({
 	}
 });
 
-export const servicesLogic = [fetchServicesLogic, fetchSubServicesLogic, fetchServicesTitlesLogic];
+const fetchServicesPostLogic = createLogic({
+	type: FETCH_SERVICES_POST_REQUESTED,
+	process: ({ getState, action }, dispatch, done) => {
+		const { lang } = getState().settings;
+		fetch(`${url}/${action.serviceId}/${action.subServiceId}/${action.id}`)
+			.then(response => response.json())
+			.then(json => {
+				const texts = json[lang] ? json[lang] : [];
+				let post = '';
+				texts.forEach(object => (post = post + object.text));
+				dispatch(fetchServicesPostSucceded(post));
+			})
+			.catch(error => {
+				dispatch(fetchServicesPostFailed(error));
+			})
+			.then(() => done());
+	}
+});
+
+export const servicesLogic = [
+	fetchServicesLogic,
+	fetchSubServicesLogic,
+	fetchServicesTitlesLogic,
+	fetchServicesPostLogic
+];

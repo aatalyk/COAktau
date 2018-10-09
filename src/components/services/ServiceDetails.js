@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, Image, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,6 +11,7 @@ import { colors, images, textStyles } from '../../assets';
 const propTypes = {
 	navigation: PropTypes.object,
 	lang: PropTypes.oneOf(['kaz', 'rus']),
+	loading: PropTypes.bool,
 	fetchServicesTitlesRequested: PropTypes.func,
 	titles: PropTypes.array
 };
@@ -30,19 +31,20 @@ class ServiceDetailsScreen extends Component {
 
 	componentDidMount() {
 		this.setHeaderTitle();
-		this.fetchSubServices();
+		this.fetchServicesTitles();
 	}
 
 	setHeaderTitle = () => {
-		const item = this.props.navigation.getParam('item', {});
+		const item = this.getItem();
 		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
 	};
 
-	fetchSubServices = () => {
-		const item = this.props.navigation.getParam('item', {});
-		console.log('ServicesDetails', item);
-		this.props.fetchServicesTitlesRequested(item.id);
+	fetchServicesTitles = () => {
+		const item = this.getItem();
+		this.props.fetchServicesTitlesRequested(item.serviceId, item.id);
 	};
+
+	getItem = () => this.props.navigation.getParam('item', {});
 
 	renderItem = ({ item }) => {
 		return (
@@ -63,8 +65,10 @@ class ServiceDetailsScreen extends Component {
 			: this.props.navigation.navigate('AboutService', { item });
 	};
 
+	onRefresh = () => this.fetchServicesTitles();
+
 	render() {
-		const { titles } = this.props;
+		const { loading, titles } = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
@@ -72,6 +76,7 @@ class ServiceDetailsScreen extends Component {
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={this.renderSeparator}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
 		);
@@ -106,7 +111,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ settings, services }) => ({ lang: settings.lang, titles: services.titles });
+const mapStateToProps = ({ settings, services }) => ({
+	lang: settings.lang,
+	loading: services.loading,
+	titles: services.titles
+});
 
 export const ServiceDetails = connect(
 	mapStateToProps,

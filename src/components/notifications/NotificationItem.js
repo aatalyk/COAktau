@@ -12,7 +12,7 @@ const propTypes = {
 export const NotificationItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<Image defaultSource={images.placeholder} source={{ uri: item.imageURL }} style={styles.image} />
+			<Image defaultSource={images.placeholder} source={{ uri: item.icon }} style={styles.image} />
 			<Text style={styles.title}>{item.title}</Text>
 		</View>
 	</TouchableOpacity>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		flex: 1,
-		marginLeft: 10,
+		marginLeft: 15,
 		...textStyles.p
 	}
 });

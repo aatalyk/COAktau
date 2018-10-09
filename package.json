@@ -29,6 +29,7 @@
     "react-native-maps": "0.21.0",
     "react-native-page-control": "1.1.1",
     "react-native-tab-view": "1.0.2",
+    "react-native-video": "^3.2.1",
     "react-navigation": "2.7.0",
     "react-redux": "5.0.7",
     "redux": "4.0.0",

@@ -39,7 +39,7 @@ class FAQitem extends Component {
 	renderDetails() {
 		return (
 			<View>
-				<Text style={styles.detail}>{this.props.item.date}</Text>
+				<Text style={styles.detail}>Date</Text>
 				<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.answer}</Text>
 				<View style={styles.separator} />
 				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>

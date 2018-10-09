@@ -28,8 +28,8 @@ class ContactScreen extends Component {
 					initialRegion={{
 						latitude: 43.65635,
 						longitude: 51.155778,
-						latitudeDelta: 0.0922,
-						longitudeDelta: 0.0421
+						latitudeDelta: 0.01,
+						longitudeDelta: 0.01
 					}}
 				>
 					<Marker

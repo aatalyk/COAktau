@@ -28,7 +28,7 @@ class NotificationPage extends Component {
 				})}
 			>
 				<Animated.Image
-					source={{ uri: item.imageURL }}
+					source={{ uri: item.icon }}
 					style={{
 						...styles.image,
 						transform: [
@@ -48,7 +48,7 @@ class NotificationPage extends Component {
 					}}
 				/>
 				<Text style={styles.title}>{item.title}</Text>
-				<Text style={styles.text}>{item.description}</Text>
+				<Text style={styles.text}>{item.text}</Text>
 			</Animated.ScrollView>
 		);
 	}
