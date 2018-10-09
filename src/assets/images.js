@@ -43,6 +43,8 @@ export const images = {
 	imgPlaceholder: require('../../resources/img/img_placeholder.png'),
 	chat: require('../../resources/img/chat.png'),
 	chatPurple: require('../../resources/img/chatPurple.png'),
+	city: require('../../resources/img/city.png'),
+	cityPurple: require('../../resources/img/cityPurple.png'),
 	options: require('../../resources/img/options.png'),
 	logoIcon: require('../../resources/img/logo.png')
 };
