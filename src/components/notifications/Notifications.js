@@ -54,8 +54,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	flatList: {
-		flex: 1,
-		marginVertical: 20
+		flex: 1
 	},
 	separator: {
 		height: 1,

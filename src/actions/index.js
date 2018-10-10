@@ -7,3 +7,6 @@ export * from './types';
 export * from './aboutActions';
 export * from './chatActions';
 export * from './calcActions';
+export * from './chatRoomsActions';
+export * from './myCityActions';
+export * from './contactActions';

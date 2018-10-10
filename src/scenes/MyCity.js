@@ -3,14 +3,15 @@ import { View, FlatList, RefreshControl, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-//import { fetchMyCityRequested } from '../../actions';
+import { fetchMyCityRequested } from '../actions';
 import { MyCityItem } from './MyCityItem';
 import { colors } from '../assets';
 
 const propTypes = {
 	navigation: PropTypes.object,
 	loading: PropTypes.bool,
-	myCityItems: PropTypes.array,
+	news: PropTypes.array,
+	fetchMyCityRequested: PropTypes.func,
 	lang: PropTypes.string
 };
 
@@ -47,25 +48,30 @@ const data = [
 ];
 
 class MyCityScreen extends Component {
+	componentDidMount() {
+		this.props.fetchMyCityRequested();
+	}
+
 	renderItem = ({ item }) => <MyCityItem item={item} onPress={this.onPress(item)} lang={this.props.lang} />;
 
 	keyExtractor = (_, index) => index + '';
 
 	renderSeparator = () => <View style={styles.separator} />;
 
-	onPress = item => () => this.props.navigation.navigate('MyCityDetailed', { item, lang: this.props.lang });
+	onPress = item => () => this.props.navigation.navigate('MyCityDetailed', { item });
 
-	onRefresh = () => console.log('Hello');
+	onRefresh = () => this.props.fetchMyCityRequested();
 
 	render() {
+		const { loading, news } = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={data}
+					data={news}
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
 					ItemSeparatorComponent={this.renderSeparator}
-					refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
 		);
@@ -88,13 +94,13 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ news, settings }) => ({
-	newsItems: news.newsItems,
-	loading: news.loading,
+const mapStateToProps = ({ myCity, settings }) => ({
+	news: myCity.news,
+	loading: myCity.loading,
 	lang: settings.lang
 });
 
 export const MyCity = connect(
 	mapStateToProps,
-	{}
+	{ fetchMyCityRequested }
 )(MyCityScreen);

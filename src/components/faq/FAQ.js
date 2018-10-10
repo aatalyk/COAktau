@@ -29,9 +29,7 @@ class FAQScreen extends Component {
 		this.props.fetchFAQRequested();
 	}
 
-	renderSeparator() {
-		return <View style={styles.separator} />;
-	}
+	renderSeparator = () => <View style={styles.separator} />;
 
 	renderItem = ({ item, index }) => {
 		return <FAQitem item={item} index={index} lang={this.props.lang} />;

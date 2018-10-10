@@ -55,7 +55,7 @@ class Alert extends Component {
 				<Text
 					style={[
 						styles.finalText,
-						{ color: result.revenuePerPerson > result.povertyMin ? colors.redLight : colors.greenLight }
+						{ color: result.revenuePerPerson > result.povertyMin ? colors.purple : colors.violet }
 					]}
 				>
 					{result.revenuePerPerson > result.povertyMin
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 	headerTitle: {
 		...textStyles.h1,
 		fontSize: 22,
-		color: colors.orange,
+		color: colors.purple,
 		textAlign: 'center',
 		margin: 10
 	},

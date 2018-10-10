@@ -6,6 +6,7 @@ import {
 	Button,
 	StyleSheet,
 	KeyboardAvoidingView,
+	Alert,
 	Keyboard,
 	TouchableWithoutFeedback,
 	Dimensions
@@ -25,20 +26,13 @@ const propTypes = {
 class Calculator extends Component {
 	state = {
 		amount: 0,
-		numberOfPeople: 0,
-		warning: ''
+		numberOfPeople: 0
 	};
 
 	onPress = () => {
 		if (this.state.amount === 0 || this.state.numberOfPeople === 0) {
-			this.setState({
-				warning: settings[this.props.lang].text.warning
-			});
+			this.showAlert();
 			return;
-		} else {
-			this.setState({
-				warning: ''
-			});
 		}
 		const result = calculate(
 			this.state.amount,
@@ -78,29 +72,38 @@ class Calculator extends Component {
 		}
 	};
 
+	showAlert = () => {
+		const { lang } = this.props;
+		Alert.alert(
+			settings[this.props.lang].text.warning,
+			'',
+			[{ text: settings[lang].text.cancel, onPress: () => console.log('Cancel Pressed'), style: 'destructive' }],
+			{ cancelable: true }
+		);
+	};
+
 	render() {
+		const { lang } = this.props;
 		return (
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 				<View style={styles.container}>
-					<Text style={styles.title}>{settings[this.props.lang].calc.title}</Text>
-					<Text style={styles.text}>{settings[this.props.lang].calc.text1}</Text>
+					<Text style={styles.title}>{settings[lang].calc.title}</Text>
+					<Text style={styles.text}>{settings[lang].calc.text1}</Text>
 					<TextInput
 						style={styles.textInput}
 						keyboardType="number-pad"
 						onChangeText={value => this.changeAmount(value)}
+						placeholder={settings[lang].text.input}
 					/>
 					<Text style={styles.text}>{settings[this.props.lang].calc.text2}</Text>
 					<TextInput
 						style={styles.textInput}
 						keyboardType="number-pad"
 						onChangeText={value => this.changeNumberOfPeople(value)}
+						placeholder={settings[lang].text.input}
 					/>
 					<View style={styles.button}>
-						<Button
-							title={settings[this.props.lang].buttons.calculate}
-							color={colors.bluePicton}
-							onPress={this.onPress}
-						/>
+						<Button title={settings[lang].buttons.calculate} color="white" onPress={this.onPress} />
 					</View>
 					<Text style={styles.warning}>{this.state.warning}</Text>
 				</View>
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
 		...textStyles.h1,
 		textAlign: 'center',
 		fontSize: 20,
-		color: colors.bluePicton,
+		color: colors.purple,
 		margin: 10
 	},
 	text: {
@@ -137,8 +140,7 @@ const styles = StyleSheet.create({
 		marginRight: 20
 	},
 	textInput: {
-		borderWidth: 1,
-		borderColor: colors.orange,
+		backgroundColor: colors.grayUltraLight,
 		height: 44,
 		width: Dimensions.get('window').width * 0.7,
 		margin: 10,
@@ -148,8 +150,7 @@ const styles = StyleSheet.create({
 	button: {
 		height: 44,
 		width: Dimensions.get('window').width * 0.7,
-		borderWidth: 1,
-		borderColor: colors.transparent,
+		backgroundColor: colors.purple,
 		margin: 10
 	}
 });

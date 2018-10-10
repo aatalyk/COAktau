@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Linking } from 'react-native';
+import { View, ScrollView, StyleSheet, RefreshControl, ActivityIndicator, Dimensions, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MapView, { Marker } from 'react-native-maps';
@@ -7,51 +7,93 @@ import Communications from 'react-native-communications';
 
 import { ContactItem } from './ContactItem';
 import { images, settings } from '../../assets';
+import { fetchContactRequested } from '../../actions';
 
 const propTypes = {
-	lang: PropTypes.string
+	lang: PropTypes.string,
+	loading: PropTypes.bool,
+	contact: PropTypes.object,
+	fetchContactRequested: PropTypes.func
 };
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
+const contact = {
+	location: {
+		lat: 43.65635,
+		lon: 51.155778
+	},
+	markers: [
+		{
+			lat: 43.65635,
+			lon: 51.155778
+		},
+		{
+			lat: 44.65635,
+			lon: 51.155778
+		}
+	],
+	tels: ['+77292432670', '+77292432652'],
+	addresses: ['Address'],
+	busStops: ['bus1'],
+	email: 'soaktau@gmail.com'
+};
+
 class ContactScreen extends Component {
+	componentDidMount() {
+		this.props.fetchContactRequested();
+	}
+
 	call = phone => Communications.phonecall(phone, true);
 
 	composeEmail = () => Linking.openURL('mailto:soaktau@gmail.com');
 
+	onRefresh = () => this.props.fetchContactRequested();
+
 	render() {
-		return (
-			<View style={styles.container}>
+		console.log('prop', this.props.contact);
+		const { lang, loading } = this.props;
+		const { location, markers, tels, addresses, busStops, email } = this.props.contact;
+
+		return loading ? (
+			<ActivityIndicator refreshing={loading} style={styles.indicator} />
+		) : (
+			<ScrollView
+				style={styles.container}
+				refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
+			>
 				<MapView
 					style={styles.map}
 					initialRegion={{
-						latitude: 43.65635,
-						longitude: 51.155778,
+						latitude: location.lat,
+						longitude: location.lon,
 						latitudeDelta: 0.01,
 						longitudeDelta: 0.01
 					}}
 				>
-					<Marker
-						title="We"
-						coordinate={{
-							latitude: 43.65635,
-							longitude: 51.155778
-						}}
-					/>
+					{markers.map((marker, i) => (
+						<Marker
+							key={i}
+							title={settings[lang].text.title}
+							coordinate={{
+								latitude: marker.lat,
+								longitude: marker.lon
+							}}
+						/>
+					))}
 				</MapView>
 				<View style={styles.itemsContainer}>
-					<ContactItem title={settings[this.props.lang].text.address} imgSource={images.pinPurple} />
-					<ContactItem title={settings[this.props.lang].text.bus} imgSource={images.bus} />
-					<ContactItem
-						title="+7 (7292) 43‒26‒70"
-						imgSource={images.callPurple}
-						onPress={() => this.call('+77292432670')}
-					/>
-					<ContactItem title="+7 (7292) 43‒26‒52" onPress={() => this.call('+77292432652')} />
-					<ContactItem title="soaktau@gmail.com" imgSource={images.emailPurple} onPress={this.composeEmail} />
+					{addresses.map((address, i) => (
+						<ContactItem key={i} title={address} imgSource={images.pinPurple} />
+					))}
+					{busStops.map((busStop, i) => <ContactItem key={i} title={busStop} imgSource={images.bus} />)}
+					{tels.map((tel, i) => (
+						<ContactItem key={i} title={tel} imgSource={images.callPurple} onPress={() => this.call(tel)} />
+					))}
+					<ContactItem title={email} imgSource={images.emailPurple} onPress={this.composeEmail} />
 				</View>
-			</View>
+			</ScrollView>
 		);
 	}
 }
@@ -70,11 +112,23 @@ const styles = StyleSheet.create({
 	map: {
 		width: SCREEN_WIDTH,
 		height: SCREEN_HEIGHT / 2
+	},
+	indicator: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
 	}
 });
 
-const mapStateToProps = ({ settings }) => ({
-	lang: settings.lang
+const mapStateToProps = ({ settings, contact }) => ({
+	lang: settings.lang,
+	loading: contact.loading,
+	contact: contact.contact
 });
 
-export const Contact = connect(mapStateToProps)(ContactScreen);
+export const Contact = connect(
+	mapStateToProps,
+	{ fetchContactRequested }
+)(ContactScreen);
