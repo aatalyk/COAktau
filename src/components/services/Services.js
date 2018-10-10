@@ -67,6 +67,8 @@ class ServicesScreen extends Component {
 		);
 	};
 
+	renderSeparator = () => <View style={styles.separator} />;
+
 	onPress = item => {
 		item.isCalc
 			? this.props.navigation.navigate('CalcScreen')
@@ -90,7 +92,7 @@ class ServicesScreen extends Component {
 					data={subServices}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
-					ItemSeparatorComponent={() => <View style={styles.separator} />}
+					ItemSeparatorComponent={this.renderSeparator}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				<TouchableOpacity onPress={onButtonPress}>

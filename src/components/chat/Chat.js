@@ -23,8 +23,8 @@ class ChatScreen extends Component {
 		return {
 			header: () => (
 				<Header
-					titleKaz={settings.kaz.navigation.chat}
-					titleRus={settings.rus.navigation.chat}
+					titleKaz={navigation.getParam('titleKaz', '')}
+					titleRus={navigation.getParam('titleRus', '')}
 					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 					rightItem={<IconButton imgSource={images.options} onPress={() => params.showOptions()} />}
 				/>
@@ -37,9 +37,19 @@ class ChatScreen extends Component {
 		messages: []
 	};
 
+	componentDidMount() {
+		const { lang, chat, navigation } = this.props;
+		const room = navigation.getParam('room', {});
+		this.props.navigation.setParams({ titleKaz: room.title, titleRus: room.title });
+		const messages = chat.filter(item => item.id === room.id && item.lang === lang);
+		navigation.setParams({ showOptions: this.showOptions });
+		this.setState({
+			id: room.id,
+			messages: messages.length === 0 ? room.messages : messages[0].messages
+		});
+	}
+
 	onSend = messages => {
-		const { id } = this.state;
-		console.log('onSend id', id);
 		this.setState(prevState => ({
 			messages: GiftedChat.append(prevState.messages, messages)
 		}));
@@ -75,17 +85,6 @@ class ChatScreen extends Component {
 			messages: []
 		});
 	};
-
-	componentDidMount() {
-		const { lang, chat, navigation } = this.props;
-		const room = navigation.getParam('room', {});
-		const messages = chat.filter(item => item.id === room.id && item.lang === lang);
-		navigation.setParams({ showOptions: this.showOptions });
-		this.setState({
-			id: room.id,
-			messages: messages.length === 0 ? room.messages : messages[0].messages
-		});
-	}
 
 	render() {
 		return (

@@ -13,7 +13,7 @@ export const NotificationItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
 			<Image
-				defaultSource={images.placeholder}
+				defaultSource={images.imgPlaceholder}
 				source={{ uri: item.icon }}
 				style={styles.image}
 				resizeMode="contain"

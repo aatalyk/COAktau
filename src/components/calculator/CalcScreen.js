@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Calculator } from './Calculator';
 import { FAQItem } from './FAQItem';
 import { fetchCalcParamsRequested, fetchCalcFaqRequested } from '../../actions';
+import { colors } from '../../assets';
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -21,7 +22,7 @@ class Calc extends Component {
 		this.fetchParamsFAQ();
 	}
 
-	renderItem = ({ item }) => <FAQItem item={item} />;
+	renderItem = ({ item, index }) => <FAQItem item={item} index={index} />;
 
 	fetchParamsFAQ = () => {
 		this.props.fetchCalcParamsRequested();

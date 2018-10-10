@@ -49,7 +49,8 @@ export const settings = {
 			bus: 'Мешіт аялдамасы , автобустар: 2, 103, 104, 105',
 			clearChat: 'Өшіру',
 			saveChat: 'Сақтау',
-			cancel: 'Жою'
+			cancel: 'Жою',
+			input: 'Енгізу'
 		}
 	},
 	rus: {
@@ -102,7 +103,8 @@ export const settings = {
 			bus: 'Остановка Мечеть, автобусы : 2, 103, 104, 105',
 			clearChat: 'Очистить',
 			saveChat: 'Сохранить',
-			cancel: 'Отмена'
+			cancel: 'Отмена',
+			input: 'Ввод'
 		}
 	}
 };

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
 import { IconButton } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
+import { fetchChatRoomsRequested } from '../../actions';
 
 const rooms = [
 	{
@@ -40,10 +42,17 @@ const rooms = [
 ];
 
 const propTypes = {
-	navigation: PropTypes.object
+	navigation: PropTypes.object,
+	loading: PropTypes.bool,
+	fetchChatRoomsRequested: PropTypes.func,
+	rooms: PropTypes.array
 };
 
-class ChatRooms extends Component {
+class ChatRoomsScreen extends Component {
+	componentDidMount() {
+		this.props.fetchChatRoomsRequested();
+	}
+
 	static navigationOptions = ({ navigation }) => {
 		const { params = {} } = navigation.state;
 		return {
@@ -58,6 +67,8 @@ class ChatRooms extends Component {
 		};
 	};
 
+	renderSeparator = () => <View style={styles.separator} />;
+
 	renderItem = ({ item }) => {
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
@@ -71,16 +82,25 @@ class ChatRooms extends Component {
 
 	onPress = room => this.props.navigation.navigate('Chat', { room });
 
+	onRefresh = () => this.props.fetchChatRoomsRequested();
+
 	render() {
+		const { loading, rooms } = this.props;
 		return (
 			<View style={styles.container}>
-				<FlatList data={rooms} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
+				<FlatList
+					data={rooms}
+					renderItem={this.renderItem}
+					keyExtractor={(_, index) => index + ''}
+					ItemSeparatorComponent={this.renderSeparator}
+					refreshControl={() => <RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
+				/>
 			</View>
 		);
 	}
 }
 
-ChatRooms.propTypes = propTypes;
+ChatRoomsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -108,4 +128,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { ChatRooms };
+const mapStateToProps = ({ chatRooms }) => ({
+	rooms: chatRooms.rooms
+});
+
+export const ChatRooms = connect(
+	mapStateToProps,
+	{ fetchChatRoomsRequested }
+)(ChatRoomsScreen);

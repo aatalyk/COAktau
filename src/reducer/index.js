@@ -8,6 +8,9 @@ import { aboutReducer } from './aboutReducer';
 import { myServicesReducer } from './myServicesReducer';
 import { chatReducer } from './chatReducer';
 import { calcReducer } from './calcReducer';
+import { chatRoomsReducer } from './chatRoomsReducer';
+import { myCityReducer } from './myCityReducer';
+import { contactReducer } from './contactReducer';
 
 export const rootReducer = combineReducers({
 	faq: faqReducer,
@@ -18,5 +21,8 @@ export const rootReducer = combineReducers({
 	myServices: myServicesReducer,
 	about: aboutReducer,
 	chat: chatReducer,
-	calc: calcReducer
+	calc: calcReducer,
+	chatRooms: chatRoomsReducer,
+	myCity: myCityReducer,
+	contact: contactReducer
 });
