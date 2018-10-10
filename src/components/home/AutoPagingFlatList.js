@@ -84,7 +84,6 @@ class AutoPagingFlatList extends Component {
     >
       <Image
         defaultSource={images.imgPlaceholder}
-        resizeMode={this.props.manualPaging ? "contain" : null}
         style={{ width: SCREEN_WIDTH, height: HEIGHT }}
         source={{ uri: item.icon || undefined }}
         onLoad={this.props.loadFinish}
