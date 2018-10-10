@@ -67,7 +67,11 @@ class ServicesScreen extends Component {
 		);
 	};
 
-	onPress = item => this.props.navigation.navigate('ServiceDetails', { item });
+	onPress = item => {
+		item.isCalc
+			? this.props.navigation.navigate('CalcScreen')
+			: this.props.navigation.navigate('ServiceDetails', { item });
+	};
 
 	render() {
 		const { lang, myServices, subServices, loading } = this.props;

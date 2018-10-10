@@ -7,6 +7,7 @@ import { servicesReducer } from './servicesReducer';
 import { aboutReducer } from './aboutReducer';
 import { myServicesReducer } from './myServicesReducer';
 import { chatReducer } from './chatReducer';
+import { calcReducer } from './calcReducer';
 
 export const rootReducer = combineReducers({
 	faq: faqReducer,
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
 	services: servicesReducer,
 	myServices: myServicesReducer,
 	about: aboutReducer,
-	chat: chatReducer
+	chat: chatReducer,
+	calc: calcReducer
 });

@@ -43,7 +43,7 @@ class AboutScreen extends Component {
 			>
 				<Animated.Image
 					source={images.logoIcon}
-					resizeMode="center"
+					resizeMode="contain"
 					style={{
 						...styles.image,
 						transform: [

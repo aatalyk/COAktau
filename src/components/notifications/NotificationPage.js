@@ -29,6 +29,7 @@ class NotificationPage extends Component {
 			>
 				<Animated.Image
 					source={{ uri: item.icon }}
+					resizeMode="contain"
 					style={{
 						...styles.image,
 						transform: [

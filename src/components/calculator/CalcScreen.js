@@ -5,24 +5,38 @@ import PropTypes from 'prop-types';
 
 import { Calculator } from './Calculator';
 import { FAQItem } from './FAQItem';
+import { fetchCalcParamsRequested, fetchCalcFaqRequested } from '../../actions';
 
 const propTypes = {
 	navigation: PropTypes.object,
-	lang: PropTypes.string
+	lang: PropTypes.string,
+	fetchCalcParamsRequested: PropTypes.func,
+	fetchCalcFaqRequested: PropTypes.func,
+	params: PropTypes.object,
+	faq: PropTypes.object
 };
 
 class Calc extends Component {
+	componentDidMount() {
+		this.fetchParamsFAQ();
+	}
+
 	renderItem = ({ item }) => <FAQItem item={item} />;
 
+	fetchParamsFAQ = () => {
+		this.props.fetchCalcParamsRequested();
+		this.props.fetchCalcFaqRequested();
+	};
+
 	render() {
-		const { faq, livingCost, povertyMin } = this.props.navigation.getParam('item', {});
+		const { faq, params, navigation, lang } = this.props;
 		return (
 			<ScrollView style={styles.container}>
 				<Calculator
-					lang={this.props.lang}
-					navigation={this.props.navigation}
-					livingCost={livingCost}
-					povertyMin={povertyMin}
+					lang={lang}
+					navigation={navigation}
+					livingCost={params.livingCost}
+					povertyMin={params.povertyMin}
 				/>
 				<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
 			</ScrollView>
@@ -39,8 +53,13 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ settings }) => ({
-	lang: settings.lang
+const mapStateToProps = ({ settings, calc }) => ({
+	lang: settings.lang,
+	params: calc.params,
+	faq: calc.faq
 });
 
-export const CalcScreen = connect(mapStateToProps)(Calc);
+export const CalcScreen = connect(
+	mapStateToProps,
+	{ fetchCalcParamsRequested, fetchCalcFaqRequested }
+)(Calc);

@@ -37,7 +37,8 @@ const data = [
 		body: 'Body ma ne mynau'
 	},
 	{
-		video: 'KVZ-P-ZI6W4',
+		video:
+			'https://firebasestorage.googleapis.com/v0/b/coaktau-274df.appspot.com/o/0hh1.mp4?alt=media&token=1f45206a-dee6-4f3e-b71b-cd500426556a',
 		image:
 			'https://s1.ibtimes.com/sites/www.ibtimes.com/files/styles/embed/public/2018/09/28/canelo-alvarez-gennady-golovkin.jpg',
 		title: 'Title goi mynau',
