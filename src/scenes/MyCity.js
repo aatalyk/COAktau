@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	separator: {
-		height: 0.5,
+		height: 1,
 		backgroundColor: colors.grayUltraLight,
 		marginLeft: 10,
 		marginRight: 10,

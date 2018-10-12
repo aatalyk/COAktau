@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 		margin: 20
 	},
 	headerTitle: {
-		...textStyles.h1,
+		...textStyles.p,
 		fontSize: 22,
 		color: colors.purple,
 		textAlign: 'center',

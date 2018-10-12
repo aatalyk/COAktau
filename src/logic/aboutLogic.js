@@ -1,19 +1,23 @@
 import { createLogic } from 'redux-logic';
 
 import { FETCH_ABOUT_US_REQUESTED, fetchAboutUsSucceeded, fetchAboutUsFailed } from '../actions';
-import { fetch } from '../config';
+import { url } from '../config';
 
 const fetchAboutLogic = createLogic({
 	type: FETCH_ABOUT_US_REQUESTED,
-	process: async (_, dispatch, done) => {
-		try {
-			const items = await fetch('about');
-			const aboutData = !!items && items.length > 0 ? items[0] : {};
-			dispatch(fetchAboutUsSucceeded(aboutData));
-		} catch (error) {
-			dispatch(fetchAboutUsFailed(error));
-		}
-		done();
+	process: ({ getState }, dispatch, done) => {
+		const { lang } = getState().settings;
+		console.log('fetchAboutLogic');
+		fetch(`${url}/about`)
+			.then(response => response.json())
+			.then(json => {
+				const aboutData = json[lang] ? json[lang] : [];
+				dispatch(fetchAboutUsSucceeded(aboutData[0]));
+			})
+			.catch(error => {
+				dispatch(fetchAboutUsFailed(error));
+			})
+			.then(() => done());
 	}
 });
 

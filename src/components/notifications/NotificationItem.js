@@ -19,6 +19,7 @@ export const NotificationItem = ({ item, onPress }) => (
 				resizeMode="contain"
 			/>
 			<Text style={styles.title}>{item.title}</Text>
+			<Image source={images.right} style={styles.icon} />
 		</View>
 	</TouchableOpacity>
 );
@@ -41,5 +42,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginLeft: 15,
 		...textStyles.p
+	},
+	icon: {
+		width: 20,
+		height: 20,
+		borderRadius: 5,
+		marginLeft: 5
 	}
 });

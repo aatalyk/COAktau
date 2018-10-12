@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Dimensions, Animated } from 'react-native';
+import { Text, StyleSheet, ActivityIndicator, Dimensions, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -10,15 +10,8 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const propTypes = {
-	aboutData: PropTypes.shape({
-		kaz: PropTypes.shape({
-			fullText: PropTypes.string
-		}),
-		rus: PropTypes.shape({
-			fullText: PropTypes.string
-		})
-	}),
-	lang: PropTypes.oneOf(['kaz', 'rus']),
+	loading: PropTypes.bool,
+	aboutData: PropTypes.object,
 	fetchAboutUsRequested: PropTypes.func
 };
 
@@ -32,7 +25,10 @@ class AboutScreen extends Component {
 		this.props.fetchAboutUsRequested();
 	}
 
+	onRefresh = () => this.props.fetchAboutUsRequested();
+
 	render() {
+		const { loading, aboutData } = this.props;
 		return (
 			<Animated.ScrollView
 				style={styles.container}
@@ -40,6 +36,7 @@ class AboutScreen extends Component {
 				onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.scrollY } } }], {
 					useNativeDriver: true
 				})}
+				refreshControl={() => <RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 			>
 				<Animated.Image
 					source={images.logoIcon}
@@ -62,9 +59,11 @@ class AboutScreen extends Component {
 						]
 					}}
 				/>
-				<Text style={styles.text}>
-					{this.props.aboutData ? this.props.aboutData[this.props.lang].fullText : ''}
-				</Text>
+				{loading ? (
+					<ActivityIndicator refreshing={loading} />
+				) : (
+					<Text style={styles.text}>{aboutData ? aboutData.text : ''}</Text>
+				)}
 			</Animated.ScrollView>
 		);
 	}
@@ -87,10 +86,10 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ about: { aboutData }, settings: { lang } }) => {
+const mapStateToProps = ({ about: { loading, aboutData }, settings: { lang } }) => {
 	return {
-		aboutData,
-		lang
+		loading,
+		aboutData
 	};
 };
 

@@ -26,6 +26,7 @@ const ServiceItemScreen = ({ item, onPress }) => {
 					/>
 				)}
 				{!!item.title && <Text style={styles.title}>{item.title}</Text>}
+				<Image source={images.right} style={styles.icon} />
 			</View>
 		</TouchableOpacity>
 	);
@@ -47,6 +48,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginLeft: 10,
 		...textStyles.p
+	},
+	icon: {
+		width: 20,
+		height: 20,
+		borderRadius: 5,
+		marginLeft: 5
 	}
 });
 
