@@ -71,8 +71,8 @@ const menuItems = [
 		image: images.chat,
 		selectedImage: images.chatPurple,
 		title: {
-			kaz: settings.kaz.navigation.chatRooms,
-			rus: settings.rus.navigation.chatRooms
+			kaz: settings.kaz.navigation.myHelper,
+			rus: settings.rus.navigation.myHelper
 		}
 	},
 	{

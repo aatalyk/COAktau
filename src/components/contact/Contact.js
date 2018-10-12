@@ -52,12 +52,13 @@ class ContactScreen extends Component {
 	onRefresh = () => this.props.fetchContactRequested();
 
 	render() {
-		console.log('prop', this.props.contact);
 		const { lang, loading } = this.props;
 		const { location, markers, tels, addresses, busStops, email } = this.props.contact;
 
 		return loading ? (
-			<ActivityIndicator refreshing={loading} style={styles.indicator} />
+			<View style={styles.container}>
+				<ActivityIndicator refreshing={loading} style={styles.indicator} />
+			</View>
 		) : (
 			<ScrollView
 				style={styles.container}
@@ -110,8 +111,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around'
 	},
 	map: {
-		width: SCREEN_WIDTH,
-		height: SCREEN_HEIGHT / 2
+		width: SCREEN_WIDTH * 0.9,
+		height: SCREEN_HEIGHT * 0.4,
+		borderRadius: 10,
+		margin: SCREEN_WIDTH * 0.05
 	},
 	indicator: {
 		position: 'absolute',

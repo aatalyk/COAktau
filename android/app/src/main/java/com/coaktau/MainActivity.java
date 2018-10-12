@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PushNotifications.start(getApplicationContext(), "4db53e99-e2d5-4d12-b1a5-273bf7c6c363");
+        PushNotifications.start(getApplicationContext(), "0d07a9a7-9818-4a04-b7af-bcc9457afe4e");
         PushNotifications.subscribe("kaz");
     }
 

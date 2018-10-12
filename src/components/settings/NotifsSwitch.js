@@ -3,7 +3,7 @@ import { View, Text, Image, Switch, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { images, fonts, settings } from '../../assets';
+import { images, fonts, settings, colors } from '../../assets';
 
 const propTypes = {
 	isEnabled: PropTypes.bool,
@@ -16,7 +16,7 @@ export const NotifsSwitchScreen = ({ isEnabled, onValueChange, lang }) => (
 		<View style={styles.container}>
 			<Image source={images.bell} style={styles.image} />
 			<Text style={styles.text}>{settings[lang].navigation.notifs}</Text>
-			<Switch value={isEnabled} onValueChange={onValueChange} />
+			<Switch value={isEnabled} onValueChange={onValueChange} onTintColor={colors.purple} />
 		</View>
 	</View>
 );

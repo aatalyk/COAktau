@@ -14,7 +14,7 @@ const propTypes = {
 export const MyCityItem = ({ item, onPress, lang }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<ScaledImage defaultSource={images.imgPlaceholder} source={{ uri: item.image }} />
+			<ScaledImage source={{ uri: item.image }} />
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
 			</View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 	},
 	textContainer: {
 		marginHorizontal: 10,
-		paddingTop: 20,
+		paddingTop: 10,
 		paddingBottom: 20
 	},
 	date: {

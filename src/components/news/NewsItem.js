@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { textStyles, images, colors } from '../../assets';
@@ -15,11 +15,11 @@ const propTypes = {
 export const NewsItem = ({ item, onPress, lang }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<ScaledImage defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} />
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
 				<Text style={styles.date}>Date</Text>
 			</View>
+			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
 		</View>
 	</TouchableOpacity>
 );
@@ -28,9 +28,12 @@ NewsItem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white'
+		flexDirection: 'row',
+		backgroundColor: 'white',
+		margin: 10
 	},
 	textContainer: {
+		flex: 1,
 		marginHorizontal: 10,
 		marginBottom: 15,
 		marginTop: 10
@@ -43,6 +46,10 @@ const styles = StyleSheet.create({
 		textAlign: 'left'
 	},
 	image: {
-		resizeMode: 'contain'
+		resizeMode: 'contain',
+		width: 100,
+		height: 100,
+		borderRadius: 5,
+		marginLeft: 5
 	}
 });

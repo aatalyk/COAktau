@@ -39,7 +39,7 @@
   [FIRApp configure];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
   
-  [[PushNotifications shared] startWithInstanceId:@"4db53e99-e2d5-4d12-b1a5-273bf7c6c363"];
+  [[PushNotifications shared] startWithInstanceId:@"0d07a9a7-9818-4a04-b7af-bcc9457afe4e"];
   [[PushNotifications shared] registerForRemoteNotifications];
   
   [GMSServices provideAPIKey:@"AIzaSyDeyZoP-KU9RajmzDlm8CJb38tK1wnBZwE"];
@@ -55,7 +55,9 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   [[PushNotifications shared] registerDeviceToken:deviceToken completion:^{
     NSError *anyError;
-    [[PushNotifications shared] subscribeWithInterest:@"kaz" error:&anyError completion:^{}];
+    [[PushNotifications shared] subscribeWithInterest:@"kaz" error:&anyError completion:^{
+      NSLog(@"Subscribed hehe");
+    }];
   }];
 }
 
