@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { textStyles, images, colors } from '../../assets';
 import { newsPropType } from '../../propTypes';
+import { getFormattedDate } from '../common';
 
 const propTypes = {
 	item: newsPropType,
@@ -16,7 +17,7 @@ export const NewsItem = ({ item, onPress }) => (
 		<View style={styles.container}>
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
-				<Text style={styles.date}>Date</Text>
+				<Text style={styles.date}>{getFormattedDate(item.createdAt)}</Text>
 			</View>
 			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
 		</View>

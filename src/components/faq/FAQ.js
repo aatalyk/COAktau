@@ -71,7 +71,12 @@ class FAQScreen extends Component {
 
 	getPartialData = () => this.props.data.slice(0, 2);
 
-	onRefresh = () => this.props.fetchFAQRequested();
+	onRefresh = () => {
+		this.props.fetchFAQRequested();
+		this.setState({
+			data: this.props.data
+		});
+	};
 
 	render() {
 		const { isPartiallyShown, lang, loading, style } = this.props;

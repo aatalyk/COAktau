@@ -36,7 +36,7 @@ class ContactScreen extends Component {
 
 		return loading ? (
 			<View style={styles.container}>
-				<ActivityIndicator refreshing={loading} style={styles.indicator} />
+				<ActivityIndicator refreshing={loading} />
 			</View>
 		) : (
 			<ScrollView
@@ -101,13 +101,6 @@ const styles = StyleSheet.create({
 		height: SCREEN_HEIGHT * 0.4,
 		borderRadius: 10,
 		margin: SCREEN_WIDTH * 0.05
-	},
-	indicator: {
-		position: 'absolute',
-		top: 0,
-		bottom: 0,
-		left: 0,
-		right: 0
 	}
 });
 
