@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { IconButton } from '../common';
 import { textStyles } from '../../assets';
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 		marginRight: 5
 	},
 	linearGradient: {
-		height: 20
+		height: getStatusBarHeight()
 	}
 });
 

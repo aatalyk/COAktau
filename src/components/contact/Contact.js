@@ -19,27 +19,6 @@ const propTypes = {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const contact = {
-	location: {
-		lat: 43.65635,
-		lon: 51.155778
-	},
-	markers: [
-		{
-			lat: 43.65635,
-			lon: 51.155778
-		},
-		{
-			lat: 44.65635,
-			lon: 51.155778
-		}
-	],
-	tels: ['+77292432670', '+77292432652'],
-	addresses: ['Address'],
-	busStops: ['bus1'],
-	email: 'soaktau@gmail.com'
-};
-
 class ContactScreen extends Component {
 	componentDidMount() {
 		this.props.fetchContactRequested();
@@ -53,7 +32,7 @@ class ContactScreen extends Component {
 
 	render() {
 		const { lang, loading } = this.props;
-		const { location, markers, tels, addresses, busStops, email } = this.props.contact;
+		const { markers, tels, addresses, busStops, emails } = this.props.contact;
 
 		return loading ? (
 			<View style={styles.container}>
@@ -67,8 +46,8 @@ class ContactScreen extends Component {
 				<MapView
 					style={styles.map}
 					initialRegion={{
-						latitude: location.lat,
-						longitude: location.lon,
+						latitude: markers[0].lat,
+						longitude: markers[0].lon,
 						latitudeDelta: 0.01,
 						longitudeDelta: 0.01
 					}}
@@ -92,7 +71,14 @@ class ContactScreen extends Component {
 					{tels.map((tel, i) => (
 						<ContactItem key={i} title={tel} imgSource={images.callPurple} onPress={() => this.call(tel)} />
 					))}
-					<ContactItem title={email} imgSource={images.emailPurple} onPress={this.composeEmail} />
+					{emails.map((email, i) => (
+						<ContactItem
+							key={i}
+							title={email}
+							imgSource={images.emailPurple}
+							onPress={() => this.composeEmail(email)}
+						/>
+					))}
 				</View>
 			</ScrollView>
 		);

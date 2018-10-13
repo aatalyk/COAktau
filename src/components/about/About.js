@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, ActivityIndicator, Dimensions, Animated } from 'react-native';
+import { Text, StyleSheet, ActivityIndicator, RefreshControl, Dimensions, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -36,7 +36,6 @@ class AboutScreen extends Component {
 				onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.scrollY } } }], {
 					useNativeDriver: true
 				})}
-				refreshControl={() => <RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 			>
 				<Animated.Image
 					source={images.logoIcon}
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ about: { loading, aboutData }, settings: { lang } }) => {
+const mapStateToProps = ({ about: { loading, aboutData } }) => {
 	return {
 		loading,
 		aboutData

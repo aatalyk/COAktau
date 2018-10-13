@@ -19,16 +19,16 @@ class AndroidPagingView extends Component {
 	};
 
 	renderItem = (item, index) => (
-    <View key={`${index}`}>
-		<TouchableWithoutFeedback onPress={this.props.onItemPress} >
-			<Image
-				defaultSource={images.imgPlaceholder}
-				resizeMode="cover"
-				style={{ width: SCREEN_WIDTH, height: 150 }}
-				source={{ uri: item.imageUrl || undefined }}
-			/>
-		</TouchableWithoutFeedback>
-    </View>
+		<View key={`${index}`}>
+			<TouchableWithoutFeedback onPress={this.props.onItemPress}>
+				<Image
+					defaultSource={images.imgPlaceholder}
+					resizeMode="cover"
+					style={{ width: SCREEN_WIDTH, height: 150 }}
+					source={{ uri: item.imageUrl || undefined }}
+				/>
+			</TouchableWithoutFeedback>
+		</View>
 	);
 
 	render() {

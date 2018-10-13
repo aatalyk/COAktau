@@ -29,11 +29,11 @@ class FAQScreen extends Component {
 		this.props.fetchFAQRequested();
 	}
 
-	renderSeparator = () => <View style={styles.separator} />;
-
 	renderItem = ({ item, index }) => {
 		return <FAQitem item={item} index={index} lang={this.props.lang} />;
 	};
+
+	renderSeparator = () => <View style={styles.separator} />;
 
 	keyExtractor = (_, index) => index + '';
 
