@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { textStyles, images, colors } from '../../assets';
 import { newsPropType } from '../../propTypes';
-import { ScaledImage } from '../common';
+import { getFormattedDate } from '../common';
 
 const propTypes = {
 	item: newsPropType,
@@ -12,12 +12,12 @@ const propTypes = {
 	lang: PropTypes.string
 };
 
-export const NewsItem = ({ item, onPress, lang }) => (
+export const NewsItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
-				<Text style={styles.date}>Date</Text>
+				<Text style={styles.date}>{getFormattedDate(item.createdAt)}</Text>
 			</View>
 			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
 		</View>

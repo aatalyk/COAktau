@@ -39,7 +39,6 @@ class NewsPage extends Component {
 
 	render() {
 		const item = this.props.navigation.getParam('item');
-		const lang = this.props.navigation.getParam('lang');
 
 		return (
 			<ScrollView style={styles.container}>

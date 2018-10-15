@@ -54,7 +54,6 @@ class ChatRoomsScreen extends Component {
 	}
 
 	static navigationOptions = ({ navigation }) => {
-		const { params = {} } = navigation.state;
 		return {
 			header: () => (
 				<Header
@@ -93,7 +92,7 @@ class ChatRoomsScreen extends Component {
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
 					ItemSeparatorComponent={this.renderSeparator}
-					refreshControl={() => <RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
 		);
@@ -129,6 +128,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ chatRooms }) => ({
+	loading: chatRooms.loading,
 	rooms: chatRooms.rooms
 });
 

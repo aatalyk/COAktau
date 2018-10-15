@@ -29,11 +29,11 @@ class FAQScreen extends Component {
 		this.props.fetchFAQRequested();
 	}
 
-	renderSeparator = () => <View style={styles.separator} />;
-
 	renderItem = ({ item, index }) => {
 		return <FAQitem item={item} index={index} lang={this.props.lang} />;
 	};
+
+	renderSeparator = () => <View style={styles.separator} />;
 
 	keyExtractor = (_, index) => index + '';
 
@@ -71,7 +71,12 @@ class FAQScreen extends Component {
 
 	getPartialData = () => this.props.data.slice(0, 2);
 
-	onRefresh = () => this.props.fetchFAQRequested();
+	onRefresh = () => {
+		this.props.fetchFAQRequested();
+		this.setState({
+			data: this.props.data
+		});
+	};
 
 	render() {
 		const { isPartiallyShown, lang, loading, style } = this.props;

@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 
 import { images, textStyles, settings, colors } from '../../assets';
 import { faqLocalizedPropType } from '../../propTypes';
+import { getFormattedDate } from '../common';
 
 const propTypes = {
 	index: PropTypes.number,
@@ -39,7 +40,7 @@ class FAQitem extends Component {
 	renderDetails() {
 		return (
 			<View>
-				<Text style={styles.detail}>Date</Text>
+				<Text style={styles.detail}>{getFormattedDate(this.props.item.createdAt)}</Text>
 				<Text style={[styles.detail, { color: 'black' }]}>{this.props.item.answer}</Text>
 				<View style={styles.separator} />
 				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>

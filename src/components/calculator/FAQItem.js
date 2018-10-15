@@ -20,12 +20,6 @@ class FAQItem extends Component {
 		}
 	}
 
-	onPress = () => {
-		this.setState((prevState, prevProps) => ({
-			isSelected: !prevState.isSelected
-		}));
-	};
-
 	renderDetails() {
 		return (
 			<View>
@@ -33,6 +27,12 @@ class FAQItem extends Component {
 			</View>
 		);
 	}
+
+	onPress = () => {
+		this.setState((prevState, prevProps) => ({
+			isSelected: !prevState.isSelected
+		}));
+	};
 
 	render() {
 		const { isSelected } = this.state;

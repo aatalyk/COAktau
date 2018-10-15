@@ -103,7 +103,7 @@ class Calculator extends Component {
 						placeholder={settings[lang].text.input}
 					/>
 					<View style={styles.button}>
-						<Button title={settings[lang].buttons.calculate} color={colors.purple} onPress={this.onPress} />
+						<Button title={settings[lang].buttons.calculate} color="white" onPress={this.onPress} />
 					</View>
 					<Text style={styles.warning}>{this.state.warning}</Text>
 				</View>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	title: {
-		...textStyles.p,
+		...textStyles.h1,
 		textAlign: 'center',
 		fontSize: 20,
 		color: colors.purple,
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
 	text: {
 		...textStyles.h1,
 		textAlign: 'center',
-		width: Dimensions.get('window').width * 0.7,
 		margin: 10
 	},
 	warning: {
@@ -151,8 +150,7 @@ const styles = StyleSheet.create({
 	button: {
 		height: 44,
 		width: Dimensions.get('window').width * 0.7,
-		borderColor: colors.purple,
-		borderWidth: 1,
+		backgroundColor: colors.purple,
 		margin: 10
 	}
 });

@@ -8,13 +8,12 @@ import {
 	fetchCalcFaqSucceeded,
 	fetchCalcFaqFailed
 } from '../actions';
-
-const url = 'http://soaktau.kz/api/v1.00/calc';
+import { url } from '../config';
 
 const fetchCalcParamsLogic = createLogic({
 	type: FETCH_CALC_PARAMS_REQUESTED,
 	process: ({}, dispatch, done) => {
-		fetch(`${url}/parameters`)
+		fetch(`${url}/calc/parameters`)
 			.then(response => response.json())
 			.then(json => {
 				const results = json.results ? json.results : [];
@@ -35,7 +34,7 @@ const fetchCalcFaqLogic = createLogic({
 	type: FETCH_CALC_FAQ_REQUESTED,
 	process: ({ getState }, dispatch, done) => {
 		const { lang } = getState().settings;
-		fetch(`${url}/questions`)
+		fetch(`${url}/calc/questions`)
 			.then(response => response.json())
 			.then(json => {
 				const faq = json[lang] ? json[lang] : [];
