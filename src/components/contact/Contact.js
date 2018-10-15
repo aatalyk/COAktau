@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, RefreshControl, ActivityIndicator, Dimensions, Linking } from 'react-native';
+import {
+	View,
+	Image,
+	Text,
+	ScrollView,
+	StyleSheet,
+	RefreshControl,
+	ActivityIndicator,
+	Dimensions,
+	Linking
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MapView, { Marker } from 'react-native-maps';
 import Communications from 'react-native-communications';
 
 import { ContactItem } from './ContactItem';
-import { images, settings } from '../../assets';
+import { images, settings, textStyles, colors } from '../../assets';
 import { fetchContactRequested } from '../../actions';
 
 const propTypes = {
@@ -64,20 +74,27 @@ class ContactScreen extends Component {
 					))}
 				</MapView>
 				<View style={styles.itemsContainer}>
-					{addresses.map((address, i) => (
-						<ContactItem key={i} title={address} imgSource={images.pinPurple} />
-					))}
-					{busStops.map((busStop, i) => <ContactItem key={i} title={busStop} imgSource={images.bus} />)}
-					{tels.map((tel, i) => (
-						<ContactItem key={i} title={tel} imgSource={images.callPurple} onPress={() => this.call(tel)} />
-					))}
+					<View style={styles.header}>
+						<Image style={styles.image} source={images.pinSelected} />
+						<Text style={styles.title}>{settings[this.props.lang].text.address}</Text>
+					</View>
+					{addresses.map((address, i) => <ContactItem key={i} title={address} />)}
+					<View style={styles.header}>
+						<Image style={styles.image} source={images.bus} />
+						<Text style={styles.title}>{settings[this.props.lang].text.bus}</Text>
+					</View>
+					{busStops.map((busStop, i) => <ContactItem key={i} title={busStop} />)}
+					<View style={styles.header}>
+						<Image style={styles.image} source={images.call} />
+						<Text style={styles.title}>{settings[this.props.lang].text.phone}</Text>
+					</View>
+					{tels.map((tel, i) => <ContactItem key={i} title={tel} onPress={() => this.call(tel)} />)}
+					<View style={styles.header}>
+						<Image style={styles.image} source={images.email} />
+						<Text style={styles.title}>{settings[this.props.lang].text.email}</Text>
+					</View>
 					{emails.map((email, i) => (
-						<ContactItem
-							key={i}
-							title={email}
-							imgSource={images.emailPurple}
-							onPress={() => this.composeEmail(email)}
-						/>
+						<ContactItem key={i} title={email} onPress={() => this.composeEmail(email)} />
 					))}
 				</View>
 			</ScrollView>
@@ -94,13 +111,28 @@ const styles = StyleSheet.create({
 	},
 	itemsContainer: {
 		flex: 1,
-		justifyContent: 'space-around'
+		justifyContent: 'space-around',
+		marginTop: 10
 	},
 	map: {
-		width: SCREEN_WIDTH * 0.9,
-		height: SCREEN_HEIGHT * 0.4,
-		borderRadius: 10,
-		margin: SCREEN_WIDTH * 0.05
+		width: SCREEN_WIDTH,
+		height: SCREEN_HEIGHT * 0.3
+	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		margin: 10
+	},
+	image: {
+		height: 30,
+		width: 30
+	},
+	title: {
+		flex: 1,
+		...textStyles.h1,
+		color: colors.grayDark,
+		margin: 10
 	}
 });
 

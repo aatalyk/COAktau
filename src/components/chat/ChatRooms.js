@@ -72,8 +72,11 @@ class ChatRoomsScreen extends Component {
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
-					<Text style={styles.title}>{item.title}</Text>
-					<Image source={images.right} style={styles.image} />
+					<View style={styles.titleContainer}>
+						<Image source={images.shoes} style={styles.imageLeft} />
+						<Text style={styles.title}>{item.title}</Text>
+						<Image source={images.right} style={styles.imageRight} />
+					</View>
 				</View>
 			</TouchableOpacity>
 		);
@@ -104,9 +107,18 @@ ChatRoomsScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white'
+		backgroundColor: colors.soLightBlue
 	},
 	detailContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		margin: 10,
+		marginBottom: 0,
+		backgroundColor: 'white',
+		minHeight: 100,
+		borderRadius: 10
+	},
+	titleContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		margin: 20
@@ -115,9 +127,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		...textStyles.p
 	},
-	image: {
+	imageLeft: {
+		width: 30,
+		height: 30,
+		margin: 10
+	},
+	imageRight: {
 		width: 20,
-		height: 20
+		height: 20,
+		margin: 10
 	},
 	separator: {
 		height: 0.5,

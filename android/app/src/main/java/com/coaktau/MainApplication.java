@@ -9,6 +9,10 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
+import com.brentvatne.react.ReactVideoPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -32,6 +36,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactVideoPackage(),
+            new MapsPackage(),
+            new LinearGradientPackage(),
+            new FIRMessagingPackage(),
             new ReactVideoPackage(),
             new MapsPackage(),
             new LinearGradientPackage(),

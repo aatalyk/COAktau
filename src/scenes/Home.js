@@ -117,12 +117,12 @@ const styles = StyleSheet.create({
 		textAlign: 'center'
 	},
 	tabbarIndicator: {
-		backgroundColor: colors.purple,
+		backgroundColor: colors.soBlue,
 		height: 3
 	},
 	tabViewInitialLayout: {
 		width: SCREEN_WIDTH,
-		height: 100
+		height: 200
 	}
 });
 

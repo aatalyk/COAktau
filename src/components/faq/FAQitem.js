@@ -48,9 +48,9 @@ class FAQitem extends Component {
 				</Text>
 				<View style={styles.replyButton}>
 					<Button
-						title={settings[this.props.lang].buttons.composeEmail}
+						title={settings[this.props.lang].buttons.composeEmail.toUpperCase()}
 						onPress={this.onWriteButtonPress}
-						color={colors.purple}
+						color={colors.soBlue}
 					/>
 				</View>
 			</View>
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
-		padding: 15
+		padding: 15,
+		backgroundColor: 'white'
 	},
 	titleContainer: {
 		flexDirection: 'row',
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
 		...textStyles.p,
 		flex: 1,
 		paddingTop: 10,
-		color: 'grey',
+		color: colors.grayDark,
 		paddingBottom: 10
 	},
 	button: {
@@ -112,8 +113,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0.5
 	},
 	replyButton: {
-		borderColor: colors.purple,
-		borderWidth: Platform.OS === 'ios' ? 1 : 0
+		...textStyles.p
 	},
 	image: {
 		width: 20,

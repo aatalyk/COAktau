@@ -37,7 +37,6 @@ class NotificationsScreen extends Component {
 					data={this.props.notifsItems}
 					renderItem={this.renderItem}
 					style={styles.flatList}
-					ItemSeparatorComponent={this.renderSeparator}
 					keyExtractor={(_, index) => index + ''}
 					refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}
 				/>
@@ -51,10 +50,11 @@ NotificationsScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white'
+		backgroundColor: colors.soLightBlue
 	},
 	flatList: {
-		flex: 1
+		flex: 1,
+		margin: 10
 	},
 	separator: {
 		height: 1,

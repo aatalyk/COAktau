@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images, fonts } from '../../assets';
+import { images, fonts, textStyles } from '../../assets';
 
 const propTypes = {
 	title: PropTypes.string,
@@ -34,8 +34,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		flex: 1,
-		fontSize: 16,
-		fontFamily: fonts.MerriweatherRegular
+		...textStyles.p
 	},
 	image: {
 		width: 30,

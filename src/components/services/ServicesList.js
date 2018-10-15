@@ -60,17 +60,17 @@ class ServicesListScreen extends Component {
 						/>
 					) : (
 						<FlatList
+							style={styles.flatlist}
 							data={serviceItems}
 							renderItem={this.renderItem}
 							keyExtractor={this.keyExtractor}
-							ItemSeparatorComponent={this.renderSeparator}
 							refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 						/>
 					)}
 				</View>
 				{isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
-						<Text style={styles.showMoreText}>{settings[lang].navigation.services}</Text>
+						<Text style={styles.showMoreText}>{`${settings[lang].navigation.services} >>`}</Text>
 					</TouchableOpacity>
 				)}
 			</View>
@@ -82,7 +82,10 @@ ServicesListScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white'
+		backgroundColor: colors.soLightBlue
+	},
+	flatlist: {
+		margin: 10
 	},
 	separator: {
 		height: 0.5,
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
 	showMoreText: {
 		...textStyles.p,
 		marginRight: 15,
-		color: colors.purple
+		color: colors.grayDark
 	},
 	title: {
 		...textStyles.p,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { images } from '../../assets';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -28,6 +29,7 @@ class ScaledImage extends Component {
 		return (
 			<View>
 				<Image
+					defaultSource={images.imgPlaceholder}
 					source={this.props.source}
 					style={{
 						height: height * ratio,
@@ -36,7 +38,6 @@ class ScaledImage extends Component {
 					{...this.props}
 					onLoad={this.onLoad}
 				/>
-				<ActivityIndicator animating={this.state.loading} style={styles.indicator} />
 			</View>
 		);
 	}

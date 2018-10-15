@@ -15,11 +15,16 @@ const propTypes = {
 export const NewsItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
+			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
-				<Text style={styles.date}>{getFormattedDate(item.createdAt)}</Text>
+				<Text numberOfLines={3} style={styles.text}>
+					{item.text}
+				</Text>
+				<Text numberOfLines={2} style={styles.date}>
+					{getFormattedDate(item.createdAt)}
+				</Text>
 			</View>
-			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
 		</View>
 	</TouchableOpacity>
 );
@@ -35,21 +40,26 @@ const styles = StyleSheet.create({
 	textContainer: {
 		flex: 1,
 		marginHorizontal: 10,
-		marginBottom: 15,
-		marginTop: 10
+		marginBottom: 15
+	},
+	text: {
+		...textStyles.p,
+		marginTop: 10,
+		color: colors.grayLight,
+		textAlign: 'left'
 	},
 	date: {
 		...textStyles.p,
-		marginTop: 5,
+		marginTop: 10,
 		fontSize: 12,
 		color: colors.grayLight,
 		textAlign: 'left'
 	},
 	image: {
-		resizeMode: 'contain',
+		resizeMode: 'cover',
 		width: 100,
 		height: 100,
-		borderRadius: 5,
+		borderRadius: 10,
 		marginLeft: 5
 	}
 });

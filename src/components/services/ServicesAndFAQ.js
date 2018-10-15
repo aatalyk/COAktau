@@ -26,7 +26,7 @@ ServicesAndFAQ.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: colors.grayUltraLight
+		backgroundColor: colors.soLightBlue
 	},
 	servicesList: {
 		marginTop: 20

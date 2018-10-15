@@ -89,12 +89,11 @@ class FAQScreen extends Component {
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
 					ListHeaderComponent={this.renderSearchBar}
-					ItemSeparatorComponent={this.renderSeparator}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				{isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
-						<Text style={styles.showMoreText}>{settings[lang].buttons.showMore}</Text>
+						<Text style={styles.showMoreText}>{`${settings[lang].buttons.showMore} >>`}</Text>
 					</TouchableOpacity>
 				)}
 			</View>
@@ -106,14 +105,13 @@ FAQScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white',
+		backgroundColor: colors.soLightBlue,
 		flex: 1
 	},
 	title: {
 		...textStyles.p,
-		marginLeft: 15,
-		marginTop: 20,
-		color: colors.grayLight
+		margin: 15,
+		color: colors.grayDark
 	},
 	showMoreButton: {
 		flexDirection: 'row',
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
 	showMoreText: {
 		marginRight: 15,
 		...textStyles.p,
-		color: colors.purple
+		color: colors.grayDark
 	},
 	separator: {
 		backgroundColor: colors.grayUltraLight,

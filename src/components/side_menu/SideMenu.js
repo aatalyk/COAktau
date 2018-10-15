@@ -13,7 +13,7 @@ import { DrawerRoutes } from '../navigation';
 const menuItems = [
 	{
 		image: images.home,
-		selectedImage: images.homePurple,
+		selectedImage: images.homeSelected,
 		title: {
 			kaz: settings.kaz.navigation.home,
 			rus: settings.rus.navigation.home
@@ -21,7 +21,7 @@ const menuItems = [
 	},
 	{
 		image: images.case,
-		selectedImage: images.casePurple,
+		selectedImage: images.caseSelected,
 		title: {
 			kaz: settings.kaz.navigation.services,
 			rus: settings.rus.navigation.services
@@ -29,7 +29,7 @@ const menuItems = [
 	},
 	{
 		image: images.star,
-		selectedImage: images.starPurple,
+		selectedImage: images.starSelected,
 		title: {
 			kaz: settings.kaz.navigation.myServices,
 			rus: settings.rus.navigation.myServices
@@ -37,7 +37,7 @@ const menuItems = [
 	},
 	{
 		image: images.news,
-		selectedImage: images.newsPurple,
+		selectedImage: images.newsSelected,
 		title: {
 			kaz: settings.kaz.navigation.news,
 			rus: settings.rus.navigation.news
@@ -45,7 +45,7 @@ const menuItems = [
 	},
 	{
 		image: images.city,
-		selectedImage: images.cityPurple,
+		selectedImage: images.citySelected,
 		title: {
 			kaz: settings.kaz.navigation.myCity,
 			rus: settings.rus.navigation.myCity
@@ -53,7 +53,7 @@ const menuItems = [
 	},
 	{
 		image: images.speaker,
-		selectedImage: images.speakerPurple,
+		selectedImage: images.speakerSelected,
 		title: {
 			kaz: settings.kaz.navigation.notifs,
 			rus: settings.rus.navigation.notifs
@@ -61,15 +61,15 @@ const menuItems = [
 	},
 	{
 		image: images.question,
-		selectedImage: images.questionPurple,
+		selectedImage: images.questionSelected,
 		title: {
 			kaz: settings.kaz.navigation.faq,
 			rus: settings.rus.navigation.faq
 		}
 	},
 	{
-		image: images.chat,
-		selectedImage: images.chatPurple,
+		image: images.helper,
+		selectedImage: images.helperSelected,
 		title: {
 			kaz: settings.kaz.navigation.myHelper,
 			rus: settings.rus.navigation.myHelper
@@ -77,7 +77,7 @@ const menuItems = [
 	},
 	{
 		image: images.pin,
-		selectedImage: images.pinPurple,
+		selectedImage: images.pinSelected,
 		title: {
 			kaz: settings.kaz.navigation.contact,
 			rus: settings.rus.navigation.contact
@@ -85,7 +85,7 @@ const menuItems = [
 	},
 	{
 		image: images.info,
-		selectedImage: images.infoPurple,
+		selectedImage: images.infoSelected,
 		title: {
 			kaz: settings.kaz.navigation.about,
 			rus: settings.rus.navigation.about
@@ -93,7 +93,7 @@ const menuItems = [
 	},
 	{
 		image: images.settings,
-		selectedImage: images.settingsPurple,
+		selectedImage: images.settingsSelected,
 		title: {
 			kaz: settings.kaz.navigation.settings,
 			rus: settings.rus.navigation.settings
@@ -134,7 +134,6 @@ class SideMenuPage extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Header title={settings[this.props.lang].text.title} />
 				<View style={styles.menuContainer} onLayout={this.onLayout}>
 					{menuItems.map((item, index) => (
 						<MenuItem

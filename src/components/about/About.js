@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, ActivityIndicator, RefreshControl, Dimensions, Animated } from 'react-native';
+import {
+	View,
+	Text,
+	ScrollView,
+	StyleSheet,
+	ActivityIndicator,
+	RefreshControl,
+	Dimensions,
+	Animated
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { images, textStyles } from '../../assets';
+import { images, textStyles, settings, colors } from '../../assets';
 import { fetchAboutUsRequested } from '../../actions';
+import { ScaledImage } from '../common';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const propTypes = {
+	lang: PropTypes.string,
 	loading: PropTypes.bool,
 	aboutData: PropTypes.object,
 	fetchAboutUsRequested: PropTypes.func
@@ -30,40 +41,18 @@ class AboutScreen extends Component {
 	render() {
 		const { loading, aboutData } = this.props;
 		return (
-			<Animated.ScrollView
-				style={styles.container}
-				scrollEventThrottle={1}
-				onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.scrollY } } }], {
-					useNativeDriver: true
-				})}
-			>
-				<Animated.Image
-					source={images.logoIcon}
-					resizeMode="contain"
-					style={{
-						...styles.image,
-						transform: [
-							{
-								scale: this.scrollY.interpolate({
-									inputRange: [-1, 0, 1],
-									outputRange: [1.001, 1, 1]
-								})
-							},
-							{
-								translateY: this.scrollY.interpolate({
-									inputRange: [-1, 0, 1],
-									outputRange: [-1, 0, 0]
-								})
-							}
-						]
-					}}
-				/>
+			<ScrollView style={styles.container}>
+				<ScaledImage source={images.social} resizeMode="cover" />
 				{loading ? (
 					<ActivityIndicator refreshing={loading} />
 				) : (
-					<Text style={styles.text}>{aboutData ? aboutData.text : ''}</Text>
+					<View>
+						<Text style={styles.title}>{settings[this.props.lang].text.title}</Text>
+						<View style={styles.line} />
+						<Text style={styles.text}>{aboutData ? aboutData.text : ''}</Text>
+					</View>
 				)}
-			</Animated.ScrollView>
+			</ScrollView>
 		);
 	}
 }
@@ -72,25 +61,38 @@ AboutScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
 		backgroundColor: 'white'
 	},
 	image: {
 		width: SCREEN_WIDTH,
-		height: SCREEN_HEIGHT / 3,
+		height: SCREEN_WIDTH,
 		marginTop: 10
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: SCREEN_WIDTH * 0.4,
+		borderRadius: 2
+	},
+	title: {
+		...textStyles.h1,
+		textAlign: 'center',
+		margin: 20
 	},
 	text: {
 		...textStyles.p,
-		margin: 10
+		textAlign: 'center',
+		margin: 20
 	}
 });
 
-const mapStateToProps = ({ about: { loading, aboutData } }) => {
-	return {
-		loading,
-		aboutData
-	};
-};
+const mapStateToProps = ({ settings, about: { loading, aboutData } }) => ({
+	lang: settings.lang,
+	loading,
+	aboutData
+});
 
 export const About = connect(
 	mapStateToProps,
