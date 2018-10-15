@@ -115,7 +115,7 @@ class AutoPagingFlatList extends Component {
         ) : (
           <AndroidPagingView
             data={data}
-            onItemPress={this.props.onItemPress || this.onItemPress}
+            renderItem={this.renderItem}
             onPageSelected={position =>
               this.setState({ currentIndex: position })
             }
