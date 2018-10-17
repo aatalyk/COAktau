@@ -11,8 +11,8 @@ export const settings = {
 			contact: 'Мекенжай',
 			about: 'Жоба туралы',
 			calc: 'АӘК Есептеуіш',
-			chat: 'Хабарлама',
-			dictionary: 'Хабарламалар',
+			chat: 'Сөздік',
+			dictionary: 'Сөздік',
 			myCity: 'Менің қалам',
 			myHelper: 'Менің көмекшім'
 		},
@@ -69,8 +69,8 @@ export const settings = {
 			contact: 'Контакты',
 			about: 'О проекте',
 			calc: 'АСП Калькулятор',
-			chat: 'Сообщение',
-			dictionary: 'Сообщения',
+			chat: 'Разговорник',
+			dictionary: 'Разговорник',
 			myCity: 'Мой город',
 			myHelper: 'Мой помощник'
 		},

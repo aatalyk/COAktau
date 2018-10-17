@@ -9,7 +9,19 @@ import { applyMiddleware, createStore } from 'redux';
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['settings', 'about', 'services', 'myServices', 'chat'] // reducers to be persisted in the store
+	whitelist: [
+		'settings',
+		'news',
+		'notifs',
+		'about',
+		'services',
+		'myServices',
+		'chat',
+		'dictionary',
+		'myCity',
+		'contact',
+		'calc'
+	] // reducers to be persisted in the store
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

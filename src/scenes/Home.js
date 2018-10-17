@@ -74,7 +74,7 @@ class HomeScreen extends Component {
 		const { lang, navigation, newsItems } = this.props;
 		return (
 			<View style={styles.container}>
-				<AutoPagingFlatList style={{ flex: 1 }} data={newsItems} lang={lang} navigation={navigation} />
+				<AutoPagingFlatList data={newsItems} lang={lang} navigation={navigation} />
 				<TabView
 					renderTabBar={this.renderTabBar}
 					navigationState={this.state}
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	tabView: {
-		flex: 2,
 		marginTop: Platform.OS === 'ios' ? 0 : -5
 	},
 	tabbar: {

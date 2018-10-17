@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { colors, textStyles, settings } from '../../assets';
-import { SearchBar } from '../common';
+import { SearchBar, PlaceHolderList } from '../common';
 import { FAQitem } from './FAQitem';
 import { fetchFAQRequested } from '../../actions';
 import { faqPropType } from '../../propTypes';
@@ -82,7 +82,11 @@ class FAQScreen extends Component {
 		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={[styles.container, style]}>
 				<FlatList
 					data={faqItems}
@@ -107,6 +111,10 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: colors.soLightBlue,
 		flex: 1
+	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
 	},
 	title: {
 		...textStyles.p,

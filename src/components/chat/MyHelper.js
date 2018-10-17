@@ -9,10 +9,9 @@ import { images, textStyles, colors, settings } from '../../assets';
 import { fetchDictionaryRequested } from '../../actions';
 
 const propTypes = {
+	lang: PropTypes.string,
 	navigation: PropTypes.object
 };
-
-const helpers = [{ id: 1, title: 'Dictionary', icon: images.dictionary }];
 
 class MyHelperScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -46,6 +45,7 @@ class MyHelperScreen extends Component {
 	onPress = helper => this.props.navigation.navigate('Dictionary', { helper });
 
 	render() {
+		const helpers = [{ id: 1, title: settings[this.props.lang].navigation.dictionary, icon: images.dictionary }];
 		return (
 			<View style={styles.container}>
 				<FlatList data={helpers} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ dictionary }) => ({
+const mapStateToProps = ({ settings, dictionary }) => ({
+	lang: settings.lang,
 	loading: dictionary.loading,
 	helpers: dictionary.helpers
 });

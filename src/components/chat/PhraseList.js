@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
-import { IconButton } from '../common';
+import { IconButton, PlaceHolderList } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
 import { fetchDictionaryRequested } from '../../actions';
 
@@ -52,7 +52,11 @@ class PhraseListScreen extends Component {
 	render() {
 		const { loading, helpers, navigation } = this.props;
 		const { messages } = navigation.getParam('helper', {});
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={styles.container}>
 				<FlatList
 					data={messages}
@@ -69,6 +73,10 @@ PhraseListScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	placeHolderContainer: {
 		flex: 1,
 		backgroundColor: 'white'
 	},

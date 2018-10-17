@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
-import { IconButton } from '../common';
+import { IconButton, PlaceHolderList } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
 import { fetchDictionaryRequested } from '../../actions';
 
@@ -36,7 +36,6 @@ class DictionaryScreen extends Component {
 	renderSeparator = () => <View style={styles.separator} />;
 
 	renderItem = ({ item }) => {
-		console.warn(item);
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
@@ -56,7 +55,11 @@ class DictionaryScreen extends Component {
 
 	render() {
 		const { loading, helpers } = this.props;
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={styles.container}>
 				<FlatList
 					data={helpers}
@@ -75,6 +78,10 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.soLightBlue
+	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
 	},
 	detailContainer: {
 		flexDirection: 'row',

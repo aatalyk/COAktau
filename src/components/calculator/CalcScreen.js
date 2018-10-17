@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList, StyleSheet } from 'react-native';
+import { View, ScrollView, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Calculator } from './Calculator';
 import { FAQItem } from './FAQItem';
+import { PlaceHolder } from '../common';
 import { fetchCalcParamsRequested, fetchCalcFaqRequested } from '../../actions';
 
 const propTypes = {
 	navigation: PropTypes.object,
 	lang: PropTypes.string,
+	loading: PropTypes.bool,
 	fetchCalcParamsRequested: PropTypes.func,
 	fetchCalcFaqRequested: PropTypes.func,
 	params: PropTypes.object,
@@ -29,8 +31,12 @@ class Calc extends Component {
 	};
 
 	render() {
-		const { faq, params, navigation, lang } = this.props;
-		return (
+		const { loading, faq, params, navigation, lang } = this.props;
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolder />
+			</View>
+		) : (
 			<ScrollView style={styles.container}>
 				<Calculator
 					lang={lang}
@@ -50,11 +56,16 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white'
+	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
 	}
 });
 
 const mapStateToProps = ({ settings, calc }) => ({
 	lang: settings.lang,
+	loading: calc.loading,
 	params: calc.params,
 	faq: calc.faq
 });
