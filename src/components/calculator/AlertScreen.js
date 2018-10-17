@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { View, Image, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { textStyles, settings, images, colors } from '../../assets';
 import PropTypes from 'prop-types';
@@ -11,6 +11,8 @@ const propTypes = {
 	navigation: PropTypes.object,
 	lang: PropTypes.string
 };
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Alert extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -30,9 +32,10 @@ class Alert extends Component {
 		return (
 			<ScrollView style={styles.container}>
 				<Text style={styles.headerTitle}>{settings[this.props.lang].calc.result}</Text>
+				<View style={styles.line} />
 				<View style={styles.itemContainer}>
 					<Text style={styles.title}>{settings[this.props.lang].text.calcYear}</Text>
-					<Text style={styles.detail}>{result.year} тг</Text>
+					<Text style={styles.detail}>{result.year}</Text>
 				</View>
 				<View style={styles.itemContainer}>
 					<Text style={styles.title}>{settings[this.props.lang].text.livingCost}</Text>
@@ -47,17 +50,11 @@ class Alert extends Component {
 					<Text style={styles.detail}>{result.revenuePerPerson} тг</Text>
 				</View>
 				<View style={styles.itemContainer}>
-					<Text style={[styles.title, { fontWeight: 'bold' }]}>
-						{settings[this.props.lang].text.socialHelpSize}
-					</Text>
+					<Text style={[styles.title]}>{settings[this.props.lang].text.socialHelpSize}</Text>
 					<Text style={styles.detail}>{result.result} тг</Text>
 				</View>
-				<Text
-					style={[
-						styles.finalText,
-						{ color: result.revenuePerPerson > result.povertyMin ? colors.purple : colors.violet }
-					]}
-				>
+				{result.revenuePerPerson <= result.povertyMin && <Image style={styles.image} source={images.approve} />}
+				<Text style={[styles.finalText, { color: 'black' }]}>
 					{result.revenuePerPerson > result.povertyMin
 						? settings[this.props.lang].text.calcResultNegative
 						: `${settings[this.props.lang].text.calcResultPositive} ${result.result} ${
@@ -81,16 +78,14 @@ const styles = StyleSheet.create({
 		margin: 20
 	},
 	headerTitle: {
-		...textStyles.p,
-		fontSize: 22,
-		color: colors.purple,
-		textAlign: 'center',
-		margin: 10
+		...textStyles.h1,
+		textAlign: 'left',
+		margin: 20
 	},
 	title: {
 		flex: 1,
 		...textStyles.p,
-		color: colors.gray,
+		color: colors.grayDark,
 		marginRight: 10
 	},
 	detail: {
@@ -103,8 +98,21 @@ const styles = StyleSheet.create({
 		...textStyles.h1,
 		color: 'green',
 		textAlign: 'center',
-		margin: 10,
+		margin: 20,
 		marginBottom: 20
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: 20,
+		borderRadius: 2
+	},
+	image: {
+		width: 40,
+		height: 40,
+		margin: 10,
+		alignSelf: 'center'
 	}
 });
 

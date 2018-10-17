@@ -17,7 +17,7 @@ export const MenuItem = ({ onPress, regularImage, selectedImage, title, isSelect
 	<TouchableOpacity onPress={onPress}>
 		<View style={[styles.container, { backgroundColor: isSelected ? 'white' : 'white', height }]}>
 			<Image source={isSelected ? selectedImage : regularImage} style={styles.image} />
-			<Text style={[styles.title, { color: isSelected ? 'black' : 'black' }]}>{title.toUpperCase()}</Text>
+			<Text style={[styles.title, { color: isSelected ? colors.soBlue : 'black' }]}>{title.toUpperCase()}</Text>
 		</View>
 	</TouchableOpacity>
 );

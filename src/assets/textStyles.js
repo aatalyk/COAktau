@@ -19,5 +19,11 @@ export const textStyles = StyleSheet.create({
 		fontFamily: fonts.RubikRegular,
 		color: 'black',
 		lineHeight: 25
+	},
+	h2: {
+		fontSize: SCREEN_WIDTH / 23,
+		fontFamily: fonts.RubikMedium,
+		color: 'black',
+		lineHeight: 25
 	}
 });

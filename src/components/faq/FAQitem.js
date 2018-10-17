@@ -46,11 +46,16 @@ class FAQitem extends Component {
 				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>
 					{settings[this.props.lang].text.noAnswer}
 				</Text>
-				<View style={styles.replyButton}>
+				<View
+					style={[
+						styles.replyButton,
+						{ backgroundColor: Platform.OS === 'ios' ? colors.soBlue : 'transparent' }
+					]}
+				>
 					<Button
 						title={settings[this.props.lang].buttons.composeEmail.toUpperCase()}
+						color={Platform.OS === 'ios' ? 'white' : colors.soBlue}
 						onPress={this.onWriteButtonPress}
-						color={colors.soBlue}
 					/>
 				</View>
 			</View>

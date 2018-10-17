@@ -18,6 +18,7 @@ import Communications from 'react-native-communications';
 import { ContactItem } from './ContactItem';
 import { images, settings, textStyles, colors } from '../../assets';
 import { fetchContactRequested } from '../../actions';
+import { PlaceHolder } from '../common';
 
 const propTypes = {
 	lang: PropTypes.string,
@@ -46,7 +47,7 @@ class ContactScreen extends Component {
 
 		return loading ? (
 			<View style={styles.container}>
-				<ActivityIndicator refreshing={loading} />
+				<PlaceHolder />
 			</View>
 		) : (
 			<ScrollView

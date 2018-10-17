@@ -47,6 +47,8 @@
 		EB7B4ECD49864131B2474332 /* LibreFranklin-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9248B84B1C87400B94112FAC /* LibreFranklin-Bold.ttf */; };
 		7D8F8B907C724876ABE892DB /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9689742AC38C4A0F94B3D90C /* Rubik-Light.ttf */; };
 		618C5669277F4E2D82FE5049 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B802D823C9174DC293F9188A /* Rubik-Regular.ttf */; };
+		D3F54A62FA334D5AB3CCA5CB /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC2740E4690641FDA1DA55E8 /* Rubik-Bold.ttf */; };
+		F4C63CE14D6B4049A0021E27 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3348E2288CCA446B9C4207EF /* Rubik-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,6 +396,8 @@
 		F0675C9BB56E45C9ABCD667C /* Merriweather-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Black.ttf"; path = "../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; };
 		9689742AC38C4A0F94B3D90C /* Rubik-Light.ttf */ = {isa = PBXFileReference; name = "Rubik-Light.ttf"; path = "../src/assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B802D823C9174DC293F9188A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; name = "Rubik-Regular.ttf"; path = "../src/assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DC2740E4690641FDA1DA55E8 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; name = "Rubik-Bold.ttf"; path = "../src/assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3348E2288CCA446B9C4207EF /* Rubik-Medium.ttf */ = {isa = PBXFileReference; name = "Rubik-Medium.ttf"; path = "../src/assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,6 +642,8 @@
 				F0675C9BB56E45C9ABCD667C /* Merriweather-Black.ttf */,
 				9689742AC38C4A0F94B3D90C /* Rubik-Light.ttf */,
 				B802D823C9174DC293F9188A /* Rubik-Regular.ttf */,
+				DC2740E4690641FDA1DA55E8 /* Rubik-Bold.ttf */,
+				3348E2288CCA446B9C4207EF /* Rubik-Medium.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1217,6 +1223,8 @@
 				D24548209391464DBB893B87 /* Merriweather-Black.ttf in Resources */,
 				7D8F8B907C724876ABE892DB /* Rubik-Light.ttf in Resources */,
 				618C5669277F4E2D82FE5049 /* Rubik-Regular.ttf in Resources */,
+				D3F54A62FA334D5AB3CCA5CB /* Rubik-Bold.ttf in Resources */,
+				F4C63CE14D6B4049A0021E27 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

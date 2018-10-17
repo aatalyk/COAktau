@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 20
 	},
 	date: {
-		...textStyles.p,
+		...textStyles.h1,
 		marginTop: 5,
 		fontSize: 12,
 		color: colors.grayLight,

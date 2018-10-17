@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, Dimensions, Animated } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { textStyles, images } from '../../assets';
+import { textStyles, images, colors } from '../../assets';
 import { Header } from '../navigation';
 import { IconButton } from '../common';
 
@@ -74,6 +74,7 @@ class NotificationPage extends Component {
 					}}
 				/>
 				<Text style={styles.title}>{item.title}</Text>
+				<View style={styles.line} />
 				<Text style={styles.text}>{item.text}</Text>
 			</Animated.ScrollView>
 		);
@@ -91,13 +92,19 @@ const styles = StyleSheet.create({
 		height: SCREEN_HEIGHT / 3
 	},
 	title: {
-		...textStyles.h1,
-		margin: 10,
-		marginBottom: 0
+		...textStyles.h2,
+		margin: 20
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: 20,
+		borderRadius: 2
 	},
 	text: {
 		...textStyles.p,
-		margin: 10
+		margin: 20
 	}
 });
 

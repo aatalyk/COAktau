@@ -58,7 +58,7 @@ SettingsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 20,
+		padding: 10,
 		flex: 1,
 		backgroundColor: 'white'
 	},

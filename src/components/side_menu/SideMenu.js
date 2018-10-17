@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions, DrawerActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -122,6 +122,7 @@ class SideMenuPage extends Component {
 		const navigateAction = NavigationActions.navigate({
 			routeName: routes[index]
 		});
+		this.props.navigation.dispatch(StackActions.popToTop());
 		this.props.navigation.dispatch(navigateAction);
 	};
 

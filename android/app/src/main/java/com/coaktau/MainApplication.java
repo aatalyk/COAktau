@@ -40,10 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
             new MapsPackage(),
             new LinearGradientPackage(),
             new FIRMessagingPackage(),
-            new ReactVideoPackage(),
-            new MapsPackage(),
-            new LinearGradientPackage(),
-            new FIRMessagingPackage(),
             new NotificationManagerPackage()
       );
     }

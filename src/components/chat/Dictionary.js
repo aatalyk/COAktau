@@ -6,60 +6,27 @@ import PropTypes from 'prop-types';
 import { Header } from '../navigation';
 import { IconButton } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
-import { fetchChatRoomsRequested } from '../../actions';
-
-const rooms = [
-	{
-		title: 'Room One',
-		id: 1,
-		messages: [
-			{
-				_id: 1,
-				text: 'First message',
-				createdAt: new Date(),
-				user: {
-					_id: 2,
-					avatar: null
-				}
-			}
-		]
-	},
-	{
-		title: 'Room Two',
-		id: 1,
-		messages: [
-			{
-				_id: 1,
-				text: 'First message',
-				createdAt: new Date(),
-				user: {
-					_id: 2,
-					avatar: null
-				}
-			}
-		]
-	}
-];
+import { fetchDictionaryRequested } from '../../actions';
 
 const propTypes = {
 	navigation: PropTypes.object,
 	loading: PropTypes.bool,
-	fetchChatRoomsRequested: PropTypes.func,
-	rooms: PropTypes.array
+	fetchDictionaryRequested: PropTypes.func,
+	helpers: PropTypes.array
 };
 
-class ChatRoomsScreen extends Component {
+class DictionaryScreen extends Component {
 	componentDidMount() {
-		this.props.fetchChatRoomsRequested();
+		this.props.fetchDictionaryRequested();
 	}
 
 	static navigationOptions = ({ navigation }) => {
 		return {
 			header: () => (
 				<Header
-					titleKaz={settings.kaz.navigation.chatRooms}
-					titleRus={settings.rus.navigation.chatRooms}
-					leftItem={<IconButton imgSource={images.menu} onPress={() => navigation.openDrawer()} />}
+					titleKaz={settings.kaz.navigation.dictionary}
+					titleRus={settings.rus.navigation.dictionary}
+					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 					rightItem={<IconButton imgSource={images.chat} onPress={() => navigation.navigate('Chat')} />}
 				/>
 			)
@@ -69,11 +36,12 @@ class ChatRoomsScreen extends Component {
 	renderSeparator = () => <View style={styles.separator} />;
 
 	renderItem = ({ item }) => {
+		console.warn(item);
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
 					<View style={styles.titleContainer}>
-						<Image source={images.shoes} style={styles.imageLeft} />
+						<Image source={{ uri: item.icon }} style={styles.imageLeft} />
 						<Text style={styles.title}>{item.title}</Text>
 						<Image source={images.right} style={styles.imageRight} />
 					</View>
@@ -82,19 +50,18 @@ class ChatRoomsScreen extends Component {
 		);
 	};
 
-	onPress = room => this.props.navigation.navigate('Chat', { room });
+	onPress = helper => this.props.navigation.navigate('PhraseList', { helper });
 
-	onRefresh = () => this.props.fetchChatRoomsRequested();
+	onRefresh = () => this.props.fetchDictionaryRequested();
 
 	render() {
-		const { loading, rooms } = this.props;
+		const { loading, helpers } = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
-					data={rooms}
+					data={helpers}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
-					ItemSeparatorComponent={this.renderSeparator}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
@@ -102,7 +69,7 @@ class ChatRoomsScreen extends Component {
 	}
 }
 
-ChatRoomsScreen.propTypes = propTypes;
+DictionaryScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
@@ -145,12 +112,12 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ chatRooms }) => ({
-	loading: chatRooms.loading,
-	rooms: chatRooms.rooms
+const mapStateToProps = ({ dictionary }) => ({
+	loading: dictionary.loading,
+	helpers: dictionary.helpers
 });
 
-export const ChatRooms = connect(
+export const Dictionary = connect(
 	mapStateToProps,
-	{ fetchChatRoomsRequested }
-)(ChatRoomsScreen);
+	{ fetchDictionaryRequested }
+)(DictionaryScreen);

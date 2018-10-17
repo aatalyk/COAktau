@@ -4,5 +4,7 @@ export const fonts = {
 	LibreFranklinBlack: 'LibreFranklin-Black',
 	LibreFranklinBold: 'LibreFranklin-Bold',
 	RubikLight: 'Rubik-Light',
-	RubikRegular: 'Rubik-Regular'
+	RubikRegular: 'Rubik-Regular',
+	RubikMedium: 'Rubik-Medium',
+	RubikBlack: 'Rubik-Black'
 };

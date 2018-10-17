@@ -71,14 +71,12 @@ class AutoPagingFlatList extends Component {
 
 	renderItem = ({ item }) => (
 		<TouchableWithoutFeedback onPress={this.props.onItemPress || this.onItemPress}>
-			<View style={styles.imageContainer}>
-				<Image
-					defaultSource={images.imgPlaceholder}
-					style={styles.image}
-					source={{ uri: item.icon }}
-					onLoad={this.props.loadFinish}
-				/>
-			</View>
+			<Image
+				defaultSource={images.imgPlaceholder}
+				style={styles.image}
+				source={{ uri: item.icon || undefined }}
+				onLoad={this.props.loadFinish}
+			/>
 		</TouchableWithoutFeedback>
 	);
 
@@ -106,7 +104,7 @@ class AutoPagingFlatList extends Component {
 				) : (
 					<AndroidPagingView
 						data={data}
-						onItemPress={this.props.onItemPress || this.onItemPress}
+						renderItem={this.renderItem}
 						onPageSelected={position => this.setState({ currentIndex: position })}
 					/>
 				)}
@@ -117,7 +115,7 @@ class AutoPagingFlatList extends Component {
 							numberOfPages={data.length}
 							currentPage={this.state.currentIndex}
 							hidesForSinglePage
-							pageIndicatorTintColor={colors.grayDark}
+							pageIndicatorTintColor="gray"
 							currentIndexIndicatorTintColor="white"
 							indicatorStyle={styles.pageControlIndicator}
 							currentIndicatorStyle={styles.pageControlIndicator}

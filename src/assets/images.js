@@ -37,7 +37,7 @@ export const images = {
 	bus: require('../../resources/img/bus.png'),
 	network: require('../../resources/img/network.png'),
 	reload: require('../../resources/img/refresh80.png'),
-	box: require('../../resources/img/box80.png'),
+	box: require('../../resources/img/box.png'),
 	internet: require('../../resources/img/internet.png'),
 	placeholder: require('../../resources/img/placeholder.png'),
 	imgPlaceholder: require('../../resources/img/imgPlaceholder.png'),
@@ -52,5 +52,7 @@ export const images = {
 	helperSelected: require('../../resources/img/helperSelected.png'),
 	lang: require('../../resources/img/lang.png'),
 	notifs: require('../../resources/img/notifs.png'),
-	social: require('../../resources/img/social.jpg')
+	social: require('../../resources/img/social.jpg'),
+	dictionary: require('../../resources/img/dictionary.png'),
+	approve: require('../../resources/img/approve.png')
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
+import { View, ScrollView, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -72,9 +72,9 @@ class HomeScreen extends Component {
 
 	render() {
 		const { lang, navigation, newsItems } = this.props;
-		return this.state.connected ? (
+		return (
 			<View style={styles.container}>
-				<AutoPagingFlatList data={newsItems} lang={lang} navigation={navigation} />
+				<AutoPagingFlatList style={{ flex: 1 }} data={newsItems} lang={lang} navigation={navigation} />
 				<TabView
 					renderTabBar={this.renderTabBar}
 					navigationState={this.state}
@@ -84,16 +84,10 @@ class HomeScreen extends Component {
 					})}
 					onIndexChange={this.onTabViewIndexChange}
 					initialLayout={styles.tabViewInitialLayout}
-					style={{ marginTop: Platform.OS === 'ios' ? 0 : -5 }}
+					style={styles.tabView}
 					useNativeDriver
 				/>
 			</View>
-		) : (
-			<MessageScreen
-				title={settings[lang].text.network}
-				imgSource={images.internet}
-				onPress={this.checkConnection}
-			/>
 		);
 	}
 }
@@ -105,11 +99,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'white'
 	},
+	tabView: {
+		flex: 2,
+		marginTop: Platform.OS === 'ios' ? 0 : -5
+	},
 	tabbar: {
 		backgroundColor: Platform.OS === 'android' ? 'white' : colors.transparent,
 		height: 60,
-		borderBottomColor: colors.grayUltraLight,
-		borderBottomWidth: 1,
 		justifyContent: 'center'
 	},
 	tabbarLabel: {

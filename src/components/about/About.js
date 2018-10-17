@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 
 import { images, textStyles, settings, colors } from '../../assets';
 import { fetchAboutUsRequested } from '../../actions';
-import { ScaledImage } from '../common';
+import { ScaledImage, PlaceHolder } from '../common';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -44,10 +44,10 @@ class AboutScreen extends Component {
 			<ScrollView style={styles.container}>
 				<ScaledImage source={images.social} resizeMode="cover" />
 				{loading ? (
-					<ActivityIndicator refreshing={loading} />
+					<PlaceHolder />
 				) : (
 					<View>
-						<Text style={styles.title}>{settings[this.props.lang].text.title}</Text>
+						<Text style={styles.title}>{settings[this.props.lang].text.title.toUpperCase()}</Text>
 						<View style={styles.line} />
 						<Text style={styles.text}>{aboutData ? aboutData.text : ''}</Text>
 					</View>
@@ -73,17 +73,17 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.soBlue,
 		height: 3,
 		width: SCREEN_WIDTH * 0.2,
-		marginLeft: SCREEN_WIDTH * 0.4,
+		marginLeft: 20,
 		borderRadius: 2
 	},
 	title: {
-		...textStyles.h1,
-		textAlign: 'center',
+		...textStyles.h2,
+		textAlign: 'left',
 		margin: 20
 	},
 	text: {
 		...textStyles.p,
-		textAlign: 'center',
+		textAlign: 'left',
 		margin: 20
 	}
 });

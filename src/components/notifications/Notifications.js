@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { NotificationItem } from './NotificationItem';
 import { colors } from '../../assets';
 import { fetchNotifsRequested } from '../../actions';
+import { PlaceHolderList } from '../common';
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -31,7 +32,12 @@ class NotificationsScreen extends Component {
 	onRefresh = () => this.props.fetchNotifsRequested();
 
 	render() {
-		return (
+		const { loading, news } = this.props;
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={styles.container}>
 				<FlatList
 					data={this.props.notifsItems}
@@ -52,9 +58,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: colors.soLightBlue
 	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
 	flatList: {
 		flex: 1,
-		margin: 10
+		marginLeft: 10,
+		marginRight: 10,
+		marginBottom: 10
 	},
 	separator: {
 		height: 1,

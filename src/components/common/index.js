@@ -2,6 +2,8 @@ export * from './IconButton';
 export * from './SearchBar';
 export * from './MessageScreen';
 export * from './ScaledImage';
+export * from './PlaceHolder';
+export * from './PlaceHolderList';
 
 export function getFormattedDate(createdAt) {
 	const date = new Date(createdAt);
