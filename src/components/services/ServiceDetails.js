@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
-import { View, FlatList, Text, Image, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, {Component} from "react";
+import {View, FlatList, Text, Image, RefreshControl, TouchableOpacity, StyleSheet} from "react-native";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-import { Header } from '../navigation';
-import { IconButton } from '../common';
-import { fetchServicesTitlesRequested } from '../../actions';
-import { colors, images, textStyles } from '../../assets';
+import {Header} from "../navigation";
+import {IconButton} from "../common";
+import {fetchServicesTitlesRequested} from "../../actions";
+import {colors, images, textStyles} from "../../assets";
 
 const propTypes = {
 	navigation: PropTypes.object,
-	lang: PropTypes.oneOf(['kaz', 'rus']),
+	lang: PropTypes.oneOf(["kaz", "rus"]),
 	loading: PropTypes.bool,
 	fetchServicesTitlesRequested: PropTypes.func,
-	titles: PropTypes.array
+	titles: PropTypes.array,
 };
 
 class ServiceDetailsScreen extends Component {
-	static navigationOptions = ({ navigation }) => {
+	static navigationOptions = ({navigation}) => {
 		return {
 			header: () => (
 				<Header
-					titleKaz={navigation.getParam('titleKaz', '')}
-					titleRus={navigation.getParam('titleRus', '')}
+					titleKaz={navigation.getParam("titleKaz", "")}
+					titleRus={navigation.getParam("titleRus", "")}
 					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 				/>
-			)
+			),
 		};
 	};
 
@@ -35,22 +35,25 @@ class ServiceDetailsScreen extends Component {
 	}
 
 	setHeaderTitle = () => {
+		const {lang} = this.props;
 		const item = this.getItem();
-		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
+		this.props.navigation.setParams({titleKaz: item[lang].title, titleRus: item[lang].title});
 	};
 
 	fetchServicesTitles = () => {
+		const {lang} = this.props;
 		const item = this.getItem();
-		this.props.fetchServicesTitlesRequested(item.serviceId, item.id);
+		this.props.fetchServicesTitlesRequested(item[lang].serviceId, item[lang].id);
 	};
 
-	getItem = () => this.props.navigation.getParam('item', {});
+	getItem = () => this.props.navigation.getParam("item", {});
 
-	renderItem = ({ item }) => {
+	renderItem = ({item}) => {
+		const {lang} = this.props;
 		return (
 			<TouchableOpacity onPress={() => this.onPress(item)}>
 				<View style={styles.detailContainer}>
-					<Text style={styles.title}>{item.title}</Text>
+					<Text style={styles.title}>{item[lang].title}</Text>
 					<Image source={images.right} style={styles.image} />
 				</View>
 			</TouchableOpacity>
@@ -61,20 +64,20 @@ class ServiceDetailsScreen extends Component {
 
 	onPress = item => {
 		item.calc
-			? this.props.navigation.navigate('CalcScreen', { item })
-			: this.props.navigation.navigate('AboutService', { item });
+			? this.props.navigation.navigate("CalcScreen", {item})
+			: this.props.navigation.navigate("AboutService", {item});
 	};
 
 	onRefresh = () => this.fetchServicesTitles();
 
 	render() {
-		const { loading, titles } = this.props;
+		const {loading, titles} = this.props;
 		return (
 			<View style={styles.container}>
 				<FlatList
 					data={titles}
 					renderItem={this.renderItem}
-					keyExtractor={(_, index) => index + ''}
+					keyExtractor={(_, index) => index + ""}
 					ItemSeparatorComponent={this.renderSeparator}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
@@ -88,36 +91,36 @@ ServiceDetailsScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white'
+		backgroundColor: "white",
 	},
 	detailContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		margin: 20
+		flexDirection: "row",
+		alignItems: "center",
+		margin: 20,
 	},
 	title: {
 		flex: 1,
-		...textStyles.p
+		...textStyles.p,
 	},
 	image: {
 		width: 20,
-		height: 20
+		height: 20,
 	},
 	separator: {
 		height: 0.5,
 		backgroundColor: colors.grayUltraLight,
 		marginLeft: 10,
-		marginRight: 10
-	}
+		marginRight: 10,
+	},
 });
 
-const mapStateToProps = ({ settings, services }) => ({
+const mapStateToProps = ({settings, services}) => ({
 	lang: settings.lang,
 	loading: services.loading,
-	titles: services.titles
+	titles: services.titles,
 });
 
 export const ServiceDetails = connect(
 	mapStateToProps,
-	{ fetchServicesTitlesRequested }
+	{fetchServicesTitlesRequested},
 )(ServiceDetailsScreen);
