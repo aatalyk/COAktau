@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
 	View,
 	Text,
@@ -20,70 +20,76 @@ import autoMergeLevel1 from 'redux-persist/es/stateReconciler/autoMergeLevel1';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const propTypes = {
-	livingCost: PropTypes.number,
-	povertyMin: PropTypes.number,
-	navigation: PropTypes.object,
-	lang: PropTypes.string
+  livingCost: PropTypes.number,
+  povertyMin: PropTypes.number,
+  navigation: PropTypes.object,
+  lang: PropTypes.string
 };
 
 class Calculator extends Component {
-	state = {
-		amount: 0,
-		numberOfPeople: 0
-	};
+  state = {
+    amount: 0,
+    numberOfPeople: 0
+  };
 
-	onPress = () => {
-		if (this.state.amount === 0 || this.state.numberOfPeople === 0) {
-			this.showAlert();
-			return;
-		}
-		const result = calculate(
-			this.state.amount,
-			this.state.numberOfPeople,
-			this.props.povertyMin,
-			this.props.livingCost
-		);
+  onPress = () => {
+    if (this.state.amount === 0 || this.state.numberOfPeople === 0) {
+      this.showAlert();
+      return;
+    }
+    const result = calculate(
+      this.state.amount,
+      this.state.numberOfPeople,
+      this.props.povertyMin,
+      this.props.livingCost
+    );
 
-		this.props.navigation.navigate('AlertScreen', { result });
-	};
+    this.props.navigation.navigate("AlertScreen", { result });
+  };
 
-	changeAmount = amount => {
-		if (amount === '') {
-			this.setState((prevState, prevProps) => ({
-				...prevState,
-				amount: 0
-			}));
-		} else {
-			this.setState((prevState, prevProps) => ({
-				...prevState,
-				amount
-			}));
-		}
-	};
+  changeAmount = amount => {
+    if (amount === "") {
+      this.setState((prevState, prevProps) => ({
+        ...prevState,
+        amount: 0
+      }));
+    } else {
+      this.setState((prevState, prevProps) => ({
+        ...prevState,
+        amount
+      }));
+    }
+  };
 
-	changeNumberOfPeople = numberOfPeople => {
-		if (numberOfPeople === '') {
-			this.setState((prevState, prevProps) => ({
-				...prevState,
-				numberOfPeople: 0
-			}));
-		} else {
-			this.setState((prevState, prevProps) => ({
-				...prevState,
-				numberOfPeople
-			}));
-		}
-	};
+  changeNumberOfPeople = numberOfPeople => {
+    if (numberOfPeople === "") {
+      this.setState((prevState, prevProps) => ({
+        ...prevState,
+        numberOfPeople: 0
+      }));
+    } else {
+      this.setState((prevState, prevProps) => ({
+        ...prevState,
+        numberOfPeople
+      }));
+    }
+  };
 
-	showAlert = () => {
-		const { lang } = this.props;
-		Alert.alert(
-			settings[this.props.lang].text.warning,
-			'',
-			[{ text: settings[lang].text.cancel, onPress: () => console.log('Cancel Pressed'), style: 'destructive' }],
-			{ cancelable: true }
-		);
-	};
+  showAlert = () => {
+    const { lang } = this.props;
+    Alert.alert(
+      settings[this.props.lang].text.warning,
+      "",
+      [
+        {
+          text: settings[lang].text.cancel,
+          onPress: () => console.log("Cancel Pressed"),
+          style: "destructive"
+        }
+      ],
+      { cancelable: true }
+    );
+  };
 
 	render() {
 		const { lang } = this.props;
