@@ -15,9 +15,9 @@ const propTypes = {
 
 export const MenuItem = ({ onPress, regularImage, selectedImage, title, isSelected, height }) => (
 	<TouchableOpacity onPress={onPress}>
-		<View style={[styles.container, { backgroundColor: isSelected ? colors.grayUltraLight : 'white', height }]}>
+		<View style={[styles.container, { backgroundColor: isSelected ? 'white' : 'white', height }]}>
 			<Image source={isSelected ? selectedImage : regularImage} style={styles.image} />
-			<Text style={[styles.title, { color: isSelected ? colors.purple : 'black' }]}>{title}</Text>
+			<Text style={[styles.title, { color: isSelected ? colors.soBlue : 'black' }]}>{title.toUpperCase()}</Text>
 		</View>
 	</TouchableOpacity>
 );
@@ -30,16 +30,17 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		padding: 5,
-		paddingLeft: 15
+		marginLeft: 10,
+		marginRight: 10
 	},
 	image: {
 		width: 25,
 		height: 25
 	},
 	title: {
-		marginLeft: 30,
+		flex: 1,
+		marginLeft: 20,
 		fontFamily: fonts.MerriweatherRegular,
-		...textStyles.p
+		...textStyles.l
 	}
 });

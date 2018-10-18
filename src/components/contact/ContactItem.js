@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { textStyles } from '../../assets';
+import { textStyles, colors } from '../../assets';
 
 const propTypes = {
 	title: PropTypes.string,
@@ -13,7 +13,6 @@ const propTypes = {
 export const ContactItem = ({ title, imgSource, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<Image source={imgSource} style={styles.image} />
 			<Text style={styles.title}>{title}</Text>
 		</View>
 	</TouchableOpacity>

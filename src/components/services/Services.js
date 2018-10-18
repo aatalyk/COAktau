@@ -96,16 +96,14 @@ class ServicesScreen extends Component {
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				<TouchableOpacity onPress={onButtonPress}>
-					<LinearGradient
-						colors={
-							isInMyServices
-								? ['#8269deff', '#5495e9ff', '#5495e9ff']
-								: ['#e33b6eff', '#d1478bff', '#d1478bff']
-						}
-						style={styles.buttonContainer}
+					<View
+						style={[
+							styles.buttonContainer,
+							{ backgroundColor: isInMyServices ? colors.soBrown : colors.soBlue }
+						]}
 					>
 						<Text style={styles.buttonText}>{buttonTitle}</Text>
-					</LinearGradient>
+					</View>
 				</TouchableOpacity>
 			</View>
 		);

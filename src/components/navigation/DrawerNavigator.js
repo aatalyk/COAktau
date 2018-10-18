@@ -15,7 +15,7 @@ import { NewsPage } from '../news';
 import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
 import { About } from '../about';
-import { ChatRooms, Chat } from '../chat';
+import { MyHelper, Dictionary, PhraseList, Chat } from '../chat';
 import { CalcScreen, AlertScreen } from '../calculator';
 import { SideMenu } from '../side_menu/SideMenu';
 import { images, settings } from '../../assets';
@@ -28,7 +28,7 @@ export const DrawerRoutes = {
 	MyCity: 'MyCity',
 	NotifsNavigator: 'NotifsNavigator',
 	FAQNavigator: 'FAQNavigator',
-	ChatRoomsNavigator: 'ChatRoomsNavigator',
+	MyHelperNavigator: 'MyHelperNavigator',
 	ContactNavigator: 'ContactNavigator',
 	AboutNavigator: 'AboutNavigator',
 	SettingsNavigator: 'SettingsNavigator'
@@ -73,8 +73,14 @@ const stack = {
 		screen: FAQ,
 		navigationOptions: navigationOptions(settings.kaz.navigation.faq, settings.rus.navigation.faq)
 	},
-	ChatRooms: {
-		screen: ChatRooms
+	MyHelper: {
+		screen: MyHelper
+	},
+	Dictionary: {
+		screen: Dictionary
+	},
+	PhraseList: {
+		screen: PhraseList
 	},
 	Chat: {
 		screen: Chat
@@ -276,15 +282,15 @@ export const DrawerNavigator = createDrawerNavigator(
 				initialRouteName: 'FAQ'
 			}
 		),
-		[DrawerRoutes.ChatRoomsNavigator]: createStackNavigator(
+		[DrawerRoutes.MyHelperNavigator]: createStackNavigator(
 			{
 				...stack,
-				ChatRooms: {
-					screen: ChatRooms
+				MyHelper: {
+					screen: MyHelper
 				}
 			},
 			{
-				initialRouteName: 'ChatRooms'
+				initialRouteName: 'MyHelper'
 			}
 		)
 	},

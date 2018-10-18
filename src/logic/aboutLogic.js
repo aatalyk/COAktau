@@ -7,7 +7,6 @@ const fetchAboutLogic = createLogic({
 	type: FETCH_ABOUT_US_REQUESTED,
 	process: ({ getState }, dispatch, done) => {
 		const { lang } = getState().settings;
-		console.log('fetchAboutLogic');
 		fetch(`${url}/about`)
 			.then(response => response.json())
 			.then(json => {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { colors, textStyles, settings } from '../../assets';
-import { SearchBar } from '../common';
+import { SearchBar, PlaceHolderList } from '../common';
 import { FAQitem } from './FAQitem';
 import { fetchFAQRequested } from '../../actions';
 import { faqPropType } from '../../propTypes';
@@ -82,19 +82,22 @@ class FAQScreen extends Component {
 		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={[styles.container, style]}>
 				<FlatList
 					data={faqItems}
 					renderItem={this.renderItem}
 					keyExtractor={this.keyExtractor}
 					ListHeaderComponent={this.renderSearchBar}
-					ItemSeparatorComponent={this.renderSeparator}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 				{isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
-						<Text style={styles.showMoreText}>{settings[lang].buttons.showMore}</Text>
+						<Text style={styles.showMoreText}>{`${settings[lang].buttons.showMore} >>`}</Text>
 					</TouchableOpacity>
 				)}
 			</View>
@@ -106,14 +109,17 @@ FAQScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white',
+		backgroundColor: colors.soLightBlue,
 		flex: 1
+	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
 	},
 	title: {
 		...textStyles.p,
-		marginLeft: 15,
-		marginTop: 20,
-		color: colors.grayLight
+		margin: 15,
+		color: colors.grayDark
 	},
 	showMoreButton: {
 		flexDirection: 'row',
@@ -124,7 +130,7 @@ const styles = StyleSheet.create({
 	showMoreText: {
 		marginRight: 15,
 		...textStyles.p,
-		color: colors.purple
+		color: colors.grayDark
 	},
 	separator: {
 		backgroundColor: colors.grayUltraLight,

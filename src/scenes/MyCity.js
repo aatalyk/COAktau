@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchMyCityRequested } from '../actions';
 import { MyCityItem } from './MyCityItem';
 import { colors } from '../assets';
+import { PlaceHolderList } from '../components/common';
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -64,7 +65,11 @@ class MyCityScreen extends Component {
 
 	render() {
 		const { loading, news } = this.props;
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={styles.container}>
 				<FlatList
 					data={news}
@@ -82,6 +87,10 @@ MyCityScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	placeHolderContainer: {
 		flex: 1,
 		backgroundColor: 'white'
 	},

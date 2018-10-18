@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { textStyles, images } from '../../assets';
+import { textStyles, images, colors } from '../../assets';
 import { Header } from '../navigation';
 import { IconButton } from '../common';
 import { ScaledImage } from '../common';
@@ -44,6 +44,7 @@ class NewsPage extends Component {
 			<ScrollView style={styles.container}>
 				<ScaledImage source={{ uri: item.icon }} />
 				<Text style={styles.title}>{item.title}</Text>
+				<View style={styles.line} />
 				<Text style={styles.description}>{item.text}</Text>
 			</ScrollView>
 		);
@@ -62,9 +63,16 @@ const styles = StyleSheet.create({
 		height: 200
 	},
 	title: {
-		...textStyles.h1,
+		...textStyles.h2,
 		marginHorizontal: 15,
-		marginTop: 10
+		margin: 20
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: 20,
+		borderRadius: 2
 	},
 	description: {
 		...textStyles.p,

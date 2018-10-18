@@ -7,6 +7,7 @@ import { fetchNewsRequested } from '../../actions';
 import { NewsItem } from './NewsItem';
 import { colors } from '../../assets';
 import { newsPropType } from '../../propTypes';
+import { PlaceHolderList } from '../common';
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -28,7 +29,12 @@ class NewsScreen extends Component {
 	onRefresh = () => this.props.fetchNewsRequested();
 
 	render() {
-		return (
+		const { loading } = this.props;
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={styles.container}>
 				<FlatList
 					data={this.props.newsItems}
@@ -46,6 +52,10 @@ NewsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	placeHolderContainer: {
 		flex: 1,
 		backgroundColor: 'white'
 	},

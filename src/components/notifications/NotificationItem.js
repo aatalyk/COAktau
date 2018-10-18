@@ -12,14 +12,16 @@ const propTypes = {
 export const NotificationItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<Image
-				defaultSource={images.imgPlaceholder}
-				source={{ uri: item.icon }}
-				style={styles.image}
-				resizeMode="contain"
-			/>
-			<Text style={styles.title}>{item.title}</Text>
-			<Image source={images.right} style={styles.icon} />
+			<View style={styles.titleContainer}>
+				<Image
+					defaultSource={images.imgPlaceholder}
+					source={{ uri: item.icon }}
+					style={styles.image}
+					resizeMode="cover"
+				/>
+				<Text style={styles.title}>{item.title}</Text>
+				<Image source={images.right} style={styles.icon} />
+			</View>
 		</View>
 	</TouchableOpacity>
 );
@@ -30,7 +32,15 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		margin: 15
+		backgroundColor: 'white',
+		minHeight: 100,
+		marginTop: 10,
+		borderRadius: 10
+	},
+	titleContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		margin: 20
 	},
 	image: {
 		width: 50,

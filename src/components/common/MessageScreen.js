@@ -29,14 +29,13 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	image: {
-		width: 80,
-		height: 80
+		width: 40,
+		height: 40
 	},
 	title: {
 		...textStyles.p,
-		fontSize: 18,
 		margin: 30,
 		textAlign: 'center',
-		color: colors.grayLight
+		color: colors.soBrown
 	}
 });

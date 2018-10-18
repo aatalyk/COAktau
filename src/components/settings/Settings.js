@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, NativeModules } from 'react-native';
+import { View, Text, Image, StyleSheet, NativeModules } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { LanguageItem } from './LanguageItem';
 import { NotifsSwitch } from './NotifsSwitch';
 import { setLang, enableNotification, disableNotification } from '../../actions';
-import { colors } from '../../assets';
+import { settings, images, textStyles, colors } from '../../assets';
 
 const propTypes = {
 	lang: PropTypes.string,
@@ -38,9 +38,16 @@ class SettingsScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={styles.title}>ҚОСЫМША ТІЛІ / ЯЗЫК ПРИЛОЖЕНИЯ</Text>
+				<View style={styles.lang}>
+					<Image style={styles.image} source={images.lang} />
+					<Text style={styles.title}>{settings[this.props.lang].text.lang}</Text>
+				</View>
 				<LanguageItem title="Қазақша" onPress={this.onPress} isSelected={this.props.lang === 'kaz'} />
 				<LanguageItem title="Русский" onPress={this.onPress} isSelected={this.props.lang === 'rus'} />
+				<View style={styles.lang}>
+					<Image style={styles.image} source={images.notifs} />
+					<Text style={styles.title}>{settings[this.props.lang].navigation.notifs}</Text>
+				</View>
 				<NotifsSwitch isEnabled={this.props.notifsEnabled} onValueChange={this.onValueChange} />
 			</View>
 		);
@@ -51,13 +58,25 @@ SettingsScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 20,
+		padding: 10,
 		flex: 1,
-		backgroundColor: colors.grayUltraLight
+		backgroundColor: 'white'
+	},
+	lang: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginLeft: 10,
+		marginRight: 10
+	},
+	image: {
+		height: 30,
+		width: 30
 	},
 	title: {
-		fontSize: 14,
-		color: colors.grayLight,
+		flex: 1,
+		...textStyles.h1,
+		color: colors.grayDark,
 		margin: 10
 	}
 });

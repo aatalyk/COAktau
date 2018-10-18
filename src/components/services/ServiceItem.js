@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { textStyles, images } from '../../assets';
+import { textStyles, images, colors } from '../../assets';
 
 const propTypes = {
 	item: PropTypes.shape({
@@ -18,15 +18,17 @@ const ServiceItemScreen = ({ item, onPress }) => {
 	return (
 		<TouchableOpacity onPress={onPress}>
 			<View style={styles.container}>
-				{!!item.icon && (
-					<Image
-						defaultSource={images.placeholder}
-						source={{ uri: item.icon } || images.search}
-						style={styles.image}
-					/>
-				)}
-				{!!item.title && <Text style={styles.title}>{item.title}</Text>}
-				<Image source={images.right} style={styles.icon} />
+				<View style={styles.titleContainer}>
+					{!!item.icon && (
+						<Image
+							defaultSource={images.placeholder}
+							source={{ uri: item.icon } || images.search}
+							style={styles.image}
+						/>
+					)}
+					{!!item.title && <Text style={styles.title}>{item.title}</Text>}
+					<Image source={images.right} style={styles.icon} />
+				</View>
 			</View>
 		</TouchableOpacity>
 	);
@@ -38,7 +40,15 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		margin: 15
+		marginTop: 10,
+		backgroundColor: 'white',
+		minHeight: 100,
+		borderRadius: 10
+	},
+	titleContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		margin: 20
 	},
 	image: {
 		width: 30,

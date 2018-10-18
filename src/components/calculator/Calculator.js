@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Alert,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Dimensions,
-  Platform
-} from "react-native";
-import PropTypes from "prop-types";
+	View,
+	Text,
+	TextInput,
+	Button,
+	StyleSheet,
+	Alert,
+	Keyboard,
+	TouchableWithoutFeedback,
+	Dimensions,
+	Platform
+} from 'react-native';
+import PropTypes from 'prop-types';
 
-import { colors, textStyles, settings } from "../../assets";
-import { calculate } from "./actions";
+import { colors, textStyles, settings } from '../../assets';
+import { calculate } from './actions';
+import autoMergeLevel1 from 'redux-persist/es/stateReconciler/autoMergeLevel1';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const propTypes = {
   livingCost: PropTypes.number,
@@ -89,86 +91,99 @@ class Calculator extends Component {
     );
   };
 
-  render() {
-    const { lang } = this.props;
-    return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container}>
-          <Text style={styles.title}>{settings[lang].calc.title}</Text>
-          <Text style={styles.text}>{settings[lang].calc.text1}</Text>
-          <TextInput
-            style={styles.textInput}
-            keyboardType="number-pad"
-            onChangeText={value => this.changeAmount(value)}
-            placeholder={settings[lang].text.input}
-          />
-
-          <Text style={styles.text}>
-            {settings[this.props.lang].calc.text2}
-          </Text>
-
-          <TextInput
-            style={styles.textInput}
-            keyboardType="number-pad"
-            onChangeText={value => this.changeNumberOfPeople(value)}
-            placeholder={settings[lang].text.input}
-          />
-
-          <View style={styles.button}>
-            <Button
-              title={settings[lang].buttons.calculate}
-              color="white"
-              onPress={this.onPress}
-            />
-          </View>
-          <Text style={styles.warning}>{this.state.warning}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  }
+	render() {
+		const { lang } = this.props;
+		return (
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+				<View style={styles.container}>
+					<Text style={styles.title}>{settings[lang].calc.title}</Text>
+					<View style={styles.line} />
+					<Text style={styles.text}>{settings[lang].calc.text1}</Text>
+					<TextInput
+						style={styles.textInput}
+						keyboardType="number-pad"
+						onChangeText={value => this.changeAmount(value)}
+						placeholder="*******"
+					/>
+					<View style={styles.inputLine} />
+					<Text style={styles.text}>{settings[this.props.lang].calc.text2}</Text>
+					<TextInput
+						style={styles.textInput}
+						keyboardType="number-pad"
+						onChangeText={value => this.changeNumberOfPeople(value)}
+						placeholder="*******"
+					/>
+					<View style={styles.inputLine} />
+					<View
+						style={[
+							styles.button,
+							{ backgroundColor: Platform.OS === 'ios' ? colors.soBlue : 'transparent' }
+						]}
+					>
+						<Button
+							title={settings[lang].buttons.calculate}
+							color={Platform.OS === 'ios' ? 'white' : colors.soBlue}
+							onPress={this.onPress}
+						/>
+					</View>
+				</View>
+			</TouchableWithoutFeedback>
+		);
+	}
 }
 
 Calculator.propTypes = propTypes;
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  title: {
-    ...textStyles.h1,
-    textAlign: "center",
-    fontSize: 20,
-    color: colors.purple,
-    margin: 10
-  },
-  text: {
-    ...textStyles.h1,
-    textAlign: "center",
-    margin: 10
-  },
-  warning: {
-    ...textStyles.p,
-    fontSize: 12,
-    color: "red",
-    marginLeft: 20,
-    marginRight: 20
-  },
-  textInput: {
-    backgroundColor: colors.grayUltraLight,
-    height: 44,
-    width: Dimensions.get("window").width * 0.7,
-    margin: 10,
-    padding: 10,
-    ...textStyles.p
-  },
-  button: {
-    height: 44,
-    width: Dimensions.get("window").width * 0.7,
-    backgroundColor: colors.purple,
-    margin: 10
-  }
+	container: {
+		margin: 20
+	},
+	title: {
+		...textStyles.h2,
+		textAlign: 'left',
+		color: colors.black,
+		margin: 10
+	},
+	text: {
+		...textStyles.h1,
+		textAlign: 'left',
+		margin: 10
+	},
+	warning: {
+		...textStyles.p,
+		fontSize: 12,
+		color: 'red',
+		marginLeft: 10,
+		marginRight: 20
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: 10,
+		borderRadius: 2
+	},
+	inputLine: {
+		backgroundColor: colors.soLightBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.5,
+		marginLeft: 10,
+		marginBottom: 10,
+		borderRadius: 2
+	},
+	textInput: {
+		height: 44,
+		width: SCREEN_WIDTH * 0.7,
+		margin: 10,
+		marginBottom: 0,
+		padding: 10,
+		...textStyles.p
+	},
+	button: {
+		height: 44,
+		margin: 10,
+		backgroundColor: colors.soBlue
+	}
 });
 
 export { Calculator };

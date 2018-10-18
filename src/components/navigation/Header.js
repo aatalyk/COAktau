@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { IconButton } from '../common';
-import { textStyles } from '../../assets';
+import { textStyles, colors } from '../../assets';
 
 const propTypes = {
 	leftItem: PropTypes.node,
@@ -18,7 +18,7 @@ const propTypes = {
 
 const HeaderComponent = ({ leftItem, rightItem, titleKaz, titleRus, lang }) => (
 	<View>
-		<LinearGradient colors={['#e33b6eff', '#d1478bff', '#d1478bff']} style={styles.linearGradient} />
+		<View style={styles.linearGradient} />
 		<View style={styles.orangeView} />
 		<View style={styles.container}>
 			<View style={styles.leftItem}>{leftItem}</View>
@@ -38,15 +38,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		flexDirection: 'row',
 		height: 56,
-		alignItems: 'center',
-		shadowOffset: {
-			width: 0,
-			height: 3
-		},
-		shadowOpacity: 0.3,
-		shadowRadius: 2,
-		elevation: 3,
-		shadowColor: 'black'
+		alignItems: 'center'
 	},
 	leftItem: {
 		marginLeft: 5,
@@ -59,7 +51,8 @@ const styles = StyleSheet.create({
 		marginRight: 5
 	},
 	linearGradient: {
-		height: getStatusBarHeight()
+		height: getStatusBarHeight(),
+		backgroundColor: colors.soBlue
 	}
 });
 

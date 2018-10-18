@@ -46,11 +46,16 @@ class FAQitem extends Component {
 				<Text style={[styles.detail, { color: 'black', textAlign: 'center' }]}>
 					{settings[this.props.lang].text.noAnswer}
 				</Text>
-				<View style={styles.replyButton}>
+				<View
+					style={[
+						styles.replyButton,
+						{ backgroundColor: Platform.OS === 'ios' ? colors.soBlue : 'transparent' }
+					]}
+				>
 					<Button
-						title={settings[this.props.lang].buttons.composeEmail}
+						title={settings[this.props.lang].buttons.composeEmail.toUpperCase()}
+						color={Platform.OS === 'ios' ? 'white' : colors.soBlue}
 						onPress={this.onWriteButtonPress}
-						color={colors.purple}
 					/>
 				</View>
 			</View>
@@ -86,7 +91,8 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
-		padding: 15
+		padding: 15,
+		backgroundColor: 'white'
 	},
 	titleContainer: {
 		flexDirection: 'row',
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
 		...textStyles.p,
 		flex: 1,
 		paddingTop: 10,
-		color: 'grey',
+		color: colors.grayDark,
 		paddingBottom: 10
 	},
 	button: {
@@ -112,8 +118,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0.5
 	},
 	replyButton: {
-		borderColor: colors.purple,
-		borderWidth: Platform.OS === 'ios' ? 1 : 0
+		...textStyles.p
 	},
 	image: {
 		width: 20,

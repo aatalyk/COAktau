@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ServiceItem } from './ServiceItem';
-import { MessageScreen } from '../common';
+import { MessageScreen, PlaceHolderList } from '../common';
 import { fetchServicesRequested } from '../../actions';
 import { colors, textStyles, settings, images } from '../../assets';
 
@@ -49,7 +49,11 @@ class ServicesListScreen extends Component {
 		const { isPartiallyShown, loading, services, lang, showsMyServices, myServices } = this.props;
 		const serviceItems = isPartiallyShown || showsMyServices ? myServices : services;
 
-		return (
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolderList />
+			</View>
+		) : (
 			<View style={[styles.container, this.props.style, { flex: !isPartiallyShown ? 1 : undefined }]}>
 				<View style={{ flex: 1 }}>
 					{serviceItems.length === 0 ? (
@@ -60,17 +64,17 @@ class ServicesListScreen extends Component {
 						/>
 					) : (
 						<FlatList
+							style={styles.flatlist}
 							data={serviceItems}
 							renderItem={this.renderItem}
 							keyExtractor={this.keyExtractor}
-							ItemSeparatorComponent={this.renderSeparator}
 							refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 						/>
 					)}
 				</View>
 				{isPartiallyShown && (
 					<TouchableOpacity style={styles.showMoreButton} onPress={this.onShowMorePress}>
-						<Text style={styles.showMoreText}>{settings[lang].navigation.services}</Text>
+						<Text style={styles.showMoreText}>{`${settings[lang].navigation.services} >>`}</Text>
 					</TouchableOpacity>
 				)}
 			</View>
@@ -82,7 +86,16 @@ ServicesListScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: colors.soLightBlue
+	},
+	placeHolderContainer: {
+		flex: 1,
 		backgroundColor: 'white'
+	},
+	flatlist: {
+		marginLeft: 10,
+		marginRight: 10,
+		marginBottom: 10
 	},
 	separator: {
 		height: 0.5,
@@ -99,7 +112,7 @@ const styles = StyleSheet.create({
 	showMoreText: {
 		...textStyles.p,
 		marginRight: 15,
-		color: colors.purple
+		color: colors.grayDark
 	},
 	title: {
 		...textStyles.p,

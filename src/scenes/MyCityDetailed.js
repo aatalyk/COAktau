@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Video from 'react-native-video';
 
-import { textStyles } from '../assets';
+import { textStyles, colors } from '../assets';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 
 const propTypes = {
@@ -82,6 +82,7 @@ class MyCityDetailed extends Component {
 			<ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={this.state.loading} />}>
 				{item.imageUrls ? this.renderImage(item) : this.renderVideo(item)}
 				<Text style={styles.title}>{item.title}</Text>
+				<View style={styles.line} />
 				<Text style={styles.body}>{item.body}</Text>
 			</ScrollView>
 		);
@@ -96,15 +97,21 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	title: {
-		...textStyles.h1,
+		...textStyles.h2,
 		marginHorizontal: 15,
-		marginTop: 10
+		margin: 20
+	},
+	line: {
+		backgroundColor: colors.soBlue,
+		height: 3,
+		width: SCREEN_WIDTH * 0.2,
+		marginLeft: 20,
+		borderRadius: 2
 	},
 	body: {
 		...textStyles.p,
 		marginHorizontal: 15,
-		marginTop: 10,
-		marginBottom: 20,
+		margin: 20,
 		lineHeight: 30
 	}
 });

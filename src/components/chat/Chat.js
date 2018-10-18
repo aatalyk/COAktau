@@ -39,13 +39,13 @@ class ChatScreen extends Component {
 
 	componentDidMount() {
 		const { lang, chat, navigation } = this.props;
-		const room = navigation.getParam('room', {});
-		this.props.navigation.setParams({ titleKaz: room.title, titleRus: room.title });
-		const messages = chat.filter(item => item.id === room.id && item.lang === lang);
+		const dictionary = navigation.getParam('dictionary', {});
+		this.props.navigation.setParams({ titleKaz: dictionary.title, titleRus: dictionary.title });
+		const messages = chat.filter(item => item.id === dictionary.id && item.lang === lang);
 		navigation.setParams({ showOptions: this.showOptions });
 		this.setState({
-			id: room.id,
-			messages: messages.length === 0 ? room.messages : messages[0].messages
+			id: dictionary.id,
+			messages: messages.length === 0 ? [dictionary] : messages[0].messages
 		});
 	}
 
