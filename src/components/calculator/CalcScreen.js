@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Keyboard,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  View
 } from "react-native";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
