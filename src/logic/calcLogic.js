@@ -19,7 +19,7 @@ const fetchCalcParamsLogic = createLogic({
 				const results = json.results ? json.results : [];
 				const params = {};
 				results.forEach(result => {
-					params[result.name] = result.value;
+					params[result.name] = parseFloat(result.value);
 				});
 				dispatch(fetchCalcParamsSucceeded(params));
 			})
