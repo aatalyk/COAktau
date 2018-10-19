@@ -1,31 +1,35 @@
-import React, { Component } from 'react';
-import { ScrollView, RefreshControl, StyleSheet } from 'react-native';
-import HTMLView from 'react-native-htmlview';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, {Component} from "react";
+import {ScrollView, RefreshControl, StyleSheet} from "react-native";
+import HTMLView from "react-native-htmlview";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-import { Header } from '../navigation';
-import { IconButton } from '../common';
-import { fetchServicesPostRequested } from '../../actions';
-import { images, textStyles } from '../../assets';
+import {Header} from "../navigation";
+import {IconButton} from "../common";
+import {fetchServicesPostRequested} from "../../actions";
+import {images, textStyles} from "../../assets";
 
 const propTypes = {
 	navigation: PropTypes.object,
 	loading: PropTypes.bool,
 	fetchServicesPostRequested: PropTypes.func,
-	post: PropTypes.string
+	post: PropTypes.shape({
+		kaz: PropTypes.string,
+		rus: PropTypes.string,
+	}),
+	lang: PropTypes.oneOf(["kaz", "rus"]),
 };
 
 class AboutServiceScreen extends Component {
-	static navigationOptions = ({ navigation }) => {
+	static navigationOptions = ({navigation}) => {
 		return {
 			header: () => (
 				<Header
-					titleKaz={navigation.getParam('titleKaz', '')}
-					titleRus={navigation.getParam('titleRus', '')}
+					titleKaz={navigation.getParam("titleKaz", "")}
+					titleRus={navigation.getParam("titleRus", "")}
 					leftItem={<IconButton imgSource={images.back} onPress={() => navigation.goBack()} />}
 				/>
-			)
+			),
 		};
 	};
 
@@ -35,27 +39,29 @@ class AboutServiceScreen extends Component {
 	}
 
 	setHeaderTitle = () => {
+		const {lang} = this.props;
 		const item = this.getItem();
-		this.props.navigation.setParams({ titleKaz: item.title, titleRus: item.title });
+		this.props.navigation.setParams({titleKaz: item[lang].title, titleRus: item[lang].title});
 	};
 
 	fetchServicesPost = () => {
+		const {lang} = this.props;
 		const item = this.getItem();
-		this.props.fetchServicesPostRequested(item.serviceId, item.subServiceId, item.id);
+		this.props.fetchServicesPostRequested(item[lang].serviceId, item[lang].subServiceId, item[lang].id);
 	};
 
-	getItem = () => this.props.navigation.getParam('item', {});
+	getItem = () => this.props.navigation.getParam("item", {});
 
 	onRefresh = () => this.fetchServicesPost();
 
 	render() {
-		const { post, loading } = this.props;
+		const {post, loading, lang} = this.props;
 		return (
 			<ScrollView
 				style={styles.container}
 				refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 			>
-				<HTMLView value={post} style={styles.htmlView} stylesheet={styles} />
+				<HTMLView value={post[lang]} style={styles.htmlView} stylesheet={styles} />
 			</ScrollView>
 		);
 	}
@@ -66,29 +72,30 @@ AboutServiceScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white'
+		backgroundColor: "white",
 	},
 	htmlView: {
-		margin: 10
+		margin: 10,
 	},
 	p: {
-		...textStyles.p
+		...textStyles.p,
 	},
 	a: {
-		fontWeight: '300',
-		color: '#FF3366' // make links coloured pink
+		fontWeight: "300",
+		color: "#FF3366", // make links coloured pink
 	},
 	b: {
-		fontWeight: 'bold'
-	}
+		fontWeight: "bold",
+	},
 });
 
-const mapStateToProps = ({ services }) => ({
+const mapStateToProps = ({services, settings}) => ({
 	loading: services.loading,
-	post: services.post
+	post: services.post,
+	lang: settings.lang,
 });
 
 export const AboutService = connect(
 	mapStateToProps,
-	{ fetchServicesPostRequested }
+	{fetchServicesPostRequested},
 )(AboutServiceScreen);
