@@ -1,4 +1,4 @@
-import {createLogic} from "redux-logic";
+import { createLogic } from 'redux-logic';
 
 import {
 	FETCH_SERVICES_REQUESTED,
@@ -12,10 +12,10 @@ import {
 	fetchServicesTitlesFailed,
 	fetchServicesPostSucceded,
 	FETCH_SERVICES_POST_REQUESTED,
-	fetchServicesPostFailed,
-} from "../actions";
+	fetchServicesPostFailed
+} from '../actions';
 
-const url = "http://soaktau.kz/api/v1.00/services";
+const url = 'https://soaktau.kz/api/v1.00/services';
 
 const fetchServicesLogic = createLogic({
 	type: FETCH_SERVICES_REQUESTED,
@@ -24,7 +24,7 @@ const fetchServicesLogic = createLogic({
 			.then(response => response.json())
 			.then(json => {
 				const services = json.kaz.map((item, index) => {
-					return {kaz: {...item}, rus: {...json.rus[index]}};
+					return { kaz: { ...item }, rus: { ...json.rus[index] } };
 				});
 				dispatch(fetchServicesSucceded(services));
 			})
@@ -32,18 +32,18 @@ const fetchServicesLogic = createLogic({
 				dispatch(fetchServicesFailed(`${error}`));
 			})
 			.then(() => done());
-	},
+	}
 });
 
 const fetchSubServicesLogic = createLogic({
 	type: FETCH_SUBSERVICES_REQUESTED,
-	process: ({action}, dispatch, done) => {
+	process: ({ action }, dispatch, done) => {
 		fetch(`${url}/${action.id}`)
 			.then(response => response.json())
 			.then(json => {
 				const subServices = json.kaz.map((item, index) => ({
-					kaz: {...item},
-					rus: {...json.rus[index]},
+					kaz: { ...item },
+					rus: { ...json.rus[index] }
 				}));
 				dispatch(fetchSubServicesSucceded(subServices));
 			})
@@ -51,18 +51,18 @@ const fetchSubServicesLogic = createLogic({
 				dispatch(fetchSubServicesFailed(error));
 			})
 			.then(() => done());
-	},
+	}
 });
 
 const fetchServicesTitlesLogic = createLogic({
 	type: FETCH_SERVICES_TITLES_REQUESTED,
-	process: ({action}, dispatch, done) => {
+	process: ({ action }, dispatch, done) => {
 		fetch(`${url}/${action.serviceId}/${action.id}`)
 			.then(response => response.json())
 			.then(json => {
 				const titles = json.kaz.map((item, index) => ({
 					kaz: item,
-					rus: json.rus[index],
+					rus: json.rus[index]
 				}));
 				dispatch(fetchServicesTitlesSucceded(titles));
 			})
@@ -70,32 +70,32 @@ const fetchServicesTitlesLogic = createLogic({
 				dispatch(fetchServicesTitlesFailed(error));
 			})
 			.then(() => done());
-	},
+	}
 });
 
 const fetchServicesPostLogic = createLogic({
 	type: FETCH_SERVICES_POST_REQUESTED,
-	process: ({action}, dispatch, done) => {
+	process: ({ action }, dispatch, done) => {
 		fetch(`${url}/${action.serviceId}/${action.subServiceId}/${action.id}`)
 			.then(response => response.json())
 			.then(json => {
-				let postKaz = "";
+				let postKaz = '';
 				json.kaz.forEach(object => (postKaz = postKaz + object.text));
-				let postRus = "";
+				let postRus = '';
 				json.rus.forEach(object => (postRus = postRus + object.text));
-				const post = {kaz: postKaz, rus: postRus};
+				const post = { kaz: postKaz, rus: postRus };
 				dispatch(fetchServicesPostSucceded(post));
 			})
 			.catch(error => {
 				dispatch(fetchServicesPostFailed(error));
 			})
 			.then(() => done());
-	},
+	}
 });
 
 export const servicesLogic = [
 	fetchServicesLogic,
 	fetchSubServicesLogic,
 	fetchServicesTitlesLogic,
-	fetchServicesPostLogic,
+	fetchServicesPostLogic
 ];

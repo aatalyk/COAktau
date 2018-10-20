@@ -5,6 +5,7 @@
 	};
 	objectVersion = 48;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		A17D4D012018947B00C01431 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4D002018947B00C01431 /* AppDelegate.swift */; };
 		A17D4D032018947B00C01431 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4D022018947B00C01431 /* ViewController.swift */; };
@@ -13,15 +14,6 @@
 		A17D4D0B2018947B00C01431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A17D4D092018947B00C01431 /* LaunchScreen.storyboard */; };
 		A1FAC874201A428B0087FECF /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D794FE201895F400F44F01 /* PushNotifications.framework */; };
 		A1FAC875201A428B0087FECF /* PushNotifications.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1D794FE201895F400F44F01 /* PushNotifications.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		28478DE7F1554F5381E75AD9 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D72860CB5A644392A96DA88B /* libRNFIRMessaging.a */; };
-		0697CBFC8D224918BA7A8200 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AA6CD8537F484FBC60BEF5 /* libBVLinearGradient.a */; };
-		560F829E95204424BE6F67D0 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 969BA1348DC64571ACA83A52 /* libAirMaps.a */; };
-		C5502A2EA354460E9CD672C3 /* libRCTYouTube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9BC1FF778A46C9A8BFECC5 /* libRCTYouTube.a */; };
-		D45CCB67C1E94E9DB27A0EAA /* LibreFranklin-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECE697A9AA264ED5830572F4 /* LibreFranklin-Black.ttf */; };
-		028F6ADEDE604702AC6453AC /* LibreFranklin-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE8D3C08E64435BBFB70524 /* LibreFranklin-Bold.ttf */; };
-		426A243B6AFB4FE4B44C46A9 /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 514BA5F7F59F41999FB2E7DC /* Merriweather-Black.ttf */; };
-		0FADD6B4B5F84D408C67DC2F /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9DA93851F6D48778082EDC1 /* Merriweather-Regular.ttf */; };
-		E862E7E7B475473C81AEF377 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 95720AA7FFDC445CA9EFDED1 /* YTPlayerView-iframe-player.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,19 +40,6 @@
 		A17D4D0C2018947B00C01431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17D4D122018948C00C01431 /* push-notifications-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "push-notifications-ios.entitlements"; sourceTree = "<group>"; };
 		A1D794FE201895F400F44F01 /* PushNotifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PushNotifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D409F37CE334672A91EC090 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; name = "RNFIRMessaging.xcodeproj"; path = "../../../../../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		D72860CB5A644392A96DA88B /* libRNFIRMessaging.a */ = {isa = PBXFileReference; name = "libRNFIRMessaging.a"; path = "libRNFIRMessaging.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		48FAE0B58E8C470A91D76027 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../../../../../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F8AA6CD8537F484FBC60BEF5 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		7A0732CAD80247798F4F4F63 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../../../../../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		969BA1348DC64571ACA83A52 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		8DB37BDFBB2E4E6D9E6B371B /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; name = "RCTYouTube.xcodeproj"; path = "../../../../../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		5B9BC1FF778A46C9A8BFECC5 /* libRCTYouTube.a */ = {isa = PBXFileReference; name = "libRCTYouTube.a"; path = "libRCTYouTube.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		ECE697A9AA264ED5830572F4 /* LibreFranklin-Black.ttf */ = {isa = PBXFileReference; name = "LibreFranklin-Black.ttf"; path = "../../../../../src/assets/fonts/LibreFranklin-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8EE8D3C08E64435BBFB70524 /* LibreFranklin-Bold.ttf */ = {isa = PBXFileReference; name = "LibreFranklin-Bold.ttf"; path = "../../../../../src/assets/fonts/LibreFranklin-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		514BA5F7F59F41999FB2E7DC /* Merriweather-Black.ttf */ = {isa = PBXFileReference; name = "Merriweather-Black.ttf"; path = "../../../../../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D9DA93851F6D48778082EDC1 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; name = "Merriweather-Regular.ttf"; path = "../../../../../src/assets/fonts/Merriweather-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		95720AA7FFDC445CA9EFDED1 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; name = "YTPlayerView-iframe-player.html"; path = "../../../../../node_modules/react-native-youtube/assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +48,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1FAC874201A428B0087FECF /* PushNotifications.framework in Frameworks */,
-				28478DE7F1554F5381E75AD9 /* libRNFIRMessaging.a in Frameworks */,
-				0697CBFC8D224918BA7A8200 /* libBVLinearGradient.a in Frameworks */,
-				560F829E95204424BE6F67D0 /* libAirMaps.a in Frameworks */,
-				C5502A2EA354460E9CD672C3 /* libRCTYouTube.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +60,6 @@
 				A17D4CFF2018947B00C01431 /* push-notifications-ios */,
 				A17D4CFE2018947B00C01431 /* Products */,
 				A1D794FC201895F400F44F01 /* Frameworks */,
-				5BC5F8E43FD14D0C954BB0BC /* Libraries */,
-				ADF106144D26425A831DB53A /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,31 +93,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5BC5F8E43FD14D0C954BB0BC /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				5D409F37CE334672A91EC090 /* RNFIRMessaging.xcodeproj */,
-				48FAE0B58E8C470A91D76027 /* BVLinearGradient.xcodeproj */,
-				7A0732CAD80247798F4F4F63 /* AirMaps.xcodeproj */,
-				8DB37BDFBB2E4E6D9E6B371B /* RCTYouTube.xcodeproj */,
-			);
-			name = Libraries;
-			path = "";
-			sourceTree = "<group>";
-		};
-		ADF106144D26425A831DB53A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				ECE697A9AA264ED5830572F4 /* LibreFranklin-Black.ttf */,
-				8EE8D3C08E64435BBFB70524 /* LibreFranklin-Bold.ttf */,
-				514BA5F7F59F41999FB2E7DC /* Merriweather-Black.ttf */,
-				D9DA93851F6D48778082EDC1 /* Merriweather-Regular.ttf */,
-				95720AA7FFDC445CA9EFDED1 /* YTPlayerView-iframe-player.html */,
-			);
-			name = Resources;
-			path = "";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,8 +120,8 @@
 		A17D4CF52018947B00C01431 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 920;
-				LastUpgradeCheck = 930;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Luka Bratos";
 				TargetAttributes = {
 					A17D4CFC2018947B00C01431 = {
@@ -216,11 +164,6 @@
 				A17D4D0B2018947B00C01431 /* LaunchScreen.storyboard in Resources */,
 				A17D4D082018947B00C01431 /* Assets.xcassets in Resources */,
 				A17D4D062018947B00C01431 /* Main.storyboard in Resources */,
-				D45CCB67C1E94E9DB27A0EAA /* LibreFranklin-Black.ttf in Resources */,
-				028F6ADEDE604702AC6453AC /* LibreFranklin-Bold.ttf in Resources */,
-				426A243B6AFB4FE4B44C46A9 /* Merriweather-Black.ttf in Resources */,
-				0FADD6B4B5F84D408C67DC2F /* Merriweather-Regular.ttf in Resources */,
-				E862E7E7B475473C81AEF377 /* YTPlayerView-iframe-player.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,13 +326,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -407,13 +343,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};

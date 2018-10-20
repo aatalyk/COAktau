@@ -1,1 +1,1 @@
-export const url = 'http://soaktau.kz/api/v1.00';
+export const url = 'https://soaktau.kz/api/v1.00';

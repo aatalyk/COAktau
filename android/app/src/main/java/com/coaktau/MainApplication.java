@@ -8,6 +8,7 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.facebook.react.ReactApplication;
 import com.nikolaiwarner.RNTextInputReset.RNTextInputResetPackage;
+import com.nikolaiwarner.RNTextInputReset.RNTextInputResetPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;

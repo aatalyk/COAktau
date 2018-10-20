@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic';
 
 import { FETCH_NOTIFS_REQUESTED, fetchNotifsSucceeded, fetchNotifsFailed } from '../actions';
 
-const url = 'http://soaktau.kz/api/v1.00/announcements';
+const url = 'https://soaktau.kz/api/v1.00/announcements';
 
 const fetchNotifsLogic = createLogic({
 	type: FETCH_NOTIFS_REQUESTED,

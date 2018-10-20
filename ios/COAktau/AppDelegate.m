@@ -11,6 +11,8 @@
 #import <React/RCTRootView.h>
 #import "RNFIRMessaging.h"
 
+#include <AudioToolbox/AudioToolbox.h>
+
 @import PushNotifications;
 @import GoogleMaps;
 
@@ -63,7 +65,8 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   [[PushNotifications shared] handleNotificationWithUserInfo:userInfo];
-  NSLog(@"%@", userInfo);
+  AudioServicesPlaySystemSound(1007);
+  NSLog(@"receive hehe");
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

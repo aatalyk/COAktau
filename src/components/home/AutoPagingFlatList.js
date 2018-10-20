@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
 
@@ -77,6 +77,7 @@ class AutoPagingFlatList extends Component {
 				source={{ uri: item.icon || undefined }}
 				onLoad={this.props.loadFinish}
 			/>
+			<Text>Hello</Text>
 		</TouchableWithoutFeedback>
 	);
 
