@@ -41,13 +41,11 @@ export const calcReducer = (state = initialState, action) => {
 		case FETCH_CALC_FAQ_SUCCEEDED:
 			return {
 				...state,
-				faq: action.faq,
-				loading: false
+				faq: action.faq
 			};
 		case FETCH_CALC_FAQ_FAILED:
 			return {
 				...state,
-				loading: false,
 				error: action.error
 			};
 		default:

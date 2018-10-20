@@ -21,6 +21,7 @@ const fetchCalcParamsLogic = createLogic({
 				results.forEach(result => {
 					params[result.name] = parseFloat(result.value);
 				});
+				console.warn(params)
 				dispatch(fetchCalcParamsSucceeded(params));
 			})
 			.catch(error => {
