@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
+import { View, ScrollView, Animated, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { store } from '../store';
@@ -34,7 +35,8 @@ class HomeScreen extends Component {
 				title: settings[store.getState().settings.lang].navigation.myServices
 			}
 		],
-		connected: true
+		connected: true,
+		scrollY: new Animated.Value(Platform.OS === 'ios' ? -250 : 0)
 	};
 
 	constructor(props) {
@@ -70,16 +72,46 @@ class HomeScreen extends Component {
 
 	onTabViewIndexChange = index => this.setState({ index });
 
+	onScroll = () => {
+		console.warn('onScroll');
+		Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], {
+			useNativeDriver: true
+		});
+	};
+
 	render() {
 		const { lang, navigation, newsItems } = this.props;
+
+		const news = newsItems.filter(newsItem => newsItem.isMain);
+
+		const scrollY = Animated.add(this.state.scrollY, Platform.OS === 'ios' ? 0 : 0);
+
+		const headerTranslate = scrollY.interpolate({
+			inputRange: [0, 250],
+			outputRange: [0, -250],
+			extrapolate: 'clamp'
+		});
+
+		console.warn(headerTranslate);
+
 		return (
-			<View style={styles.container}>
-				<AutoPagingFlatList data={newsItems} lang={lang} navigation={navigation} />
+			<Animated.View style={[styles.container, { transform: [{ translateY: headerTranslate }] }]}>
+				<AutoPagingFlatList data={news} lang={lang} navigation={navigation} />
 				<TabView
 					renderTabBar={this.renderTabBar}
 					navigationState={this.state}
 					renderScene={SceneMap({
-						first: () => <Notifications navigation={navigation} />,
+						first: () => (
+							<Notifications
+								onScroll={Animated.event(
+									[{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+									{
+										useNativeDriver: true
+									}
+								)}
+								navigation={navigation}
+							/>
+						),
 						second: () => <ServicesAndFAQ navigation={navigation} />
 					})}
 					onIndexChange={this.onTabViewIndexChange}
@@ -87,7 +119,7 @@ class HomeScreen extends Component {
 					style={styles.tabView}
 					useNativeDriver
 				/>
-			</View>
+			</Animated.View>
 		);
 	}
 }

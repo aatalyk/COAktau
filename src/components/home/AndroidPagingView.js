@@ -3,7 +3,7 @@ import { View, ViewPagerAndroid, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-	data: PropTypes.arrayOf(PropTypes.shape({ imageUrl: PropTypes.string.isRequired })),
+	data: PropTypes.arrayOf(PropTypes.shape({ icon: PropTypes.string.isRequired })),
 	style: PropTypes.oneOf([PropTypes.object, PropTypes.number, PropTypes.array]),
 	onPageSelected: PropTypes.func,
 	renderItem: PropTypes.func

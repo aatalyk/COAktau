@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { View, StyleSheet, Animated, FlatList, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,8 +8,11 @@ import { colors } from '../../assets';
 import { fetchNotifsRequested } from '../../actions';
 import { PlaceHolderList } from '../common';
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 const propTypes = {
 	navigation: PropTypes.object,
+	onScroll: PropTypes.func,
 	loading: PropTypes.bool,
 	notifsItems: PropTypes.array,
 	fetchNotifsRequested: PropTypes.func,
@@ -32,16 +35,18 @@ class NotificationsScreen extends Component {
 	onRefresh = () => this.props.fetchNotifsRequested();
 
 	render() {
-		const { loading, news } = this.props;
+		const { loading, news, onScroll } = this.props;
 		return loading ? (
 			<View style={styles.placeHolderContainer}>
 				<PlaceHolderList />
 			</View>
 		) : (
 			<View style={styles.container}>
-				<FlatList
+				<AnimatedFlatList
 					data={this.props.notifsItems}
 					renderItem={this.renderItem}
+					onScroll={onScroll}
+					scrollEventThrottle={1}
 					style={styles.flatList}
 					keyExtractor={(_, index) => index + ''}
 					refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}

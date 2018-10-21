@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
 
-import { images, colors } from '../../assets';
+import { images, colors, textStyles } from '../../assets';
 import { AndroidPagingView } from './AndroidPagingView';
 
 const propTypes = {
@@ -71,12 +71,19 @@ class AutoPagingFlatList extends Component {
 
 	renderItem = ({ item }) => (
 		<TouchableWithoutFeedback onPress={this.props.onItemPress || this.onItemPress}>
-			<Image
-				defaultSource={images.imgPlaceholder}
-				style={styles.image}
-				source={{ uri: item.icon || undefined }}
-				onLoad={this.props.loadFinish}
-			/>
+			<View style={styles.imageContainer}>
+				<Image
+					defaultSource={images.imgPlaceholder}
+					style={styles.image}
+					source={{ uri: item.icon || undefined }}
+					onLoad={this.props.loadFinish}
+				/>
+				{item.title && (
+					<Text style={styles.itemText} numberOfLines={2}>
+						{item.title}
+					</Text>
+				)}
+			</View>
 		</TouchableWithoutFeedback>
 	);
 
@@ -108,20 +115,18 @@ class AutoPagingFlatList extends Component {
 						onPageSelected={position => this.setState({ currentIndex: position })}
 					/>
 				)}
-				{!!data &&
-					data.length > 1 && (
-						<PageControl
-							style={styles.pageControl}
-							numberOfPages={data.length}
-							currentPage={this.state.currentIndex}
-							hidesForSinglePage
-							pageIndicatorTintColor="gray"
-							currentIndexIndicatorTintColor="white"
-							indicatorStyle={styles.pageControlIndicator}
-							currentIndicatorStyle={styles.pageControlIndicator}
-							indicatorSize={styles.pageControlIndicatorSize}
-						/>
-					)}
+				{!!data && (
+					<PageControl
+						style={styles.pageControl}
+						numberOfPages={data.length}
+						currentPage={this.state.currentIndex}
+						pageIndicatorTintColor={colors.soBlue}
+						currentIndexIndicatorTintColor="white"
+						indicatorStyle={styles.pageControlIndicator}
+						currentIndicatorStyle={styles.pageControlIndicator}
+						indicatorSize={styles.pageControlIndicatorSize}
+					/>
+				)}
 			</View>
 		);
 	}
@@ -140,18 +145,19 @@ const styles = StyleSheet.create({
 		width: SCREEN_WIDTH,
 		height: HEIGHT
 	},
+	view: {},
 	image: {
 		width: SCREEN_WIDTH * 0.9,
 		height: HEIGHT,
 		borderRadius: 10,
-		marginLeft: SCREEN_WIDTH * 0.05,
-		marginRight: SCREEN_WIDTH * 0.05
+		alignSelf: 'center',
+		marginHorizontal: SCREEN_WIDTH * 0.05
 	},
 	pageControl: {
 		position: 'absolute',
 		bottom: 10,
 		alignSelf: 'center',
-		backgroundColor: colors.soBrown,
+		backgroundColor: colors.soLightBlue,
 		paddingVertical: 7,
 		borderRadius: 7
 	},
@@ -161,6 +167,13 @@ const styles = StyleSheet.create({
 	pageControlIndicatorSize: {
 		width: 8,
 		height: 8
+	},
+	itemText: {
+		...textStyles.h3,
+		position: 'absolute',
+		marginHorizontal: SCREEN_WIDTH * 0.05 + 10,
+		bottom: 10,
+		backgroundColor: 'rgba(0, 0, 0, 0.2)'
 	}
 });
 

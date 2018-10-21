@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic';
 
 import { FETCH_FAQ_REQUESTED, fetchFAQSucceeded, fetchFAQFailed } from '../actions';
 
-const url = 'http://soaktau.kz/api/v1.00/questions';
+const url = 'https://soaktau.kz/api/v1.00/questions';
 
 const fetchFaqLogic = createLogic({
 	type: FETCH_FAQ_REQUESTED,
