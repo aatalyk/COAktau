@@ -35,8 +35,7 @@ export const calcReducer = (state = initialState, action) => {
 			};
 		case FETCH_CALC_FAQ_REQUESTED:
 			return {
-				...state,
-				loading: true
+				...state
 			};
 		case FETCH_CALC_FAQ_SUCCEEDED:
 			return {

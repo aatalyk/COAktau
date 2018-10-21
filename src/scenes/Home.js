@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
+import { View, ScrollView, Animated, Dimensions, StyleSheet, Platform, NetInfo } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { store } from '../store';
@@ -34,7 +35,8 @@ class HomeScreen extends Component {
 				title: settings[store.getState().settings.lang].navigation.myServices
 			}
 		],
-		connected: true
+		connected: true,
+		scrollY: new Animated.Value(Platform.OS === 'ios' ? -getStatusBarHeight() : 0)
 	};
 
 	constructor(props) {
@@ -72,9 +74,12 @@ class HomeScreen extends Component {
 
 	render() {
 		const { lang, navigation, newsItems } = this.props;
+		const news = newsItems.filter(newsItem => newsItem.isMain);
 		return (
 			<View style={styles.container}>
-				<AutoPagingFlatList data={newsItems} lang={lang} navigation={navigation} />
+				<Animated.View>
+					<AutoPagingFlatList data={news} lang={lang} navigation={navigation} />
+				</Animated.View>
 				<TabView
 					renderTabBar={this.renderTabBar}
 					navigationState={this.state}
