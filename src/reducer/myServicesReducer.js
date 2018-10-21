@@ -1,5 +1,5 @@
-import { ADD_TO_MY_SERVICES, REMOVE_FROM_MY_SERVICES } from '../actions';
-import { REHYDRATE } from 'redux-persist';
+import {ADD_TO_MY_SERVICES, REMOVE_FROM_MY_SERVICES} from "../actions";
+import {REHYDRATE} from "redux-persist";
 
 const initialState = [];
 

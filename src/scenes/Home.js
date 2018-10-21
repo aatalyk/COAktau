@@ -71,7 +71,7 @@ class HomeScreen extends Component {
 		const news = newsItems.filter(newsItem => newsItem.isMain);
 
 		return (
-			<ScrollView style={[styles.container]}>
+			<ScrollView showsVerticalScrollIndicator={false} style={[styles.container]}>
 				<AutoPagingFlatList data={news} lang={lang} navigation={navigation} />
 				<TabView
 					renderTabBar={this.renderTabBar}
