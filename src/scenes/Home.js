@@ -79,7 +79,7 @@ class HomeScreen extends Component {
 					renderScene={SceneMap({
 						first: () => (
 							<View style={styles.notificationsContainer}>
-								{notifsItems.map((item, index) => (
+								{[...notifsItems].slice(0, 30).map((item, index) => (
 									<NotificationItem
 										item={item}
 										onPress={() => navigation.navigate("NotificationPage", {item})}
