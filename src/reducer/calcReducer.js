@@ -35,17 +35,20 @@ export const calcReducer = (state = initialState, action) => {
 			};
 		case FETCH_CALC_FAQ_REQUESTED:
 			return {
-				...state
+				...state,
+				loading: true
 			};
 		case FETCH_CALC_FAQ_SUCCEEDED:
 			return {
 				...state,
-				faq: action.faq
+				faq: action.faq,
+				loading: false
 			};
 		case FETCH_CALC_FAQ_FAILED:
 			return {
 				...state,
-				error: action.error
+				error: action.error,
+				loading: false
 			};
 		default:
 			return state;

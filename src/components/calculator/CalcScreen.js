@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-  FlatList,
-  StyleSheet,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  View
-} from "react-native";
+import { ScrollView, Text, FlatList, StyleSheet, Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -27,20 +19,20 @@ const propTypes = {
 };
 
 class Calc extends Component {
-  componentDidMount() {
-    this.fetchParamsFAQ();
-  }
+	componentDidMount() {
+		this.fetchParamsFAQ();
+	}
 
-  renderItem = ({ item, index }) => <FAQItem item={item} index={index} />;
+	renderItem = ({ item, index }) => <FAQItem item={item} index={index} />;
 
-  fetchParamsFAQ = () => {
-    this.props.fetchCalcParamsRequested();
-    this.props.fetchCalcFaqRequested();
-  };
+	fetchParamsFAQ = () => {
+		this.props.fetchCalcParamsRequested();
+		this.props.fetchCalcFaqRequested();
+	};
 
-  onScroll() {
-    Keyboard.dismiss();
-  }
+	onScroll() {
+		Keyboard.dismiss();
+	}
 
 	render() {
 		const { loading, faq, params, navigation, lang } = this.props;
@@ -50,20 +42,20 @@ class Calc extends Component {
 			</View>
 		) : (
 			<ScrollView style={styles.container} onScroll={this.onScroll}>
-        <KeyboardAvoidingView
-          behavior={Platform.select({
-            ios: "position",
-            android: null
-          })}
-        >
-          <Calculator
-            lang={lang}
-            navigation={navigation}
-            livingCost={params.livingCost}
-            povertyMin={params.povertyMin}
-          />
-          <FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
-        </KeyboardAvoidingView>
+				<KeyboardAvoidingView
+					behavior={Platform.select({
+						ios: 'position',
+						android: null
+					})}
+				>
+					<Calculator
+						lang={lang}
+						navigation={navigation}
+						livingCost={params.livingCost}
+						povertyMin={params.povertyMin}
+					/>
+					<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
+				</KeyboardAvoidingView>
 			</ScrollView>
 		);
 	}
@@ -90,6 +82,6 @@ const mapStateToProps = ({ settings, calc }) => ({
 });
 
 export const CalcScreen = connect(
-  mapStateToProps,
-  { fetchCalcParamsRequested, fetchCalcFaqRequested }
+	mapStateToProps,
+	{ fetchCalcParamsRequested, fetchCalcFaqRequested }
 )(Calc);

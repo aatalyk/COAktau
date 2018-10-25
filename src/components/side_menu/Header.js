@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { images, fonts } from '../../assets';
+import { images, fonts, colors } from '../../assets';
 
 const propTypes = {
 	title: PropTypes.string
@@ -11,6 +11,7 @@ const propTypes = {
 export const Header = ({ title }) => (
 	<View style={styles.container}>
 		<Image style={styles.image} source={images.logoIcon} />
+		<Text style={styles.title}>{title}</Text>
 	</View>
 );
 
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		lineHeight: 25,
 		margin: 5,
-		color: 'black',
-		fontFamily: fonts.MerriweatherRegular
+		color: colors.grayDark,
+		fontFamily: fonts.RubikLight
 	}
 });

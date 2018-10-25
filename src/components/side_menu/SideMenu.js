@@ -135,6 +135,7 @@ class SideMenuPage extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<Header title={settings[this.props.lang].text.title} />
 				<View style={styles.menuContainer} onLayout={this.onLayout}>
 					{menuItems.map((item, index) => (
 						<MenuItem
