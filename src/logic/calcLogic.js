@@ -12,7 +12,7 @@ import { url } from '../config';
 
 const fetchCalcParamsLogic = createLogic({
 	type: FETCH_CALC_PARAMS_REQUESTED,
-	process: ({}, dispatch, done) => {
+	process: ({ getState }, dispatch, done) => {
 		fetch(`${url}/calc/parameters`)
 			.then(response => response.json())
 			.then(json => {
@@ -21,7 +21,6 @@ const fetchCalcParamsLogic = createLogic({
 				results.forEach(result => {
 					params[result.name] = parseFloat(result.value);
 				});
-				console.warn(params)
 				dispatch(fetchCalcParamsSucceeded(params));
 			})
 			.catch(error => {
