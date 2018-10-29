@@ -15,7 +15,7 @@ const propTypes = {
 export const NewsItem = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.icon }} style={styles.image} />
+			<Image defaultSource={images.imgPlaceholder} source={{ uri: item.thumbnail }} style={styles.image} />
 			<View style={styles.textContainer}>
 				<Text style={textStyles.p}>{item.title}</Text>
 				<Text numberOfLines={3} style={styles.text}>

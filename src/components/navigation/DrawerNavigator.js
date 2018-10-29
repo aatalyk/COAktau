@@ -16,6 +16,7 @@ import { Settings } from '../../components/settings';
 import { Contact } from '../../components/contact';
 import { About } from '../about';
 import { MyHelper, Dictionary, PhraseList, Chat } from '../chat';
+import { Taxi } from '../taxi';
 import { CalcScreen, AlertScreen } from '../calculator';
 import { SideMenu } from '../side_menu/SideMenu';
 import { images, settings } from '../../assets';
@@ -78,6 +79,10 @@ const stack = {
 	},
 	Dictionary: {
 		screen: Dictionary
+	},
+	Taxi: {
+		screen: Taxi,
+		navigationOptions: navigationOptions(settings.kaz.navigation.taxi, settings.rus.navigation.taxi)
 	},
 	PhraseList: {
 		screen: PhraseList

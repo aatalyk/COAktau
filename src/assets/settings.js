@@ -13,6 +13,7 @@ export const settings = {
 			calc: 'АӘК Есептеуіш',
 			chat: 'Сөздік',
 			dictionary: 'Сөздік',
+			taxi: 'Такси',
 			myCity: 'Менің қалам',
 			myHelper: 'Менің көмекшім'
 		},
@@ -71,6 +72,7 @@ export const settings = {
 			calc: 'АСП Калькулятор',
 			chat: 'Разговорник',
 			dictionary: 'Разговорник',
+			taxi: 'Такси',
 			myCity: 'Мой город',
 			myHelper: 'Мой помощник'
 		},

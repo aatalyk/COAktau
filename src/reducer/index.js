@@ -11,6 +11,7 @@ import { calcReducer } from './calcReducer';
 import { dictionaryReducer } from './dictionaryReducer';
 import { myCityReducer } from './myCityReducer';
 import { contactReducer } from './contactReducer';
+import { taxiReducer } from './taxiReducer';
 
 export const rootReducer = combineReducers({
 	faq: faqReducer,
@@ -24,5 +25,6 @@ export const rootReducer = combineReducers({
 	calc: calcReducer,
 	dictionary: dictionaryReducer,
 	myCity: myCityReducer,
-	contact: contactReducer
+	contact: contactReducer,
+	taxi: taxiReducer
 });

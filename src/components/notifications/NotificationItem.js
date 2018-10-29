@@ -15,7 +15,7 @@ export const NotificationItem = ({ item, onPress }) => (
 			<View style={styles.titleContainer}>
 				<Image
 					defaultSource={images.imgPlaceholder}
-					source={{ uri: item.icon }}
+					source={{ uri: item.thumbnail }}
 					style={styles.image}
 					resizeMode="cover"
 				/>

@@ -42,10 +42,24 @@ class MyHelperScreen extends Component {
 		);
 	};
 
-	onPress = helper => this.props.navigation.navigate('Dictionary', { helper });
+	onPress = helper => {
+		switch (helper.id) {
+			case 1:
+				this.props.navigation.navigate('Dictionary', { helper });
+				break;
+			case 2:
+				this.props.navigation.navigate('Taxi', { helper });
+				break;
+			default:
+				break;
+		}
+	};
 
 	render() {
-		const helpers = [{ id: 1, title: settings[this.props.lang].navigation.dictionary, icon: images.dictionary }];
+		const helpers = [
+			{ id: 1, title: settings[this.props.lang].navigation.dictionary, icon: images.dictionary },
+			{ id: 2, title: settings[this.props.lang].navigation.taxi, icon: images.taxi }
+		];
 		return (
 			<View style={styles.container}>
 				<FlatList data={helpers} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
@@ -73,6 +87,7 @@ const styles = StyleSheet.create({
 	titleContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'center',
 		margin: 20
 	},
 	title: {

@@ -10,3 +10,4 @@ export * from './calcActions';
 export * from './dictionaryActions';
 export * from './myCityActions';
 export * from './contactActions';
+export * from './taxiActions';

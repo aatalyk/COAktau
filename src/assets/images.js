@@ -54,5 +54,7 @@ export const images = {
 	notifs: require('../../resources/img/notifs.png'),
 	social: require('../../resources/img/social.jpg'),
 	dictionary: require('../../resources/img/dictionary.png'),
-	approve: require('../../resources/img/approve.png')
+	approve: require('../../resources/img/approve.png'),
+	view: require('../../resources/img/view.png'),
+	taxi: require('../../resources/img/taxi.png')
 };

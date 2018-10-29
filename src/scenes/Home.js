@@ -10,7 +10,6 @@ import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 import { colors, settings } from '../assets';
 import { fetchNewsRequested } from '../actions';
 import { Notifications } from '../components/notifications';
-import { NotificationItem } from '../components/notifications/NotificationItem';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 

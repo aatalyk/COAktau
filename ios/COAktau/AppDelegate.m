@@ -13,6 +13,9 @@
 
 #include <AudioToolbox/AudioToolbox.h>
 
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+
 @import PushNotifications;
 @import GoogleMaps;
 
@@ -46,12 +49,28 @@
   
   [GMSServices provideAPIKey:@"AIzaSyDeyZoP-KU9RajmzDlm8CJb38tK1wnBZwE"];
   
-  UIUserNotificationType notificationTypes = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-  UIUserNotificationSettings *pushNotificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories: nil];
-  [application registerUserNotificationSettings:pushNotificationSettings];
-  [application registerForRemoteNotifications];
+  [self registerForRemoteNotifications];
   
   return YES;
+}
+
+- (void)registerForRemoteNotifications {
+  if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+      if(!error){
+        NSLog(@"registerForRemoteNotifications ios 10");
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+      }
+    }];
+  }
+  else {
+    UIUserNotificationType notificationTypes = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+    UIUserNotificationSettings *pushNotificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories: nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:pushNotificationSettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+  }
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

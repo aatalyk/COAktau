@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Video from 'react-native-video';
 
-import { textStyles, colors } from '../assets';
+import { images, textStyles, colors } from '../assets';
+import { fetchMyCityItemRequested } from '../actions';
+import { PlaceHolder } from '../components/common';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
 
 const propTypes = {
-	item: PropTypes.shape({
-		imageUrls: PropTypes.arrayOf(PropTypes.string),
-		title: PropTypes.string,
-		body: PropTypes.string
-	}),
+	loading: PropTypes.bool,
+	fetchMyCityItemRequested: PropTypes.func,
+	newsItem: PropTypes.object,
 	navigation: PropTypes.object
 };
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class MyCityDetailed extends Component {
+class MyCityDetailedScreen extends Component {
 	state = {
 		screenWidth: SCREEN_WIDTH,
 		heightScaled: 0,
@@ -25,11 +26,20 @@ class MyCityDetailed extends Component {
 		loading: true
 	};
 
-	renderVideo = item => (
+	componentDidMount() {
+		this.fetchMyCityItem();
+	}
+
+	fetchMyCityItem() {
+		const { id } = this.props.navigation.getParam('item', {});
+		this.props.fetchMyCityItemRequested(id);
+	}
+
+	renderVideo = newsItem => (
 		<TouchableOpacity onPress={this.enableFullScreen}>
 			<Video
 				source={{
-					uri: item.video
+					uri: newsItem.video
 				}}
 				ref={ref => {
 					this.player = ref;
@@ -54,9 +64,9 @@ class MyCityDetailed extends Component {
 		</TouchableOpacity>
 	);
 
-	renderImage = item => (
+	renderImage = newsItem => (
 		<AutoPagingFlatList
-			data={item.imageUrls.map(imageUrl => ({ icon: imageUrl }))}
+			data={newsItem.imageUrls.map(imageUrl => ({ icon: imageUrl }))}
 			onItemPress={() => null}
 			manualPaging
 			loadFinish={this.loadFinish}
@@ -76,25 +86,51 @@ class MyCityDetailed extends Component {
 	};
 
 	render() {
-		const item = this.props.navigation.getParam('item');
-
-		return (
+		const { loading, newsItem } = this.props;
+		return loading ? (
+			<View style={styles.placeHolderContainer}>
+				<PlaceHolder />
+			</View>
+		) : (
 			<ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={this.state.loading} />}>
-				{item.imageUrls ? this.renderImage(item) : this.renderVideo(item)}
-				<Text style={styles.title}>{item.title}</Text>
+				{newsItem.imageUrls ? this.renderImage(newsItem) : this.renderVideo(newsItem)}
+				<Text style={styles.title}>{newsItem.title}</Text>
 				<View style={styles.line} />
-				<Text style={styles.body}>{item.body}</Text>
+				<View style={styles.view}>
+					<Image style={styles.icon} source={images.view} />
+					<Text style={styles.text}>{newsItem.viewCount}</Text>
+				</View>
+				<Text style={styles.body}>{newsItem.body}</Text>
 			</ScrollView>
 		);
 	}
 }
 
-MyCityDetailed.propTypes = propTypes;
+MyCityDetailedScreen.propTypes = propTypes;
 
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: 'white',
 		flex: 1
+	},
+	placeHolderContainer: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	view: {
+		flexDirection: 'row',
+		margin: 20,
+		marginBottom: 0
+	},
+	icon: {
+		width: 20,
+		height: 20,
+		marginRight: 10
+	},
+	text: {
+		flex: 1,
+		...textStyles.p,
+		color: colors.grayDark
 	},
 	title: {
 		...textStyles.h2,
@@ -116,4 +152,12 @@ const styles = StyleSheet.create({
 	}
 });
 
-export { MyCityDetailed };
+const mapStateToProps = ({ myCity }) => ({
+	loading: myCity.loading,
+	newsItem: myCity.newsItem
+});
+
+export const MyCityDetailed = connect(
+	mapStateToProps,
+	{ fetchMyCityItemRequested }
+)(MyCityDetailedScreen);
