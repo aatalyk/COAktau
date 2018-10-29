@@ -24,7 +24,6 @@ const initialState = {
 };
 
 export const servicesReducer = (state = initialState, action) => {
-	console.log('payload', action);
 	switch (action.type) {
 		case FETCH_SERVICES_REQUESTED:
 			return {

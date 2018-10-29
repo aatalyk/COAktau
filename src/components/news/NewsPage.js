@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ news }) => ({
-	loading: news.loading,
-	newsItem: news.newsItem
+const mapStateToProps = ({ newsItem }) => ({
+	loading: newsItem.loading,
+	newsItem: newsItem.newsItem
 });
 
 export const NewsPage = connect(

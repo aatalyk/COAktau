@@ -10,7 +10,7 @@ import {
 const initialState = {
 	newsItems: [],
 	newsItem: {},
-	loading: false,
+	loading: true,
 	error: ''
 };
 
