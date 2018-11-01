@@ -32,11 +32,12 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new ReactVideoPackage(),
-            new NotificationManagerPackage(),
             new RNTextInputResetPackage(),
             new MapsPackage(),
             new LinearGradientPackage(),
-            new FIRMessagingPackage()
+            new FIRMessagingPackage(),
+            new ReactVideoPackage(),
+            new NotificationManagerPackage()
       );
     }
 

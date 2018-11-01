@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, FlatList, StyleSheet, Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
+import { ScrollView, FlatList, StyleSheet, Keyboard, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 

@@ -15,7 +15,6 @@ import PropTypes from 'prop-types';
 
 import { colors, textStyles, settings } from '../../assets';
 import { calculate } from './actions';
-import autoMergeLevel1 from 'redux-persist/es/stateReconciler/autoMergeLevel1';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -37,7 +36,7 @@ class Calculator extends Component {
 			this.showAlert();
 			return;
 		}
-		console.warn(this.props)
+		console.warn(this.props);
 		const result = calculate(
 			this.state.amount,
 			this.state.numberOfPeople,
