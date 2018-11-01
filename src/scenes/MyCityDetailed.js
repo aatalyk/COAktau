@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Video from 'react-native-video';
+import YouTube from 'react-native-youtube';
 
 import { images, textStyles, colors } from '../assets';
 import { fetchMyCityItemRequested } from '../actions';
@@ -37,29 +37,17 @@ class MyCityDetailedScreen extends Component {
 
 	renderVideo = newsItem => (
 		<TouchableOpacity onPress={this.enableFullScreen}>
-			<Video
-				source={{
-					uri: newsItem.video
-				}}
-				ref={ref => {
-					this.player = ref;
-				}}
-				style={{
-					width: this.state.screenWidth,
-					height: this.state.heightScaled
-				}}
-				resizeMode="cover"
-				paused={this.state.videoPaused}
-				onLoad={response => {
-					const { width, height } = response.naturalSize;
-					const heightScaled = height * (this.state.screenWidth / width);
-
-					this.setState({
-						heightScaled,
-						videoPaused: false,
-						loading: false
-					});
-				}}
+			<YouTube
+				videoId="KVZ-P-ZI6W4" // The YouTube video ID
+				play={true} // control playback of video with true/false
+				fullscreen={true} // control whether the video should play in fullscreen or inline
+				loop={true} // control whether the video should loop when ended
+				apiKey="AIzaSyBMjGIuom46TkbEkR2_ZEBT46YwKMdsgy8"
+				onReady={e => this.setState({ isReady: true })}
+				onChangeState={e => this.setState({ status: e.state })}
+				onChangeQuality={e => this.setState({ quality: e.quality })}
+				onError={e => this.setState({ error: e.error })}
+				style={{ alignSelf: 'stretch', height: 300 }}
 			/>
 		</TouchableOpacity>
 	);

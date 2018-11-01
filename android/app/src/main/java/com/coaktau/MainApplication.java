@@ -8,6 +8,7 @@ import com.coaktau.NotificationManagerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.facebook.react.ReactApplication;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.brentvatne.react.ReactVideoPackage;
 import com.nikolaiwarner.RNTextInputReset.RNTextInputResetPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -31,12 +32,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeYouTube(),
             new ReactVideoPackage(),
             new RNTextInputResetPackage(),
             new MapsPackage(),
             new LinearGradientPackage(),
             new FIRMessagingPackage(),
-            new ReactVideoPackage(),
             new NotificationManagerPackage()
       );
     }
