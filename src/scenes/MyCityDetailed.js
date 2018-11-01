@@ -35,31 +35,36 @@ class MyCityDetailedScreen extends Component {
 		this.props.fetchMyCityItemRequested(id);
 	}
 
-	renderVideo = newsItem => (
-		<TouchableOpacity onPress={this.enableFullScreen}>
-			<YouTube
-				videoId="KVZ-P-ZI6W4" // The YouTube video ID
-				play={true} // control playback of video with true/false
-				fullscreen={true} // control whether the video should play in fullscreen or inline
-				loop={true} // control whether the video should loop when ended
-				apiKey="AIzaSyBMjGIuom46TkbEkR2_ZEBT46YwKMdsgy8"
-				onReady={e => this.setState({ isReady: true })}
-				onChangeState={e => this.setState({ status: e.state })}
-				onChangeQuality={e => this.setState({ quality: e.quality })}
-				onError={e => this.setState({ error: e.error })}
-				style={{ alignSelf: 'stretch', height: 300 }}
-			/>
-		</TouchableOpacity>
-	);
+	renderVideo = newsItem => {
+		const videoId = newsItem.video.split('v=')[1].substring(0, 11);
+		return (
+			<TouchableOpacity onPress={this.enableFullScreen}>
+				<YouTube
+					videoId={videoId}
+					play={true}
+					fullscreen={false}
+					loop={true}
+					apiKey="AIzaSyBMjGIuom46TkbEkR2_ZEBT46YwKMdsgy8"
+					onReady={e => this.setState({ isReady: true })}
+					onChangeState={e => this.setState({ status: e.state })}
+					onChangeQuality={e => this.setState({ quality: e.quality })}
+					onError={e => this.setState({ error: e.error })}
+					style={{ alignSelf: 'stretch', height: 300 }}
+				/>
+			</TouchableOpacity>
+		);
+	};
 
-	renderImage = newsItem => (
-		<AutoPagingFlatList
-			data={newsItem.imageUrls.map(imageUrl => ({ icon: imageUrl }))}
-			onItemPress={() => null}
-			manualPaging
-			loadFinish={this.loadFinish}
-		/>
-	);
+	renderImage = newsItem => {
+		return (
+			<AutoPagingFlatList
+				data={newsItem.imageUrls.map(imageUrl => ({ icon: imageUrl }))}
+				onItemPress={() => null}
+				manualPaging
+				loadFinish={this.loadFinish}
+			/>
+		);
+	};
 
 	onBuffer = ({ isBuffering }) => {
 		this.setState({ isBuffering });
@@ -80,13 +85,13 @@ class MyCityDetailedScreen extends Component {
 				<PlaceHolder />
 			</View>
 		) : (
-			<ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={this.state.loading} />}>
-				{newsItem.imageUrls ? this.renderImage(newsItem) : this.renderVideo(newsItem)}
+			<ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={false} />}>
+				{newsItem.imageUrls.length > 1 ? this.renderImage(newsItem) : this.renderVideo(newsItem)}
 				<Text style={styles.title}>{newsItem.title}</Text>
 				<View style={styles.line} />
 				<View style={styles.view}>
 					<Image style={styles.icon} source={images.view} />
-					<Text style={styles.text}>{newsItem.viewCount}</Text>
+					<Text style={styles.text}>{newsItem.viewCount + 1}</Text>
 				</View>
 				<Text style={styles.body}>{newsItem.body}</Text>
 			</ScrollView>
@@ -140,9 +145,9 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ myCity }) => ({
-	loading: myCity.loading,
-	newsItem: myCity.newsItem
+const mapStateToProps = ({ myCityItem }) => ({
+	loading: myCityItem.loading,
+	newsItem: myCityItem.newsItem
 });
 
 export const MyCityDetailed = connect(

@@ -10,7 +10,7 @@ import {
 const initialState = {
 	params: {},
 	faq: [],
-	loading: false,
+	loading: true,
 	error: null
 };
 
@@ -35,20 +35,17 @@ export const taxiReducer = (state = initialState, action) => {
 			};
 		case FETCH_TAXI_FAQ_REQUESTED:
 			return {
-				...state,
-				loading: true
+				...state
 			};
 		case FETCH_TAXI_FAQ_SUCCEEDED:
 			return {
 				...state,
-				faq: action.faq,
-				loading: false
+				faq: action.faq
 			};
 		case FETCH_TAXI_FAQ_FAILED:
 			return {
 				...state,
-				error: action.error,
-				loading: false
+				error: action.error
 			};
 		default:
 			return state;

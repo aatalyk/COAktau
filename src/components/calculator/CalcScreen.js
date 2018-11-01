@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Calculator } from './Calculator';
-import { FAQItem } from './FAQItem';
-import { PlaceHolder } from '../common';
+import { PlaceHolder, FAQItem } from '../common';
 import { fetchCalcParamsRequested, fetchCalcFaqRequested } from '../../actions';
 
 const propTypes = {

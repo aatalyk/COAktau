@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import MapView, { Marker } from 'react-native-maps';
 import Communications from 'react-native-communications';
 
-import { ContactItem } from './ContactItem';
+import { ContactItem } from '../common';
 import { images, settings, textStyles, colors } from '../../assets';
 import { fetchContactRequested } from '../../actions';
 import { PlaceHolder } from '../common';
@@ -79,17 +79,23 @@ class ContactScreen extends Component {
 						<Image style={styles.image} source={images.pinSelected} />
 						<Text style={styles.title}>{settings[this.props.lang].text.address}</Text>
 					</View>
-					{addresses.map((address, i) => <ContactItem key={i} title={address} />)}
+					{addresses.map((address, i) => (
+						<ContactItem key={i} title={address} />
+					))}
 					<View style={styles.header}>
 						<Image style={styles.image} source={images.bus} />
 						<Text style={styles.title}>{settings[this.props.lang].text.bus}</Text>
 					</View>
-					{busStops.map((busStop, i) => <ContactItem key={i} title={busStop} />)}
+					{busStops.map((busStop, i) => (
+						<ContactItem key={i} title={busStop} />
+					))}
 					<View style={styles.header}>
 						<Image style={styles.image} source={images.call} />
 						<Text style={styles.title}>{settings[this.props.lang].text.phone}</Text>
 					</View>
-					{tels.map((tel, i) => <ContactItem key={i} title={tel} onPress={() => this.call(tel)} />)}
+					{tels.map((tel, i) => (
+						<ContactItem key={i} title={tel} onPress={() => this.call(tel)} />
+					))}
 					<View style={styles.header}>
 						<Image style={styles.image} source={images.email} />
 						<Text style={styles.title}>{settings[this.props.lang].text.email}</Text>

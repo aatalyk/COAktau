@@ -11,6 +11,7 @@ import { chatReducer } from './chatReducer';
 import { calcReducer } from './calcReducer';
 import { dictionaryReducer } from './dictionaryReducer';
 import { myCityReducer } from './myCityReducer';
+import { myCityItemReducer } from './myCityItemReducer';
 import { contactReducer } from './contactReducer';
 import { taxiReducer } from './taxiReducer';
 
@@ -27,6 +28,7 @@ export const rootReducer = combineReducers({
 	calc: calcReducer,
 	dictionary: dictionaryReducer,
 	myCity: myCityReducer,
+	myCityItem: myCityItemReducer,
 	contact: contactReducer,
 	taxi: taxiReducer
 });

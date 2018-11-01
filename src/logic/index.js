@@ -7,6 +7,7 @@ import { calcLogic } from './calcLogic';
 import { dictionaryLogic } from './dictionaryLogic';
 import { myCityLogic } from './myCityLogic';
 import { contactLogic } from './contactLogic';
+import { taxiLogic } from './taxiLogic';
 
 export const logicArr = [
 	...faqLogic,
@@ -17,5 +18,6 @@ export const logicArr = [
 	...calcLogic,
 	...dictionaryLogic,
 	...myCityLogic,
-	...contactLogic
+	...contactLogic,
+	...taxiLogic
 ];

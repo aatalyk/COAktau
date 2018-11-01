@@ -5,6 +5,7 @@ export * from './ScaledImage';
 export * from './PlaceHolder';
 export * from './PlaceHolderList';
 export * from './FAQItem';
+export * from './ContactItem';
 
 export function getFormattedDate(createdAt) {
 	const date = new Date(createdAt);

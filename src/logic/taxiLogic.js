@@ -14,7 +14,7 @@ import { images } from '../assets';
 const params = {
 	title: 'Taxi Econom',
 	icon: images.bus,
-	tels: ['1231231321', '1231321321']
+	tels: ['+1231231321', '+1231321321']
 };
 
 const fetchTaxiParamsLogic = createLogic({
@@ -24,6 +24,7 @@ const fetchTaxiParamsLogic = createLogic({
 			.then(response => response.json())
 			.then(json => {
 				const results = json.results ? json.results : [];
+				console.warn('par', params);
 				dispatch(fetchTaxiParamsSucceeded(params));
 			})
 			.catch(error => {
