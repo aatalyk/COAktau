@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.react.ReactActivity;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.brentvatne.react.ReactVideoPackage;
+import com.nikolaiwarner.RNTextInputReset.RNTextInputResetPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.pusher.pushnotifications.PushNotifications;
 
 public class MainActivity extends ReactActivity {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, ScrollView, Text, Dimensions, RefreshControl, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, ScrollView, Text, Dimensions, RefreshControl, WebView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import YouTube from 'react-native-youtube';
@@ -36,22 +36,17 @@ class MyCityDetailedScreen extends Component {
 	}
 
 	renderVideo = newsItem => {
-		const videoId = newsItem.video.split('v=')[1].substring(0, 11);
+		const videoID = newsItem.video.split('v=')[1].substring(0, 11);
 		return (
-			<TouchableOpacity onPress={this.enableFullScreen}>
-				<YouTube
-					videoId={videoId}
-					play={true}
-					fullscreen={false}
-					loop={true}
-					apiKey="AIzaSyBMjGIuom46TkbEkR2_ZEBT46YwKMdsgy8"
-					onReady={e => this.setState({ isReady: true })}
-					onChangeState={e => this.setState({ status: e.state })}
-					onChangeQuality={e => this.setState({ quality: e.quality })}
-					onError={e => this.setState({ error: e.error })}
-					style={{ alignSelf: 'stretch', height: 300 }}
-				/>
-			</TouchableOpacity>
+			<WebView
+				style={styles.webView}
+				source={{ uri: `https://www.youtube.com/embed/${videoID}?autoplay=0?controls=0?modestbranding=1` }}
+				mediaPlaybackRequiresUserAction
+				scalesPageToFit
+				domStorageEnabled
+				bounces={false}
+				scrollEnabled={false}
+			/>
 		);
 	};
 
@@ -68,10 +63,6 @@ class MyCityDetailedScreen extends Component {
 
 	onBuffer = ({ isBuffering }) => {
 		this.setState({ isBuffering });
-	};
-
-	enableFullScreen = () => {
-		this.player.presentFullscreenPlayer();
 	};
 
 	loadFinish = () => {
@@ -105,6 +96,10 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: 'white',
 		flex: 1
+	},
+	webView: {
+		alignSelf: 'stretch',
+		height: 300
 	},
 	placeHolderContainer: {
 		flex: 1,
