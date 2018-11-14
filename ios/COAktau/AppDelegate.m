@@ -25,9 +25,9 @@
 {
   NSURL *jsCodeLocation;
 
-  // DEBUG:
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-  //RELEASE: jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  // DEBUG: jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  //RELEASE:
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"COAktau"
@@ -77,7 +77,7 @@
   [[PushNotifications shared] registerDeviceToken:deviceToken completion:^{
     NSError *anyError;
     [[PushNotifications shared] subscribeWithInterest:@"kaz" error:&anyError completion:^{
-      NSLog(@"Subscribed hehe");
+  
     }];
   }];
 }
@@ -85,7 +85,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   [[PushNotifications shared] handleNotificationWithUserInfo:userInfo];
   AudioServicesPlaySystemSound(1007);
-  NSLog(@"receive hehe");
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

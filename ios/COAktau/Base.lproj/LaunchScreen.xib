@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,19 +21,45 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soaktau" translatesAutoresizingMaskIntoConstraints="NO" id="Vtj-8r-F3k">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <rect key="frame" x="140" y="140" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="ENx-jQ-tEv"/>
+                        <constraint firstAttribute="width" constant="200" id="oSp-tu-X5r"/>
+                    </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ақтау қ. Әлеуметтік Қамсыздандыру" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-3G-Y4s">
+                    <rect key="frame" x="60" y="20" width="360" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="l4U-dk-kOG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <color key="textColor" red="0.47058823529411764" green="0.50980392156862742" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Социальное Обеспечение г. Актау" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMa-h8-25l">
+                    <rect key="frame" x="60" y="400" width="360" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="t4y-uo-Ojl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <color key="textColor" red="0.47058823529411764" green="0.50980392156862742" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Vtj-8r-F3k" secondAttribute="bottom" id="63o-qN-6JA"/>
-                <constraint firstItem="Vtj-8r-F3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mbv-Bl-XnQ"/>
-                <constraint firstAttribute="trailing" secondItem="Vtj-8r-F3k" secondAttribute="trailing" id="ZYS-GM-hmu"/>
-                <constraint firstItem="Vtj-8r-F3k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nUA-OQ-LFo"/>
+                <constraint firstItem="FMa-h8-25l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="HlE-be-qRW"/>
+                <constraint firstAttribute="bottom" secondItem="FMa-h8-25l" secondAttribute="bottom" constant="20" id="KPt-re-TsG"/>
+                <constraint firstItem="cYO-3G-Y4s" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="LFJ-GQ-Fdg"/>
+                <constraint firstAttribute="trailing" secondItem="FMa-h8-25l" secondAttribute="trailing" constant="60" id="OEu-Sl-vBR"/>
+                <constraint firstItem="Vtj-8r-F3k" firstAttribute="centerX" secondItem="cYO-3G-Y4s" secondAttribute="centerX" id="SAq-eu-IEs"/>
+                <constraint firstAttribute="trailing" secondItem="cYO-3G-Y4s" secondAttribute="trailing" constant="60" id="jjA-jI-eC9"/>
+                <constraint firstItem="Vtj-8r-F3k" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mh3-vK-jkm"/>
+                <constraint firstItem="cYO-3G-Y4s" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="rqg-cn-goB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="455"/>
+            <point key="canvasLocation" x="547.20000000000005" y="454.27286356821594"/>
         </view>
     </objects>
     <resources>

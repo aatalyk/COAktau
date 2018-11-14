@@ -4,12 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
-import com.coaktau.NotificationManagerPackage;
+import com.coaktau.ReactNotificationManagerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.facebook.react.ReactApplication;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.brentvatne.react.ReactVideoPackage;
 import com.nikolaiwarner.RNTextInputReset.RNTextInputResetPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -32,13 +30,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeYouTube(),
-            new ReactVideoPackage(),
             new RNTextInputResetPackage(),
             new MapsPackage(),
             new LinearGradientPackage(),
             new FIRMessagingPackage(),
-            new NotificationManagerPackage()
+            new ReactNotificationManagerPackage()
       );
     }
 

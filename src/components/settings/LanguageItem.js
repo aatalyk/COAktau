@@ -7,15 +7,19 @@ import { images, fonts, textStyles } from '../../assets';
 const propTypes = {
 	title: PropTypes.string,
 	isSelected: PropTypes.bool,
-	onPress: PropTypes.func
+	onPress: PropTypes.func,
+	imgSource: PropTypes.number
 };
 
-export const LanguageItem = ({ title, isSelected, onPress }) => (
+export const LanguageItem = ({ title, isSelected, imgSource, onPress }) => (
 	<TouchableWithoutFeedback onPress={onPress}>
 		<View style={styles.fill}>
 			<View style={styles.container}>
 				<Text style={styles.text}>{title}</Text>
-				<Image source={isSelected ? images.checkmark : null} style={styles.image} />
+				<Image
+					source={isSelected ? images.checkmark : imgSource ? imgSource : null}
+					style={imgSource ? styles.icon : styles.image}
+				/>
 			</View>
 		</View>
 	</TouchableWithoutFeedback>
@@ -39,5 +43,9 @@ const styles = StyleSheet.create({
 	image: {
 		width: 30,
 		height: 30
+	},
+	icon: {
+		width: 20,
+		height: 20
 	}
 });

@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
-import { View, Image, ScrollView, Text, Dimensions, RefreshControl, WebView, StyleSheet } from 'react-native';
+import {
+	View,
+	Button,
+	Image,
+	ScrollView,
+	Text,
+	Dimensions,
+	RefreshControl,
+	WebView,
+	AppState,
+	StyleSheet
+} from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import YouTube from 'react-native-youtube';
 
 import { images, textStyles, colors } from '../assets';
 import { fetchMyCityItemRequested } from '../actions';
 import { PlaceHolder } from '../components/common';
 import { AutoPagingFlatList } from '../components/home/AutoPagingFlatList';
+import { addViewCount } from '../config';
 
 const propTypes = {
 	loading: PropTypes.bool,
@@ -20,6 +32,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class MyCityDetailedScreen extends Component {
 	state = {
+		appState: AppState.currentState,
 		screenWidth: SCREEN_WIDTH,
 		heightScaled: 0,
 		videoPaused: false,
@@ -28,16 +41,26 @@ class MyCityDetailedScreen extends Component {
 
 	componentDidMount() {
 		this.fetchMyCityItem();
+		AppState.addEventListener('change', this.handleAppStateChange);
 	}
+
+	componentWillUnmount() {
+		AppState.removeEventListener('change', this.handleAppStateChange);
+	}
+
+	handleAppStateChange = nextAppState => {
+		this.setState({ appState: nextAppState });
+	};
 
 	fetchMyCityItem() {
 		const { id } = this.props.navigation.getParam('item', {});
+		addViewCount('myCity', id);
 		this.props.fetchMyCityItemRequested(id);
 	}
 
 	renderVideo = newsItem => {
 		const videoID = newsItem.video.split('v=')[1].substring(0, 11);
-		return (
+		return this.state.appState === 'active' ? (
 			<WebView
 				style={styles.webView}
 				source={{ uri: `https://www.youtube.com/embed/${videoID}?autoplay=0?controls=0?modestbranding=1` }}
@@ -47,6 +70,8 @@ class MyCityDetailedScreen extends Component {
 				bounces={false}
 				scrollEnabled={false}
 			/>
+		) : (
+			<View />
 		);
 	};
 
@@ -59,6 +84,12 @@ class MyCityDetailedScreen extends Component {
 				loadFinish={this.loadFinish}
 			/>
 		);
+	};
+
+	renderNode = (node, index, siblings, parent, defaultRenderer) => {
+		if (node.name == 'img') {
+			return <Image source={{ uri: node.attribs.src }} style={{ width: 200, height: 200 }} />;
+		}
 	};
 
 	onBuffer = ({ isBuffering }) => {
@@ -84,7 +115,7 @@ class MyCityDetailedScreen extends Component {
 					<Image style={styles.icon} source={images.view} />
 					<Text style={styles.text}>{newsItem.viewCount + 1}</Text>
 				</View>
-				<Text style={styles.body}>{newsItem.body}</Text>
+				<HTMLView value={newsItem.body} renderNode={this.renderNode} style={styles.body} stylesheet={styles} />
 			</ScrollView>
 		);
 	}
@@ -137,6 +168,19 @@ const styles = StyleSheet.create({
 		marginHorizontal: 15,
 		margin: 20,
 		lineHeight: 30
+	},
+	htmlView: {
+		margin: 10
+	},
+	p: {
+		...textStyles.p
+	},
+	a: {
+		fontWeight: '300',
+		color: '#FF3366' // make links coloured pink
+	},
+	b: {
+		fontWeight: 'bold'
 	}
 });
 

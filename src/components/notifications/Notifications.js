@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { NotificationItem } from './NotificationItem';
-import { colors } from '../../assets';
+import { colors, settings, images } from '../../assets';
 import { fetchNotifsRequested } from '../../actions';
-import { PlaceHolderList } from '../common';
+import { MessageScreen, PlaceHolderList } from '../common';
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -31,7 +31,7 @@ class NotificationsScreen extends Component {
 	onRefresh = () => this.props.fetchNotifsRequested();
 
 	render() {
-		const { loading, scrollEnabled, notifsItems } = this.props;
+		const { lang, loading, scrollEnabled, notifsItems } = this.props;
 
 		const items = scrollEnabled ? notifsItems : notifsItems.slice(0, 10);
 
@@ -41,15 +41,23 @@ class NotificationsScreen extends Component {
 			</View>
 		) : (
 			<View style={styles.container}>
-				<FlatList
-					scrollEnabled={scrollEnabled}
-					data={items}
-					renderItem={this.renderItem}
-					scrollEventThrottle={1}
-					style={styles.flatList}
-					keyExtractor={(_, index) => index + ''}
-					refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}
-				/>
+				{notifsItems.length === 0 ? (
+					<MessageScreen
+						style={styles.noDataText}
+						title={settings[lang].text.noNotifs}
+						imgSource={images.box}
+					/>
+				) : (
+					<FlatList
+						scrollEnabled={scrollEnabled}
+						data={items}
+						renderItem={this.renderItem}
+						scrollEventThrottle={1}
+						style={styles.flatList}
+						keyExtractor={(_, index) => index + ''}
+						refreshControl={<RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh} />}
+					/>
+				)}
 			</View>
 		);
 	}

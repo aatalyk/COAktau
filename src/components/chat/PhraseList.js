@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Header } from '../navigation';
-import { IconButton, PlaceHolderList } from '../common';
+import { IconButton, PlaceHolderList, SearchBar } from '../common';
 import { images, textStyles, colors, settings } from '../../assets';
 import { fetchDictionaryRequested } from '../../actions';
 
 const propTypes = {
+	lang: PropTypes.string,
 	navigation: PropTypes.object,
 	loading: PropTypes.bool,
 	fetchDictionaryRequested: PropTypes.func,
@@ -16,8 +17,16 @@ const propTypes = {
 };
 
 class PhraseListScreen extends Component {
+	state = {
+		data: []
+	};
+
 	componentDidMount() {
 		this.props.fetchDictionaryRequested();
+		const { messages } = this.props.navigation.getParam('helper', {});
+		this.setState({
+			data: messages
+		});
 	}
 
 	static navigationOptions = ({ navigation }) => {
@@ -32,6 +41,8 @@ class PhraseListScreen extends Component {
 		};
 	};
 
+	renderSearchBar = () => <SearchBar lang={this.props.lang} search={this.search} clear={this.clear} />;
+
 	renderSeparator = () => <View style={styles.separator} />;
 
 	renderItem = ({ item }) => {
@@ -45,13 +56,33 @@ class PhraseListScreen extends Component {
 		);
 	};
 
+	search = text => {
+		this.setState({
+			data: this.filter(text)
+		});
+	};
+
+	clear = () => {
+		const { messages } = this.props.navigation.getParam('helper', {});
+		this.setState({
+			data: messages
+		});
+	};
+
+	filter = text => {
+		const { messages } = this.props.navigation.getParam('helper', {});
+		return messages.filter(item => {
+			const question = item.text.toLowerCase();
+			return question.indexOf(text.toLowerCase()) >= 0;
+		});
+	};
+
 	onPress = dictionary => this.props.navigation.navigate('Chat', { dictionary });
 
 	onRefresh = () => this.props.fetchDictionaryRequested();
 
 	render() {
-		const { loading, helpers, navigation } = this.props;
-		const { messages } = navigation.getParam('helper', {});
+		const { loading, lang, navigation } = this.props;
 		return loading ? (
 			<View style={styles.placeHolderContainer}>
 				<PlaceHolderList />
@@ -59,9 +90,10 @@ class PhraseListScreen extends Component {
 		) : (
 			<View style={styles.container}>
 				<FlatList
-					data={messages}
+					data={this.state.data}
 					renderItem={this.renderItem}
 					keyExtractor={(_, index) => index + ''}
+					ListHeaderComponent={this.renderSearchBar}
 					refreshControl={<RefreshControl refreshing={loading} onRefresh={this.onRefresh} />}
 				/>
 			</View>
@@ -107,7 +139,8 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ dictionary }) => ({
+const mapStateToProps = ({ settings, dictionary }) => ({
+	lang: settings.lang,
 	loading: dictionary.loading,
 	helpers: dictionary.helpers
 });

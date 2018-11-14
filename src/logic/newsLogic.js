@@ -32,12 +32,10 @@ const fetchNewsItemLogic = createLogic({
 	type: FETCH_NEWS_ITEM_REQUESTED,
 	process: ({ getState, action }, dispatch, done) => {
 		const { lang } = getState().settings;
-		console.log('heh');
 		fetch(`${url}/${action.id}`)
 			.then(response => response.json())
 			.then(json => {
 				const newsItem = json[lang] ? json[lang] : [];
-				console.log('heh', newsItem);
 				dispatch(fetchNewsItemSucceeded(newsItem));
 			})
 			.catch(error => {

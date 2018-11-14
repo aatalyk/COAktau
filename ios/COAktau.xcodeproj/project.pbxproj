@@ -5,6 +5,7 @@
 	};
 	objectVersion = 51;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -12,12 +13,11 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* COAktauTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COAktauTests.m */; };
-		040607BD213DBCE000B16CF8 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040607BC213DBCE000B16CF8 /* NotificationManager.m */; };
+		040607BD213DBCE000B16CF8 /* ReactNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040607BC213DBCE000B16CF8 /* ReactNotificationManager.m */; };
 		04720BFB2163362200467AB7 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04720BF82163360E00467AB7 /* libBVLinearGradient.a */; };
+		0490B55D21994A5600E10C6A /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0490B55C21994A5600E10C6A /* PushNotifications.framework */; };
 		04A439EB212F3E46007B9579 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A439EA212F3E46007B9579 /* GoogleService-Info.plist */; };
 		04B9A4CE2110DAC000DF3470 /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = 04B9A4A82110DAC000DF3470 /* AirGoogleMaps */; };
-		04D2305A21871C8400FC0067 /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D2305821871BE600FC0067 /* PushNotifications.framework */; };
-		04D2305B21871C8400FC0067 /* PushNotifications.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04D2305821871BE600FC0067 /* PushNotifications.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -342,20 +342,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		04D2305C21871C8500FC0067 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				04D2305B21871C8400FC0067 /* PushNotifications.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -367,8 +353,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* COAktauTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COAktauTests.m; sourceTree = "<group>"; };
 		019CF4A753614E5EA354C175 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
-		040607BB213DBCE000B16CF8 /* NotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
-		040607BC213DBCE000B16CF8 /* NotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
+		040607BB213DBCE000B16CF8 /* ReactNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNotificationManager.h; sourceTree = "<group>"; };
+		040607BC213DBCE000B16CF8 /* ReactNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNotificationManager.m; sourceTree = "<group>"; };
 		04060856213E524200B16CF8 /* libreact-native-fcm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-fcm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0445ABC0215FF532005E7AEA /* libPushNotifications.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPushNotifications.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0445ABC221600922005E7AEA /* libPushNotifications.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPushNotifications.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,12 +364,12 @@
 		0445AC6D21600C10005E7AEA /* libFirebaseMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		045D547F217B294100F745F5 /* PushNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushNotifications.framework; path = /Users/mac/Desktop/COAktau/ios/Carthage/Build/iOS/PushNotifications.framework; sourceTree = "<absolute>"; };
 		04720BF22163360E00467AB7 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		0490B55C21994A5600E10C6A /* PushNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushNotifications.framework; path = Carthage/Build/iOS/PushNotifications.framework; sourceTree = "<group>"; };
 		04A0433D213E543800EBEF34 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A0433F213E605400EBEF34 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A439EA212F3E46007B9579 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B2D65521139BC100CBBAC3 /* COAktau.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COAktau.entitlements; path = COAktau/COAktau.entitlements; sourceTree = "<group>"; };
 		04B9A4A82110DAC000DF3470 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
-		04D2305821871BE600FC0067 /* PushNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushNotifications.framework; path = Carthage/Build/iOS/PushNotifications.framework; sourceTree = "<group>"; };
 		04D54CDC215BED67004A6C1F /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -430,7 +416,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04720BFB2163362200467AB7 /* libBVLinearGradient.a in Frameworks */,
-				04D2305A21871C8400FC0067 /* PushNotifications.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -442,6 +427,7 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				0490B55D21994A5600E10C6A /* PushNotifications.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				B9C968FE23720BAA981044A0 /* libPods-COAktau.a in Frameworks */,
 			);
@@ -582,7 +568,7 @@
 		13B07FAE1A68108700A75B9A /* COAktau */ = {
 			isa = PBXGroup;
 			children = (
-				04D2305821871BE600FC0067 /* PushNotifications.framework */,
+				0490B55C21994A5600E10C6A /* PushNotifications.framework */,
 				04B2D65521139BC100CBBAC3 /* COAktau.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -592,8 +578,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				040607BB213DBCE000B16CF8 /* NotificationManager.h */,
-				040607BC213DBCE000B16CF8 /* NotificationManager.m */,
+				040607BB213DBCE000B16CF8 /* ReactNotificationManager.h */,
+				040607BC213DBCE000B16CF8 /* ReactNotificationManager.m */,
 			);
 			name = COAktau;
 			sourceTree = "<group>";
@@ -773,7 +759,6 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				B24CC3B2DAB04BB43EE26D30 /* [CP] Copy Pods Resources */,
 				04EA9F71217B317C00AB78CB /* ShellScript */,
-				04D2305C21871C8500FC0067 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -831,13 +816,10 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = SQGZ5MNAN6;
 						LastSwiftMigration = 940;
-						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1363,7 +1345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				040607BD213DBCE000B16CF8 /* NotificationManager.m in Sources */,
+				040607BD213DBCE000B16CF8 /* ReactNotificationManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -1417,9 +1399,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = TWQ7B4869N;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1450,10 +1432,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TWQ7B4869N;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-search-bar/ios",
@@ -1485,11 +1467,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = COAktau/COAktau.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = SQGZ5MNAN6;
+				DEVELOPMENT_TEAM = TWQ7B4869N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1507,16 +1489,31 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMessaging\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Protobuf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-fcm\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.coaktau;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soaktau.ios;
 				PRODUCT_NAME = COAktau;
 				PROVISIONING_PROFILE = "34c14ea0-451e-4e5c-bb15-31416b2661bd";
-				PROVISIONING_PROFILE_SPECIFIER = COAktauDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = SOAktauDistribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "COAktau-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1537,7 +1534,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SQGZ5MNAN6;
+				DEVELOPMENT_TEAM = TWQ7B4869N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1555,16 +1552,31 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMessaging\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Protobuf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-fcm\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.coaktau;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soaktau.ios;
 				PRODUCT_NAME = COAktau;
 				PROVISIONING_PROFILE = "34c14ea0-451e-4e5c-bb15-31416b2661bd";
-				PROVISIONING_PROFILE_SPECIFIER = COAktauDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = SOAktauDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "COAktau-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "armv7 armv7s arm64 x86_64 i386";
@@ -1746,7 +1758,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1781,7 +1793,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

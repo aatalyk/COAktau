@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Image, Text, StyleSheet, Dimensions } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -50,6 +51,12 @@ class NewsPageScreen extends Component {
 
 	getItem = () => this.props.navigation.getParam('item', {});
 
+	renderNode = (node, index, siblings, parent, defaultRenderer) => {
+		if (node.name == 'img') {
+			return <Image source={{ uri: node.attribs.src }} style={{ width: 200, height: 200 }} />;
+		}
+	};
+
 	render() {
 		const { loading, newsItem } = this.props;
 		return loading ? (
@@ -65,7 +72,7 @@ class NewsPageScreen extends Component {
 					<Image style={styles.icon} source={images.view} />
 					<Text style={styles.text}>{newsItem.viewCount + 1}</Text>
 				</View>
-				<Text style={styles.description}>{newsItem.text}</Text>
+				<HTMLView value={newsItem.text} renderNode={this.renderNode} style={styles.body} stylesheet={styles} />
 			</ScrollView>
 		);
 	}
@@ -119,6 +126,28 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		marginBottom: 20,
 		lineHeight: 30
+	},
+	body: {
+		...textStyles.p,
+		marginHorizontal: 15,
+		margin: 20,
+		lineHeight: 30
+	},
+	htmlView: {
+		margin: 10
+	},
+	p: {
+		...textStyles.p
+	},
+	div: {
+		...textStyles.p
+	},
+	a: {
+		fontWeight: '300',
+		color: '#FF3366' // make links coloured pink
+	},
+	b: {
+		fontWeight: 'bold'
 	}
 });
 

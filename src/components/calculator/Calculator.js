@@ -36,7 +36,6 @@ class Calculator extends Component {
 			this.showAlert();
 			return;
 		}
-		console.warn(this.props);
 		const result = calculate(
 			this.state.amount,
 			this.state.numberOfPeople,
@@ -83,7 +82,6 @@ class Calculator extends Component {
 			[
 				{
 					text: settings[lang].text.cancel,
-					onPress: () => console.log('Cancel Pressed'),
 					style: 'destructive'
 				}
 			],

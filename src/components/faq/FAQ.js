@@ -1,13 +1,13 @@
-import React, {Component} from "react";
-import {View, FlatList, RefreshControl, StyleSheet, Text, TouchableOpacity} from "react-native";
-import {StackActions} from "react-navigation";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { View, FlatList, RefreshControl, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StackActions } from 'react-navigation';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import {colors, textStyles, settings} from "../../assets";
-import {SearchBar, PlaceHolderList} from "../common";
-import {FAQitem} from "./FAQitem";
-import {fetchFAQRequested} from "../../actions";
+import { colors, textStyles, settings } from '../../assets';
+import { SearchBar, PlaceHolderList } from '../common';
+import { FAQitem } from './FAQitem';
+import { fetchFAQRequested } from '../../actions';
 
 const propTypes = {
 	style: PropTypes.object,
@@ -16,25 +16,25 @@ const propTypes = {
 	loading: PropTypes.bool,
 	data: PropTypes.array,
 	fetchFAQRequested: PropTypes.func,
-	lang: PropTypes.string,
+	lang: PropTypes.string
 };
 
 class FAQScreen extends Component {
 	state = {
-		data: this.props.data,
+		data: this.props.data
 	};
 
 	componentDidMount() {
 		this.props.fetchFAQRequested();
 	}
 
-	renderItem = ({item, index}) => {
+	renderItem = ({ item, index }) => {
 		return <FAQitem item={item} index={index} lang={this.props.lang} key={index} />;
 	};
 
 	renderSeparator = () => <View style={styles.separator} />;
 
-	keyExtractor = (_, index) => index + "";
+	keyExtractor = (_, index) => index + '';
 
 	renderSearchBar = () =>
 		this.props.isPartiallyShown ? (
@@ -45,20 +45,20 @@ class FAQScreen extends Component {
 
 	onShowMorePress = () => {
 		const action = StackActions.push({
-			routeName: "FAQ",
+			routeName: 'FAQ'
 		});
 		this.props.navigation.dispatch(action);
 	};
 
 	search = text => {
 		this.setState({
-			data: this.filter(text),
+			data: this.filter(text)
 		});
 	};
 
 	clear = () => {
 		this.setState({
-			data: this.props.data,
+			data: this.props.data
 		});
 	};
 
@@ -73,12 +73,12 @@ class FAQScreen extends Component {
 	onRefresh = () => {
 		this.props.fetchFAQRequested();
 		this.setState({
-			data: this.props.data,
+			data: this.props.data
 		});
 	};
 
 	render() {
-		const {isPartiallyShown, lang, loading, style} = this.props;
+		const { isPartiallyShown, lang, loading, style } = this.props;
 		const faqItems = isPartiallyShown ? this.getPartialData() : this.state.data;
 
 		return loading && faqItems.length === 0 ? (
@@ -87,8 +87,13 @@ class FAQScreen extends Component {
 			</View>
 		) : (
 			<View style={[styles.container, style]}>
+				{isPartiallyShown && (
+					<View>
+						<Text style={styles.title}>{settings[lang].navigation.faq}</Text>
+					</View>
+				)}
 				{isPartiallyShown ? (
-					<View>{faqItems.map((item, index) => this.renderItem({item, index}))}</View>
+					<View>{faqItems.map((item, index) => this.renderItem({ item, index }))}</View>
 				) : (
 					<FlatList
 						data={faqItems}
@@ -113,41 +118,41 @@ FAQScreen.propTypes = propTypes;
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: colors.soLightBlue,
-		flex: 1,
+		flex: 1
 	},
 	placeHolderContainer: {
 		flex: 1,
-		backgroundColor: "white",
+		backgroundColor: 'white'
 	},
 	title: {
 		...textStyles.p,
 		margin: 15,
-		color: colors.grayDark,
+		color: colors.grayDark
 	},
 	showMoreButton: {
-		flexDirection: "row",
-		justifyContent: "flex-end",
-		alignItems: "center",
-		height: 44,
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		height: 44
 	},
 	showMoreText: {
 		marginRight: 15,
 		...textStyles.p,
-		color: colors.grayDark,
+		color: colors.grayDark
 	},
 	separator: {
 		backgroundColor: colors.grayUltraLight,
-		height: 1,
-	},
+		height: 1
+	}
 });
 
-const mapStateToProps = ({faq, settings}) => ({
+const mapStateToProps = ({ faq, settings }) => ({
 	loading: faq.loading,
 	data: faq.data,
-	lang: settings.lang,
+	lang: settings.lang
 });
 
 export const FAQ = connect(
 	mapStateToProps,
-	{fetchFAQRequested},
+	{ fetchFAQRequested }
 )(FAQScreen);

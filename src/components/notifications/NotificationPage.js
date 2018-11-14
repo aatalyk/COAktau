@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Animated } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import PropTypes from 'prop-types';
 
 import { textStyles, images, colors } from '../../assets';
@@ -42,6 +43,12 @@ class NotificationPage extends Component {
 
 	getItem = () => this.props.navigation.getParam('item', {});
 
+	renderNode = (node, index, siblings, parent, defaultRenderer) => {
+		if (node.name == 'img') {
+			return <Image source={{ uri: node.attribs.src }} style={{ width: 200, height: 200 }} />;
+		}
+	};
+
 	render() {
 		const item = this.props.navigation.getParam('item', {});
 		return (
@@ -75,7 +82,7 @@ class NotificationPage extends Component {
 				/>
 				<Text style={styles.title}>{item.title}</Text>
 				<View style={styles.line} />
-				<Text style={styles.text}>{item.text}</Text>
+				<HTMLView value={item.text} renderNode={this.renderNode} style={styles.body} stylesheet={styles} />
 			</Animated.ScrollView>
 		);
 	}
@@ -105,6 +112,28 @@ const styles = StyleSheet.create({
 	text: {
 		...textStyles.p,
 		margin: 20
+	},
+	body: {
+		...textStyles.p,
+		marginHorizontal: 15,
+		margin: 20,
+		lineHeight: 30
+	},
+	htmlView: {
+		margin: 10
+	},
+	p: {
+		...textStyles.p
+	},
+	div: {
+		...textStyles.p
+	},
+	a: {
+		fontWeight: '300',
+		color: '#FF3366' // make links coloured pink
+	},
+	b: {
+		fontWeight: 'bold'
 	}
 });
 

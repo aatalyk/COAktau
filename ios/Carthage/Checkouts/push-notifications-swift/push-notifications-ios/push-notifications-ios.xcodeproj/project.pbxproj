@@ -5,6 +5,7 @@
 	};
 	objectVersion = 48;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		A17D4D012018947B00C01431 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4D002018947B00C01431 /* AppDelegate.swift */; };
 		A17D4D032018947B00C01431 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4D022018947B00C01431 /* ViewController.swift */; };
@@ -13,20 +14,6 @@
 		A17D4D0B2018947B00C01431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A17D4D092018947B00C01431 /* LaunchScreen.storyboard */; };
 		A1FAC874201A428B0087FECF /* PushNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D794FE201895F400F44F01 /* PushNotifications.framework */; };
 		A1FAC875201A428B0087FECF /* PushNotifications.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1D794FE201895F400F44F01 /* PushNotifications.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E504F719FB264B148991D616 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA8C2F2011840E5B4701950 /* libRNFIRMessaging.a */; };
-		69000E52AFEB447B9D221FCF /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C9282CD15C4936B4F434DA /* libBVLinearGradient.a */; };
-		9FEB0376C1784A0DBFB9FA8A /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B62CA382F04784B0B51358 /* libAirMaps.a */; };
-		9B185449F1214F24BE469296 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B709DCF234334F27A145A6B9 /* libRCTVideo.a */; };
-		11662EA3E63E42DE8ADD8739 /* libRCTYouTube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 975FACD04DF54CD9A99E0F2E /* libRCTYouTube.a */; };
-		9F0D2FBEB9DA452BA935C221 /* LibreFranklin-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02084C8BAE7B42F7839D6B24 /* LibreFranklin-Black.ttf */; };
-		EE97C27DD6FC442C89E9DD83 /* LibreFranklin-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEBA8EEE83D44C5816A1B9B /* LibreFranklin-Bold.ttf */; };
-		4BD74C456E2E4376BE9BC8AD /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02967B4BB5FE47ACA2077EA4 /* Merriweather-Black.ttf */; };
-		67726A9C199C4704A0B85265 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64D87D48359A4F748552ED36 /* Merriweather-Regular.ttf */; };
-		B6316ADDFB8C4811AE1CD0A4 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5F759CB21374CF180AEC40D /* Rubik-Bold.ttf */; };
-		7E9A85B2A4FF473287432F56 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91028101CFF34E34BFEE7946 /* Rubik-Light.ttf */; };
-		D0DDEB6F1895495898181E86 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA2EDE5CCEB848708FF60592 /* Rubik-Medium.ttf */; };
-		2B118808AAC34543AAB1B92B /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54251E788464926B2D5B227 /* Rubik-Regular.ttf */; };
-		EE1EE7D9B2094119BD4714AD /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 314A775BD32448D78B749AC9 /* YTPlayerView-iframe-player.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,25 +40,6 @@
 		A17D4D0C2018947B00C01431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17D4D122018948C00C01431 /* push-notifications-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "push-notifications-ios.entitlements"; sourceTree = "<group>"; };
 		A1D794FE201895F400F44F01 /* PushNotifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PushNotifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D799F84C9BFB49518AB7B13C /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; name = "RNFIRMessaging.xcodeproj"; path = "../../../../../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		0AA8C2F2011840E5B4701950 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; name = "libRNFIRMessaging.a"; path = "libRNFIRMessaging.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		9C98EB387AAF4642B42AC0B1 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../../../../../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F2C9282CD15C4936B4F434DA /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		F1E7FE757BF54D9BA425BF7C /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../../../../../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		D0B62CA382F04784B0B51358 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		ED01A8DBB5E04425B9ACEAF4 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../../../../../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B709DCF234334F27A145A6B9 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		63487CAB2C1A4D55A6C7A70F /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; name = "RCTYouTube.xcodeproj"; path = "../../../../../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		975FACD04DF54CD9A99E0F2E /* libRCTYouTube.a */ = {isa = PBXFileReference; name = "libRCTYouTube.a"; path = "libRCTYouTube.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		02084C8BAE7B42F7839D6B24 /* LibreFranklin-Black.ttf */ = {isa = PBXFileReference; name = "LibreFranklin-Black.ttf"; path = "../../../../../src/assets/fonts/LibreFranklin-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CEEBA8EEE83D44C5816A1B9B /* LibreFranklin-Bold.ttf */ = {isa = PBXFileReference; name = "LibreFranklin-Bold.ttf"; path = "../../../../../src/assets/fonts/LibreFranklin-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		02967B4BB5FE47ACA2077EA4 /* Merriweather-Black.ttf */ = {isa = PBXFileReference; name = "Merriweather-Black.ttf"; path = "../../../../../src/assets/fonts/Merriweather-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		64D87D48359A4F748552ED36 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; name = "Merriweather-Regular.ttf"; path = "../../../../../src/assets/fonts/Merriweather-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D5F759CB21374CF180AEC40D /* Rubik-Bold.ttf */ = {isa = PBXFileReference; name = "Rubik-Bold.ttf"; path = "../../../../../src/assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		91028101CFF34E34BFEE7946 /* Rubik-Light.ttf */ = {isa = PBXFileReference; name = "Rubik-Light.ttf"; path = "../../../../../src/assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DA2EDE5CCEB848708FF60592 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; name = "Rubik-Medium.ttf"; path = "../../../../../src/assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F54251E788464926B2D5B227 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; name = "Rubik-Regular.ttf"; path = "../../../../../src/assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		314A775BD32448D78B749AC9 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; name = "YTPlayerView-iframe-player.html"; path = "../../../../../node_modules/react-native-youtube/assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +48,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1FAC874201A428B0087FECF /* PushNotifications.framework in Frameworks */,
-				E504F719FB264B148991D616 /* libRNFIRMessaging.a in Frameworks */,
-				69000E52AFEB447B9D221FCF /* libBVLinearGradient.a in Frameworks */,
-				9FEB0376C1784A0DBFB9FA8A /* libAirMaps.a in Frameworks */,
-				9B185449F1214F24BE469296 /* libRCTVideo.a in Frameworks */,
-				11662EA3E63E42DE8ADD8739 /* libRCTYouTube.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +60,6 @@
 				A17D4CFF2018947B00C01431 /* push-notifications-ios */,
 				A17D4CFE2018947B00C01431 /* Products */,
 				A1D794FC201895F400F44F01 /* Frameworks */,
-				6F7F33939E7F4CF79BE35027 /* Libraries */,
-				F2D53CD2100B4B2BBF66C71F /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,36 +93,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6F7F33939E7F4CF79BE35027 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				D799F84C9BFB49518AB7B13C /* RNFIRMessaging.xcodeproj */,
-				9C98EB387AAF4642B42AC0B1 /* BVLinearGradient.xcodeproj */,
-				F1E7FE757BF54D9BA425BF7C /* AirMaps.xcodeproj */,
-				ED01A8DBB5E04425B9ACEAF4 /* RCTVideo.xcodeproj */,
-				63487CAB2C1A4D55A6C7A70F /* RCTYouTube.xcodeproj */,
-			);
-			name = Libraries;
-			path = "";
-			sourceTree = "<group>";
-		};
-		F2D53CD2100B4B2BBF66C71F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				02084C8BAE7B42F7839D6B24 /* LibreFranklin-Black.ttf */,
-				CEEBA8EEE83D44C5816A1B9B /* LibreFranklin-Bold.ttf */,
-				02967B4BB5FE47ACA2077EA4 /* Merriweather-Black.ttf */,
-				64D87D48359A4F748552ED36 /* Merriweather-Regular.ttf */,
-				D5F759CB21374CF180AEC40D /* Rubik-Bold.ttf */,
-				91028101CFF34E34BFEE7946 /* Rubik-Light.ttf */,
-				DA2EDE5CCEB848708FF60592 /* Rubik-Medium.ttf */,
-				F54251E788464926B2D5B227 /* Rubik-Regular.ttf */,
-				314A775BD32448D78B749AC9 /* YTPlayerView-iframe-player.html */,
-			);
-			name = Resources;
-			path = "";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,8 +120,8 @@
 		A17D4CF52018947B00C01431 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 920;
-				LastUpgradeCheck = 930;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Luka Bratos";
 				TargetAttributes = {
 					A17D4CFC2018947B00C01431 = {
@@ -233,15 +164,6 @@
 				A17D4D0B2018947B00C01431 /* LaunchScreen.storyboard in Resources */,
 				A17D4D082018947B00C01431 /* Assets.xcassets in Resources */,
 				A17D4D062018947B00C01431 /* Main.storyboard in Resources */,
-				9F0D2FBEB9DA452BA935C221 /* LibreFranklin-Black.ttf in Resources */,
-				EE97C27DD6FC442C89E9DD83 /* LibreFranklin-Bold.ttf in Resources */,
-				4BD74C456E2E4376BE9BC8AD /* Merriweather-Black.ttf in Resources */,
-				67726A9C199C4704A0B85265 /* Merriweather-Regular.ttf in Resources */,
-				B6316ADDFB8C4811AE1CD0A4 /* Rubik-Bold.ttf in Resources */,
-				7E9A85B2A4FF473287432F56 /* Rubik-Light.ttf in Resources */,
-				D0DDEB6F1895495898181E86 /* Rubik-Medium.ttf in Resources */,
-				2B118808AAC34543AAB1B92B /* Rubik-Regular.ttf in Resources */,
-				EE1EE7D9B2094119BD4714AD /* YTPlayerView-iframe-player.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,14 +326,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -429,14 +343,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};

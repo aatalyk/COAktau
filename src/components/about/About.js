@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import {
-	View,
-	Text,
-	ScrollView,
-	StyleSheet,
-	ActivityIndicator,
-	RefreshControl,
-	Dimensions,
-	Animated
-} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Animated } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -42,14 +34,14 @@ class AboutScreen extends Component {
 		const { loading, aboutData } = this.props;
 		return (
 			<ScrollView style={styles.container}>
-				<ScaledImage source={images.social} resizeMode="cover" />
+				<ScaledImage source={aboutData.icon ? { uri: aboutData.icon } : images.social} resizeMode="cover" />
 				{loading ? (
 					<PlaceHolder />
 				) : (
 					<View>
 						<Text style={styles.title}>{settings[this.props.lang].text.title.toUpperCase()}</Text>
 						<View style={styles.line} />
-						<Text style={styles.text}>{aboutData ? aboutData.text : ''}</Text>
+						<HTMLView value={aboutData ? aboutData.text : ''} style={styles.htmlView} stylesheet={styles} />
 					</View>
 				)}
 			</ScrollView>
@@ -81,10 +73,21 @@ const styles = StyleSheet.create({
 		textAlign: 'left',
 		margin: 20
 	},
-	text: {
-		...textStyles.p,
-		textAlign: 'left',
+	htmlView: {
 		margin: 20
+	},
+	p: {
+		...textStyles.p
+	},
+	div: {
+		...textStyles.p
+	},
+	a: {
+		fontWeight: '300',
+		color: '#FF3366' // make links coloured pink
+	},
+	b: {
+		fontWeight: 'bold'
 	}
 });
 

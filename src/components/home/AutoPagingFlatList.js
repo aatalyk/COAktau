@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, Image, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
+import {
+	View,
+	Text,
+	FlatList,
+	StyleSheet,
+	Image,
+	ViewPagerAndroid,
+	Dimensions,
+	Platform,
+	TouchableWithoutFeedback
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PageControl from 'react-native-page-control';
 import PropTypes from 'prop-types';
@@ -26,7 +36,7 @@ class AutoPagingFlatList extends Component {
 	};
 
 	componentDidMount() {
-		if (Platform.OS === 'ios' && !this.props.manualPaging) {
+		if (!this.props.manualPaging) {
 			this.interval = setInterval(() => {
 				const { currentIndex } = this.state;
 				const { data } = this.props;
@@ -34,19 +44,22 @@ class AutoPagingFlatList extends Component {
 				const nextIndex = count > 1 && currentIndex < count - 1 ? currentIndex + 1 : 0;
 
 				if (count > 0) {
-					this.flatList.scrollToIndex({
-						index: nextIndex,
-						animated: true
-					});
+					if (Platform.OS === 'ios') {
+						this.flatList.scrollToIndex({
+							index: nextIndex,
+							animated: true
+						});
+					} else {
+						this.viewPager.setPage(nextIndex);
+						this.setState({ currentIndex: nextIndex });
+					}
 				}
 			}, 2500);
 		}
 	}
 
 	componentWillUnmount() {
-		if (Platform.OS === 'ios') {
-			clearInterval(this.interval);
-		}
+		clearInterval(this.interval);
 	}
 
 	onScrollEnd = event => {
@@ -68,6 +81,10 @@ class AutoPagingFlatList extends Component {
 		this.props.navigation.navigate('NewsPage', {
 			item: this.props.data[this.state.currentIndex]
 		});
+
+	onPageSelected = ({ nativeEvent }) => {
+		this.setState({ currentIndex: nativeEvent.position });
+	};
 
 	renderItem = ({ item }) => (
 		<TouchableWithoutFeedback onPress={this.props.onItemPress || this.onItemPress}>
@@ -94,6 +111,8 @@ class AutoPagingFlatList extends Component {
 		</TouchableWithoutFeedback>
 	);
 
+	renderPagerItem = (item, index) => <View key={`${index}`}>{this.renderItem({ item })}</View>;
+
 	keyExtractor = (_, index) => index + '';
 
 	render() {
@@ -116,11 +135,15 @@ class AutoPagingFlatList extends Component {
 						keyExtractor={this.keyExtractor}
 					/>
 				) : (
-					<AndroidPagingView
-						data={data}
-						renderItem={this.renderItem}
-						onPageSelected={position => this.setState({ currentIndex: position })}
-					/>
+					<ViewPagerAndroid
+						style={styles.viewPager}
+						ref={ref => {
+							this.viewPager = ref;
+						}}
+						onPageSelected={this.onPageSelected}
+					>
+						{this.props.data.map((item, index) => this.renderPagerItem(item, index))}
+					</ViewPagerAndroid>
 				)}
 				{!!data && (
 					<PageControl
@@ -152,6 +175,9 @@ const styles = StyleSheet.create({
 		width: SCREEN_WIDTH,
 		height: HEIGHT,
 		overflow: 'hidden'
+	},
+	viewPager: {
+		flex: 1
 	},
 	view: {},
 	image: {

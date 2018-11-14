@@ -23,6 +23,7 @@ export const images = {
 	callPurple: require('../../resources/img/callPurple.png'),
 	emailPurple: require('../../resources/img/emailPurple.png'),
 	right: require('../../resources/img/right.png'),
+	down: require('../../resources/img/down.png'),
 	logo: require('../../resources/img/logo.png'),
 	register: require('../../resources/img/register.png'),
 	caseSelected: require('../../resources/img/caseSelected.png'),
@@ -56,5 +57,8 @@ export const images = {
 	dictionary: require('../../resources/img/dictionary.png'),
 	approve: require('../../resources/img/approve.png'),
 	view: require('../../resources/img/view.png'),
-	taxi: require('../../resources/img/taxi.png')
+	taxi: require('../../resources/img/taxi.png'),
+	message: require('../../resources/img/message.png'),
+	ios: require('../../resources/img/ios.png'),
+	android: require('../../resources/img/android.png')
 };

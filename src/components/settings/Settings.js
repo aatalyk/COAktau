@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, NativeModules } from 'react-native';
+import { View, Text, Image, StyleSheet, NativeModules, Platform, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -16,24 +16,31 @@ const propTypes = {
 	disableNotification: PropTypes.func
 };
 
-const NotificationManager = NativeModules.NotificationManager;
+const ReactNotificationManager = NativeModules.ReactNotificationManager;
+
+const urliOS = 'https://itunes.apple.com/app/id1441907923';
+const urlAndroid = 'https://play.google.com/store/apps/details?id=com.coaktau&hl=ru';
 
 class SettingsScreen extends Component {
 	onPress = () => {
 		const lang = this.props.lang === 'kaz' ? 'rus' : 'kaz';
-		lang === 'rus' ? NotificationManager.subscribeRus() : NotificationManager.subscribeKaz();
+		lang === 'rus' ? ReactNotificationManager.subscribeRus() : ReactNotificationManager.subscribeKaz();
 		this.props.setLang(lang);
 	};
 
 	onValueChange = () => {
 		if (this.props.notifsEnabled) {
-			NotificationManager.disableNotification();
+			ReactNotificationManager.disableNotification();
 			this.props.disableNotification();
 		} else {
-			NotificationManager.enableNotification(this.props.lang);
+			ReactNotificationManager.enableNotification(this.props.lang);
 			this.props.enableNotification();
 		}
 	};
+
+	composeEmail = () => Linking.openURL('mailto:soaktau@gmail.com');
+
+	rate = () => Linking.openURL(Platform.OS === 'ios' ? urliOS : urlAndroid);
 
 	render() {
 		return (
@@ -49,6 +56,24 @@ class SettingsScreen extends Component {
 					<Text style={styles.title}>{settings[this.props.lang].navigation.notifs}</Text>
 				</View>
 				<NotifsSwitch isEnabled={this.props.notifsEnabled} onValueChange={this.onValueChange} />
+				<View style={styles.lang}>
+					<Image style={styles.image} source={Platform.OS === 'ios' ? images.ios : images.android} />
+					<Text style={styles.title}>{settings[this.props.lang].text.rate}</Text>
+				</View>
+				<LanguageItem
+					title={settings[this.props.lang].text.rate}
+					imgSource={images.right}
+					onPress={this.rate}
+				/>
+				<View style={styles.lang}>
+					<Image style={styles.image} source={images.message} />
+					<Text style={styles.title}>{settings[this.props.lang].text.message}</Text>
+				</View>
+				<LanguageItem
+					title={settings[this.props.lang].text.message}
+					imgSource={images.right}
+					onPress={this.composeEmail}
+				/>
 			</View>
 		);
 	}

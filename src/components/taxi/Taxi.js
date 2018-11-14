@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, FlatList, Communications } from 'react-native';
+import { View, Text, ScrollView, Platform, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import Communications from 'react-native-communications';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { PlaceHolder, FAQItem, ContactItem } from '../common';
+import { AutoPagingFlatList } from '../home/AutoPagingFlatList';
 import { fetchTaxiParamsRequested, fetchTaxiFaqRequested } from '../../actions';
-import { images, textStyles } from '../../assets';
+import { images, textStyles, colors, settings } from '../../assets';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const propTypes = {
 	navigation: PropTypes.object,
@@ -33,19 +37,27 @@ class TaxiScreen extends Component {
 
 	render() {
 		const { loading, faq, params, navigation, lang } = this.props;
-		console.warn('params', params.tels);
 		return loading ? (
 			<View style={styles.placeHolderContainer}>
 				<PlaceHolder />
 			</View>
 		) : (
-			<ScrollView style={styles.container} onScroll={this.onScroll}>
-				<Text style={styles.text}>{params.title}</Text>
-				{params.tels.map((tel, i) => (
-					<ContactItem key={i} title={tel} onPress={() => this.call(tel)} />
-				))}
-				<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
-			</ScrollView>
+			<View style={styles.container}>
+				<ScrollView style={styles.container} onScroll={this.onScroll}>
+					<AutoPagingFlatList
+						data={params.imageUrls.map(imageUrl => ({ icon: imageUrl }))}
+						onItemPress={() => null}
+						manualPaging
+						loadFinish={this.loadFinish}
+					/>
+					<FlatList data={faq} renderItem={this.renderItem} keyExtractor={(_, index) => index + ''} />
+				</ScrollView>
+				<TouchableOpacity onPress={() => this.call(params.tels[0])}>
+					<View style={[styles.buttonContainer, { backgroundColor: colors.soBlue }]}>
+						<Text style={styles.buttonText}>{settings[lang].text.call}</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
 		);
 	}
 }
@@ -60,6 +72,16 @@ const styles = {
 	text: {
 		...textStyles.h2,
 		marginHorizontal: 10
+	},
+	buttonText: {
+		...textStyles.p,
+		color: 'white'
+	},
+	buttonContainer: {
+		backgroundColor: colors.orange,
+		height: 44,
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	placeHolderContainer: {
 		flex: 1,

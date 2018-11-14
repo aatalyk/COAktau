@@ -37,7 +37,7 @@ class ContactScreen extends Component {
 
 	call = phone => Communications.phonecall(phone, true);
 
-	composeEmail = () => Linking.openURL('mailto:soaktau@gmail.com');
+	composeEmail = email => Linking.openURL(`mailto:${email}`);
 
 	onRefresh = () => this.props.fetchContactRequested();
 

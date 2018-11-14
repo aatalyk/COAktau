@@ -34,9 +34,10 @@ export const addToMyServices = service => ({
 	service
 });
 
-export const removeFromMyServices = service => ({
+export const removeFromMyServices = (service, lang) => ({
 	type: REMOVE_FROM_MY_SERVICES,
-	service
+	service,
+	lang
 });
 
 export const fetchSubServicesRequested = id => ({

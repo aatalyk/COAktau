@@ -36,7 +36,7 @@ export const DrawerRoutes = {
 };
 
 /* eslint-disable */
-const navigationOptions = (titleKaz, titleRus, withMenuButton = false) => ({ navigation }) => {
+const navigationOptions = (titleKaz, titleRus, withMenuButton = false, taxi = false) => ({ navigation }) => {
 	const imgSource = withMenuButton ? images.menu : images.back;
 	const onPress = () => (withMenuButton ? navigation.openDrawer() : navigation.goBack());
 
@@ -45,6 +45,7 @@ const navigationOptions = (titleKaz, titleRus, withMenuButton = false) => ({ nav
 			<Header
 				titleKaz={titleKaz}
 				titleRus={titleRus}
+				taxi={taxi}
 				leftItem={<IconButton imgSource={imgSource} onPress={onPress} />}
 			/>
 		)
@@ -82,7 +83,7 @@ const stack = {
 	},
 	Taxi: {
 		screen: Taxi,
-		navigationOptions: navigationOptions(settings.kaz.navigation.taxi, settings.rus.navigation.taxi)
+		navigationOptions: navigationOptions(settings.kaz.navigation.taxi, settings.rus.navigation.taxi, false, true)
 	},
 	PhraseList: {
 		screen: PhraseList

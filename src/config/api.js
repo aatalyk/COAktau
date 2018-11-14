@@ -13,10 +13,7 @@ export function addViewCount(type, id) {
 		body: JSON.stringify({ id })
 	})
 		.then(function(res) {
-			console.log('res res');
 			fetchNewsItemRequested(id);
 		})
-		.catch(function(error) {
-			console.log('err', error);
-		});
+		.catch(function(error) {});
 }
