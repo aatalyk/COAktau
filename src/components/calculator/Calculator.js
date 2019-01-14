@@ -36,6 +36,7 @@ class Calculator extends Component {
 			this.showAlert();
 			return;
 		}
+    
 		const result = calculate(
 			this.state.amount,
 			this.state.numberOfPeople,
